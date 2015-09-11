@@ -1,0 +1,534 @@
+GIT
+  remote: git://github.com/concordia-publishing-house/houston-dashboards.git
+  revision: fe566e0667b390d0b34b351578b8d487adf15b75
+  branch: master
+  specs:
+    houston-dashboards (0.0.1)
+      rails
+      ruby-ntlm
+      savon (~> 2.0)
+
+GIT
+  remote: git://github.com/concordia-publishing-house/houston-reports.git
+  revision: 8ae3f7ce4275446026e4f42ba5d7c4f0627aaaf4
+  branch: master
+  specs:
+    houston-reports (0.0.1)
+      rails
+
+GIT
+  remote: git://github.com/concordia-publishing-house/houston-support_form.git
+  revision: a599e284753f1328e916cb1affb3e21e3b0bfacb
+  branch: master
+  specs:
+    houston-support_form (0.0.1)
+      rails
+
+GIT
+  remote: git://github.com/concordia-publishing-house/itsm.git
+  revision: dbe9b64b9fd8a5c6dcc577adb6075c2f603d5fa8
+  branch: master
+  specs:
+    itsm (0.0.1)
+      nokogiri
+      ruby-ntlm
+      savon (~> 2.0)
+
+GIT
+  remote: git://github.com/concordia-publishing-house/star.git
+  revision: 0f33c86e80953926135f978bae993ad71ab333fc
+  branch: master
+  specs:
+    star (0.0.1)
+      faraday
+      faraday-raise-errors
+      multi_json
+      nokogiri
+      ruby-ntlm
+
+GIT
+  remote: git://github.com/houston/houston-alerts.git
+  revision: 8a17a7cd6b4cd835cb2cbae8f80721adea1e016d
+  branch: master
+  specs:
+    houston-alerts (0.0.1)
+      rails
+
+GIT
+  remote: git://github.com/houston/houston-feedback.git
+  revision: 86400e43e6b770b95d52aae08b9ad964495145b7
+  branch: master
+  specs:
+    houston-feedback (0.0.1)
+      activerecord-import
+      pg_search
+      rails
+
+GIT
+  remote: git://github.com/houston/houston-roadmap.git
+  revision: 633c4abad220ca7f0e647a79624b6a4e35ebaccc
+  branch: master
+  specs:
+    houston-roadmap (0.0.1)
+      rails
+
+GIT
+  remote: git://github.com/houston/houston-scheduler.git
+  revision: 2473b03518f8e18105e8ebc36d840deac39fb31b
+  branch: master
+  specs:
+    houston-scheduler (0.0.1)
+      rails
+
+GIT
+  remote: git://github.com/houston/houston-slack.git
+  revision: e79748628b89810f8784ee14aafb327f690807dd
+  branch: master
+  specs:
+    houston-slack (0.0.1)
+      faraday
+      multi_json
+      rails
+      websocket-driver
+
+GIT
+  remote: git://github.com/houston/houston.git
+  revision: 96f97d5f630fcb9006e711abf7e20db1cbe4686b
+  branch: gem
+  specs:
+    houston (0.5.0)
+      activerecord-import
+      activerecord-insert_many
+      activerecord-pluck_in_batches
+      addressable
+      backbone-rails (~> 1.0.0)
+      boblail-unfuddle
+      bundler
+      cancan
+      codeclimate-test-reporter (= 0.4.1)
+      coffee-rails (~> 4.0.0)
+      default_value_for (= 3.0.0.1)
+      devise (~> 3.0.0)
+      devise_invitable
+      engineyard
+      faraday
+      faraday-http-cache
+      faraday-raise-errors
+      gemnasium
+      gemoji
+      googlecharts
+      handlebars_assets (~> 0.18.0)
+      houston-devise_ldap_authenticatable
+      houston-oauth-plugin
+      houston-vestal_versions
+      hpricot
+      neat-rails
+      nested_editor_for
+      nokogiri
+      octokit
+      oj
+      openxml-xlsx
+      pg (~> 0.18.2)
+      pg_search
+      premailer
+      progressbar
+      rack-utf8_sanitizer
+      rails (~> 4.1.0)
+      redcarpet
+      rufus-scheduler
+      rugged (~> 0.23.0)
+      sass-rails (~> 4.0.0)
+      simplecov
+      strongbox
+      sugar-rails
+      thread_safe
+      uglifier (>= 1.3.0)
+      whenever (= 0.9.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    actionmailer (4.1.13)
+      actionpack (= 4.1.13)
+      actionview (= 4.1.13)
+      mail (~> 2.5, >= 2.5.4)
+    actionpack (4.1.13)
+      actionview (= 4.1.13)
+      activesupport (= 4.1.13)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    actionview (4.1.13)
+      activesupport (= 4.1.13)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+    activemodel (4.1.13)
+      activesupport (= 4.1.13)
+      builder (~> 3.1)
+    activerecord (4.1.13)
+      activemodel (= 4.1.13)
+      activesupport (= 4.1.13)
+      arel (~> 5.0.0)
+    activerecord-import (0.10.0)
+      activerecord (>= 3.0)
+    activerecord-insert_many (0.1.0)
+      activerecord
+    activerecord-pluck_in_batches (0.1.0)
+      activerecord
+    activesupport (4.1.13)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
+    addressable (2.3.8)
+    airbrake (4.3.0)
+      builder
+      multi_json
+    akami (1.2.2)
+      gyoku (>= 0.4.0)
+      nokogiri
+    ansi (1.5.0)
+    arel (5.0.1.20140414130214)
+    backbone-rails (1.0.0.1)
+      rails (>= 3.0.0)
+    bcrypt (3.1.10)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    boblail-unfuddle (0.7.0)
+      activesupport
+      builder
+      faraday (~> 0.8.8)
+    builder (3.2.2)
+    callsite (0.0.11)
+    cancan (1.6.10)
+    capybara (2.5.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
+    chronic (0.10.2)
+    codeclimate-test-reporter (0.4.1)
+      simplecov (>= 0.7.1, < 1.0.0)
+    coderay (1.1.0)
+    coffee-rails (4.0.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.9.1.1)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
+    css_parser (1.3.6)
+      addressable
+    default_value_for (3.0.0.1)
+      activerecord (>= 3.2.0, < 5.0)
+    devise (3.0.4)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      warden (~> 1.2.3)
+    devise_invitable (1.2.1)
+      actionmailer (>= 3.2.6, < 5)
+      devise (~> 3.0.0)
+    docile (1.1.5)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
+    engineyard (3.2.1)
+      engineyard-cloud-client (~> 2.1)
+      engineyard-serverside-adapter (~> 2.2)
+      escape (~> 0.0.4)
+      highline (~> 1.6.1)
+      launchy (~> 2.1)
+      net-ssh (~> 2.7)
+    engineyard-cloud-client (2.1.1)
+      multi_json (~> 1.6)
+      rest-client (~> 1.7)
+    engineyard-serverside-adapter (2.4.0)
+      escape (~> 0.0.4)
+      multi_json (~> 1.6)
+    erubis (2.7.0)
+    escape (0.0.4)
+    execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
+    faraday (0.8.10)
+      multipart-post (~> 1.2.0)
+    faraday-http-cache (1.2.2)
+      faraday (~> 0.8)
+    faraday-raise-errors (0.2.0)
+      faraday
+    gemnasium (3.2.1)
+    gemoji (2.1.0)
+    googlecharts (1.6.12)
+    gyoku (1.2.2)
+      builder (>= 2.1.2)
+    handlebars_assets (0.18)
+      execjs (>= 1.2.9)
+      multi_json
+      sprockets (>= 2.0.3)
+      tilt
+    highline (1.6.21)
+    hike (1.2.3)
+    hitimes (1.2.2)
+    houston-devise_ldap_authenticatable (0.7.0)
+      devise (~> 3.0.0)
+      net-ldap (~> 0.2)
+    houston-oauth-plugin (0.5.1)
+      multi_json
+      oauth (~> 0.4.4)
+      oauth2 (>= 0.5.0)
+      rack
+    houston-vestal_versions (2.0.0)
+      activerecord (>= 3, < 5)
+      activesupport (>= 3, < 5)
+    hpricot (0.8.6)
+    htmlentities (4.3.4)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    httpi (2.3.0)
+      rack
+    i18n (0.7.0)
+    json (1.8.3)
+    jwt (1.5.1)
+    kgio (2.9.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
+    libv8 (3.16.14.11)
+    macaddr (1.7.1)
+      systemu (~> 2.6.2)
+    mail (2.6.3)
+      mime-types (>= 1.16, < 3)
+    meta_request (0.3.4)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
+    method_source (0.8.2)
+    mime-types (2.6.1)
+    mini_portile (0.6.2)
+    minitest (5.8.0)
+    minitest-reporters (1.1.0)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
+    minitest-reporters-turn_reporter (0.1.0)
+      minitest-reporters
+    multi_json (1.11.2)
+    multi_xml (0.5.5)
+    multipart-post (1.2.0)
+    neat-rails (0.1.0)
+    nested_editor_for (0.1.0)
+    net-ldap (0.11)
+    net-ssh (2.9.2)
+    netrc (0.10.3)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+    nori (2.4.0)
+    oauth (0.4.7)
+    oauth2 (1.0.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
+    octokit (4.1.0)
+      sawyer (~> 0.6.0, >= 0.5.3)
+    oj (2.12.13)
+    open_xml_package (0.1.0)
+      nokogiri
+      rubyzip (~> 1.1.0)
+    openxml-xlsx (0.1.1)
+      nokogiri
+      open_xml_package (= 0.1.0)
+    orm_adapter (0.5.0)
+    pg (0.18.3)
+    pg_search (1.0.5)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
+    premailer (1.8.6)
+      css_parser (>= 1.3.6)
+      htmlentities (>= 4.0.0)
+    progressbar (0.21.0)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rack (1.5.5)
+    rack-contrib (1.2.0)
+      rack (>= 0.9.1)
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rack-utf8_sanitizer (1.3.1)
+      rack (~> 1.0)
+    rails (4.1.13)
+      actionmailer (= 4.1.13)
+      actionpack (= 4.1.13)
+      actionview (= 4.1.13)
+      activemodel (= 4.1.13)
+      activerecord (= 4.1.13)
+      activesupport (= 4.1.13)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.1.13)
+      sprockets-rails (~> 2.0)
+    railties (4.1.13)
+      actionpack (= 4.1.13)
+      activesupport (= 4.1.13)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+    raindrops (0.14.0)
+    rake (10.4.2)
+    redcarpet (3.3.2)
+    ref (1.0.5)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
+    rr (1.1.2)
+    ruby-ntlm (0.0.1)
+    ruby-progressbar (1.7.5)
+    rubyzip (1.1.7)
+    rufus-scheduler (3.1.4)
+    rugged (0.23.2)
+    safe_yaml (1.0.4)
+    sass (3.2.19)
+    sass-rails (4.0.5)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.2.2)
+      sprockets (~> 2.8, < 3.0)
+      sprockets-rails (~> 2.0)
+    savon (2.10.0)
+      akami (~> 1.2)
+      builder (>= 2.1.2)
+      gyoku (~> 1.2)
+      httpi (~> 2.3)
+      nokogiri (>= 1.4.0)
+      nori (~> 2.4)
+      uuid (~> 2.3.7)
+      wasabi (~> 3.4)
+    sawyer (0.6.0)
+      addressable (~> 2.3.5)
+      faraday (~> 0.8, < 0.10)
+    shoulda-context (1.2.1)
+    simplecov (0.10.0)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
+    simplecov-json (0.2)
+      json
+      simplecov
+    skylight (0.8.0)
+      activesupport (>= 3.0.0)
+    slop (3.6.0)
+    spring (1.3.6)
+    sprockets (2.12.4)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.3.3)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (>= 2.8, < 4.0)
+    strongbox (0.7.2)
+      activerecord
+    sucker_punch (1.5.0)
+      celluloid (~> 0.16.0)
+    sugar-rails (1.4.1)
+      railties (>= 3.0.0)
+    systemu (2.6.4)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
+    thor (0.19.1)
+    thread_safe (0.3.5)
+    tilt (1.4.1)
+    timecop (0.7.4)
+    timers (4.0.4)
+      hitimes
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    uglifier (2.7.2)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
+    unicorn (4.9.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
+    unicorn-rails (2.2.0)
+      rack
+      unicorn
+    uuid (2.3.7)
+      macaddr (~> 1.0)
+    warden (1.2.3)
+      rack (>= 1.0)
+    wasabi (3.4.0)
+      httpi (~> 2.0)
+      nokogiri (>= 1.4.2)
+    webmock (1.21.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+    websocket-driver (0.6.2)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
+    whenever (0.9.2)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  airbrake
+  better_errors
+  capybara
+  factory_girl_rails
+  houston!
+  houston-alerts!
+  houston-dashboards!
+  houston-feedback!
+  houston-reports!
+  houston-roadmap!
+  houston-scheduler!
+  houston-slack!
+  houston-support_form!
+  itsm!
+  letter_opener
+  meta_request
+  minitest
+  minitest-reporters
+  minitest-reporters-turn_reporter
+  pry
+  rr
+  shoulda-context
+  simplecov-json
+  skylight
+  spring
+  star!
+  sucker_punch
+  therubyracer
+  timecop
+  unicorn-rails
+  webmock
+
+BUNDLED WITH
+   1.10.6
