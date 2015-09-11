@@ -23,27 +23,6 @@ Rails.application.assets = Sprockets::Environment.new(Houston.root) do |env|
   end
 end
 
-# TODO: move to Houston to lib/patches/...
-# From sprockets-rails
-require 'sprockets/rails/task'
-module Sprockets
-  module Rails
-    class Task < Rake::SprocketsTask
-      
-      # Backported from Sprockets 3.0.0
-      def output
-        if app
-          # File.join(app.root, 'public', app.config.assets.prefix)
-          File.join(app.paths["public"].first, app.config.assets.prefix)
-        else
-          super
-        end
-      end
-    end
-  end
-end
-
-
 
 Houston.config do
 
