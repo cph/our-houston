@@ -42,6 +42,12 @@ gem "skylight"
 gem "star", github: "concordia-publishing-house/star", branch: "master"
 gem "itsm", github: "concordia-publishing-house/itsm", branch: "master"
 
+# Lock this at 0.6.0.
+# 0.10.0 has a conflict with activerecord-insert_many
+# TODO: refactor away the use of activerecord-import
+# Favor activerecord-insert_many
+gem "activerecord-import", "0.6.0"
+
 # Modules
 gem "houston-roadmap", github: "houston/houston-roadmap", branch: "master"
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"

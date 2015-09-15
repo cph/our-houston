@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston.git
-  revision: 5b75a64c5f447eb8fffd6cbfb195d567cbe4962b
+  revision: 5a59672d181422dde38311f2007c79ad8005e684
   branch: gem
   specs:
     houston (0.5.0)
@@ -168,7 +168,7 @@ GEM
       activemodel (= 4.1.13)
       activesupport (= 4.1.13)
       arel (~> 5.0.0)
-    activerecord-import (0.10.0)
+    activerecord-import (0.6.0)
       activerecord (>= 3.0)
     activerecord-insert_many (0.1.0)
       activerecord
@@ -498,6 +498,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-import (= 0.6.0)
   airbrake
   better_errors
   capybara
