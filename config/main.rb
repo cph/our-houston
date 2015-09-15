@@ -1,30 +1,20 @@
+# This file loads and configures Houston
+
+# Load Houston
 require "houston/application"
 
-Houston.root = Pathname.new File.expand_path("../..",  __FILE__)
-
-# Keep structure.sql in the local db directory
-ActiveRecord::Tasks::DatabaseTasks.db_dir = Houston.root.join("db")
-
 # Configure Houston
-Houston::Application.paths["config/database"] = Houston.root.join("config/database.yml")
-Houston::Application.paths["public"] = Houston.root.join("public")
-Houston::Application.paths["log"] = Houston.root.join("log/#{Rails.env}.log")
-Houston::Application.paths["tmp"] = Houston.root.join("tmp")
-
-# TODO: finish this
-Rails.application.assets = Sprockets::Environment.new(Houston.root) do |env|
-  env.version = Rails.env
-
-  path = "#{Houston.root}/tmp/cache/assets/#{Rails.env}"
-  env.cache = Sprockets::Cache::FileStore.new(path)
-
-  env.context_class.class_eval do
-    include ::Sprockets::Rails::Helper
-  end
-end
-
-
 Houston.config do
+
+  # The path to this instance.
+  # This is required so that Houston can load environment-specific
+  # configuration from ./config/environments, write log files to
+  # ./logs, and serve static assets from ./public.
+  root Pathname.new File.expand_path("../..",  __FILE__)
+
+  # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+  # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+  time_zone "Central Time (US & Canada)"
 
   # This is the name that will be shown in the banner
   title "Houston"
