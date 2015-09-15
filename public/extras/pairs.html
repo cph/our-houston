@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="/vendor.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="/application.css" media="all" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+      body {
+        padding: 2em 6em;
+        font-family: Calibri;
+      }
+      
+      table {
+        table-layout: fixed;
+        margin-top: 3em;
+      }
+      
+      thead th {
+        max-width: 3em;
+      }
+      
+      tbody th {
+        text-align: right;
+        padding-right: 1.5em;
+      }
+      
+      thead th span {
+        display: block;
+   -moz-transform: rotate(90deg);  /* FF3.5+ */
+     -o-transform: rotate(90deg);  /* Opera 10.5 */
+-webkit-transform: rotate(90deg);  /* Saf3.1+, Chrome */
+           filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.90);  /* IE6,IE7 */
+       -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.90)"; /* IE8 */
+       
+        text-align: right;
+        width: 8em;
+        height: 5em;
+        position: relative;
+        left: -3.25em;
+        top: -2.75em;
+      }
+      
+      td { width: 5em; height: 5em; }
+      td img { 
+        -webkit-filter: grayscale(25%);
+        -moz-filter: grayscale(25%);
+        filter: grayscale(25%);
+        opacity: 0.75;
+        cursor: pointer;
+      }
+      td img:hover {
+        -webkit-filter: none;
+        -moz-filter: none;
+        filter: none;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2> Pairs </h2>
+    
+    <table id="teams"></table>
+    
+
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.1/d3.min.js"></script>
+    <script src="/vendor.js" type="text/javascript"></script>
+    <script src="/application.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function() {
+        var md, html, committers, email, url, teammates = [
+          'Ben <ben.govero@cph.org>',
+          'Bob <bob.lail@cph.org>',
+          'Chase <chase.clettenberg@cph.org>',
+          'Gene <gene.doyel@cph.org>',
+          'Luke <luke.booth@cph.org>',
+          'Matt <matt.kobs@cph.org>',
+          'Ordie <ordie.page@cph.org>' ];
+        
+        // teammates.push('Kendall <kendall.park@cph.org>');
+        // teammates.push('Jesse <jesse.lewis@cph.org>');
+        teammates = _.map(teammates, function(email) {
+          md = email.match(/^([^<]+)<(([^@]+)@[^>]+)>$/);
+          return { displayName: md[1], email: md[2], local: md[3] };
+        });
+        var size = 256, d = encodeURI('http://www.4p8.com/eric.brasseur/gamma_gray_186_pixel.jpg');
+        
+        var pairs = [null].concat(teammates.slice(1).reverse()),
+        html = '<thead><tr><th></th>';
+        _.each(pairs, function(pair) {
+          html += '<th><span>' + (pair ? pair.displayName : '') + '</span></th>';
+        });
+        html += '</tr></thead><tbody>';
+        
+        var take = teammates.length;
+        _.each(teammates, function(person) {
+          html += '<tr><th>' + person.displayName + '</th>';
+          _.each(_.take(pairs, take), function(pair) {
+            if(!pair) {
+              email = person.email;
+              name = person.displayName;
+            } else {
+              committers = _.sortBy([person, pair], function(person) { return person.local; });
+              email = 'pair=' + committers[0].local + '+' + committers[1].local + '@cphepdev.com';
+              name = committers[0].displayName + ' and ' + committers[1].displayName;
+            }
+            
+            url = '//www.gravatar.com/avatar/' + MD5(email.toLowerCase().trim()) + '?r=g&d=' + d + '&s=' + size;
+            html += '<td><img src="' + url + '" width="' + size + '" height="' + size + '" rel="tooltip" title="' + name + + '\n' + email + '" /></td>';
+          });
+          html += '</tr>';
+          take -= 1;
+        });
+        html += '</tbody>';
+        
+        $('#teams').html(html);
+        $('[rel=tooltip]').tooltip();
+      });
+    </script>
+  </body>
+</html>

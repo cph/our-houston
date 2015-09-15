@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <style type="text/css">
+      body.-slider-body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      #slider_container {
+        position: relative;
+        height: 100%;
+        left: 0%;
+      }
+
+      #slider_container.transition {
+        /* Use hardware acceleration to animate an image of the
+           composed container rather than the browser's layout engine */
+        transform: translate3d(0,0,0);
+
+        -webkit-transition: left 0.36s;
+        transition: left 0.36s;
+      }
+
+      #slider_container.slide-left {
+        left: -100%;
+      }
+
+      iframe.-slider-iframe {
+        position: absolute;
+        top: 0;
+        border: none;
+        width: 100%;
+        height: 100%;
+      }
+
+      iframe.-slider-iframe0 { left: 0; }
+      iframe.-slider-iframe1 { left: 100%; }
+      iframe.-slider-iframe2 { left: 200%; }
+      iframe.-slider-iframe3 { left: 300%; }
+    </style>
+  </head>
+  <body class="-slider-body">
+    <div id="slider_container"></div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        var iframes = [],
+            iframe,
+            $container = $('#slider_container'),
+            container = $container[0],
+            i,
+            ii;
+
+
+
+        function getQueryParameters(search) {
+          search = (search || document.location.search).replace(/(^\?)/,'');
+          var params = {},
+              fragments,
+              key,
+              value,
+              endsInArrayBrackets = /\[\]$/;
+          search.split('&').map(function(arg) {
+            fragments = arg.split('=');
+            if(fragments.length == 2) {
+              key = decodeURIComponent(fragments[0]);
+              value = decodeURIComponent(fragments[1]);
+              if(endsInArrayBrackets.test(key)) {
+                key = key.substr(0, key.length - 2);
+                params[key] = params[key] || [];
+                params[key].push(value);
+              } else {
+                params[key] = value;
+              }
+            }
+          });
+          return params;
+        }
+
+        function renumberIframes() {
+          for(i=0, ii=iframes.length; i<ii; i++) {
+            iframe = iframes[i];
+            iframe.className = '-slider-iframe -slider-iframe' + i;
+          }
+        }
+
+        function slideContainerCss() {
+          $container.addClass('transition slide-left');
+
+          $container.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+            iframes.push(iframes.shift());
+            renumberIframes();
+            $container.removeClass('transition slide-left');
+          });
+        }
+
+        function slideContainerVelocity() {
+          $container.velocity({
+            left: -window.innerWidth
+          }, {
+            duration: 360,
+            complete: function() {
+              // shuffle the first iframe to the end of the list
+              // and reposition the #container so that the current
+              // iframe is aways the left-most (and new iframes
+              // always slide in from the right).
+              iframes.push(iframes.shift());
+              renumberIframes();
+              $container.removeAttr('style');
+            }
+          });
+        }
+
+
+
+        var params = getQueryParameters(),
+            delay = +(params.delay || 30) * 1000,
+            urls = params.urls || [],
+            zoom = params.zoom || 1,
+            slideContainer = params.use == 'css' ? slideContainerCss : slideContainerVelocity,
+            url;
+
+        // Create an iframe for each web page that will be rotated
+        for(i=0, ii=urls.length; i<ii; i++) {
+          url = urls[i];
+          iframe = document.createElement('iframe');
+          iframes.push(iframe);
+          container.appendChild(iframe);
+          iframe.src = url + '?zoom=' + zoom;
+        }
+
+        // Tell each iframe which position it should occupy horizontally
+        renumberIframes();
+
+        // Rotate the iframes every `delay`
+        window.setInterval(slideContainer, delay);
+      });
+    </script>
+  </body>
+</html>

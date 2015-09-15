@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
+    <style type="text/css">
+      tr.no-hours td { background-color: #ffaaaa; }
+      tr.unreachable td { background-color: #666666; }
+      tr.merge td { background-color: #aaaaaa; }
+    </style>
+  </head>
+  <body>
+    
+    <div id="container">
+      
+      <h3>Commits by Project</h3>
+      <table>
+        <thead>
+          <th>Project</th>
+          <th>Commits</th>
+          <th>Hours</th>
+        </thead>
+        <tbody id="projects_table"></tbody>
+      </table>
+      
+      <h3>Commits by Ticket</h3>
+      <table>
+        <thead>
+          <th>Ticket</th>
+          <th>Commits</th>
+          <th>Hours</th>
+          <th>Points</th>
+        </thead>
+        <tbody id="tickets_table"></tbody>
+      </table>
+      
+      <h3>All Commits</h3>
+      <table class="sortme">
+        <thead>
+          <th>Project</th>
+          <th>Message</th>
+          <th>Hours</th>
+          <th>Author</th>
+        </thead>
+        <tbody id="commits_table"></tbody>
+      </table>
+    </div>
+    
+    
+    <script>
+      var commitsUrl = 'http://status.cphepdev.com/commits?start_at=20130812';
+      var ticketsUrl = 'http://status.cphepdev.com/projects/ledger/tickets';
+      
+      d3.json(commitsUrl, function(skip, data) {
+        d3.json(ticketsUrl, function(skip, tickets) {
+        
+        
+        
+          var commitsByProject = d3.nest()
+            .key(function(d) { return d.project; })
+            .entries(data);
+        
+          var table = d3.select(projects_table);
+          var rows = table.selectAll('tr')
+            .data(commitsByProject)
+            .enter()
+            .append('tr')
+        
+          rows.append('th')
+            .text(function(row) { return [row.key] });
+        
+          rows.append('td')
+            .text(function(row) { return row.values.length });
+        
+          rows.append('td')
+            .text(function(row) { return d3.sum(row.values, function(d) { return d.hours * d.committers.length; }).toFixed(2) });
+        
+        
+        
+          var ledgerCommits = [];
+          for(var i=0; i<commitsByProject.length; i++) {
+            if(commitsByProject[i].key == 'ledger') {
+              ledgerCommits = commitsByProject[i].values;
+              break;
+            }
+          }
+        
+        
+        
+          var ledgerCommitsByTicket = [];
+          ledgerCommits.forEach(function(commit) {
+            for(var i=0; i<commit.tickets.length; i++) {
+              ledgerCommitsByTicket.push({ticket: commit.tickets[i], hours: commit.hours, committers: commit.committers});
+            }
+          });
+        
+          ledgerCommitsByTicket = d3.nest()
+            .key(function(d) { return d.ticket })
+            .entries(ledgerCommitsByTicket);
+          
+          var estimatesByTicket = {};
+          tickets.forEach(function(ticket) {
+            if(ticket.extendedAttributes.estimated_effort) {
+              estimatesByTicket[ticket.number] = ticket.extendedAttributes.estimated_effort;
+            }
+          });
+        
+          var table = d3.select(tickets_table);
+          var rows = table.selectAll('tr')
+            .data(ledgerCommitsByTicket)
+            .enter()
+            .append('tr')
+
+          rows.append('th')
+            .text(function(row) { return [row.key] });
+
+          rows.append('td')
+            .text(function(row) { return row.values.length });
+
+          rows.append('td')
+            .text(function(row) { return d3.sum(row.values, function(d) { return d.hours * d.committers.length; }).toFixed(2) });
+        
+          rows.append('td')
+            .text(function(row) { return estimatesByTicket[row.key]; });
+        
+        
+        
+          var tbody = d3.select(commits_table);
+          var rows = tbody.selectAll('tr')
+            .data(data)
+            .enter()
+            .append('tr')
+            .attr('class', function(row) {
+              var css = [];
+              if(row.unreachable) css.push('unreachable');
+              if(+row.hours <= 0) css.push('no-hours');
+              if(row.message.match(/^Merge/)) css.push('merge');
+              return css.join(' ');
+            });
+          var cells = rows.selectAll('td')
+            .data(function(row) { return [row.project, row.message, row.committers.length * row.hours.toFixed(2), row.committer.name] })
+            .enter()
+            .append('td')
+              .text(function(value) { return value });
+        
+        
+        
+        
+          $('table.sortme').tablesorter();
+        });
+      });
+    </script>
+  </body>
+</html>
