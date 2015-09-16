@@ -517,7 +517,8 @@ CREATE TABLE alerts (
     environment_name character varying(255),
     text character varying(255),
     requires_verification boolean DEFAULT false NOT NULL,
-    verified boolean DEFAULT false NOT NULL
+    verified boolean DEFAULT false NOT NULL,
+    suppressed boolean DEFAULT false NOT NULL
 );
 
 
@@ -3123,4 +3124,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150902005758');
 INSERT INTO schema_migrations (version) VALUES ('20150902010629');
 
 INSERT INTO schema_migrations (version) VALUES ('20150902010853');
+
+INSERT INTO schema_migrations (version) VALUES ('20150916152641');
 

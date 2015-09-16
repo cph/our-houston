@@ -48,7 +48,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: 8a17a7cd6b4cd835cb2cbae8f80721adea1e016d
+  revision: 86845ae813ad8fbe13c986576b4a8563d2f1810e
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston.git
-  revision: 0d696b7cf2d4056dbc9e1799445d7d45d6f4c82f
+  revision: 2097cbd6acc256dfbc6da4cdd883c3f14e793be1
   branch: gem
   specs:
     houston (0.5.0)
@@ -180,10 +180,10 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.8)
-    airbrake (4.3.0)
+    airbrake (4.3.1)
       builder
       multi_json
-    akami (1.2.2)
+    akami (1.3.1)
       gyoku (>= 0.4.0)
       nokogiri
     ansi (1.5.0)
@@ -269,8 +269,9 @@ GEM
       faraday
     gemnasium (3.2.1)
     gemoji (2.1.0)
+    git-version-bump (0.15.1)
     googlecharts (1.6.12)
-    gyoku (1.2.2)
+    gyoku (1.3.1)
       builder (>= 2.1.2)
     handlebars_assets (0.18)
       execjs (>= 1.2.9)
@@ -279,7 +280,7 @@ GEM
       tilt
     highline (1.6.21)
     hike (1.2.3)
-    hitimes (1.2.2)
+    hitimes (1.2.3)
     houston-devise_ldap_authenticatable (0.7.0)
       devise (~> 3.0.0)
       net-ldap (~> 0.2)
@@ -295,19 +296,17 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httpi (2.3.0)
+    httpi (2.4.1)
       rack
     i18n (0.7.0)
     json (1.8.3)
     jwt (1.5.1)
-    kgio (2.9.3)
+    kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
     libv8 (3.16.14.11)
-    macaddr (1.7.1)
-      systemu (~> 2.6.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     meta_request (0.3.4)
@@ -315,7 +314,7 @@ GEM
       rack-contrib (~> 1.1)
       railties (>= 3.0.0, < 5.0.0)
     method_source (0.8.2)
-    mime-types (2.6.1)
+    mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.0)
     minitest-reporters (1.1.0)
@@ -335,7 +334,7 @@ GEM
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    nori (2.4.0)
+    nori (2.6.0)
     oauth (0.4.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
@@ -367,8 +366,9 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.5.5)
-    rack-contrib (1.2.0)
-      rack (>= 0.9.1)
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-utf8_sanitizer (1.3.1)
@@ -388,10 +388,10 @@ GEM
       activesupport (= 4.1.13)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    raindrops (0.14.0)
+    raindrops (0.15.0)
     rake (10.4.2)
     redcarpet (3.3.2)
-    ref (1.0.5)
+    ref (2.0.0)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -409,14 +409,13 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
-    savon (2.10.0)
+    savon (2.11.1)
       akami (~> 1.2)
       builder (>= 2.1.2)
       gyoku (~> 1.2)
       httpi (~> 2.3)
       nokogiri (>= 1.4.0)
       nori (~> 2.4)
-      uuid (~> 2.3.7)
       wasabi (~> 3.4)
     sawyer (0.6.0)
       addressable (~> 2.3.5)
@@ -433,7 +432,7 @@ GEM
     skylight (0.8.0)
       activesupport (>= 3.0.0)
     slop (3.6.0)
-    spring (1.3.6)
+    spring (1.4.0)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -445,18 +444,17 @@ GEM
       sprockets (>= 2.8, < 4.0)
     strongbox (0.7.2)
       activerecord
-    sucker_punch (1.5.0)
-      celluloid (~> 0.16.0)
+    sucker_punch (1.5.1)
+      celluloid (= 0.16.0)
     sugar-rails (1.4.1)
       railties (>= 3.0.0)
-    systemu (2.6.4)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    timecop (0.7.4)
+    timecop (0.8.0)
     timers (4.0.4)
       hitimes
     tzinfo (1.2.2)
@@ -474,11 +472,9 @@ GEM
     unicorn-rails (2.2.0)
       rack
       unicorn
-    uuid (2.3.7)
-      macaddr (~> 1.0)
     warden (1.2.3)
       rack (>= 1.0)
-    wasabi (3.4.0)
+    wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
     webmock (1.21.0)
