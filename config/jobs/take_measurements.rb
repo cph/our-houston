@@ -1,0 +1,247 @@
+Houston.config do
+  at "11:50pm", "take:measurements", every: :thursday do
+    measure_sprint_effort_for_week!
+    measure_alerts_for_week!
+  end
+
+  every "1h", "measure:star" do
+    measure_star_time!
+  end
+end
+
+
+STAR_USERNAME_FOR_USER = {
+  BEN => "GOVEROBT",
+  BOB => "LAILRC",
+  LUKE => "BOOTHJL",
+  ORDIE => "PAGEOE",
+  CHASE => "CLETTECA",
+  MATT => "KOBSMC"
+}.freeze
+
+
+class TemporaryCredentials
+  def with_credentials
+    yield "Houston", ENV["HOUSTON_CPH_PASSWORD"]
+  end
+end
+
+
+def to_end_of_thursday(time)
+  days_until_thursday = 4 - time.wday
+  days_until_thursday += 7 if days_until_thursday < 0
+  days_until_thursday.days.from(time).end_of_day
+end
+
+def measure_star_time!(time=Time.now)
+  # Find entries for the last 3 weeks
+  taken_at = to_end_of_thursday(time)
+  date = taken_at.to_date
+  weeks = (-14..0).step(7).map { |ago| (date + (ago - 6))..(date + ago) }
+  weeks.each do |week|
+    measure_star_time_for_week!(week)
+  end
+end
+
+def measure_star_time_for_year!
+  now = Time.now
+  measure_alerts_for_range!(Time.new(now.year, 1, 1)..now)
+end
+
+def measure_star_time_for_range!(range)
+  taken_at = to_end_of_thursday(range.begin).to_date
+  while taken_at < range.end
+    week = (taken_at - 6)..taken_at
+    measure_star_time_for_week!(week)
+    taken_at = 7.days.after(taken_at)
+  end
+end
+
+def measure_star_time_for_week!(week)
+  star = Star.new(TemporaryCredentials.new)
+  taken_at = week.end.to_time.end_of_day
+
+  all_star_entries = STAR_USERNAME_FOR_USER.flat_map do |email, username|
+    user = User.find_by_email(email)
+    star_entries_for_week = []
+    unitime_entries_for_week = []
+
+    week.each do |date|
+      star_entries = star.get_time!(date, username)
+      unitime_entries = star.get_unitime!(date, username)
+      record_star_measurements!(
+        taken_at: date.to_time.end_of_day,
+        user: user,
+        prefix: "daily",
+        star_entries: star_entries,
+        unitime_entries: unitime_entries)
+      star_entries_for_week.concat star_entries
+      unitime_entries_for_week.concat unitime_entries
+    end
+
+    record_star_measurements!(
+      taken_at: taken_at,
+      user: user,
+      prefix: "weekly",
+      star_entries: star_entries_for_week,
+      unitime_entries: unitime_entries_for_week)
+
+    star_entries_for_week
+  end
+
+  all_star_entries.group_by { |attrs| attrs[:project] }.each do |project_slug, star_entries|
+    project = Project.find_by_slug project_slug
+    next unless project
+
+    Measurement.take!(subject: project, taken_at: taken_at, name: "weekly.hours.charged",
+      value: star_entries.sum { |attrs| attrs[:hours] })
+
+    star_entries.group_by { |attrs| attrs[:component] }.each do |component, star_entries|
+      Measurement.take!(subject: project, taken_at: taken_at, name: "weekly.hours.charged.#{component}",
+        value: star_entries.sum { |attrs| attrs[:hours] })
+    end
+  end
+end
+
+def record_star_measurements!(taken_at: nil, user: nil, prefix: nil, star_entries: nil, unitime_entries: nil)
+  hours_worked = unitime_entries.select { |attrs| attrs[:pay_code] == :regular }.sum { |attrs| attrs[:hours] }
+  hours_off = unitime_entries.select { |attrs| [:timeoff, :holiday].member?(attrs[:pay_code]) }.sum { |attrs| attrs[:hours] }
+  hours_charged = star_entries.sum { |attrs| attrs[:hours] }
+
+  Measurement.take!(subject: user, taken_at: taken_at, name: "#{prefix}.hours.worked", value: hours_worked)
+  Measurement.take!(subject: user, taken_at: taken_at, name: "#{prefix}.hours.off", value: hours_off)
+  Measurement.take!(subject: user, taken_at: taken_at, name: "#{prefix}.hours.charged", value: hours_charged)
+  Measurement.take!(subject: user, taken_at: taken_at, name: "#{prefix}.hours.charged.percent",
+    value: (hours_charged.to_f / hours_worked).round(4)) if hours_worked > 0
+
+  star_entries.group_by { |attrs| attrs[:component] }.each do |component, star_entries|
+    Measurement.take!(subject: user, taken_at: taken_at, name: "#{prefix}.hours.charged.#{component}",
+      value: star_entries.sum { |attrs| attrs[:hours] })
+  end
+end
+
+
+
+
+
+def measure_sprint_effort_for_week!(time=Time.now)
+  taken_at = to_end_of_thursday(time)
+
+  sprint = Sprint.find_by_date(taken_at)
+  return unless sprint
+
+  sprint.sprint_tasks.joins(:task)
+    .group("sprints_tasks.checked_out_by_id")
+    .pluck("sprints_tasks.checked_out_by_id", "SUM(tasks.effort)")
+    .each do |(user_id, effort)|
+      Measurement.take!(name: "weekly.sprint.effort.intended", taken_at: taken_at,
+        subject_type: "User", subject_id: user_id, value: effort) if user_id
+  end
+
+  sprint.sprint_tasks.joins(:task)
+    .completed_during(sprint)
+    .group("sprints_tasks.checked_out_by_id")
+    .pluck("sprints_tasks.checked_out_by_id", "SUM(tasks.effort)")
+    .each do |(user_id, effort)|
+      Measurement.take!(name: "weekly.sprint.effort.completed", taken_at: taken_at,
+        subject_type: "User", subject_id: user_id, value: effort) if user_id
+  end
+
+  intended = sprint.sprint_tasks.joins(:task).sum("tasks.effort")
+  completed = sprint.sprint_tasks.joins(:task).completed_during(sprint).sum("tasks.effort")
+  Measurement.take!(name: "weekly.sprint.completed", taken_at: taken_at,
+    value: intended == completed ? "1" : "0")
+end
+
+
+
+def measure_alerts_for_year!
+  now = Time.now
+  measure_alerts_for_range!(Time.new(now.year, 1, 1)..now)
+end
+
+def measure_alerts_for_range!(range)
+  taken_at = to_end_of_thursday(range.begin)
+  while taken_at < range.end
+    measure_alerts_for_week!(taken_at)
+    taken_at = 7.days.after(taken_at)
+  end
+end
+
+def measure_alerts_for_week!(time=Time.now)
+  taken_at = to_end_of_thursday(time)
+
+  week = 6.days.before(taken_at).beginning_of_day..taken_at.end_of_day
+
+  # Alerts Completed this Week
+  alerts = Houston::Alerts::Alert.where(closed_at: week).includes(:checked_out_by)
+  alerts.group_by(&:checked_out_by).each do |user, alerts|
+    Measurement.take!(name: "weekly.alerts.completed", taken_at: taken_at, subject: user, value: alerts.count)
+    alerts.group_by(&:type).each do |type, alerts|
+      Measurement.take!(name: "weekly.alerts.completed.#{type}", taken_at: taken_at, subject: user, value: alerts.length)
+    end
+  end
+  Measurement.take!(name: "weekly.alerts.completed", taken_at: taken_at, value: alerts.count)
+  alerts.group_by(&:type).each do |type, alerts|
+    Measurement.take!(name: "weekly.alerts.completed.#{type}", taken_at: taken_at, value: alerts.length)
+  end
+
+  # Alerts Opened this Week
+  alerts = Houston::Alerts::Alert.where(opened_at: week).includes(:project)
+  Measurement.take!(name: "weekly.alerts.opened", taken_at: taken_at, value: alerts.count)
+  alerts.group_by(&:type).each do |type, alerts|
+    Measurement.take!(name: "weekly.alerts.opened.#{type}", taken_at: taken_at, value: alerts.length)
+  end
+  alerts.group_by(&:project).each do |project, alerts|
+    Measurement.take!(name: "weekly.alerts.opened", taken_at: taken_at, subject: project, value: alerts.count)
+    alerts.group_by(&:type).each do |type, alerts|
+      Measurement.take!(name: "weekly.alerts.opened.#{type}", taken_at: taken_at, subject: project, value: alerts.length)
+    end
+  end
+
+  # Alerts Due this Week
+  alerts = Houston::Alerts::Alert.where(deadline: week).includes(:checked_out_by) \
+    .select { |alert| alert.deadline < week.end }
+
+  alerts.group_by(&:checked_out_by).each do |user, alerts|
+    if alerts.count > 0
+      alerts_completed_on_time = alerts.select { |alert| alert.on_time?(week.end) != false }.count
+      Measurement.take!(name: "weekly.alerts.due", taken_at: taken_at, subject: user,
+        value: alerts.count)
+      Measurement.take!(name: "weekly.alerts.due.completed-on-time", taken_at: taken_at, subject: user,
+        value: alerts_completed_on_time)
+      Measurement.take!(name: "weekly.alerts.due.completed-on-time.percent", taken_at: taken_at, subject: user,
+        value: (alerts_completed_on_time.to_f / alerts.count).round(4))
+    end
+  end
+  if alerts.count > 0
+    alerts_completed_on_time = alerts.select { |alert| alert.on_time?(week.end) != false }.count.to_f
+    Measurement.take!(name: "weekly.alerts.due", taken_at: taken_at,
+      value: alerts.count)
+    Measurement.take!(name: "weekly.alerts.due.completed-on-time", taken_at: taken_at,
+      value: alerts_completed_on_time)
+    Measurement.take!(name: "weekly.alerts.due.completed-on-time.percent", taken_at: taken_at,
+      value: (alerts_completed_on_time.to_f / alerts.count).round(4))
+  end
+end
+
+def get_time_records_for(user, during: nil)
+  measurements = Measurement.for(user)
+    .named("daily.hours.{charged,worked,off}")
+    .taken_on(during)
+
+  during.map do |date|
+    charged = measurements.find { |m| m.taken_on?(date) && m.name == "daily.hours.charged" }.try(:value).to_s.to_d
+    worked = measurements.find { |m| m.taken_on?(date) && m.name == "daily.hours.worked" }.try(:value).to_s.to_d
+    off = measurements.find { |m| m.taken_on?(date) && m.name == "daily.hours.off" }.try(:value).to_s.to_d
+    recorded = worked + off
+    star_goal = (user.id == 1 ? 0.25 : 0.5) * worked
+    empower_goal = 6.0
+
+    { date: date,
+      charged: charged,
+      worked: worked,
+      off: off,
+      recorded: worked + off }
+  end
+end
