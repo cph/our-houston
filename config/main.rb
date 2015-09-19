@@ -169,14 +169,14 @@ Houston.config do
           } }
     end
 
-    sync :all, "err", every: "75s" do
+    sync :changes, "err", every: "45s" do
       app_project_map = Hash[Project
         .where(error_tracker_name: "Errbit")
-        .pluck("cast(extended_attributes->'errbit_app_id' as integer)", :id)]
+        .pluck("(extended_attributes->'errbit_app_id')::integer", :id)]
+      app_ids = app_project_map.keys
 
-      Houston::Adapters::ErrorTracker::ErrbitAdapter \
-        .all_problems(app_id: app_project_map.keys)
-        .select { |problem| problem.last_notice_at > ERRBIT_BANKRUPTCY }
+      Houston::Adapters::ErrorTracker::ErrbitAdapter
+        .changed_problems(app_id: app_ids, since: $errbit_since_changes_since)
         .map { |problem|
           key = problem.id.to_s
           key << "-#{problem.opened_at.to_i}" if problem.opened_at >= ERRBIT_NEW_KEY_DATE
@@ -188,8 +188,13 @@ Houston.config do
             text: problem.where,
             opened_at: problem.opened_at,
             closed_at: problem.resolved_at,
-            url: problem.url
-          } }
+            destroyed_at: problem.deleted_at,
+            url: problem.url } }.tap do
+
+        # From now on, we should expect to sync every 45 seconds,
+        # so we'll pull down changes from a smaller window.
+        $errbit_since_changes_since = 3.minutes.ago
+      end
     end
 
     sync :open, "cve", every: "5m" do
@@ -1784,3 +1789,13 @@ NUMERALS = {
 
 
 Houston.observer.fire "boot"
+
+
+# This is the date when we started composing the Alert key
+# from problem.id and opened_at so that reopened problems
+# are treated as new alerts.
+ERRBIT_NEW_KEY_DATE = Time.new(2014, 11, 23).freeze
+
+# The first time we sync errs after booting, we'll catch up
+# by pulling down changes from the last week.
+$errbit_since_changes_since = 1.week.ago
