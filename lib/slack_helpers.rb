@@ -50,6 +50,15 @@ def slack_alert_attachment(alert, options={})
   attachment
 end
 
+def slack_task_attachment(task, options={})
+  # title = slack_link_to(alert.summary, alert.url)
+  # title << " {{#{alert.type}:#{alert.number}}}" if alert.number
+  { fallback: "#{task.shorthand} - #{task.description}",
+    title: "#{task.project.name} task ##{task.shorthand}",
+    text: task.description,
+    color: slack_project_color(task.project) }
+end
+
 def slack_project_color(project)
   "##{project.color_value}" if project
 end

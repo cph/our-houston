@@ -48,7 +48,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: 85c7a0099b7d4d8c8c56995d1a34addbabdd61bf
+  revision: b07d3774679d25e96876b3d018eaaf3a16dbc48f
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -82,7 +82,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: e79748628b89810f8784ee14aafb327f690807dd
+  revision: 58dabd1c210b7207916d186ce2b2b9d44d8b72d4
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston.git
-  revision: d1f4f1214eb3b5e4e3f87ed1b9702b5db52a5fa9
+  revision: 92fd070b6488cb3bddbd6995d427dbefe256cd01
   branch: gem
   specs:
     houston (0.5.0)

@@ -3,20 +3,19 @@ Houston::Slack.config do
   listen_for(/deploy.*\s(?:\#?(?<number>\d+)\b|(?<branch>[\w\d\+\-\._\/]+))/i) do |e|
     target = "number" if e.matched? :number
     target = "branch" if e.matched? :branch
-    user = User.find_by_email_address(e.sender.email)
 
-    unless user
+    unless e.user
       e.reply "I'm sorry. I don't know who you are."
       next
     end
 
-    unless user.developer?
+    unless e.user.developer?
       e.reply "I'm sorry. You have to be a developer to deploy a pull request"
       next
     end
 
     Houston.tdl.add(
-      user: user,
+      user: e.user,
       goal: "deploy",
       describe: "I am deploying #{e.match[target]}",
       step: "find-pr",
