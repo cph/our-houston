@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: houston_production
+  database: houston_production_copy
   host: localhost
   prepared_statements: false
 
@@ -16,6 +16,6 @@ test:
 production:
   adapter: postgresql
   encoding: utf8
-  database: houston_development
+  database: houston_production_copy
   host: localhost
   prepared_statements: false
