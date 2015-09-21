@@ -96,7 +96,7 @@ GIT
   revision: ec891f524724ecb41a5f511ef8ebcdfb760179d4
   branch: gem
   specs:
-    houston-core (0.5.0)
+    houston-core (0.5.0.beta1)
       activerecord-insert_many
       activerecord-pluck_in_batches
       addressable
