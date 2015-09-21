@@ -93,10 +93,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston.git
-  revision: 92fd070b6488cb3bddbd6995d427dbefe256cd01
+  revision: a109341b1749de1773e311378896fc9d1cd4ce6d
   branch: gem
   specs:
-    houston (0.5.0)
+    houston-core (0.5.0)
       activerecord-insert_many
       activerecord-pluck_in_batches
       addressable
@@ -498,8 +498,8 @@ DEPENDENCIES
   better_errors
   capybara
   factory_girl_rails
-  houston!
   houston-alerts!
+  houston-core!
   houston-dashboards!
   houston-feedback!
   houston-reports!
