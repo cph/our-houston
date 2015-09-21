@@ -7,14 +7,13 @@ ERRBIT_NEW_KEY_DATE = Time.new(2014, 11, 23).freeze
 # by pulling down changes from the last week.
 $errbit_since_changes_since = 1.week.ago
 
-Errbit = Houston::Adapters::ErrorTracker::ErrbitAdapter
 Houston::Alerts.config.sync :changes, "err", every: "45s" do
   app_project_map = Hash[Project
     .where(error_tracker_name: "Errbit")
     .pluck("(extended_attributes->'errbit_app_id')::integer", :id)]
   app_ids = app_project_map.keys
 
-  Errbit.changed_problems(app_id: app_ids, since: $errbit_since_changes_since).map { |problem|
+  Houston::Adapters::ErrorTracker::ErrbitAdapter.changed_problems(app_id: app_ids, since: $errbit_since_changes_since).map { |problem|
     key = problem.id.to_s
     key << "-#{problem.opened_at.to_i}" if problem.opened_at >= ERRBIT_NEW_KEY_DATE
     { key: key,
