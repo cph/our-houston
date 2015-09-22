@@ -25,7 +25,7 @@ Houston.config.every "2m", "remind:alerts" do
     seconds = alert.seconds_remaining
     next if seconds < 180 # Skip it if we're late or have less than 2 minutes
 
-    Rails.logger.info "\e[34m[slack] reminding \e[1m#{assignee.first_name}\e[0;34m of alert due in \e[1m#{timeleft}\e[0m"
+    Rails.logger.info "\e[34m[slack] reminding \e[1m#{assignee.first_name}\e[0;34m of alert due in \e[1m#{seconds}s\e[0m"
 
     message = "Hey #{assignee.first_name}, this *#{alert.type}*"
     message << " for #{alert.project.slug}" if alert.project
