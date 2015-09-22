@@ -1,5 +1,5 @@
 Houston::Slack.config do
-  overhear(/\b(?<task>\d+[a-z]+)\b/i) do |e|
+  overhear(/\b(?<task>\d+[a-z]+)\b/) do |e|
     next unless e.user && e.user.developer?
     tasks = Task.joins(:ticket)
 
