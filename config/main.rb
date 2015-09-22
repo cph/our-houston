@@ -192,6 +192,7 @@ Houston.config do
     workers { User.with_email_address(FULL_TIME_DEVELOPERS) }
     set_deadline do |alert|
       time_allowed = 2.days
+      time_allowed = 5.days if %w{houston errbit}.member?(alert.project.slug)
       if weekend?(alert.opened_at)
         time_allowed.after(monday_after(alert.opened_at))
       else
