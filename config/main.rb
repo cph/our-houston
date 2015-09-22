@@ -14,7 +14,9 @@ JEREMY = "jeremy.roegner@cph.org".freeze
 MEAGAN = "meagan.thole@cph.org".freeze
 BRAD = "brad.egberts@cph.org".freeze
 FULL_TIME_DEVELOPERS = [LUKE, BOB, BEN, ORDIE, CHASE, MATT].freeze
+
 require_relative "../lib/slack_helpers"
+require_relative "../lib/time_helpers"
 
 # Configure Houston
 Houston.config do
@@ -188,6 +190,16 @@ Houston.config do
 
   use :alerts do
     workers { User.with_email_address(FULL_TIME_DEVELOPERS) }
+    set_deadline do |alert|
+      time_allowed = 2.days
+      if weekend?(alert.opened_at)
+        time_allowed.after(monday_after(alert.opened_at))
+      else
+        deadline = time_allowed.after(alert.opened_at)
+        deadline = 2.days.after(deadline) if weekend?(deadline)
+        deadline
+      end
+    end
   end
   load "alerts/*"
 
