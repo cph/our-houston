@@ -302,6 +302,10 @@ Houston.config do
 
   load "jobs/**/*"
 
+  class FakeError < RuntimeError; end
+  Houston.config.every "15s", "spurious:error" do
+    raise FakeError, "test"
+  end
 
 
   # Perform any other initialization

@@ -7,6 +7,7 @@ Airbrake.configure do |config|
   config.secure           = config.port == 443
   config.user_attributes  = %w{id email} # the default is just 'id'
   config.async            = true # requires the gem 'sucker_punch'
+  config.project_root     = Houston.root
 
   # Do not report exceptions that occur when we are being
   # notified of exceptions. This can get ugly fast.
