@@ -8,3 +8,5 @@ Rails.application.initialize!
 
 require "rails/test_help"
 require "minitest/reporters"
+require "minitest/reporters/turn_reporter"
+MiniTest::Reporters.use! Minitest::Reporters::TurnReporter.new
