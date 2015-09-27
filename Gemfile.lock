@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston.git
-  revision: 46d728f19cbacae84f3d4f2a420626695eae3a9a
+  revision: 891e4f14792aa1ffd15ffb9e75300736b0a6cdee
   branch: gem
   specs:
     houston-core (0.5.0.beta1)
