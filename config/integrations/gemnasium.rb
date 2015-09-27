@@ -1,4 +1,2 @@
 # Configuration for Gemnasium
-Houston.config.gemnasium do
-  api_key ENV["HOUSTON_GEMNASIUM_API_KEY"]
-end
+$GEMNASIUM_API_KEY = ENV["HOUSTON_GEMNASIUM_API_KEY"]

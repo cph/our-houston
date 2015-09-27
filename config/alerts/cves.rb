@@ -1,3 +1,5 @@
+require_relative "../../lib/gemnasium-alert"
+
 Houston::Alerts.config.sync :open, "cve", every: "5m" do
   Gemnasium::Alert.open.map { |alert|
     advisory = alert["advisory"]
