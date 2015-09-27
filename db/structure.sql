@@ -2431,6 +2431,13 @@ CREATE INDEX index_pull_requests_on_project_id ON pull_requests USING btree (pro
 
 
 --
+-- Name: index_pull_requests_on_project_id_and_number; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_pull_requests_on_project_id_and_number ON pull_requests USING btree (project_id, number);
+
+
+--
 -- Name: index_releases_on_deploy_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3126,4 +3133,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150902010629');
 INSERT INTO schema_migrations (version) VALUES ('20150902010853');
 
 INSERT INTO schema_migrations (version) VALUES ('20150916152641');
+
+INSERT INTO schema_migrations (version) VALUES ('20150927014445');
 
