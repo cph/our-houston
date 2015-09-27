@@ -11,8 +11,8 @@ Airbrake.configure do |config|
 
   # Do not report exceptions that occur when we are being
   # notified of exceptions. This can get ugly fast.
-  config.ignore_by_filter do |exception_data|
-    exception_data.url =~ exception_callback
+  config.ignore_by_filter do |notice|
+    notice.url =~ exception_callback
   end
 end
 
