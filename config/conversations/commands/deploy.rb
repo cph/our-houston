@@ -242,7 +242,7 @@ module Houston
         @executing = true
         return pretend_to_deploy if Rails.env.development?
 
-        deploy = Deploy.create!(
+        deploy = ::Deploy.create!(
           project: project,
           environment_name: "staging",
           sha: pr.head.sha,
