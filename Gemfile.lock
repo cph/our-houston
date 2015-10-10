@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/concordia-publishing-house/houston-dashboards.git
-  revision: fe566e0667b390d0b34b351578b8d487adf15b75
+  revision: 341210e35760d96a39137505dfed2984a3482c3c
   branch: master
   specs:
     houston-dashboards (0.0.1)
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/concordia-publishing-house/houston-reports.git
-  revision: 8ae3f7ce4275446026e4f42ba5d7c4f0627aaaf4
+  revision: 89bece089db91682bb9021f075cf7ca3b2d4cbe2
   branch: master
   specs:
     houston-reports (0.0.1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/concordia-publishing-house/houston-support_form.git
-  revision: a599e284753f1328e916cb1affb3e21e3b0bfacb
+  revision: 7acda31dfe6e03850134a73d7aa07c2cdcd0e0c9
   branch: master
   specs:
     houston-support_form (0.0.1)
@@ -48,7 +48,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: a795405e6d096b8ab07ed48369a9abb33094ee05
+  revision: 04d2b6cc8ed5f51a1f742ce3cbc5ff62d1783838
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -56,7 +56,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 86400e43e6b770b95d52aae08b9ad964495145b7
+  revision: 1ba07a2f0eafc177be82f80b4530275eabede8b5
   branch: master
   specs:
     houston-feedback (0.0.1)
@@ -66,7 +66,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-roadmap.git
-  revision: 633c4abad220ca7f0e647a79624b6a4e35ebaccc
+  revision: 1a6616b2c9b80b1234597297778c6ae36fefde89
   branch: master
   specs:
     houston-roadmap (0.0.1)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: 2473b03518f8e18105e8ebc36d840deac39fb31b
+  revision: 0e29c6671c952b306768fae7e7cb7ed764c5b743
   branch: master
   specs:
     houston-scheduler (0.0.1)
@@ -82,7 +82,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 964654d666cdf0ec88f89334332d5b9314bfd10e
+  revision: 797f06974a115c2f5d1c68c1372c174c172d0b17
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston.git
-  revision: 1d974cafe66f9362c2e8a37ec38593476823f4f3
+  revision: 8b494e45c23db5b7137d3b92acfff978b61e0f57
   branch: gem
   specs:
     houston-core (0.5.0.beta1)
@@ -260,7 +260,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    faraday (0.8.10)
+    faraday (0.8.11)
       multipart-post (~> 1.2.0)
     faraday-http-cache (1.2.2)
       faraday (~> 0.8)
@@ -399,7 +399,7 @@ GEM
     ruby-progressbar (1.7.5)
     rubyzip (1.1.7)
     rufus-scheduler (3.1.6)
-    rugged (0.23.2)
+    rugged (0.23.3)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
