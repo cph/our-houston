@@ -21,8 +21,8 @@ REVISION
 .rvmrc
 .DS_Store
 .rufus-scheduler.lock
+reminders.yml
 
 # Ignore test artifacts
 coverage
 test/reports
-
