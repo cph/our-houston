@@ -64,8 +64,12 @@ def slack_project_color(project)
 end
 
 def slack_link_to_pull_request(pr)
-  url = pr._links ? pr._links.html.href : pr.pull_request.html_url
-  slack_link_to "##{pr.number} #{pr.title}", url
+  if pr.is_a?(::Github::PullRequest) # Houston Pull Request
+    slack_link_to "##{pr.number} #{pr.title}", pr.url
+  else # GitHub Payload
+    url = pr._links ? pr._links.html.href : pr.pull_request.html_url
+    slack_link_to "##{pr.number} #{pr.title}", url
+  end
 end
 
 def slack_link_to(message, url)
