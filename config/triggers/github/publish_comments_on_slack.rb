@@ -16,7 +16,6 @@ Houston.config do
     body, url = comment.values_at "body", "html_url"
 
     message = "#{comment["user"]["login"]} commented on #{slack_link_to(comment["path"], url)}"
-    message << "\n```\n#{comment["diff_hunk"]}\n```\n"
 
     comment = { fallback: body, text: body }
     slack_send_message_to message, channel, as: :github, attachments: [comment], test: true
