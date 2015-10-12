@@ -39,10 +39,11 @@ def slack_send_message_to(message, channel, options={})
 end
 
 def slack_alert_attachment(alert, options={})
-  title = slack_link_to(alert.summary, alert.url)
+  unfurl_url = "http://houst.in/#{alert.type}/#{alert.number}"
+  title = slack_link_to(alert.summary, unfurl_url)
   title << " {{#{alert.type}:#{alert.number}}}" if alert.number
   attachment = {
-    fallback: "#{slack_escape(alert.summary)} - #{alert.url} - #{alert.number}",
+    fallback: "#{slack_escape(alert.summary)} - #{unfurl_url} - #{alert.number}",
     title: title,
     color: slack_project_color(alert.project) }
 
