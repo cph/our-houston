@@ -34,7 +34,7 @@ Houston.config do
   title "Houston"
 
   # This is the host where Houston will be running
-  host "status.cphepdev.com"
+  host "houst.in"
 
   # This is the email address for emails send from Houston
   mailer_sender "houston@cphepdev.com"
