@@ -10,6 +10,7 @@
 # Ignore sensitive passwords and things.
 config/keypair.pem
 config/skylight.yml
+config/scout_apm.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*.log

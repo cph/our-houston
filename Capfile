@@ -13,6 +13,7 @@ namespace :deploy do
       "mkdir -p #{release_path}/vendor",
       "ln -nfs #{shared_path}/config/keypair.pem #{release_path}/config/keypair.pem",
       "ln -nfs #{shared_path}/config/skylight.yml #{release_path}/config/skylight.yml",
+      "ln -nfs #{shared_path}/config/scout_apm.yml #{release_path}/config/scout_apm.yml",
       "rm -rf #{release_path}/tmp",
       "ln -nfs #{shared_path}/tmp #{release_path}" ]
     run commands.join(" && ")

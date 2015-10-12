@@ -37,6 +37,7 @@ end
 # Tooling
 gem "airbrake"
 gem "sucker_punch" # for Airbrake
+gem "scout_apm"
 gem "skylight"
 
 gem "star", github: "concordia-publishing-house/star", branch: "master"
