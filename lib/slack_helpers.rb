@@ -38,8 +38,12 @@ def slack_send_message_to(message, channel, options={})
   end
 end
 
+def alert_unfurl_url(alert)
+  "http://#{Houston.config.host}/#{alert.type}/#{alert.number}"
+end
+
 def slack_alert_attachment(alert, options={})
-  unfurl_url = "http://houst.in/#{alert.type}/#{alert.number}"
+  unfurl_url = alert_unfurl_url(alert)
   title = slack_link_to(alert.summary, unfurl_url)
   title << " {{#{alert.type}:#{alert.number}}}" if alert.number
   attachment = {
@@ -49,19 +53,6 @@ def slack_alert_attachment(alert, options={})
 
   attachment.merge!(text: alert.text) unless alert.text.blank?
   attachment
-end
-
-def slack_task_attachment(task, options={})
-  # title = slack_link_to(alert.summary, alert.url)
-  # title << " {{#{alert.type}:#{alert.number}}}" if alert.number
-  { fallback: "#{task.shorthand} - #{task.description}",
-    title: "#{task.project.name} task ##{task.shorthand}",
-    text: task.description,
-    color: slack_project_color(task.project) }
-end
-
-def slack_project_color(project)
-  "##{project.color_value}" if project
 end
 
 def slack_link_to_pull_request(pr)

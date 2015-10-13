@@ -58,7 +58,9 @@ Houston.config.every "2m", "remind:alerts" do
       message << " is due *#{date} at #{alert.deadline.strftime("%-I:%M %P")}*"
     end
 
-    slack_send_message_to message, assignee, attachments: [slack_alert_attachment(alert)]
+    message << "\n#{alert_unfurl_url(alert)}"
+
+    slack_send_message_to message, assignee
 
     reminders_sent << "#{alert.id}-#{alert.checked_out_by_id}"
     store.transaction { store[:reminders_sent] = reminders_sent }
