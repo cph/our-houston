@@ -26,7 +26,7 @@ Houston.config do
       dates_missing_empower_only =  dates_missing_empower - dates_missing_both
       dates_missing_star_only = dates_missing_star - dates_missing_both
 
-      message = "#{user.first_name}, don't forget to put in "
+      message = "#{SLACK_USERNAME_FOR_USER[user.email]}, don't forget to put in "
 
       format_dates = lambda do |dates|
         dates.map { |date|
@@ -59,7 +59,7 @@ Houston.config do
         message << missing.to_sentence
       end
 
-      slack_send_message_to message, user, test: true
+      slack_send_message_to message, "developers", test: true
     end
   end
 
