@@ -1,9 +1,5 @@
 Houston.config do
 
-  at "3:00pm", "remind:startime:thursday", every: :thursday do
-    slack_send_message_to "Hey @everyone, don't forget to get your Star time and Unitime this afternoon!", "#general"
-  end
-
   at "12:00pm", "remind:startime", every: :weekday do
     today = Date.today
     first_of_month = today.beginning_of_month
