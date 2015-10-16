@@ -6,6 +6,6 @@ Houston.config.on "alert:itsm:deployed" do |alert, deploy, commit|
     "Hey #{addressee},",
     slack_link_to(commit.sha[0...7], commit.url),
     "was just deployed to #{deploy.environment_name}.",
-    "(Just letting you know in case that closes #{alert_unfurl_url(alert)}.)" ].join(" ")
+    "(Just letting you know in case that closes #{alert_unfurl_url(alert)})" ].join(" ")
   slack_send_message_to message, channel
 end
