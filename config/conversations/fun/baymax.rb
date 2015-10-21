@@ -3,7 +3,7 @@ Houston::Slack.config do
     e.reply "On a scale of 1 to 10, how would you rate your pain?",
       attachments: [{
         fallback: "On a scale of 1 to 10, how would you rate your pain?",
-        image_url: "http://status.cphepdev.com/extras/pain.png"
+        image_url: "http://#{Houston.config.host}/extras/pain.png"
       }]
   end
 
