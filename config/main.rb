@@ -205,7 +205,7 @@ Houston.config do
   load "alerts/*"
 
   use :slack do
-    token ENV["HOUSTON_SLACK_TOKEN"]
+    token Rails.env.production? ? ENV["HOUSTON_SLACK_TOKEN"] : ENV["HOUSTON_DEV_SLACK_TOKEN"]
     typing_speed 120 # characters/second
     listen_for(/^(hello|hey|hi),? @houston[\!\.]*$/i) { |e| e.reply "hello" }
   end

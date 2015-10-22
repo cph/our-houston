@@ -20,6 +20,13 @@ def slack_send_message_to(message, channel, options={})
     end
   end
 
+  # In development, we'll send messages for specific users
+  # to public channels that shadow the direct-message channels.
+  # This just lets us troubleshoot Houston
+  if Rails.env.development?
+    channel.gsub! /^@/, "#user-"
+  end
+
   if options.delete(:as) == :github
     options.merge!(
       as_user: false,
@@ -27,15 +34,8 @@ def slack_send_message_to(message, channel, options={})
       icon_url: "https://slack.global.ssl.fastly.net/5721/plugins/github/assets/service_128.png")
   end
 
-  if !Rails.env.development?
-    Houston::Slack.send message, options.merge(channel: channel)
-  elsif options.delete(:test)
-    message = "[#{channel}]\n#{message}" unless channel == "test"
-    channel = "test"
-    Houston::Slack.send message, options.merge(channel: channel)
-  else
-    Rails.logger.debug "\e[95m[slack:say] #{channel}: #{message}\e[0m"
-  end
+  Rails.logger.debug "\e[95m[slack:say] #{channel}: #{message}\e[0m"
+  Houston::Slack.send message, options.merge(channel: channel)
 end
 
 def alert_unfurl_url(alert)

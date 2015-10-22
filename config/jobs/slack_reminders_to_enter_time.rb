@@ -55,7 +55,7 @@ Houston.config do
         message << missing.to_sentence
       end
 
-      slack_send_message_to message, "developers", test: true
+      slack_send_message_to message, "developers"
     end
   end
 

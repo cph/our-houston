@@ -8,12 +8,6 @@ Houston::Slack.config do
     target = "number" if e.matched? :number
     target = "branch" if e.matched? :branch
 
-    if e.channel.name == "test" && Rails.env.production?
-      # Ignore deploys initiated from the test channel in Production
-      # Reserve this for testing deploys in Development
-      next
-    end
-
     unless e.user
       e.reply "I'm sorry. I don't know who you are."
       next
