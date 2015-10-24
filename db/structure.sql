@@ -24,96 +24,20 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
+-- Name: hstore; Type: EXTENSION; Schema: -; Owner: -
 --
 
-CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
+CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
+-- Name: EXTENSION hstore; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
 
 
 SET search_path = public, pg_catalog;
-
---
--- Name: ghstore; Type: SHELL TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE ghstore;
-
-
---
--- Name: ghstore_in(cstring); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_in(cstring) RETURNS ghstore
-    LANGUAGE c STRICT
-    AS '$libdir/hstore', 'ghstore_in';
-
-
---
--- Name: ghstore_out(ghstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_out(ghstore) RETURNS cstring
-    LANGUAGE c STRICT
-    AS '$libdir/hstore', 'ghstore_out';
-
-
---
--- Name: ghstore; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE ghstore (
-    INTERNALLENGTH = variable,
-    INPUT = ghstore_in,
-    OUTPUT = ghstore_out,
-    ALIGNMENT = int4,
-    STORAGE = plain
-);
-
-
---
--- Name: hstore; Type: SHELL TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE hstore;
-
-
---
--- Name: hstore_in(cstring); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION hstore_in(cstring) RETURNS hstore
-    LANGUAGE c STRICT
-    AS '$libdir/hstore', 'hstore_in';
-
-
---
--- Name: hstore_out(hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION hstore_out(hstore) RETURNS cstring
-    LANGUAGE c STRICT
-    AS '$libdir/hstore', 'hstore_out';
-
-
---
--- Name: hstore; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE hstore (
-    INTERNALLENGTH = variable,
-    INPUT = hstore_in,
-    OUTPUT = hstore_out,
-    ALIGNMENT = int4,
-    STORAGE = extended
-);
-
 
 --
 -- Name: test_result_status; Type: TYPE; Schema: public; Owner: -
@@ -127,256 +51,6 @@ CREATE TYPE test_result_status AS ENUM (
 
 
 --
--- Name: akeys(hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION akeys(hstore) RETURNS text[]
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'akeys';
-
-
---
--- Name: avals(hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION avals(hstore) RETURNS text[]
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'avals';
-
-
---
--- Name: defined(hstore, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION defined(hstore, text) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'defined';
-
-
---
--- Name: delete(hstore, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION delete(hstore, text) RETURNS hstore
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'delete';
-
-
---
--- Name: each(hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION each(hs hstore, OUT key text, OUT value text) RETURNS SETOF record
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'each';
-
-
---
--- Name: exist(hstore, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION exist(hstore, text) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'exists';
-
-
---
--- Name: fetchval(hstore, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION fetchval(hstore, text) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'fetchval';
-
-
---
--- Name: ghstore_compress(internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_compress(internal) RETURNS internal
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'ghstore_compress';
-
-
---
--- Name: ghstore_consistent(internal, internal, integer, oid, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_consistent(internal, internal, integer, oid, internal) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'ghstore_consistent';
-
-
---
--- Name: ghstore_decompress(internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_decompress(internal) RETURNS internal
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'ghstore_decompress';
-
-
---
--- Name: ghstore_penalty(internal, internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_penalty(internal, internal, internal) RETURNS internal
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'ghstore_penalty';
-
-
---
--- Name: ghstore_picksplit(internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_picksplit(internal, internal) RETURNS internal
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'ghstore_picksplit';
-
-
---
--- Name: ghstore_same(internal, internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_same(internal, internal, internal) RETURNS internal
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'ghstore_same';
-
-
---
--- Name: ghstore_union(internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ghstore_union(internal, internal) RETURNS internal
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'ghstore_union';
-
-
---
--- Name: gin_consistent_hstore(internal, smallint, internal, integer, internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION gin_consistent_hstore(internal, smallint, internal, integer, internal, internal) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'gin_consistent_hstore';
-
-
---
--- Name: gin_extract_hstore(internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION gin_extract_hstore(internal, internal) RETURNS internal
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'gin_extract_hstore';
-
-
---
--- Name: gin_extract_hstore_query(internal, internal, smallint, internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION gin_extract_hstore_query(internal, internal, smallint, internal, internal) RETURNS internal
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'gin_extract_hstore_query';
-
-
---
--- Name: hs_concat(hstore, hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION hs_concat(hstore, hstore) RETURNS hstore
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'hs_concat';
-
-
---
--- Name: hs_contained(hstore, hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION hs_contained(hstore, hstore) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'hs_contained';
-
-
---
--- Name: hs_contains(hstore, hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION hs_contains(hstore, hstore) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'hs_contains';
-
-
---
--- Name: isdefined(hstore, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION isdefined(hstore, text) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'defined';
-
-
---
--- Name: isexists(hstore, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION isexists(hstore, text) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'exists';
-
-
---
--- Name: skeys(hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION skeys(hstore) RETURNS SETOF text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'skeys';
-
-
---
--- Name: svals(hstore); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION svals(hstore) RETURNS SETOF text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/hstore', 'svals';
-
-
---
--- Name: tconvert(text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION tconvert(text, text) RETURNS hstore
-    LANGUAGE c IMMUTABLE
-    AS '$libdir/hstore', 'tconvert';
-
-
---
--- Name: ->; Type: OPERATOR; Schema: public; Owner: -
---
-
-CREATE OPERATOR -> (
-    PROCEDURE = fetchval,
-    LEFTARG = hstore,
-    RIGHTARG = text
-);
-
-
---
--- Name: <@; Type: OPERATOR; Schema: public; Owner: -
---
-
-CREATE OPERATOR <@ (
-    PROCEDURE = hs_contained,
-    LEFTARG = hstore,
-    RIGHTARG = hstore,
-    COMMUTATOR = @>,
-    RESTRICT = contsel,
-    JOIN = contjoinsel
-);
-
-
---
 -- Name: =>; Type: OPERATOR; Schema: public; Owner: -
 --
 
@@ -385,106 +59,6 @@ CREATE OPERATOR => (
     LEFTARG = text,
     RIGHTARG = text
 );
-
-
---
--- Name: ?; Type: OPERATOR; Schema: public; Owner: -
---
-
-CREATE OPERATOR ? (
-    PROCEDURE = exist,
-    LEFTARG = hstore,
-    RIGHTARG = text,
-    RESTRICT = contsel,
-    JOIN = contjoinsel
-);
-
-
---
--- Name: @; Type: OPERATOR; Schema: public; Owner: -
---
-
-CREATE OPERATOR @ (
-    PROCEDURE = hs_contains,
-    LEFTARG = hstore,
-    RIGHTARG = hstore,
-    COMMUTATOR = ~,
-    RESTRICT = contsel,
-    JOIN = contjoinsel
-);
-
-
---
--- Name: @>; Type: OPERATOR; Schema: public; Owner: -
---
-
-CREATE OPERATOR @> (
-    PROCEDURE = hs_contains,
-    LEFTARG = hstore,
-    RIGHTARG = hstore,
-    COMMUTATOR = <@,
-    RESTRICT = contsel,
-    JOIN = contjoinsel
-);
-
-
---
--- Name: ||; Type: OPERATOR; Schema: public; Owner: -
---
-
-CREATE OPERATOR || (
-    PROCEDURE = hs_concat,
-    LEFTARG = hstore,
-    RIGHTARG = hstore
-);
-
-
---
--- Name: ~; Type: OPERATOR; Schema: public; Owner: -
---
-
-CREATE OPERATOR ~ (
-    PROCEDURE = hs_contained,
-    LEFTARG = hstore,
-    RIGHTARG = hstore,
-    COMMUTATOR = @,
-    RESTRICT = contsel,
-    JOIN = contjoinsel
-);
-
-
---
--- Name: gin_hstore_ops; Type: OPERATOR CLASS; Schema: public; Owner: -
---
-
-CREATE OPERATOR CLASS gin_hstore_ops
-    DEFAULT FOR TYPE hstore USING gin AS
-    STORAGE text ,
-    OPERATOR 7 @>(hstore,hstore) ,
-    OPERATOR 9 ?(hstore,text) ,
-    FUNCTION 1 (hstore, hstore) bttextcmp(text,text) ,
-    FUNCTION 2 (hstore, hstore) gin_extract_hstore(internal,internal) ,
-    FUNCTION 3 (hstore, hstore) gin_extract_hstore_query(internal,internal,smallint,internal,internal) ,
-    FUNCTION 4 (hstore, hstore) gin_consistent_hstore(internal,smallint,internal,integer,internal,internal);
-
-
---
--- Name: gist_hstore_ops; Type: OPERATOR CLASS; Schema: public; Owner: -
---
-
-CREATE OPERATOR CLASS gist_hstore_ops
-    DEFAULT FOR TYPE hstore USING gist AS
-    STORAGE ghstore ,
-    OPERATOR 7 @>(hstore,hstore) ,
-    OPERATOR 9 ?(hstore,text) ,
-    OPERATOR 13 @(hstore,hstore) ,
-    FUNCTION 1 (hstore, hstore) ghstore_consistent(internal,internal,integer,oid,internal) ,
-    FUNCTION 2 (hstore, hstore) ghstore_union(internal,internal) ,
-    FUNCTION 3 (hstore, hstore) ghstore_compress(internal) ,
-    FUNCTION 4 (hstore, hstore) ghstore_decompress(internal) ,
-    FUNCTION 5 (hstore, hstore) ghstore_penalty(internal,internal,internal) ,
-    FUNCTION 6 (hstore, hstore) ghstore_picksplit(internal,internal) ,
-    FUNCTION 7 (hstore, hstore) ghstore_same(internal,internal,internal);
 
 
 SET default_tablespace = '';
@@ -729,13 +303,14 @@ CREATE TABLE feedback_comments (
     user_id integer,
     text text NOT NULL,
     plain_text text NOT NULL,
-    customer character varying(255) DEFAULT ''::character varying NOT NULL,
+    attributed_to character varying(255) DEFAULT ''::character varying NOT NULL,
     tags text DEFAULT ''::text NOT NULL,
     import character varying(255),
     search_vector tsvector,
     ticket_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    customer_id integer
 );
 
 
@@ -789,6 +364,36 @@ CREATE SEQUENCE feedback_comments_user_flags_id_seq
 --
 
 ALTER SEQUENCE feedback_comments_user_flags_id_seq OWNED BY feedback_comments_user_flags.id;
+
+
+--
+-- Name: feedback_customers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE feedback_customers (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    attributions text[]
+);
+
+
+--
+-- Name: feedback_customers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE feedback_customers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: feedback_customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE feedback_customers_id_seq OWNED BY feedback_customers.id;
 
 
 --
@@ -1355,9 +960,9 @@ CREATE TABLE test_results (
     test_run_id integer NOT NULL,
     test_id integer NOT NULL,
     status test_result_status NOT NULL,
+    different boolean,
     duration double precision,
     error_id integer,
-    different boolean,
     new_test boolean
 );
 
@@ -1800,6 +1405,13 @@ ALTER TABLE ONLY feedback_comments_user_flags ALTER COLUMN id SET DEFAULT nextva
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY feedback_customers ALTER COLUMN id SET DEFAULT nextval('feedback_customers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY historical_heads ALTER COLUMN id SET DEFAULT nextval('historical_heads_id_seq'::regclass);
 
 
@@ -2010,6 +1622,14 @@ ALTER TABLE ONLY feedback_comments
 
 ALTER TABLE ONLY feedback_comments_user_flags
     ADD CONSTRAINT feedback_comments_user_flags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: feedback_customers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY feedback_customers
+    ADD CONSTRAINT feedback_customers_pkey PRIMARY KEY (id);
 
 
 --
@@ -3135,4 +2755,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150902010853');
 INSERT INTO schema_migrations (version) VALUES ('20150916152641');
 
 INSERT INTO schema_migrations (version) VALUES ('20150927014445');
+
+INSERT INTO schema_migrations (version) VALUES ('20151024164701');
+
+INSERT INTO schema_migrations (version) VALUES ('20151024170230');
 
