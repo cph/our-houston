@@ -22,7 +22,7 @@ Houston.config do
       dates_missing_empower_only =  dates_missing_empower - dates_missing_both
       dates_missing_star_only = dates_missing_star - dates_missing_both
 
-      message = "#{SLACK_USERNAME_FOR_USER[user.email]}, don't forget to put in "
+      message = "#{user.slack_username}, don't forget to put in "
 
       format_dates = lambda do |dates|
         dates.map { |date|

@@ -6,9 +6,7 @@ Houston::Slack.config do
       next
     end
 
-    nickname = e.match[:user]
-    email_address = SLACK_USERNAME_FOR_USER.key(nickname)
-    assignee = User.find_by_email_address(email_address) if email_address
+    assignee = User.find_by_slack_username(e.match[:user])
     unless assignee
       e.reply "I'm sorry. I don't know #{nickname}."
       next

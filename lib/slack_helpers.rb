@@ -1,21 +1,9 @@
-SLACK_USERNAME_FOR_USER = {
-  BEN => "@bengovero",
-  BOB => "@boblail",
-  LUKE => "@luke",
-  MEAGAN => "@meagan",
-  BRAD => "@brad",
-  ORDIE => "@ordiep",
-  JEREMY => "@jeremy",
-  CHASE => "@chase",
-  MATT => "@kobsy"
-}.freeze
-
 def slack_send_message_to(message, channel, options={})
-  if channel.is_a?(User)
-    channel = SLACK_USERNAME_FOR_USER[channel.email]
+  if channel.respond_to?(:slack_channel)
+    channel = channel.slack_channel
 
     unless channel
-      Rails.logger.info "\e[34m[slack:say] I don't know the Slack username for #{channel.email}\e[0m"
+      Rails.logger.info "\e[34m[slack:say] I don't know the Slack username for #{channel.name}\e[0m"
       return
     end
   end
