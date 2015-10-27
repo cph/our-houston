@@ -130,7 +130,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 2c3e0f87ec550f50431c0d38df39557779d1ec80
+  revision: dbfee4a6a40f5e79079386a7050765f579c303be
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -323,7 +323,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile (0.6.2)
-    minitest (5.8.1)
+    minitest (5.8.2)
     minitest-reporters (1.1.4)
       ansi
       builder
