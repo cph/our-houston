@@ -14,8 +14,8 @@ Houston.config do
       next unless user
 
       records = get_time_records_for(user, during: date_range)
-      dates_missing_empower = dates_expected & records.select { |time| time[:off] < 8 && time[:worked].zero? }.map { |time| time[:date] }
-      dates_missing_star = dates_expected & records.select { |time| time[:off] < 8 && time[:charged].zero? }.map { |time| time[:date] }
+      dates_missing_empower = dates_expected & records.select { |time| time[:off] < 6 && time[:worked].zero? }.map { |time| time[:date] }
+      dates_missing_star = dates_expected & records.select { |time| time[:off] < 6 && time[:charged].zero? }.map { |time| time[:date] }
       next if dates_missing_empower.none? && dates_missing_star.none?
 
       dates_missing_both = dates_missing_empower & dates_missing_star
