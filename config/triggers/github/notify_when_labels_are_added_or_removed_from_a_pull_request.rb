@@ -12,7 +12,7 @@ Houston.config do
     channel = "##{pull_request.project.slug}"
     channel = "developers" unless Houston::Slack.connection.channels.include? channel
 
-    message = "#{pull_request.actor || "Someone"} added *#{label}* to #{slack_link_to_pull_request(pull_request)}"
+    message = "#{pull_request.actor || "Someone"} added `#{label}` to #{slack_link_to_pull_request(pull_request)}"
 
     slack_send_message_to message, channel, as: :github
   end
