@@ -10,7 +10,7 @@ Houston.config do
     predicate = "these tests:" if regressions.count > 1 && regressions.count <= MAX_BROKEN_TESTS
     predicate = "#{regressions.count} tests :cold_sweat:" if regressions.count > MAX_BROKEN_TESTS
 
-    message = "Hey... I think this commit :point_right: *#{commit}* broke #{predicate}"
+    message = "Hey... I think this commit :point_right: *#{commit}* #{slack_link_to("broke", test_run.url)} #{predicate}"
 
     regressions.each do |regression|
       test = regression.test
