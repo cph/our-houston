@@ -31,7 +31,7 @@ Houston.config do
 
     channel = project_channel if Houston::Slack.connection.channels.include? project_channel
     channel ||= nickname
-    channel ||= "developers"
+    channel ||= "developers-only"
 
     slack_send_message_to nil, channel, attachments: [attachment]
   end

@@ -22,7 +22,7 @@ Houston.config do
     project_channel = "##{test_run.project.slug}"
     channels = [project_channel] if Houston::Slack.connection.channels.include? project_channel
     channels ||= test_run.commit.committers.map(&:slack_username).reject(&:nil?)
-    channels = %w{developers} if Array(channel).empty?
+    channels = %w{developers-only} if Array(channel).empty?
 
     channels.each do |channel|
       slack_send_message_to message, channel

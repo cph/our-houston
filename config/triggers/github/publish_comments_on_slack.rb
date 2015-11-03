@@ -1,7 +1,7 @@
 Houston.config do
   on "github:comment:commit" do |comment|
     channel = "##{comment["project"].slug}" if comment["project"]
-    channel = "developers" unless Houston::Slack.connection.channels.include? channel
+    channel = "developers-only" unless Houston::Slack.connection.channels.include? channel
     body, url = comment.values_at "body", "html_url"
 
     message = "#{comment["user"]["login"]} commented on #{slack_link_to(comment["commit_id"][0...7], url)}"
@@ -12,7 +12,7 @@ Houston.config do
 
   on "github:comment:diff" do |comment|
     channel = "##{comment["project"].slug}" if comment["project"]
-    channel = "developers" unless Houston::Slack.connection.channels.include? channel
+    channel = "developers-only" unless Houston::Slack.connection.channels.include? channel
     body, url = comment.values_at "body", "html_url"
 
     message = "#{comment["user"]["login"]} commented on #{slack_link_to(comment["path"], url)}"
@@ -23,7 +23,7 @@ Houston.config do
 
   on "github:comment:pull" do |comment|
     channel = "##{comment["project"].slug}" if comment["project"]
-    channel = "developers" unless Houston::Slack.connection.channels.include? channel
+    channel = "developers-only" unless Houston::Slack.connection.channels.include? channel
     body, url = comment.values_at "body", "html_url"
 
     issue = comment["issue"]

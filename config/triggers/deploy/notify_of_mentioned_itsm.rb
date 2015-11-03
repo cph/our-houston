@@ -1,6 +1,6 @@
 Houston.config.on "alert:itsm:deployed" do |alert, deploy, commit|
   user = alert.checked_out_by
-  addressee, channel = user ? [user.first_name, user]: ["@group", "developers"]
+  addressee, channel = user ? [user.first_name, user]: ["@group", "developers-only"]
 
   message = [
     "Hey #{addressee},",
