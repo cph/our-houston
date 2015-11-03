@@ -1,3 +1,4 @@
+require_relative "../../../lib/side_project/base"
 require "net/https"
 
 Houston::Slack.config do
