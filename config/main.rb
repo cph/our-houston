@@ -210,6 +210,7 @@ Houston.config do
     listen_for(/^(hello|hey|hi),? @houston[\!\.]*$/i) { |e| e.reply "hello" }
   end
   load "conversations/**/*"
+  load "slash_commands/*"
 
   use :scheduler do
     planning_poker :off
