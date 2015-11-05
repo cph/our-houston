@@ -52,7 +52,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 4311c2662ab543d5c5f1507ee0615cf353bd991f
+  revision: d699a7dc4d82823986f8306f7e460a1999afa584
   branch: master
   specs:
     houston-core (0.5.4)
@@ -60,6 +60,7 @@ GIT
       activerecord-pluck_in_batches
       addressable
       boblail-unfuddle
+      browser
       bundler
       cancan (~> 1.6.10)
       codeclimate-test-reporter (= 0.4.1)
@@ -189,6 +190,7 @@ GEM
       activesupport
       builder
       faraday (~> 0.8.8)
+    browser (1.0.1)
     builder (3.2.2)
     callsite (0.0.11)
     cancan (1.6.10)
@@ -320,7 +322,7 @@ GEM
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.2)
-    minitest-reporters (1.1.4)
+    minitest-reporters (1.1.5)
       ansi
       builder
       minitest (>= 5.0)
