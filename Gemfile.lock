@@ -52,10 +52,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 163d715265e9e5ebbebad8105c2524416dd62535
+  revision: b2139135328b8b4bc3d1c8d55681027ffc03707f
   branch: master
   specs:
-    houston-core (0.5.4)
+    houston-core (0.5.5)
       activerecord-import
       activerecord-pluck_in_batches
       addressable
@@ -105,7 +105,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 3b1cce652fe06b7beda7c6137e4fa06317a5dd13
+  revision: 1343821143f74ac2e3dfe78070c6457bf2422d4a
   branch: master
   specs:
     houston-feedback (0.0.1)
@@ -282,7 +282,7 @@ GEM
       multi_json (~> 1.0)
       sprockets (>= 2.0.0, < 4.0)
       tilt (~> 1.2)
-    hashdiff (0.2.2)
+    hashdiff (0.2.3)
     highline (1.6.21)
     hike (1.2.3)
     hitimes (1.2.3)
@@ -350,13 +350,15 @@ GEM
     octokit (4.1.1)
       sawyer (~> 0.6.0, >= 0.5.3)
     oj (2.13.0)
-    open_xml_package (0.1.0)
+    open_xml_package (0.2.0.beta1)
       nokogiri
+      ox
       rubyzip (~> 1.1.0)
-    openxml-xlsx (0.1.1)
+    openxml-xlsx (0.1.2)
       nokogiri
-      open_xml_package (= 0.1.0)
+      open_xml_package (= 0.2.0.beta1)
     orm_adapter (0.5.0)
+    ox (2.2.2)
     pg (0.18.3)
     pg_search (1.0.5)
       activerecord (>= 3.1)
@@ -435,7 +437,7 @@ GEM
     simplecov-json (0.2)
       json
       simplecov
-    skylight (0.8.1)
+    skylight (0.9.0)
       activesupport (>= 3.0.0)
     slop (3.6.0)
     spring (1.4.0)
@@ -485,7 +487,7 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    websocket-driver (0.6.2)
+    websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     whenever (0.9.2)
