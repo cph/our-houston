@@ -2,7 +2,6 @@ Houston.config do
   on "github:pull:updated" do |pull_request, changes|
     next unless changes.key? "labels"
     before, after = changes["labels"]
-    before = before.split("\n")
 
     removed = before - after
     added = after - before
