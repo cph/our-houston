@@ -646,7 +646,10 @@ CREATE TABLE pull_requests (
     base_sha character varying(255) NOT NULL,
     head_ref character varying(255) NOT NULL,
     head_sha character varying(255) NOT NULL,
-    labels text DEFAULT ''::text NOT NULL
+    old_labels text DEFAULT ''::text NOT NULL,
+    labels text[] DEFAULT '{}'::text[],
+    body text,
+    props jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -2759,4 +2762,10 @@ INSERT INTO schema_migrations (version) VALUES ('20150927014445');
 INSERT INTO schema_migrations (version) VALUES ('20151024164701');
 
 INSERT INTO schema_migrations (version) VALUES ('20151024170230');
+
+INSERT INTO schema_migrations (version) VALUES ('20151108221505');
+
+INSERT INTO schema_migrations (version) VALUES ('20151108223154');
+
+INSERT INTO schema_migrations (version) VALUES ('20151108233510');
 
