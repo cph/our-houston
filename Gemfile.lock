@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/concordia-publishing-house/houston-dashboards.git
-  revision: 23152115f685b94f85ee8a68f78585a3a0692767
+  revision: 34e51905bfa523d1e5578d4b3a4124a8d7f3110c
   branch: master
   specs:
     houston-dashboards (0.0.1)
