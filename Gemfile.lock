@@ -45,14 +45,14 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: 9edb1605ebafe22191c25ef6f89da5681597ddc7
+  revision: 2d9158e791b9fb3ddd0eb7ea91441df73f1dda29
   branch: master
   specs:
     houston-alerts (0.0.1)
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: a5b11c8acf3e758b8232fc4b252d6aa3ee04446d
+  revision: 638b45ffdbf7002f652cf71a26cb011f09730b2b
   branch: master
   specs:
     houston-core (0.5.5)
@@ -84,7 +84,7 @@ GIT
       nokogiri (~> 1.6.6.2)
       octokit (~> 4.1.0)
       oj (~> 2.13)
-      openxml-xlsx
+      openxml-xlsx (>= 0.2.0)
       pg (~> 0.18.3)
       pg_search (~> 1.0.5)
       premailer (~> 1.8.6)
@@ -105,7 +105,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 1343821143f74ac2e3dfe78070c6457bf2422d4a
+  revision: ffbf2882fb887d2ebfd592d61872da04edccb08a
   branch: master
   specs:
     houston-feedback (0.0.1)
@@ -350,13 +350,13 @@ GEM
     octokit (4.1.1)
       sawyer (~> 0.6.0, >= 0.5.3)
     oj (2.13.0)
-    open_xml_package (0.2.0.beta1)
+    openxml-package (0.2.0)
       nokogiri
       ox
       rubyzip (~> 1.1.0)
-    openxml-xlsx (0.1.2)
+    openxml-xlsx (0.2.0)
       nokogiri
-      open_xml_package (= 0.2.0.beta1)
+      openxml-package (>= 0.2.0)
     orm_adapter (0.5.0)
     ox (2.2.2)
     pg (0.18.3)
