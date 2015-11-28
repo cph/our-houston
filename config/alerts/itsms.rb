@@ -1,5 +1,5 @@
 # Sync ITSMs as Alerts
-Houston::Alerts.config.sync :open, "itsm", every: "60s" do
+Houston::Alerts.config.sync :open, "itsm", every: "60s", icon: "fa-fire-extinguisher" do
   ITSM::Issue.open
     .map { |issue|
       project_slug, summary = issue.summary.scan(/^\s*\[([^\]]+)\]\s*(.*)$/)[0]

@@ -1,6 +1,6 @@
 require_relative "../../lib/gemnasium-alert"
 
-Houston::Alerts.config.sync :open, "cve", every: "5m" do
+Houston::Alerts.config.sync :open, "cve", every: "5m", icon: "fa-bank" do
   Gemnasium::Alert.open.map { |alert|
     advisory = alert["advisory"]
     { key: "#{alert["project_slug"]}-#{advisory["id"]}",
