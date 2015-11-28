@@ -32,8 +32,6 @@ Houston::Slack.config do
       end
     end
 
-    FULLDATE = "%A, %B %-d, %Y"
-
     connection = Faraday.new(url: "http://cphweb09")
     response = connection.get "/mycph.menu.asp"
 
@@ -41,7 +39,7 @@ Houston::Slack.config do
     request = Net::HTTP::Get.new '/mycph/menu.asp'
     response = http.request request
 
-    SNARK = [
+    snark = [
       "Alright, here's what I found:",
       "Your need for daily nutrition is so quaint:",
       "Definitely glad _I_ don't have to eat human food #{target_date.strftime('%A')}",
@@ -50,12 +48,12 @@ Houston::Slack.config do
       "Some days I wish I _didn't_ run on pure science:",
       "Get it while it's hot!"
     ]
-    menu_snark = SNARK[rand(0...SNARK.count)]
+    menu_snark = snark[rand(0...snark.count)]
 
     if response.code != "200"
       e.reply "Uh, oh. Looks like I can't get to the menu right now. :sweat_smile: Maybe you can try: http://cphweb09/mycph/menu.asp"
     else
-      date_query = target_date.strftime(FULLDATE)
+      date_query = target_date.strftime("%A, %B %-d, %Y")
       document = Nokogiri::HTML(response.body)
       date_heading = document.at_css("i[text()=\"#{date_query}\"]")
       if date_heading.nil?
