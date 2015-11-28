@@ -5,6 +5,8 @@ gem "houston-core", github: "houston/houston-core", branch: "master"
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem "therubyracer", platforms: :ruby
 
+gem "zendesk_api"
+
 group :development do
   gem "letter_opener"
   gem "unicorn-rails"
