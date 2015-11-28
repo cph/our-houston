@@ -1,5 +1,5 @@
 if Rails.env.development?
-  Houston::Alerts.config.sync :open, "zendesk", every: "5m", icon: "fa-life-buoy" do
+  Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" do
 
     # We want to pull down all the tickets that have been
     # assigned to the EP group. We can't do that directly
