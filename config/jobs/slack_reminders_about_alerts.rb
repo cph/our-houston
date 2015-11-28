@@ -27,8 +27,8 @@ Houston.config.every "2m", "remind:alerts" do
 
     Rails.logger.info "\e[34m[slack] reminding \e[1m#{assignee.first_name}\e[0;34m of alert due in \e[1m#{seconds}s\e[0m"
 
-    message = "Hey #{assignee.first_name}, this *#{alert.type}*"
-    message << " for #{alert.project.slug}" if alert.project
+    message = "Hey #{assignee.first_name}, this #{alert.type}"
+    message << " for *#{alert.project.slug}*" if alert.project
 
     due_date = alert.deadline.to_date
     if due_date == Date.today
