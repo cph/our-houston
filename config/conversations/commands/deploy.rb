@@ -169,7 +169,9 @@ module Houston
           # !todo: this could be cached
           user = User.find_by_email_address Houston.github.user(other_pr.user.login).email
           advise "I'm waiting to hear if I can have staging"
-          conversation.ask "#{user == self.user ? "You have" : "#{user ? user.first_name : other_pr.user.login} has"} #{slack_link_to_pull_request(other_pr)} on staging. Is it OK for me to deploy #{target.value}?", expect: YESORNO do |e|
+          question = "#{user == self.user ? "You have" : "#{user ? user.first_name : other_pr.user.login} has"} #{slack_link_to_pull_request(other_pr)} on staging. Is it OK for me to deploy #{target.value}?"
+          question = "#{self.user.slack_username}, #{question}" unless self.user.slack_username.blank?
+          conversation.ask question, expect: YESORNO do |e|
             if e.matched?(:affirmative)
               execute_deploy
             else
