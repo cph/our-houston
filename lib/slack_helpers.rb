@@ -30,6 +30,11 @@ def alert_unfurl_url(alert)
   "http://#{Houston.config.host}/#{alert.type}/#{alert.number}"
 end
 
+def slack_github_comment_attachment(body)
+  body = body.gsub /^```(ruby|diff|css|json|sql|html|xml|coffee(?:script)?|javascript|js|bash)/, "```"
+  { fallback: body, text: body, mrkdwn_in: %w{text} }
+end
+
 def slack_alert_attachment(alert, options={})
   unfurl_url = alert_unfurl_url(alert)
   title = slack_link_to(alert.summary, unfurl_url)

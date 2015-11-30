@@ -6,8 +6,8 @@ Houston.config do
 
     message = "#{comment["user"]["login"]} commented on #{slack_link_to(comment["commit_id"][0...7], url)}"
 
-    comment = { fallback: body, text: body }
-    slack_send_message_to message, channel, as: :github, attachments: [comment]
+    slack_send_message_to message, channel, as: :github,
+      attachments: [slack_github_comment_attachment(body)]
   end
 
   on "github:comment:diff" do |comment|
@@ -17,8 +17,8 @@ Houston.config do
 
     message = "#{comment["user"]["login"]} commented on #{slack_link_to(comment["path"], url)}"
 
-    comment = { fallback: body, text: body }
-    slack_send_message_to message, channel, as: :github, attachments: [comment]
+    slack_send_message_to message, channel, as: :github,
+      attachments: [slack_github_comment_attachment(body)]
   end
 
   on "github:comment:pull" do |comment|
@@ -29,7 +29,7 @@ Houston.config do
     issue = comment["issue"]
     message = "#{comment["user"]["login"]} commented on #{slack_link_to("##{issue["number"]} #{issue["title"]}", url)}"
 
-    comment = { fallback: body, text: body }
-    slack_send_message_to message, channel, as: :github, attachments: [comment]
+    slack_send_message_to message, channel, as: :github,
+      attachments: [slack_github_comment_attachment(body)]
   end
 end
