@@ -33,6 +33,11 @@ module Houston
       attr_reader :target, :pr, :project, :environment, :maintenance_page
       YESORNO = /(?<affirmative>yes|ok|sure|yeah|ya)|(?<negative>no)/i.freeze
       ACKNOWLEDGEMENT = ["Alright, thanks.", "OK", "got it", "ok", "ok"].freeze
+      DEPLOYABLE_REPOS = %w{
+        concordia-publishing-house/members
+        concordia-publishing-house/unite
+        concordia-publishing-house/ledger
+      }.freeze
 
 
       def initialize(attributes)
@@ -227,13 +232,12 @@ module Houston
     private
 
       def list_all_pull_requests
-        %w{members unite ledger}.flat_map { |repo|
-          Houston.github.pulls("#{github_org}/#{repo}") }
+        DEPLOYABLE_REPOS.flat_map { |repo| Houston.github.pulls(repo) }
       end
 
       def list_pull_requests_on_staging_for_project(project)
         Houston.github.list_issues(
-          "#{github_org}/#{project.slug}",
+          "concordia-publishing-house/#{project.slug}",
           labels: "on-staging",
           filter: "all")
             .select(&:pull_request)
@@ -244,20 +248,16 @@ module Houston
       end
 
       def find_repos_with_a_branch_named(branch)
-        %w{members unite ledger}.select do |repo|
+        DEPLOYABLE_REPOS.select do |repo|
           begin
             Houston.github
-              .refs("#{github_org}/#{repo}", "heads/#{branch.chop}")
+              .refs(repo, "heads/#{branch.chop}")
               .select { |ref| ref.ref == "refs/heads/#{branch}" }
               .any?
           rescue Octokit::NotFound
             false
           end
         end
-      end
-
-      def github_org
-        Houston.config.github[:organization]
       end
 
     end
