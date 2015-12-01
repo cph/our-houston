@@ -185,50 +185,6 @@ module Houston
 
 
 
-      # !todo: connect to the database and figure out which migrations will actually run
-      # def ensure_migrations_are_hot_compatible
-      #   advise nil
-      #   migrations = project.repo
-      #     .changes(environment.last_deploy_commit, pr.head.sha)
-      #     .grep(/^db\/migrate\//)
-      #
-      #   added = migrations.select(&:added?)
-      #   modified = migrations.select(&:modified?)
-      #   deleted = migrations.select(&:deleted?)
-      #
-      #   summary = []
-      #   summary << "1 migration was added:" if added.length == 1
-      #   summary << "#{added.length} migrations were added:" if added.length > 1
-      #   summary << ("\n```\n" << added.map { |change| change.file[11..-1] }.join("\n") << "\n```\n") if added.length > 0
-      #
-      #   summary << "Also, " if added.length > 0 and (modified.length > 0 or deleted.length > 0)
-      #   summary << "1#{" migration" if added.none?} was modified:" if modified.length == 1
-      #   summary << "#{modified.length}#{" migrations" if added.none?} were modified:" if modified.length > 1
-      #   summary << "\n```\n#{modified.map { |change| change.file[11..-1] }.join("\n")}```\n" if modified.length > 0
-      #
-      #   summary << "And " if modified.length > 0 and deleted.length > 0
-      #   summary << "1#{" migration" if added.none? && modified.none?} was deleted:" if deleted.length == 1
-      #   summary << "#{deleted.length}#{" migrations" if added.none? && modified.none?} were deleted:" if deleted.length > 1
-      #   summary << "\n```\n#{deleted.map { |change| change.file[11..-1] }.join("\n")}```\n" if deleted.length > 0
-      #
-      #   summary = summary.join(" ")
-      #   if added.any? || modified.any?
-      #     advise "I'm waiting to hear if I should use the maintenance page"
-      #     conversation.ask "It looks like #{summary}\nShould I put the maintenance page up?", expect: YESORNO do |e|
-      #       @maintenance_page = e.matched?(:affirmative)
-      #       e.reply ACKNOWLEDGEMENT.sample
-      #       execute_deploy
-      #     end
-      #
-      #     conversation.say "(I'd recommend putting the maintenance page up if the old version of #{project.slug} will break on the new schema.)"
-      #   else
-      #     @maintenance_page = false
-      #     execute_deploy
-      #   end
-      # end
-
-
-
       def executing?
         @executing
       end
