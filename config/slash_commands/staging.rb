@@ -28,13 +28,9 @@ Houston::Slack.config do
 end
 
 def list_pull_requests_on_staging_for_project(project)
-    Houston.github.list_issues(
-      "#{github_org}/#{project.slug}",
+  Houston.github.list_issues(
+      "concordia-publishing-house/#{project.slug}",
       labels: "on-staging",
       filter: "all")
-        .select(&:pull_request)
-end
-
-def github_org
-  Houston.config.github[:organization]
+    .select(&:pull_request)
 end
