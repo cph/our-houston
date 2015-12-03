@@ -6,7 +6,7 @@ Houston.config.abilities do |user|
 
     # Customers are allowed to see Release Notes of products, for production
     can :read, Release do |release|
-      release.project.category == "Products" && (release.environment_name.blank? || release.environment_name == "production")
+      release.environment_name == "production"
     end
 
     # Customers are allowed to see Features, Improvements, and Bugfixes
