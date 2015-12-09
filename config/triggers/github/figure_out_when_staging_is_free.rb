@@ -1,7 +1,9 @@
 Houston.config do
   on "github:pull:updated" do |pull_request, changes|
-    next unless changes.key? "labels"
-    before, after = changes["labels"]
+    next unless changes.key? "json_labels"
+    before, after = changes["json_labels"]
+    before = before.map { |label| label["name"] }
+    after = after.map { |label| label["name"] }
 
     removed = before - after
     added = after - before
