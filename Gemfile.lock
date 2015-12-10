@@ -52,7 +52,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: ac4ad728d1c9afe7719ca102eb99447a566ed10b
+  revision: 36304cd10bc822bdcd99c189220af588e9460277
   branch: master
   specs:
     houston-core (0.5.6)
@@ -438,7 +438,7 @@ GEM
     rufus-scheduler (3.1.10)
     rugged (0.23.3)
     safe_yaml (1.0.4)
-    sass (3.4.19)
+    sass (3.4.20)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -506,7 +506,7 @@ GEM
     unicorn-rails (2.2.0)
       rack
       unicorn
-    warden (1.2.3)
+    warden (1.2.4)
       rack (>= 1.0)
     wasabi (3.5.0)
       httpi (~> 2.0)
