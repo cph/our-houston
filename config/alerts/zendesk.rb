@@ -6,7 +6,7 @@ Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" 
   # assigned to the EP group. We can't do that directly
   # with the API, so we create a view in Zendesk that
   # performs that filter and use it here.
-  $zendesk.tickets(path: "views/#{ZENDESK_VIEW}/tickets").map { |ticket|
+  $zendesk.tickets(path: "views/#{ZENDESK_VIEW}/tickets", reload: true).map { |ticket|
     project_slug = case ticket["tags"].join(" ")
     when /\b360members\b/ then "members"
     when /\b360unite\b/ then "unite"
@@ -15,10 +15,10 @@ Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" 
 
     { key: ticket.url,
       number: ticket.id,
-      summary: ticket.subject,
-      text: ticket.description,
-      environment_name: "production",
       project_slug: project_slug,
+      summary: ticket.subject,
+      environment_name: "production",
+      text: ticket.description,
       url: "#{ZENDESK_HOST}/agent/tickets/#{ticket.id}" } }
 
 end
