@@ -183,6 +183,7 @@ Houston.config do
   use :dashboards
   use :reports
   use :support_form
+  use :brakeman
 
   use :roadmap do
     date "2016-09-30", "End of Members Push"

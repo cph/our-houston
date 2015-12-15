@@ -51,11 +51,18 @@ GIT
     houston-alerts (0.0.1)
 
 GIT
-  remote: git://github.com/houston/houston-core.git
-  revision: 32bed4e1b1eb8dbed470de8997c6b507dcfd26dc
+  remote: git://github.com/houston/houston-brakeman.git
+  revision: af10e71a83eac61f618eff9327a60026a9aeb84c
   branch: master
   specs:
-    houston-core (0.5.6)
+    houston-brakeman (0.0.1)
+
+GIT
+  remote: git://github.com/houston/houston-core.git
+  revision: 78b3534fb0c7b82014251074586ec92ca93871f3
+  branch: master
+  specs:
+    houston-core (0.6.0)
       activerecord-import
       activerecord-pluck_in_batches
       addressable
@@ -241,7 +248,7 @@ GEM
       addressable
     default_value_for (3.0.1)
       activerecord (>= 3.2.0, < 5.0)
-    devise (3.5.2)
+    devise (3.5.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -468,7 +475,7 @@ GEM
     skylight (0.10.0)
       activesupport (>= 3.0.0)
     slop (3.6.0)
-    spring (1.5.0)
+    spring (1.6.0)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -541,6 +548,7 @@ DEPENDENCIES
   capybara
   factory_girl_rails
   houston-alerts!
+  houston-brakeman!
   houston-core!
   houston-dashboards!
   houston-feedback!

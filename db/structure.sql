@@ -126,6 +126,91 @@ ALTER SEQUENCE alerts_id_seq OWNED BY alerts.id;
 
 
 --
+-- Name: brakeman_scans; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE brakeman_scans (
+    id integer NOT NULL,
+    project_id integer NOT NULL,
+    commit_id integer,
+    sha character varying NOT NULL,
+    brakeman_version character varying,
+    duration integer,
+    checks_performed character varying[]
+);
+
+
+--
+-- Name: brakeman_scans_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE brakeman_scans_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: brakeman_scans_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE brakeman_scans_id_seq OWNED BY brakeman_scans.id;
+
+
+--
+-- Name: brakeman_scans_warnings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE brakeman_scans_warnings (
+    scan_id integer,
+    warning_id integer
+);
+
+
+--
+-- Name: brakeman_warnings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE brakeman_warnings (
+    id integer NOT NULL,
+    project_id integer NOT NULL,
+    warning_type character varying NOT NULL,
+    warning_code integer NOT NULL,
+    fingerprint character varying NOT NULL,
+    message text NOT NULL,
+    file character varying NOT NULL,
+    line integer,
+    url character varying NOT NULL,
+    code text,
+    confidence character varying NOT NULL,
+    props json DEFAULT '{}'::json NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: brakeman_warnings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE brakeman_warnings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: brakeman_warnings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE brakeman_warnings_id_seq OWNED BY brakeman_warnings.id;
+
+
+--
 -- Name: commits; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1378,6 +1463,20 @@ ALTER TABLE ONLY alerts ALTER COLUMN id SET DEFAULT nextval('alerts_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY brakeman_scans ALTER COLUMN id SET DEFAULT nextval('brakeman_scans_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY brakeman_warnings ALTER COLUMN id SET DEFAULT nextval('brakeman_warnings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY commits ALTER COLUMN id SET DEFAULT nextval('commits_id_seq'::regclass);
 
 
@@ -1590,6 +1689,22 @@ ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq':
 
 ALTER TABLE ONLY alerts
     ADD CONSTRAINT alerts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: brakeman_scans_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY brakeman_scans
+    ADD CONSTRAINT brakeman_scans_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: brakeman_warnings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY brakeman_warnings
+    ADD CONSTRAINT brakeman_warnings_pkey PRIMARY KEY (id);
 
 
 --
@@ -1874,6 +1989,13 @@ CREATE INDEX index_alerts_on_opened_at ON alerts USING btree (opened_at);
 --
 
 CREATE UNIQUE INDEX index_alerts_on_type_and_key ON alerts USING btree (type, key);
+
+
+--
+-- Name: index_brakeman_warnings_on_fingerprint; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_brakeman_warnings_on_fingerprint ON brakeman_warnings USING btree (fingerprint);
 
 
 --
@@ -2790,6 +2912,12 @@ INSERT INTO schema_migrations (version) VALUES ('20151202011812');
 INSERT INTO schema_migrations (version) VALUES ('20151205204922');
 
 INSERT INTO schema_migrations (version) VALUES ('20151205214647');
+
+INSERT INTO schema_migrations (version) VALUES ('20151205222043');
+
+INSERT INTO schema_migrations (version) VALUES ('20151205223652');
+
+INSERT INTO schema_migrations (version) VALUES ('20151206004534');
 
 INSERT INTO schema_migrations (version) VALUES ('20151209004458');
 
