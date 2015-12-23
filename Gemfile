@@ -37,7 +37,7 @@ group :test do
 end
 
 # Tooling
-gem "airbrake"
+gem "airbrake", "~> 4.0"
 gem "sucker_punch" # for Airbrake
 gem "skylight"
 
