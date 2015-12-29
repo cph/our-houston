@@ -344,7 +344,6 @@ ALTER SEQUENCE consumer_tokens_id_seq OWNED BY consumer_tokens.id;
 CREATE TABLE deploys (
     id integer NOT NULL,
     project_id integer,
-    environment_id integer,
     sha character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -479,38 +478,6 @@ CREATE SEQUENCE feedback_customers_id_seq
 --
 
 ALTER SEQUENCE feedback_customers_id_seq OWNED BY feedback_customers.id;
-
-
---
--- Name: historical_heads; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE historical_heads (
-    id integer NOT NULL,
-    project_id integer NOT NULL,
-    branches hstore DEFAULT ''::hstore NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: historical_heads_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE historical_heads_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: historical_heads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE historical_heads_id_seq OWNED BY historical_heads.id;
 
 
 --
@@ -689,7 +656,6 @@ CREATE TABLE projects (
     last_ticket_tracker_sync_at timestamp without time zone,
     ticket_tracker_sync_started_at timestamp without time zone,
     view_options hstore DEFAULT ''::hstore NOT NULL,
-    gemnasium_slug character varying(255),
     feature_states hstore DEFAULT ''::hstore NOT NULL,
     selected_features text[],
     head_sha character varying(255)
@@ -732,8 +698,6 @@ CREATE TABLE pull_requests (
     base_sha character varying(255) NOT NULL,
     head_ref character varying(255) NOT NULL,
     head_sha character varying(255) NOT NULL,
-    old_labels text DEFAULT ''::text NOT NULL,
-    labels text[] DEFAULT '{}'::text[],
     body text,
     props jsonb DEFAULT '{}'::jsonb,
     avatar_url character varying(255),
@@ -768,7 +732,6 @@ ALTER SEQUENCE pull_requests_id_seq OWNED BY pull_requests.id;
 
 CREATE TABLE releases (
     id integer NOT NULL,
-    environment_id integer,
     name character varying(255),
     commit0 character varying(255),
     commit1 character varying(255),
@@ -987,8 +950,6 @@ CREATE TABLE tasks (
     first_release_at timestamp without time zone,
     first_commit_at timestamp without time zone,
     sprint_id integer,
-    checked_out_at timestamp without time zone,
-    checked_out_by_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     project_id integer NOT NULL,
@@ -1258,9 +1219,6 @@ CREATE TABLE tickets (
     destroyed_at timestamp without time zone,
     resolution character varying(255) DEFAULT ''::character varying NOT NULL,
     first_release_at timestamp without time zone,
-    sprint_id integer,
-    checked_out_at timestamp without time zone,
-    checked_out_by_id integer,
     priority character varying(255) DEFAULT 'normal'::character varying NOT NULL,
     reopened_at timestamp without time zone,
     prerequisites integer[]
@@ -1352,7 +1310,6 @@ CREATE TABLE users (
     unfuddle_id integer,
     first_name character varying(255),
     last_name character varying(255),
-    old_environments_subscribed_to character varying(255) DEFAULT ''::character varying NOT NULL,
     retired_at timestamp without time zone,
     view_options hstore DEFAULT ''::hstore NOT NULL,
     email_addresses text[],
@@ -1514,13 +1471,6 @@ ALTER TABLE ONLY feedback_comments_user_flags ALTER COLUMN id SET DEFAULT nextva
 --
 
 ALTER TABLE ONLY feedback_customers ALTER COLUMN id SET DEFAULT nextval('feedback_customers_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY historical_heads ALTER COLUMN id SET DEFAULT nextval('historical_heads_id_seq'::regclass);
 
 
 --
@@ -1754,14 +1704,6 @@ ALTER TABLE ONLY feedback_comments_user_flags
 
 ALTER TABLE ONLY feedback_customers
     ADD CONSTRAINT feedback_customers_pkey PRIMARY KEY (id);
-
-
---
--- Name: historical_heads_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY historical_heads
-    ADD CONSTRAINT historical_heads_pkey PRIMARY KEY (id);
 
 
 --
@@ -2378,13 +2320,6 @@ CREATE INDEX index_tickets_on_resolution ON tickets USING btree (resolution);
 
 
 --
--- Name: index_tickets_on_sprint_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_tickets_on_sprint_id ON tickets USING btree (sprint_id);
-
-
---
 -- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2934,4 +2869,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151209030113');
 INSERT INTO schema_migrations (version) VALUES ('20151226154901');
 
 INSERT INTO schema_migrations (version) VALUES ('20151226155305');
+
+INSERT INTO schema_migrations (version) VALUES ('20151228183704');
 
