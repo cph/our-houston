@@ -28,3 +28,17 @@ $zendesk = ZendeskAPI::Client.new do |config|
   # When getting the error 'hostname does not match the server certificate'
   # use the API at https://yoursubdomain.zendesk.com/api/v2
 end
+
+ZENDESK_BRAND_PROJECT_MAP = {
+  "360ledger" => "ledger",
+  "360members" => "members",
+  "360unite" => "unite",
+  "biblestudybuilder" => "bsb",
+  "confirmationbuilder" => "confb",
+  "lsb" => "lsb",
+  "mysundaysolutions" => "musicmate",
+  "oic" => "oic",
+  "shepherdsstaff" => "shepherdsstaff" }.freeze
+
+ZENDESK_BRANDS = $zendesk.brands.each_with_object({}) { |brand, map|
+  map[brand.id] = ZENDESK_BRAND_PROJECT_MAP[brand.subdomain] }.freeze

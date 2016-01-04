@@ -7,15 +7,15 @@ Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" 
   # with the API, so we create a view in Zendesk that
   # performs that filter and use it here.
   $zendesk.tickets(path: "views/#{ZENDESK_VIEW}/tickets", reload: true).map { |ticket|
-    project_slug = case ticket["tags"].join(" ")
-    when /\b360members\b/ then "members"
-    when /\b360unite\b/ then "unite"
-    when /\b360ledger\b/ then "ledger"
-    end
+    # project_slug = case ticket["tags"].join(" ")
+    # when /\b360members\b/ then "members"
+    # when /\b360unite\b/ then "unite"
+    # when /\b360ledger\b/ then "ledger"
+    # end
 
     { key: ticket.url,
       number: ticket.id,
-      project_slug: project_slug,
+      project_slug: ZENDESK_BRANDS[ticket.brand_id],
       summary: ticket.subject,
       environment_name: "production",
       text: ticket.description,
