@@ -59,7 +59,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 0542cbea235fecb1653d5b590318798436bd6dbb
+  revision: 064f0890fee7c7048980df9b0343b682fd44467e
   branch: master
   specs:
     houston-core (0.6.0)
@@ -573,7 +573,7 @@ DEPENDENCIES
   timecop
   unicorn-rails
   webmock
-  zendesk_api
+  zendesk_api (~> 1.13)
 
 BUNDLED WITH
    1.10.6
