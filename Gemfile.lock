@@ -59,7 +59,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 3575f9dbc9768f6e2d9b6ab0e8eae9fbcc118994
+  revision: d323c029c6e8db66aca41ee306c21ddb91688bff
   branch: master
   specs:
     houston-core (0.6.0)
@@ -112,7 +112,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 942d72297f6ed6924cb0691a77be5c170fd5a6a7
+  revision: e873da3eeca21986022763fdd05a6238533d0ce0
   branch: master
   specs:
     houston-feedback (0.0.1)
@@ -178,7 +178,7 @@ GEM
       arel (~> 6.0)
     activerecord-import (0.10.0)
       activerecord (>= 3.0)
-    activerecord-pluck_in_batches (0.1.0)
+    activerecord-pluck_in_batches (0.1.1)
       activerecord
     activesupport (4.2.5)
       i18n (~> 0.7)
