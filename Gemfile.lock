@@ -52,14 +52,14 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-brakeman.git
-  revision: c38507353272ebfd478a70f2ee357bb476fa40f7
+  revision: a980af000eb62e0d214817e1288dd21fdaa4f080
   branch: master
   specs:
     houston-brakeman (0.0.1)
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: f021721d42acb715275a989714f975f2d89439cd
+  revision: 3575f9dbc9768f6e2d9b6ab0e8eae9fbcc118994
   branch: master
   specs:
     houston-core (0.6.0)
@@ -517,8 +517,8 @@ GEM
     wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
-    webmock (1.22.3)
-      addressable (>= 2.3.6)
+    webmock (1.22.5)
+      addressable (< 2.4.0)
       crack (>= 0.3.2)
       hashdiff
     websocket-driver (0.6.3)
@@ -529,7 +529,7 @@ GEM
       chronic (>= 0.6.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    zendesk_api (1.13.2)
+    zendesk_api (1.13.3)
       faraday (~> 0.9)
       hashie (>= 1.2, < 4.0, != 3.3.0)
       inflection
