@@ -112,7 +112,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: e873da3eeca21986022763fdd05a6238533d0ce0
+  revision: d123b45db01c5a875e73b8c4ecbf4e7978f87231
   branch: master
   specs:
     houston-feedback (0.0.1)
@@ -187,7 +187,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
-    airbrake (4.3.4)
+    airbrake (4.3.5)
       builder
       multi_json
     akami (1.3.1)
