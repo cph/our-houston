@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/concordia-publishing-house/houston-dashboards.git
-  revision: 91ce86cf224eb5838593216e8ce1f6d393eb3b8f
+  revision: 09de2a44da5f0424f71ca3645783fab5c22bbd6d
   branch: master
   specs:
     houston-dashboards (0.0.1)
@@ -59,7 +59,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 38d31797638240f38d95bdbe7972e15caa3ebd1c
+  revision: 096f38e2a1b69c73dbd8d1d8a01bc9749fd7408f
   branch: master
   specs:
     houston-core (0.6.0)
@@ -474,7 +474,7 @@ GEM
     skylight (0.10.1)
       activesupport (>= 3.0.0)
     slop (3.6.0)
-    spring (1.6.1)
+    spring (1.6.2)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -517,8 +517,8 @@ GEM
     wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
-    webmock (1.22.5)
-      addressable (< 2.4.0)
+    webmock (1.22.6)
+      addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
     websocket-driver (0.6.3)
