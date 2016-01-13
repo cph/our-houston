@@ -34,9 +34,9 @@ module Houston
       YESORNO = /(?<affirmative>yes|ok|sure|yeah|ya)|(?<negative>no)/i.freeze
       ACKNOWLEDGEMENT = ["Alright, thanks.", "OK", "got it", "ok", "ok"].freeze
       DEPLOYABLE_REPOS = %w{
-        concordia-publishing-house/members
-        concordia-publishing-house/unite
-        concordia-publishing-house/ledger
+        cph/members
+        cph/unite
+        cph/ledger
       }.freeze
 
 
@@ -237,7 +237,7 @@ module Houston
 
       def list_pull_requests_on_staging_for_project(project)
         Houston.github.list_issues(
-          "concordia-publishing-house/#{project.slug}",
+          "cph/#{project.slug}",
           labels: "on-staging",
           filter: "all")
             .select(&:pull_request)

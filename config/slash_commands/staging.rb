@@ -29,7 +29,7 @@ end
 
 def list_pull_requests_on_staging_for_project(project)
   Houston.github.list_issues(
-      "concordia-publishing-house/#{project.slug}",
+      "cph/#{project.slug}",
       labels: "on-staging",
       filter: "all")
     .select(&:pull_request)

@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/concordia-publishing-house/houston-dashboards.git
+  remote: git://github.com/cph/houston-dashboards.git
   revision: 2700a8985887f839341efb3e41f8f9bc3b473b47
   branch: master
   specs:
@@ -8,21 +8,21 @@ GIT
       savon (~> 2.0)
 
 GIT
-  remote: git://github.com/concordia-publishing-house/houston-reports.git
+  remote: git://github.com/cph/houston-reports.git
   revision: 520cfe4091765d6e71fe7673d26bff75afd5294c
   branch: master
   specs:
     houston-reports (0.0.1)
 
 GIT
-  remote: git://github.com/concordia-publishing-house/houston-support_form.git
+  remote: git://github.com/cph/houston-support_form.git
   revision: bbfe2533e44053d6c4c0d60b67bcdaa3097129b3
   branch: master
   specs:
     houston-support_form (0.0.1)
 
 GIT
-  remote: git://github.com/concordia-publishing-house/itsm.git
+  remote: git://github.com/cph/itsm.git
   revision: dbe9b64b9fd8a5c6dcc577adb6075c2f603d5fa8
   branch: master
   specs:
@@ -32,7 +32,7 @@ GIT
       savon (~> 2.0)
 
 GIT
-  remote: git://github.com/concordia-publishing-house/star.git
+  remote: git://github.com/cph/star.git
   revision: 410e20b76b5fe25f4070441ba7d3faf92f2e907e
   branch: master
   specs:
