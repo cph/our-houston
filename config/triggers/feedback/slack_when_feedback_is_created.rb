@@ -11,11 +11,18 @@ Houston.config do
       line.strip
         .gsub(/^#+\s*(.*)$/m, "*\\1*") # replace H_ tags with bold text
         .gsub(/^>\s*/m, "") # get rid of inner quotes
+        .gsub(/\*{2}/, "*") # it takes only one * to bold things in Slack
         .gsub(/\!\[.*\]\(([^)]+)\)/, "\\1") # clean up images
     end
     attribution = comment.attributed_to
     attribution = comment.customer.name if comment.customer
-    attribution = comment.user.name if attribution.nil? && comment.user
+    if comment.user
+      if attribution.nil?
+        attribution = comment.user.name
+      else
+        attribution << " (entered by #{comment.user.name})"
+      end
+    end
     lines.push "    — #{attribution}" if attribution
     message = lines.map { |line| "> #{line}\n" }.join
       .gsub(/> \n> \n/m, "> \n")
