@@ -10,7 +10,7 @@ Houston.config.github do
   access_token ENV["HOUSTON_GITHUB_ACCESS_TOKEN"]
   key ENV["HOUSTON_GITHUB_KEY"]
   secret ENV["HOUSTON_GITHUB_SECRET"]
-  organization "concordia-publishing-house"
+  organization "cph"
 end
 
 

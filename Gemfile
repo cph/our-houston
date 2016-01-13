@@ -41,16 +41,16 @@ gem "airbrake", "~> 4.0"
 gem "sucker_punch" # for Airbrake
 gem "skylight"
 
-gem "star", github: "concordia-publishing-house/star", branch: "master"
-gem "itsm", github: "concordia-publishing-house/itsm", branch: "master"
+gem "star", github: "cph/star", branch: "master"
+gem "itsm", github: "cph/itsm", branch: "master"
 
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
 gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
-gem "houston-dashboards", github: "concordia-publishing-house/houston-dashboards", branch: "master"
+gem "houston-dashboards", github: "cph/houston-dashboards", branch: "master"
 gem "houston-feedback", github: "houston/houston-feedback", branch: "master"
-gem "houston-reports", github: "concordia-publishing-house/houston-reports", branch: "master"
+gem "houston-reports", github: "cph/houston-reports", branch: "master"
 gem "houston-roadmap", github: "houston/houston-roadmap", branch: "master"
 gem "houston-scheduler", github: "houston/houston-scheduler", branch: "master"
 gem "houston-slack", github: "houston/houston-slack", branch: "master"
-gem "houston-support_form", github: "concordia-publishing-house/houston-support_form", branch: "master"
+gem "houston-support_form", github: "cph/houston-support_form", branch: "master"
