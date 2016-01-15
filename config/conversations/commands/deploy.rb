@@ -66,7 +66,7 @@ module Houston
 
         when 1
           @pr = pulls[0]
-          @project = Project.find_by_slug(pr.base.repo.name)
+          @project = Project.find_by_slug!(pr.base.repo.name)
           determine_deploy_strategy
 
         else
@@ -75,10 +75,13 @@ module Houston
           advise "I'm waiting to hear which pull request I should deploy"
           conversation.ask "#{repos.map { |name| "*#{name}*" }.to_sentence} #{repos.length == 2 ? "both" : "all"} have pull requests with the #{target.type} *#{target.value}*. Which one should I deploy?", expect: match_repo(repos) do |e|
             @pr = pulls.detect { |pr| pr.base.repo.name == e.match[:repo] }
-            @project = Project.find_by_slug(pr.base.repo.name)
+            @project = Project.find_by_slug!(pr.base.repo.name)
             determine_deploy_strategy
           end
         end
+
+      rescue ActiveRecord::RecordNotFound
+        end! "Sorry, I'm not sure what project you want to deploy :sweat:"
       end
 
       def find_pull_requests_for_branch(branch)
@@ -103,16 +106,19 @@ module Houston
           end! "I couldn't find a branch named *#{branch}*. Is that spelling right?"
 
         when 1
-          @project = Project.find_by_slug(repos[0])
+          @project = Project.find_by_slug!(repos[0])
           create_pull_request_for_branch
 
         else
           advise "I'm waiting to hear which branch I should deploy"
           conversation.ask "#{repos.map { |name| "*#{name}*" }.to_sentence} #{repos.length == 2 ? "both" : "all"} have branches named *#{branch}*. Which one should I deploy?", expect: match_repo(repos) do |e|
-            @project = Project.find_by_slug(e.match[:repo])
+            @project = Project.find_by_slug!(e.match[:repo])
             create_pull_request_for_branch
           end
         end
+
+      rescue ActiveRecord::RecordNotFound
+        end! "Sorry, I'm not sure what project you want to deploy :sweat:"
       end
 
 
