@@ -17,7 +17,7 @@ Houston.config do
     attribution = comment.attributed_to
     attribution = comment.customer.name if comment.customer
     if comment.user
-      if attribution.nil?
+      if attribution.blank?
         attribution = comment.user.name
       else
         attribution << " (entered by #{comment.user.name})"
