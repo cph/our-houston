@@ -11,6 +11,10 @@ module Houston
         @on_complete_proc = nil
       end
 
+      def self.start!(attributes={})
+        Houston.side_projects.start! self.new(attributes)
+      end
+
       def start!
         raise NotImplementedError
       end

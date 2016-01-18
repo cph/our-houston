@@ -5,9 +5,6 @@ require "ostruct"
 Houston::Slack.config do
   # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
   listen_for(/deploy.*\s(?:\#?(?<number>\d+)\b|(?<branch>[\w\d\+\-\._\/]+))/i) do |e|
-    target = "number" if e.matched? :number
-    target = "branch" if e.matched? :branch
-
     unless e.user
       e.reply "I'm sorry. I don't know who you are."
       next
@@ -18,10 +15,11 @@ Houston::Slack.config do
       next
     end
 
-    Houston.side_projects.start! Houston::SideProject::Deploy.new(
-      user: e.user,
-      conversation: e.start_conversation!,
-      target: OpenStruct.new(type: target, value: e.match[target]))
+    target = "number" if e.matched? :number
+    target = "branch" if e.matched? :branch
+    value = e.match[target]
+
+    Houston::SideProject::Deploy.start!(e, target, value)
   end
 end
 
@@ -40,10 +38,18 @@ module Houston
       }.freeze
 
 
+
       def initialize(attributes)
         @target = attributes.fetch :target
         @executing = false
         super attributes.merge(description: "I am deploying #{target.value}")
+      end
+
+      def self.start!(e, target, value)
+        super(
+          user: e.user,
+          conversation: e.start_conversation!,
+          target: OpenStruct.new(type: target, value: value))
       end
 
       def start!
