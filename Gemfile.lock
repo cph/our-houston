@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/cph/houston-dashboards.git
-  revision: 2700a8985887f839341efb3e41f8f9bc3b473b47
+  revision: 50994e09733927a03f946c2fdbf6dcf84991aff7
   branch: master
   specs:
     houston-dashboards (0.0.1)
