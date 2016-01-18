@@ -21,6 +21,32 @@ Houston::Slack.config do
 
     Houston::SideProject::Deploy.start!(e, target, value)
   end
+
+  slash("deploy") do |e|
+    unless e.user
+      e.respond! "I'm sorry. I don't know who you are."
+      next
+    end
+
+    unless e.user.developer?
+      e.respond! "I'm sorry. You have to be a developer to deploy a pull request"
+      next
+    end
+
+    # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
+    match = e.message =~ /(?:\#?(?<number>\d+)\b|(?<branch>[\w\d\+\-\._\/]+))/i
+    target = "number" if match[:number].present?
+    target = "branch" if match[:branch].present?
+    unless target
+      e.respond! "I'm sorry. I didn't get that. What?"
+      next
+    end
+
+    value = match[target]
+    e.respond! ":+1:"
+
+    Houston::SideProject::Deploy.start!(e, target, value)
+  end
 end
 
 
