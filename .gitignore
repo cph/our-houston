@@ -13,8 +13,11 @@ config/skylight.yml
 config/scout_apm.yml
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+/log/*
+!/log/.keep
+/tmp/*
+!/tmp/.keep
+!/tmp/pids/.keep
 
 # Ignore misc files.
 REVISION
