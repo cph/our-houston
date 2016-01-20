@@ -1,5 +1,5 @@
 Houston.config do
-  on "deploy:completed" do |deploy|
+  on "deploy:succeeded" do |deploy|
     project = deploy.project
     if deploy.environment == "staging" && deploy.branch && project.on_github?
       pr_deployed = project.repo.pull_requests.find { |pr| pr.head.ref == deploy.branch }

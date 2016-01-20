@@ -1,5 +1,5 @@
 Houston.config do
-  on "deploy:completed" do |deploy|
+  on "deploy:succeeded" do |deploy|
     next if deploy.build_release.ignore?
 
     deployer = deploy.user

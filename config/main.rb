@@ -274,6 +274,8 @@ Houston.config do
   #   * daemon:*:restart        When a background thread (like the Scheduler or Slack) is restarted
   #   * daemon:*:stop           When a background thread (like the Scheduler or Slack) dies
   #   * deploy:completed        When a deploy has been recorded
+  #   * deploy:succeeded        When a successful deploy has been recorded
+  #   * deploy:failed           When a failed deploy has been recorded
   #   * hooks:*                 When a Web Hook as been triggered
   #   * release:create          When a new Release has been created
   #   * test_run:start          When the CI server has begun a build

@@ -354,7 +354,8 @@ CREATE TABLE deploys (
     branch character varying(255),
     completed_at timestamp without time zone,
     output text,
-    user_id integer
+    user_id integer,
+    successful boolean DEFAULT false NOT NULL
 );
 
 
@@ -2871,4 +2872,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151226154901');
 INSERT INTO schema_migrations (version) VALUES ('20151226155305');
 
 INSERT INTO schema_migrations (version) VALUES ('20151228183704');
+
+INSERT INTO schema_migrations (version) VALUES ('20160120145757');
 
