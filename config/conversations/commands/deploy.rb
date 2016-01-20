@@ -34,9 +34,9 @@ Houston::Slack.config do
     end
 
     # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
-    match = e.message =~ /(?:\#?(?<number>\d+)\b|(?<branch>[\w\d\+\-\._\/]+))/i
-    target = "number" if match[:number].present?
-    target = "branch" if match[:branch].present?
+    match = e.message.match /(?:\#?(?<number>\d+)\b|(?<branch>[\w\d\+\-\._\/]+))/i
+    target = "number" if match && match[:number].present?
+    target = "branch" if match && match[:branch].present?
     unless target
       e.respond! "I'm sorry. I didn't get that. What?"
       next
