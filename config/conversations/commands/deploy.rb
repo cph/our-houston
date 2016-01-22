@@ -257,6 +257,9 @@ module Houston
       rescue EY::CloudClient::RequestFailed
         Houston.report_exception $!
         end! ":rotating_light: I'm sorry. An error occurred: #{$!.message}"
+      rescue EY::CloudClient::BadBridgeStatusError
+        Houston.report_exception $!
+        end! ":rotating_light: Um... :sweat: I just got this error: #{$!.message}"
       end
 
       def pretend_to_deploy
