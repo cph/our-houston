@@ -288,7 +288,7 @@ module Houston
       def find_repos_with_a_branch_named(branch)
         DEPLOYABLE_REPOS.select do |repo|
           begin
-            Array(Houston.github.refs(repo, "heads/#{branch}"))
+            Array.wrap(Houston.github.refs(repo, "heads/#{branch}"))
               .select { |ref| ref.ref == "refs/heads/#{branch}" }
               .any?
           rescue Octokit::NotFound
