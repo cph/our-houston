@@ -59,7 +59,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: e1118a05b867c4bf78469778ad96f51905ca9ab3
+  revision: 0f770a2da3ac8a327b64f2de5a250cdbe18a13b2
   branch: master
   specs:
     houston-core (0.6.0)
@@ -249,7 +249,7 @@ GEM
       addressable
     default_value_for (3.0.1)
       activerecord (>= 3.2.0, < 5.0)
-    devise (3.5.4)
+    devise (3.5.5)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -344,7 +344,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.99)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     minitest-reporters (1.1.7)
       ansi
       builder
