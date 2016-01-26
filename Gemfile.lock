@@ -59,14 +59,13 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 3aa68038f3fb48b44f303ae76bd495dcbc0d8158
+  revision: 513c538f1ca5b4957cd51ae3f3463ddf0999a819
   branch: master
   specs:
     houston-core (0.6.0)
       activerecord-import
       activerecord-pluck_in_batches
       addressable
-      array_stats
       boblail-unfuddle
       browser
       bundler
@@ -196,7 +195,6 @@ GEM
       nokogiri
     ansi (1.5.0)
     arel (6.0.3)
-    array_stats (0.6.0)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
