@@ -11,7 +11,7 @@ Houston::Slack.config do
       if response.status != 200
         e.respond! "It looks like ESV is not available at the moment. :sweat:"
       else
-        e.respond! response.body
+        e.respond! style_passage(response.body)
       end
     end
   end
@@ -31,4 +31,9 @@ def esv_params
     "include-headings" => false,
     "include-subheadings" => false,
     "line-length" => 0 }
+end
+
+def style_passage(text)
+  styled = text.sub(/(.*)$/,"*\\1*")
+  styled
 end
