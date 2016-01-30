@@ -64,6 +64,7 @@ Houston.config.abilities do |user|
       can :manage, Sprint
       can :update_tickets, Milestone
       can :manage, Task
+      can :manage, Github::PullRequest
     end
 
     # Testers and Developers can

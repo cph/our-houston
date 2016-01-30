@@ -138,7 +138,8 @@ Houston.config do
   # These are the menu items that will be shown in Houston
   navigation       :alerts,
                    :roadmap,
-                   :sprint
+                   :sprint,
+                   :pulls
   project_features :support_form,
                    :feedback,
                    :ideas,
