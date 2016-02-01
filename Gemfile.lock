@@ -59,7 +59,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 29cc9a08831718ffeb38528948886561bdd6cdc9
+  revision: 07860f7be0847ed5d4edf9bc1fc2143ffab16385
   branch: master
   specs:
     houston-core (0.6.0)
@@ -208,30 +208,13 @@ GEM
     builder (3.2.2)
     callsite (0.0.11)
     cancan (1.6.10)
-    capybara (2.6.0)
+    capybara (2.6.2)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    celluloid (0.17.3)
-      celluloid-essentials
-      celluloid-extras
-      celluloid-fsm
-      celluloid-pool
-      celluloid-supervision
-      timers (>= 4.1.1)
-    celluloid-essentials (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-extras (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-fsm (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-pool (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-supervision (0.20.5)
-      timers (>= 4.1.1)
     chronic (0.10.2)
     codeclimate-test-reporter (0.4.8)
       simplecov (>= 0.7.1, < 1.0.0)
@@ -243,6 +226,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    concurrent-ruby (1.0.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     css_parser (1.3.7)
@@ -260,7 +244,7 @@ GEM
       actionmailer (>= 3.2.6, < 5)
       devise (>= 3.2.0)
     docile (1.1.5)
-    domain_name (0.5.25)
+    domain_name (0.5.20160128)
       unf (>= 0.0.5, < 1.0.0)
     engineyard (3.2.1)
       engineyard-cloud-client (~> 2.1)
@@ -305,7 +289,6 @@ GEM
     hashie (3.4.3)
     highline (1.6.21)
     hike (1.2.3)
-    hitimes (1.2.3)
     houston-devise_ldap_authenticatable (0.7.1)
       devise (>= 3.0.0)
       net-ldap (~> 0.12.1)
@@ -326,7 +309,7 @@ GEM
     i18n (0.7.0)
     inflection (1.0.0)
     json (1.8.3)
-    jwt (1.5.2)
+    jwt (1.5.1)
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -358,18 +341,18 @@ GEM
     neat-rails (0.1.0)
     nested_editor_for (0.1.0)
     net-ldap (0.12.1)
-    net-ssh (2.9.2)
+    net-ssh (2.9.4)
     netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nori (2.6.0)
     oauth (0.4.7)
-    oauth2 (1.0.0)
+    oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
-      jwt (~> 1.0)
+      jwt (~> 1.0, < 1.5.2)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
-      rack (~> 1.2)
+      rack (>= 1.2, < 3)
     octokit (4.1.1)
       sawyer (~> 0.6.0, >= 0.5.3)
     oj (2.14.3)
@@ -487,8 +470,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
     strongbox (0.7.2)
       activerecord
-    sucker_punch (1.6.0)
-      celluloid (~> 0.17.2)
+    sucker_punch (2.0.0)
+      concurrent-ruby (~> 1.0.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -496,8 +479,6 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     timecop (0.8.0)
-    timers (4.1.1)
-      hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -513,7 +494,7 @@ GEM
     unicorn-rails (2.2.0)
       rack
       unicorn
-    warden (1.2.4)
+    warden (1.2.6)
       rack (>= 1.0)
     wasabi (3.5.0)
       httpi (~> 2.0)
