@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/cph/houston-dashboards.git
-  revision: 528333ce06336ac696218360ce1ca6d37683ae71
+  revision: 63a0fb07e80ec8ce57c6a34b5e8a304e4b62956d
   branch: master
   specs:
     houston-dashboards (0.0.1)
@@ -59,10 +59,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 07860f7be0847ed5d4edf9bc1fc2143ffab16385
+  revision: 9ca06846c7c9b26e110dba4eb84a6a5298e2266e
   branch: master
   specs:
-    houston-core (0.6.0)
+    houston-core (0.6.2)
       activerecord-import
       activerecord-pluck_in_batches
       addressable
@@ -121,11 +121,13 @@ GIT
       rails
 
 GIT
-  remote: git://github.com/houston/houston-roadmap.git
-  revision: fd6cd3d20e935aefc9f28bd4621f0292b7625dc6
+  remote: git://github.com/houston/houston-roadmaps.git
+  revision: a9023dc698454a09024ccd96e23bee1a48636902
   branch: master
   specs:
-    houston-roadmap (0.0.1)
+    houston-roadmaps (0.1.0)
+      houston-core (>= 0.6.2)
+      neat-rails (>= 0.2.0)
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
@@ -233,7 +235,7 @@ GEM
       addressable
     default_value_for (3.0.1)
       activerecord (>= 3.2.0, < 5.0)
-    devise (3.5.5)
+    devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -264,7 +266,7 @@ GEM
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.5.0)
+    factory_girl_rails (4.6.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
     faraday (0.9.2)
@@ -338,7 +340,7 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    neat-rails (0.1.0)
+    neat-rails (0.2.0)
     nested_editor_for (0.1.0)
     net-ldap (0.12.1)
     net-ssh (2.9.4)
@@ -355,7 +357,7 @@ GEM
       rack (>= 1.2, < 3)
     octokit (4.1.1)
       sawyer (~> 0.6.0, >= 0.5.3)
-    oj (2.14.3)
+    oj (2.14.4)
     openxml-package (0.2.2)
       nokogiri
       ox
@@ -364,7 +366,7 @@ GEM
       nokogiri
       openxml-package (>= 0.2.0)
     orm_adapter (0.5.0)
-    ox (2.2.3)
+    ox (2.2.4)
     pg (0.18.4)
     pg_search (1.0.5)
       activerecord (>= 3.1)
@@ -455,10 +457,10 @@ GEM
     simplecov-json (0.2)
       json
       simplecov
-    skylight (0.10.2)
+    skylight (0.10.3)
       activesupport (>= 3.0.0)
     slop (3.6.0)
-    spring (1.6.2)
+    spring (1.6.3)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -486,7 +488,7 @@ GEM
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.1)
+    unf_ext (0.0.7.2)
     unicorn (5.0.1)
       kgio (~> 2.6)
       rack
@@ -533,7 +535,7 @@ DEPENDENCIES
   houston-dashboards!
   houston-feedback!
   houston-reports!
-  houston-roadmap!
+  houston-roadmaps!
   houston-scheduler!
   houston-slack!
   houston-support_form!

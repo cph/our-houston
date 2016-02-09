@@ -17,6 +17,7 @@ FULL_TIME_DEVELOPERS = [LUKE, BOB, BEN, ORDIE, CHASE, MATT].freeze
 
 require_relative "../lib/slack_helpers"
 require_relative "../lib/time_helpers"
+require_relative "../lib/engine"
 
 # Configure Houston
 Houston.config do
@@ -137,7 +138,7 @@ Houston.config do
   #
   # These are the menu items that will be shown in Houston
   navigation       :alerts,
-                   :roadmap,
+                   :roadmaps,
                    :sprint,
                    :pulls
   project_features :support_form,
@@ -145,7 +146,7 @@ Houston.config do
                    :ideas,
                    :bugs,
                    :scheduler,
-                   :roadmap,
+                   :goals,
                    :testing,
                    :releases
 
@@ -186,7 +187,7 @@ Houston.config do
   use :support_form
   use :brakeman
 
-  use :roadmap do
+  use :roadmaps do
     date "2016-09-30", "End of Members Push"
   end
 

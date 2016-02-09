@@ -26,7 +26,8 @@ Houston.config.abilities do |user|
     # Everyone can see Tickets
     can :read, Ticket
 
-    # Everyone can see Milestones
+    # Everyone can see Roadmaps
+    can :read, Roadmap
     can :read, Milestone
 
     # Everyone can see Users and update themselves

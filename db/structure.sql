@@ -683,6 +683,16 @@ ALTER SEQUENCE projects_id_seq OWNED BY projects.id;
 
 
 --
+-- Name: projects_roadmaps; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE projects_roadmaps (
+    project_id integer NOT NULL,
+    roadmap_id integer NOT NULL
+);
+
+
+--
 -- Name: pull_requests; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -797,9 +807,10 @@ CREATE TABLE roadmap_commits (
     id integer NOT NULL,
     user_id integer NOT NULL,
     message character varying(255) NOT NULL,
-    project_id integer NOT NULL,
+    project_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    roadmap_id integer
 );
 
 
@@ -820,6 +831,109 @@ CREATE SEQUENCE roadmap_commits_id_seq
 --
 
 ALTER SEQUENCE roadmap_commits_id_seq OWNED BY roadmap_commits.id;
+
+
+--
+-- Name: roadmap_milestone_versions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE roadmap_milestone_versions (
+    id integer NOT NULL,
+    versioned_id integer,
+    versioned_type character varying,
+    roadmap_commit_id integer,
+    modifications text,
+    number integer,
+    reverted_from integer,
+    tag character varying,
+    user_id integer,
+    user_type character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: roadmap_milestone_versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE roadmap_milestone_versions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: roadmap_milestone_versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE roadmap_milestone_versions_id_seq OWNED BY roadmap_milestone_versions.id;
+
+
+--
+-- Name: roadmap_milestones; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE roadmap_milestones (
+    id integer NOT NULL,
+    milestone_id integer NOT NULL,
+    roadmap_id integer NOT NULL,
+    band integer DEFAULT 1 NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    lanes integer DEFAULT 1 NOT NULL,
+    destroyed_at timestamp without time zone
+);
+
+
+--
+-- Name: roadmap_milestones_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE roadmap_milestones_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: roadmap_milestones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE roadmap_milestones_id_seq OWNED BY roadmap_milestones.id;
+
+
+--
+-- Name: roadmaps; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE roadmaps (
+    id integer NOT NULL,
+    name character varying NOT NULL
+);
+
+
+--
+-- Name: roadmaps_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE roadmaps_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: roadmaps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE roadmaps_id_seq OWNED BY roadmaps.id;
 
 
 --
@@ -1534,6 +1648,27 @@ ALTER TABLE ONLY roadmap_commits ALTER COLUMN id SET DEFAULT nextval('roadmap_co
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY roadmap_milestone_versions ALTER COLUMN id SET DEFAULT nextval('roadmap_milestone_versions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY roadmap_milestones ALTER COLUMN id SET DEFAULT nextval('roadmap_milestones_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY roadmaps ALTER COLUMN id SET DEFAULT nextval('roadmaps_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
 
 
@@ -1769,6 +1904,30 @@ ALTER TABLE ONLY releases
 
 ALTER TABLE ONLY roadmap_commits
     ADD CONSTRAINT roadmap_commits_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roadmap_milestone_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY roadmap_milestone_versions
+    ADD CONSTRAINT roadmap_milestone_versions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roadmap_milestones_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY roadmap_milestones
+    ADD CONSTRAINT roadmap_milestones_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roadmaps_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY roadmaps
+    ADD CONSTRAINT roadmaps_pkey PRIMARY KEY (id);
 
 
 --
@@ -2125,6 +2284,13 @@ CREATE UNIQUE INDEX index_projects_on_slug ON projects USING btree (slug);
 
 
 --
+-- Name: index_projects_roadmaps_on_project_id_and_roadmap_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_projects_roadmaps_on_project_id_and_roadmap_id ON projects_roadmaps USING btree (project_id, roadmap_id);
+
+
+--
 -- Name: index_pull_requests_on_project_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2178,6 +2344,41 @@ CREATE UNIQUE INDEX index_releases_tasks_on_release_id_and_task_id ON releases_t
 --
 
 CREATE UNIQUE INDEX index_releases_tickets_on_release_id_and_ticket_id ON releases_tickets USING btree (release_id, ticket_id);
+
+
+--
+-- Name: index_roadmap_milestone_versions_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_roadmap_milestone_versions_on_created_at ON roadmap_milestone_versions USING btree (created_at);
+
+
+--
+-- Name: index_roadmap_milestone_versions_on_number; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_roadmap_milestone_versions_on_number ON roadmap_milestone_versions USING btree (number);
+
+
+--
+-- Name: index_roadmap_milestone_versions_on_roadmap_commit_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_roadmap_milestone_versions_on_roadmap_commit_id ON roadmap_milestone_versions USING btree (roadmap_commit_id);
+
+
+--
+-- Name: index_roadmap_milestone_versions_on_versioned; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_roadmap_milestone_versions_on_versioned ON roadmap_milestone_versions USING btree (versioned_id, versioned_type);
+
+
+--
+-- Name: index_roadmap_milestones_on_milestone_id_and_roadmap_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_roadmap_milestones_on_milestone_id_and_roadmap_id ON roadmap_milestones USING btree (milestone_id, roadmap_id);
 
 
 --
@@ -2874,4 +3075,10 @@ INSERT INTO schema_migrations (version) VALUES ('20151226155305');
 INSERT INTO schema_migrations (version) VALUES ('20151228183704');
 
 INSERT INTO schema_migrations (version) VALUES ('20160120145757');
+
+INSERT INTO schema_migrations (version) VALUES ('20160206214746');
+
+INSERT INTO schema_migrations (version) VALUES ('20160207154530');
+
+INSERT INTO schema_migrations (version) VALUES ('20160208233434');
 
