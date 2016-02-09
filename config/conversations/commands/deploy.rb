@@ -4,7 +4,7 @@ require "ostruct"
 
 Houston::Slack.config do
   # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
-  listen_for(/deploy.*\s(?:\#?(?<number>\d+)\b|(?<branch>[\w\d\+\-\._\/]+))/i) do |e|
+  listen_for(/deploy\s+(?:\#?(?<number>\d+)\b|(?<branch>[\w\d\+\-\._\/]+))/i) do |e|
     unless e.user
       e.reply "I'm sorry. I don't know who you are."
       next
