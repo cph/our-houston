@@ -8,6 +8,13 @@ GIT
       savon (~> 2.0)
 
 GIT
+  remote: git://github.com/cph/houston-nanoconfs.git
+  revision: 49feb1d4506fcb3bab6643daafb392dd56c0a900
+  branch: master
+  specs:
+    houston-nanoconfs (0.0.1)
+
+GIT
   remote: git://github.com/cph/houston-reports.git
   revision: c472beb16694966be324ca2cf8754b710d75e437
   branch: master
@@ -534,6 +541,7 @@ DEPENDENCIES
   houston-core!
   houston-dashboards!
   houston-feedback!
+  houston-nanoconfs!
   houston-reports!
   houston-roadmaps!
   houston-scheduler!
@@ -560,4 +568,4 @@ DEPENDENCIES
   zendesk_api (~> 1.13)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
