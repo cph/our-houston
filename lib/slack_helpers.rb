@@ -31,15 +31,7 @@ def alert_unfurl_url(alert)
 end
 
 def slack_github_comment_attachment(body)
-  # Remove the source name from fenced code blocks
-  body = body.gsub(/^```(ruby|diff|css|json|sql|html|xml|coffee(?:script)?|javascript|js|bash)/, "```")
-
-  # Convert `__` and `**` to `*`
-  body = body.gsub(/(?<!_)__(?!_)/, "*")
-             .gsub(/(?<!\*)\*\*(?!\*)/, "*")
-
-  # Replace images with their URLs: Slack will unfurl them
-  body = body.gsub(/<img[^>]*src="([^"]+)"[^>]*>/, "\\1")
+  body = Slackdown.new(body).convert
 
   { fallback: body, text: body, mrkdwn_in: %w{text} }
 end
