@@ -1,4 +1,12 @@
 Houston.config.on "alert:itsm:deployed" do |alert, deploy, commit|
+  notify_that_alert_was_mentioned_in_a_deploy(alert, deploy, commit)
+end
+
+Houston.config.on "alert:zendesk:deployed" do |alert, deploy, commit|
+  notify_that_alert_was_mentioned_in_a_deploy(alert, deploy, commit)
+end
+
+def notify_that_alert_was_mentioned_in_a_deploy(alert, deploy, commit)
   user = alert.checked_out_by
   addressee, channel = user ? [user.first_name, user]: ["@group", "developers-only"]
 
