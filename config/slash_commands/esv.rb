@@ -21,8 +21,16 @@ Houston::Slack.config do
       if response.status != 200
         e.respond! "It looks like ESV is not available at the moment. :sweat:"
       else
-        styled = response.body.sub(/(.*)$/,"*\\1*")
-        e.respond! styled
+        title, text = response.body.split(/\n/, 2)
+        text.gsub!(/(\[[0-9\:]+\])/, "*\\1* ")         # Bold verse markers
+
+        e.reply "",
+        attachments: [{
+          fallback: "#{title} (ESV)",
+          title: "#{title} (ESV)",
+          title_link: "http://esvbible.org/#{passage}",
+          text: text,
+          mrkdwn_in: ["text"] }]
       end
     end
   end
