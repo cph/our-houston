@@ -15,7 +15,8 @@ Houston::Slack.config do
 
       connection = Faraday.new(url: "http://www.esvapi.org")
       query = "/v2/rest/passageQuery"
-      response = connection.get query, esv_params.merge(passage: CGI::escape(e.text))
+      passage = e.text.split(/ /).join("+")
+      response = connection.get query, esv_params.merge(passage: passage)
 
       if response.status != 200
         e.respond! "It looks like ESV is not available at the moment. :sweat:"
