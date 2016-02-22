@@ -38,7 +38,7 @@ end
 
 # Tooling
 gem "airbrake", "~> 4.0"
-gem "sucker_punch" # for Airbrake
+gem "sucker_punch", "~> 1.6" # for Airbrake
 gem "skylight"
 
 gem "star", github: "cph/star", branch: "master"
