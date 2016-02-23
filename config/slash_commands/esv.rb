@@ -24,13 +24,14 @@ Houston::Slack.config do
         title, text = response.body.split(/\n/, 2)
         text.gsub!(/(\[[0-9\:]+\])/, "*\\1* ")         # Bold verse markers
 
-        e.reply "",
-        attachments: [{
-          fallback: "#{title} (ESV)",
-          title: "#{title} (ESV)",
-          title_link: "http://esvbible.org/#{passage}",
-          text: text,
-          mrkdwn_in: ["text"] }]
+        e.respond!(
+          response_type: "in_channel",
+          attachments: [{
+            fallback: "#{title} (ESV)",
+            title: "#{title} (ESV)",
+            title_link: "http://esvbible.org/#{passage}",
+            text: text,
+            mrkdwn_in: ["text"] }])
       end
     end
   end
