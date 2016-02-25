@@ -602,25 +602,25 @@ ALTER SEQUENCE milestones_id_seq OWNED BY milestones.id;
 
 
 --
--- Name: presentations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: nanoconf_presentations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE presentations (
+CREATE TABLE nanoconf_presentations (
     id integer NOT NULL,
     title character varying,
     description text,
     date date,
-    presenter_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    presenter_id integer
 );
 
 
 --
--- Name: presentations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: nanoconf_presentations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE presentations_id_seq
+CREATE SEQUENCE nanoconf_presentations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -629,10 +629,10 @@ CREATE SEQUENCE presentations_id_seq
 
 
 --
--- Name: presentations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: nanoconf_presentations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE presentations_id_seq OWNED BY presentations.id;
+ALTER SEQUENCE nanoconf_presentations_id_seq OWNED BY nanoconf_presentations.id;
 
 
 --
@@ -1647,7 +1647,7 @@ ALTER TABLE ONLY milestones ALTER COLUMN id SET DEFAULT nextval('milestones_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY presentations ALTER COLUMN id SET DEFAULT nextval('presentations_id_seq'::regclass);
+ALTER TABLE ONLY nanoconf_presentations ALTER COLUMN id SET DEFAULT nextval('nanoconf_presentations_id_seq'::regclass);
 
 
 --
@@ -1908,11 +1908,11 @@ ALTER TABLE ONLY milestones
 
 
 --
--- Name: presentations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: nanoconf_presentations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY presentations
-    ADD CONSTRAINT presentations_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY nanoconf_presentations
+    ADD CONSTRAINT nanoconf_presentations_pkey PRIMARY KEY (id);
 
 
 --
@@ -3125,10 +3125,15 @@ INSERT INTO schema_migrations (version) VALUES ('20151228183704');
 
 INSERT INTO schema_migrations (version) VALUES ('20160120145757');
 
+INSERT INTO schema_migrations (version) VALUES ('20160202021439');
+
 INSERT INTO schema_migrations (version) VALUES ('20160206214746');
 
 INSERT INTO schema_migrations (version) VALUES ('20160207154530');
 
 INSERT INTO schema_migrations (version) VALUES ('20160208233434');
 
-INSERT INTO schema_migrations (version) VALUES ('20160202021439');
+INSERT INTO schema_migrations (version) VALUES ('20160223135911');
+
+INSERT INTO schema_migrations (version) VALUES ('20160225021717');
+

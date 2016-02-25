@@ -186,10 +186,7 @@ Houston.config do
   use :reports
   use :support_form
   use :brakeman
-
-  use :nanoconfs do
-    officer "chase.clettenberg@cph.org"
-  end
+  use :nanoconfs
 
   use :roadmaps do
     date "2016-09-30", "End of Members Push"
