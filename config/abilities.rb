@@ -54,6 +54,12 @@ Houston.config.abilities do |user|
     # Everyone can update their own feedback
     can [:update, :destroy], Houston::Feedback::Comment, user_id: user.id
 
+    # The Nanoconf officer can update all the presentations
+    can :update, Houston::Nanoconfs::Presentation if user.email == "chase.clettenberg@cph.org"
+
+    # Folks can update their own presentations
+    can :update, Houston::Nanoconfs::Presentation, presenter_id: user.id
+
     # Developers can
     #  - create tickets
     #  - see other kinds of Release Changes (like Refactors)
