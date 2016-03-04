@@ -34,16 +34,11 @@ Houston::Slack.config do
     request = Net::HTTP::Get.new '/mycph/menu.asp'
     response = http.request request
 
-    snark = [
-      "Alright, here's what I found:",
-      "Your need for daily nutrition is so quaint:",
-      "Definitely glad _I_ don't have to eat human food #{target_date.strftime('%A')}",
-      "The menu for #{target_date.strftime('%A')} is:",
-      "Mmmm... :yum:",
-      "Some days I wish I _didn't_ run on pure science:",
-      "Get it while it's hot!"
-    ]
-    menu_snark = snark[rand(0...snark.count)]
+    message = if target_date == Date.today
+      "Today's menu is:"
+    else
+      "The menu for #{target_date.strftime('%A (%-m/%-d)')} is:"
+    end
 
     if response.code != "200"
       e.reply "Uh, oh. Looks like I can't get to the menu right now. :sweat_smile: Maybe you can try: http://cphweb09/mycph/menu.asp"
@@ -56,7 +51,7 @@ Houston::Slack.config do
       else
         menu_elements = date_heading.parent.next_element.children
         menu = menu_elements.select { |e| e.text? }.map { |e| "> #{e.text}" }.join("\n")
-        e.reply "#{menu_snark}\n#{menu}"
+        e.reply "#{message}\n#{menu}"
       end
     end
   end
