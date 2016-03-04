@@ -9,16 +9,11 @@ Houston::Slack.config do
     unless day =~ /today|tomorrow/
       find_next_week = !e.match[:modifier].nil?
       target_wday = case day
-      when /mon/
-        1
-      when /tue/
-        2
-      when /wed/
-        3
-      when /thu/
-        4
-      when /fri/
-        5
+      when /mon/ then 1
+      when /tue/ then 2
+      when /wed/ then 3
+      when /thu/ then 4
+      when /fri/ then 5
       end
       today_wday = target_date.wday
       if today_wday > target_wday
