@@ -16,4 +16,18 @@ Houston.config do
 
     slack_send_message_to message, channel, as: :github
   end
+
+
+
+  on "github:pull:label-added" do |pull_request, label|
+    next unless label == "review-needed"
+    message = "#{slack_link_to_pull_request(pull_request)} is ready for review"
+    slack_send_message_to message, "#code-review"
+  end
+
+  on "github:pull:opened" do |pull_request|
+    next unless pull_request.labeled? "review-needed"
+    message = "#{slack_link_to_pull_request(pull_request)} is ready for review"
+    slack_send_message_to message, "#code-review"
+  end
 end
