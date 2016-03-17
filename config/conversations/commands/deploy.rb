@@ -297,7 +297,7 @@ module Houston
           rescue Octokit::NotFound
             false
           end
-        end
+        end.map { |full_name| full_name.split("/").last }
       end
 
     end
