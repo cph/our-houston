@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-reports.git
-  revision: c472beb16694966be324ca2cf8754b710d75e437
+  revision: 76a6d69acd8a6e10a26a9b085f546d8bef242577
   branch: master
   specs:
     houston-reports (0.0.1)
@@ -66,7 +66,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 3243a01325109af0442baaf447da893f3606beae
+  revision: 52cf3bcfded43714d352a38cc34bb01d7c25be1c
   branch: master
   specs:
     houston-core (0.6.3)
