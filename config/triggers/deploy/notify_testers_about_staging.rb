@@ -19,7 +19,7 @@ Houston.config do
   end
 
   on "staging:changed" do |deploy, pr|
-    slack_send_message_to ":star2: The Pull Request #{slack_link_to_pull_request(pr)} is now on *#{deploy.project.slug}* Staging", "#testing"
+    slack_send_message_to ":star2: #{slack_link_to_pull_request(pr)} is now on *#{deploy.project.slug}* Staging", "#testing"
   end
 
   on "staging:updated" do |deploy, pr|
