@@ -3,6 +3,8 @@ AUTOASSIGN_MAP = {
   "confb" => MATT,
   "oic" => MATT,
   "our-houston" => BOB,
+  "dr" => BOB,
+  "ledger" => ORDIE,
   "errbit" => BOB
 }.freeze
 
