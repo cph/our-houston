@@ -2,7 +2,7 @@ AUTOASSIGN_MAP = {
   "unite" => LUKE,
   "confb" => MATT,
   "oic" => MATT,
-  "houston" => BOB,
+  "our-houston" => BOB,
   "errbit" => BOB
 }.freeze
 
