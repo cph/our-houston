@@ -5,14 +5,8 @@ Houston.config do
     next if test_run.branch.nil?
     next if test_run.aborted?
 
-    nickname = test_run.user.slack_username if test_run.user
-    project_slug = test_run.project.slug
-    project_channel = "##{project_slug}"
-    branch = "#{project_slug}/#{test_run.branch}"
-
+    branch = "#{test_run.project.slug}/#{test_run.branch}"
     text = test_run.short_description(with_duration: true)
-    text << "\n#{nickname}" if test_run.result != "pass" && nickname
-
     attachment = case test_run.result
     when "pass"
       { color: "#5DB64C",
@@ -29,10 +23,8 @@ Houston.config do
       fallback: attachment[:title],
       text: text)
 
-    channel = project_channel if Houston::Slack.connection.channels.include? project_channel
-    channel ||= nickname
-    channel ||= "developers-only"
-
-    slack_send_message_to nil, channel, attachments: [attachment]
+    channels = test_run.commit.committers.map(&:slack_username).reject(&:nil?)
+    channels = %w{developers-only} if channels.empty?
+    slack_send_message_to nil, channels, attachments: [attachment]
   end
 end

@@ -19,13 +19,8 @@ Houston.config do
       message << "\n> #{slack_link_to(test_name, url)}"
     end if regressions.count <= MAX_BROKEN_TESTS
 
-    project_channel = "##{test_run.project.slug}"
-    channels = [project_channel] if Houston::Slack.connection.channels.include? project_channel
-    channels ||= test_run.commit.committers.map(&:slack_username).reject(&:nil?)
-    channels = %w{developers-only} if Array(channel).empty?
-
-    channels.each do |channel|
-      slack_send_message_to message, channel
-    end
+    channels = test_run.commit.committers.map(&:slack_username).reject(&:nil?)
+    channels = %w{developers-only} if channels.empty?
+    slack_send_message_to message, channels
   end
 end

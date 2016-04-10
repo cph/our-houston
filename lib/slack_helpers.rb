@@ -1,4 +1,10 @@
-def slack_send_message_to(message, channel, options={})
+def slack_send_message_to(message, channels, options={})
+  Array.wrap(channels).each do |channel|
+    _slack_send_message_to_channel(message, channel, options)
+  end
+end
+
+def _slack_send_message_to_channel(message, channel, options={})
   if channel.respond_to?(:slack_channel)
     channel = channel.slack_channel
 
