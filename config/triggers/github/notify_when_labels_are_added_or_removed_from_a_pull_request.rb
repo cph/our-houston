@@ -1,14 +1,15 @@
 Houston.config do
+  negative_reactions = %w{:fearful: :hushed: :scream: :no_mouth: :worried: :anguished:}
 
   # Notify when a Pull Request passes or fails testing or review
   on "github:pull:label-added" do |pr, label|
     next unless label =~ /(test|review)-(pass|hold)/
 
     channel = ($1 == "test") ? "#testing" : "#code-review"
-    verb = ($2 == "pass") ? "passed" : "is being held by"
+    emojis, verb = ($2 == "pass") ? [[":tada:"], "passed"] : [negative_reactions, "is being held by"]
     object = channel[1..-1].gsub("-", " ")
-    message = "#{slack_link_to_pull_request(pr)} #{verb} #{object}"
-    message = "#{pr.user.slack_username}, #{message}" if pr.user && pr.user.slack_username
+    message = "#{emojis.sample} #{slack_link_to_pull_request(pr)} #{verb} #{object}"
+    message << " (#{pr.user.slack_username})" if pr.user && pr.user.slack_username
     slack_send_message_to message, channel
   end
 
