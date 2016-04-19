@@ -144,13 +144,11 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: a8ba58315f63b2f052e8356b2d36a1bfd69acf6e
+  revision: 23817001dfd9efe3acb8ae75c9fffa3e14c2addd
   branch: master
   specs:
     houston-slack (0.0.1)
-      faraday
-      multi_json
-      websocket-driver
+      slacks
 
 GEM
   remote: https://rubygems.org/
@@ -482,6 +480,12 @@ GEM
       simplecov
     skylight (0.10.3)
       activesupport (>= 3.0.0)
+    slacks (0.0.1)
+      faraday
+      faraday-raise-errors
+      multi_json
+      thread_safe
+      websocket-driver
     slop (3.6.0)
     spring (1.6.4)
     sprockets (3.5.2)

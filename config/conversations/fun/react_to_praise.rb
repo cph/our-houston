@@ -22,10 +22,10 @@ Houston::Slack.config do
       emoji = %w{heart yellow_heart heartpulse sparkling_heart} if complements == 64
     end
 
-    e.react! emoji
+    e.react emoji
   end
 
   listen_for(/^i love you$/, [:downcase, :no_punctuation, :no_mentions, :no_emoji]) do |e|
-    e.react! "blush"
+    e.react "blush"
   end
 end
