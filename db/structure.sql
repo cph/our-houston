@@ -126,6 +126,44 @@ ALTER SEQUENCE alerts_id_seq OWNED BY alerts.id;
 
 
 --
+-- Name: authorizations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE authorizations (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    provider_id integer,
+    scope character varying,
+    access_token character varying,
+    refresh_token character varying,
+    secret character varying,
+    expires_in integer,
+    expires_at timestamp without time zone,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: authorizations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE authorizations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: authorizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE authorizations_id_seq OWNED BY authorizations.id;
+
+
+--
 -- Name: brakeman_scans; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -633,6 +671,40 @@ CREATE SEQUENCE nanoconf_presentations_id_seq
 --
 
 ALTER SEQUENCE nanoconf_presentations_id_seq OWNED BY nanoconf_presentations.id;
+
+
+--
+-- Name: oauth_providers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE oauth_providers (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    site character varying NOT NULL,
+    authorize_path character varying NOT NULL,
+    token_path character varying NOT NULL,
+    client_id character varying NOT NULL,
+    client_secret character varying NOT NULL
+);
+
+
+--
+-- Name: oauth_providers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE oauth_providers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: oauth_providers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE oauth_providers_id_seq OWNED BY oauth_providers.id;
 
 
 --
@@ -1570,6 +1642,13 @@ ALTER TABLE ONLY alerts ALTER COLUMN id SET DEFAULT nextval('alerts_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY authorizations ALTER COLUMN id SET DEFAULT nextval('authorizations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY brakeman_scans ALTER COLUMN id SET DEFAULT nextval('brakeman_scans_id_seq'::regclass);
 
 
@@ -1648,6 +1727,13 @@ ALTER TABLE ONLY milestones ALTER COLUMN id SET DEFAULT nextval('milestones_id_s
 --
 
 ALTER TABLE ONLY nanoconf_presentations ALTER COLUMN id SET DEFAULT nextval('nanoconf_presentations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY oauth_providers ALTER COLUMN id SET DEFAULT nextval('oauth_providers_id_seq'::regclass);
 
 
 --
@@ -1820,6 +1906,14 @@ ALTER TABLE ONLY alerts
 
 
 --
+-- Name: authorizations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY authorizations
+    ADD CONSTRAINT authorizations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: brakeman_scans_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1913,6 +2007,14 @@ ALTER TABLE ONLY milestones
 
 ALTER TABLE ONLY nanoconf_presentations
     ADD CONSTRAINT nanoconf_presentations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: oauth_providers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY oauth_providers
+    ADD CONSTRAINT oauth_providers_pkey PRIMARY KEY (id);
 
 
 --
@@ -3136,4 +3238,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160208233434');
 INSERT INTO schema_migrations (version) VALUES ('20160225021717');
 
 INSERT INTO schema_migrations (version) VALUES ('20160317140151');
+
+INSERT INTO schema_migrations (version) VALUES ('20160419230411');
+
+INSERT INTO schema_migrations (version) VALUES ('20160420000616');
 
