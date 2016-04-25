@@ -650,7 +650,8 @@ CREATE TABLE nanoconf_presentations (
     date date,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    presenter_id integer
+    presenter_id integer,
+    tags text[]
 );
 
 
@@ -3242,4 +3243,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160317140151');
 INSERT INTO schema_migrations (version) VALUES ('20160419230411');
 
 INSERT INTO schema_migrations (version) VALUES ('20160420000616');
+
+INSERT INTO schema_migrations (version) VALUES ('20160421022627');
 
