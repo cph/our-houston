@@ -34,6 +34,7 @@ ZENDESK_BRAND_PROJECT_MAP = {
   "360members" => "members",
   "360unite" => "unite",
   "biblestudybuilder" => "bsb",
+  "bible101" => "bible101",
   "confirmationbuilder" => "confb",
   "lsb" => "lsb",
   "mysundaysolutions" => "musicmate",
@@ -41,4 +42,4 @@ ZENDESK_BRAND_PROJECT_MAP = {
   "shepherdsstaff" => "shepherdsstaff" }.freeze
 
 ZENDESK_BRANDS = $zendesk.brands.each_with_object({}) { |brand, map|
-  map[brand.id] = ZENDESK_BRAND_PROJECT_MAP[brand.subdomain] }.freeze
+  map[brand.id] = ZENDESK_BRAND_PROJECT_MAP.fetch(brand.subdomain, brand.subdomain) }.freeze
