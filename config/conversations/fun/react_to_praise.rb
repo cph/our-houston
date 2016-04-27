@@ -1,8 +1,7 @@
 praise = %w{
-  thanks
   thank\ you
-  youre\ awesome
-  youre\ the\ best
+  you\ are\ awesome
+  you\ are\ the\ best
   nice\ work
   nice\ job
   good\ work
@@ -10,7 +9,7 @@ praise = %w{
 }.freeze
 
 Houston::Slack.config do
-  listen_for(/^(?:#{praise.join("|")})$/, [:downcase, :no_punctuation, :no_mentions, :no_emoji]) do |e|
+  listen_for *praise do |e|
     emoji = %w{simple_smile grin +1}.sample
 
     if e.user
@@ -25,7 +24,7 @@ Houston::Slack.config do
     e.react emoji
   end
 
-  listen_for(/^i love you$/, [:downcase, :no_punctuation, :no_mentions, :no_emoji]) do |e|
+  listen_for "i love you" do |e|
     e.react "blush"
   end
 end

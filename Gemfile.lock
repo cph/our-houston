@@ -144,7 +144,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 23817001dfd9efe3acb8ae75c9fffa3e14c2addd
+  revision: 9a5d99a6d5f545fa5b0cefabae48175b74e154ae
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -201,6 +201,8 @@ GEM
       nokogiri
     ansi (1.5.0)
     arel (6.0.3)
+    attentive (0.1.0)
+      thread_safe
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -474,7 +476,8 @@ GEM
       simplecov
     skylight (0.10.3)
       activesupport (>= 3.0.0)
-    slacks (0.0.1)
+    slacks (0.2.0)
+      attentive
       faraday
       faraday-raise-errors
       multi_json

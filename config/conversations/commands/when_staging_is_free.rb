@@ -1,5 +1,5 @@
 Houston::Slack.config do
-  listen_for(/tell me when staging is free/i) do |e|
+  listen_for "tell me when staging is free" do |e|
     project = Project.find_by_slug e.channel.name
     if project
       Houston.observer.once("staging:#{project.slug}:free") do

@@ -1,10 +1,12 @@
 require_relative "../../../lib/side_project/base"
 require "ostruct"
 
-
 Houston::Slack.config do
-  # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
-  listen_for(/deploy\s+(?:\#?(?<number>\d+)\b|(?<branch>[\w\d\+\-\._\/]+))/i) do |e|
+  listen_for %q{deploy (?<number>\d+)},
+             %q{deploy #(?<number>\d+)},
+             # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
+             %q{deploy (?<branch>[\w\d\+\-\._\/]+)} do |e|
+
     unless e.user
       e.reply "I'm sorry. I don't know who you are."
       next
@@ -15,8 +17,8 @@ Houston::Slack.config do
       next
     end
 
-    target = "number" if e.matched? :number
-    target = "branch" if e.matched? :branch
+    target = "number" if e.matched? "number"
+    target = "branch" if e.matched? "branch"
     value = e.match[target]
 
     Houston::SideProject::Deploy.start!(e, target, value)
@@ -55,7 +57,7 @@ module Houston
   module SideProject
     class Deploy < Base
       attr_reader :target, :pr, :project, :environment, :maintenance_page
-      YESORNO = /(?<affirmative>yes|ok|sure|yeah|ya)|(?<negative>no)/i.freeze
+      YESORNO = ["(?<affirmative>yes|ok|sure|yeah|ya)", "(?<negative>no)"].freeze
       ACKNOWLEDGEMENT = ["Alright, thanks.", "OK", "got it", "ok", "ok"].freeze
       DEPLOYABLE_REPOS = %w{
         cph/members
@@ -106,7 +108,7 @@ module Houston
 
           advise "I'm waiting to hear which pull request I should deploy"
           conversation.ask "#{repos.map { |name| "*#{name}*" }.to_sentence} #{repos.length == 2 ? "both" : "all"} have pull requests with the #{target.type} *#{target.value}*. Which one should I deploy?", expect: match_repo(repos) do |e|
-            @pr = pulls.detect { |pr| pr.base.repo.name == e.match[:repo] }
+            @pr = pulls.detect { |pr| pr.base.repo.name == e.match["repo"] }
             @project = Project.find_by_slug!(pr.base.repo.name)
             determine_deploy_strategy
           end
@@ -144,7 +146,7 @@ module Houston
         else
           advise "I'm waiting to hear which branch I should deploy"
           conversation.ask "#{repos.map { |name| "*#{name}*" }.to_sentence} #{repos.length == 2 ? "both" : "all"} have branches named *#{branch}*. Which one should I deploy?", expect: match_repo(repos) do |e|
-            @project = Project.find_by_slug!(e.match[:repo])
+            @project = Project.find_by_slug!(e.match["repo"])
             create_pull_request_for_branch
           end
         end
@@ -215,7 +217,7 @@ module Houston
           question = "#{user == self.user ? "You have" : "#{user ? user.first_name : other_pr.user.login} has"} #{slack_link_to_pull_request(other_pr)} on staging. Is it OK for me to deploy #{target.value}?"
           question = "#{self.user.slack_username}, #{question}" unless self.user.slack_username.blank?
           conversation.ask question, expect: YESORNO do |e|
-            if e.matched?(:affirmative)
+            if e.matched?("affirmative")
               execute_deploy
             else
               end! "ok. I won't deploy it."
@@ -285,7 +287,7 @@ module Houston
       end
 
       def match_repo(repos)
-        /(?<repo>#{Regexp.union(repos)})/i
+        "(?<repo>#{Regexp.union(repos)})"
       end
 
       def find_repos_with_a_branch_named(branch)
