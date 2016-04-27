@@ -7,6 +7,9 @@ gem "therubyracer", platforms: :ruby
 
 gem "zendesk_api", "~> 1.13"
 
+# For talking to Office365
+gem "viewpoint"
+
 group :development do
   gem "letter_opener"
   gem "unicorn-rails"
