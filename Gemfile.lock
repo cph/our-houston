@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-reports.git
-  revision: 86470528e754ba73aa081f2ce417f9c0ed05b9cc
+  revision: c6c295ccf566aeb4f270826621e5545f24d80b9d
   branch: master
   specs:
     houston-reports (0.0.1)
@@ -68,7 +68,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: 612f37df71ed825e3f5605b9bb73997c517645c9
+  revision: 0d499091812b92672c5cc546f1eceebfd8df7c5c
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -82,7 +82,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 7ebc9f2dc214c7685d13014e0a283d306c0f611f
+  revision: 52e21a18512fb2539cf24271d026db5fbc90f388
   branch: master
   specs:
     houston-core (0.6.3)

@@ -11,9 +11,18 @@ Houston.config do
   at "6:30am", "measure:logs" do
     measure_log_files!
   end
+
+  at "9:00am", "measure:alerts.open" do
+    measure_open_alerts!
+    measure_alerts_closed_on_time!(1.day.ago)
+  end
 end
 
 
+
+# Benchmark.ms { (3..32).each { |i| measure_log_files! Date.today - i } }
+# Benchmark.ms { (0..484).each { |i| measure_open_alerts! 9.hours.after(Date.today - i) } }
+# Benchmark.ms { (0..484).each { |i| measure_alerts_closed_on_time! 9.hours.after(Date.today - i) } }
 
 def measure_log_files!(date=Date.today - 2)
   taken_at = Time.zone.local(date.year, date.month, date.day)
@@ -46,6 +55,25 @@ def measure_log_files!(date=Date.today - 2)
     end
   end
 end
+
+def measure_open_alerts!(taken_at=Time.now)
+  Measurement.take!(name: "daily.alerts.open", taken_at: taken_at, value:
+    Houston::Alerts::Alert.open(at: taken_at).count)
+end
+
+def measure_alerts_closed_on_time!(taken_at=Time.now)
+  range = taken_at.beginning_of_day..taken_at.end_of_day
+  alerts_due = Houston::Alerts::Alert.where(deadline: range)
+  alerts_on_time = alerts_due.closed_on_time.count
+  alerts_due = alerts_due.count
+  Measurement.take!(name: "daily.alerts.due", taken_at: taken_at, value: alerts_due)
+  Measurement.take!(name: "daily.alerts.due.completed-on-time", taken_at: taken_at, value: alerts_on_time)
+  Measurement.take!(name: "daily.alerts.due.completed-on-time.percent", taken_at: taken_at,
+    value: (alerts_on_time.to_f / alerts_due).round(4)) if alerts_due > 0
+end
+
+
+
 STAR_USERNAME_FOR_USER = {
   BEN => "GOVEROBT",
   BOB => "LAILRC",
