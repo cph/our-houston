@@ -46,7 +46,7 @@ gem "skylight"
 
 gem "star", github: "cph/star", branch: "master"
 gem "itsm", github: "cph/itsm", branch: "master"
-gem "logeater", github: "cph/logeater", branch: "master"
+gem "logeater", github: "cph/logeater", branch: "master", require: "logeater/request"
 
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
