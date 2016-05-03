@@ -5,8 +5,6 @@ gem "houston-core", github: "houston/houston-core", branch: "master"
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem "therubyracer", platforms: :ruby
 
-gem "zendesk_api", "~> 1.13"
-
 # For talking to Office365
 gem "viewpoint"
 

@@ -1,24 +1,38 @@
 ZENDESK_VIEW = (Rails.env.production? ? 70532187 : 69193308).freeze
+ZENDESK_BRAND_PROJECT_MAP = {
+  "360ledger" => "ledger",
+  "360members" => "members",
+  "360unite" => "unite",
+  "biblestudybuilder" => "bsb",
+  "bible101" => "bible101",
+  "confirmationbuilder" => "confb",
+  "lsb" => "lsb",
+  "mysundaysolutions" => "musicmate",
+  "oic" => "oic",
+  "shepherdsstaff" => "shepherdsstaff" }.freeze
+ZENDESK_BRANDS = {}
 
 Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" do
+
+  if ZENDESK_BRANDS.empty?
+    response = MultiJson.load($zendesk.get("brands").body)
+    response["brands"].each do |brand|
+      ZENDESK_BRANDS[brand["id"]] = ZENDESK_BRAND_PROJECT_MAP.fetch(brand["subdomain"], brand["subdomain"])
+    end
+  end
 
   # We want to pull down all the tickets that have been
   # assigned to the EP group. We can't do that directly
   # with the API, so we create a view in Zendesk that
   # performs that filter and use it here.
-  $zendesk.tickets(path: "views/#{ZENDESK_VIEW}/tickets", reload: true).map { |ticket|
-    # project_slug = case ticket["tags"].join(" ")
-    # when /\b360members\b/ then "members"
-    # when /\b360unite\b/ then "unite"
-    # when /\b360ledger\b/ then "ledger"
-    # end
-
-    { key: ticket.url,
-      number: ticket.id,
-      project_slug: ZENDESK_BRANDS[ticket.brand_id],
-      summary: ticket.subject,
+  response = MultiJson.load($zendesk.get("views/#{ZENDESK_VIEW}/tickets").body)
+  response["tickets"].map { |ticket|
+    { key: ticket["url"],
+      number: ticket["id"],
+      project_slug: ZENDESK_BRANDS[ticket["brand_id"]],
+      summary: ticket["subject"],
       environment_name: "production",
-      text: ticket.description,
-      url: "#{ZENDESK_HOST}/agent/tickets/#{ticket.id}" } }
+      text: ticket["description"],
+      url: "https://#{ZENDESK_HOST}/agent/tickets/#{ticket["id"]}" } }
 
 end
