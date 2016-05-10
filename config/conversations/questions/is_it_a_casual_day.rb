@@ -8,6 +8,8 @@ Houston::Slack.config do
     case CasualDay.check(date)
     when :cardinals
       e.reply "Yep! It's a Cardinals Casual Day :+1:"
+    when :blues
+      e.reply "Yep! It's a Blues Casual Day :+1:"
     when :employee_appreciation
       e.reply "Yep! It's an Employee Appreciation Day :tada:"
     else
@@ -26,6 +28,8 @@ Houston::Slack.config do
     case event_type
     when :cardinals
       e.reply "#{event_time.strftime('%A (%-m/%-d)')} is a Cardinals Casual Day"
+    when :blues
+      e.reply "#{event_time.strftime('%A (%-m/%-d)')} is a Blues Casual Day"
     when :employee_appreciation
       e.reply "#{event_time.strftime('%A (%-m/%-d)')} is an Employee Appreciation Day"
     else

@@ -1,5 +1,6 @@
 OUTLOOK_ENDPOINT = "https://outlook.office365.com/EWS/Exchange.asmx".freeze
 CARDINALS_DAY = /cardinal'?s? casual/i.freeze
+BLUES_DAY = /blues casual/i.freeze
 APPRECIATION_DAY = /employee (appreciation|activity)/i.freeze
 
 class CasualDay
@@ -16,6 +17,8 @@ class CasualDay
 
     if events.grep(CARDINALS_DAY).any?
       :cardinals
+    elsif events.grep(BLUES_DAY).any?
+      :blues
     elsif events.grep(APPRECIATION_DAY).any?
       :employee_appreciation
     else
@@ -26,7 +29,10 @@ class CasualDay
   def self.next
     today = Date.today
     event = cphevents.items_between(today, today + 31)
-      .select { |event| event.subject =~ CARDINALS_DAY || event.subject =~ APPRECIATION_DAY }
+      .select { |event|
+        event.subject =~ CARDINALS_DAY ||
+        event.subject =~ BLUES_DAY ||
+        event.subject =~ APPRECIATION_DAY }
       .sort_by { |event| event.start.to_time.to_date }
       .first
 
@@ -35,6 +41,8 @@ class CasualDay
     case event.subject
     when CARDINALS_DAY
       [:cardinals, event.start.to_time]
+    when BLUES_DAY
+      [:blues, event.start.to_time]
     when APPRECIATION_DAY
       [:employee_appreciation, event.start.to_time]
     else
