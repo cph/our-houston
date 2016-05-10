@@ -4,6 +4,8 @@ development:
   database: houston_production_copy
   host: localhost
   prepared_statements: false
+  pool: 10
+  reaping_frequency: 30
 
 test:
   adapter: postgresql
@@ -11,6 +13,8 @@ test:
   database: houston_test
   host: localhost
   prepared_statements: false
+  pool: 10
+  reaping_frequency: 30
 
 # Just so we can precompile assets locally
 production:
@@ -19,3 +23,5 @@ production:
   database: houston_production_copy
   host: localhost
   prepared_statements: false
+  pool: 10
+  reaping_frequency: 30
