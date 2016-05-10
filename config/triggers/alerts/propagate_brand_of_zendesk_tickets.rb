@@ -1,7 +1,7 @@
 Houston.config do
   # Notify Zendesk of change of brand
   on "alert:zendesk:update" do |alert|
-    next unless alert.project_id.changed?
+    next unless alert.project_id_changed?
 
     if ZENDESK_BRANDS.empty?
       response = MultiJson.load($zendesk.get("brands").body)
