@@ -9,12 +9,12 @@ module Gemnasium
       response = connection.get "projects"
       projects = MultiJson.load(response.body).values.flatten
 
-      projects.parallel.map do |project|
+      projects.flat_map do |project|
         response = connection.get "projects/#{project["slug"]}/alerts"
         Array(MultiJson.load(response.body)).map { |alert| alert.merge(
           "project_id" => project["slug"],
           "project_slug" => project["name"]) }
-      end.flatten.compact
+      end.compact
     end
 
     def self.open
