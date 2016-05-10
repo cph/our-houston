@@ -30,6 +30,7 @@ Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" 
     { key: ticket["url"],
       number: ticket["id"],
       project_slug: ZENDESK_BRANDS[ticket["brand_id"]],
+      can_change_project: true,
       summary: ticket["subject"],
       environment_name: "production",
       text: ticket["description"],
