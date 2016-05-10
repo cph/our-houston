@@ -417,6 +417,39 @@ ALTER SEQUENCE deploys_id_seq OWNED BY deploys.id;
 
 
 --
+-- Name: errors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE errors (
+    id integer NOT NULL,
+    sha character varying NOT NULL,
+    message text NOT NULL,
+    backtrace text NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: errors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE errors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: errors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE errors_id_seq OWNED BY errors.id;
+
+
+--
 -- Name: feedback_comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -517,6 +550,39 @@ CREATE SEQUENCE feedback_customers_id_seq
 --
 
 ALTER SEQUENCE feedback_customers_id_seq OWNED BY feedback_customers.id;
+
+
+--
+-- Name: jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE jobs (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    started_at timestamp without time zone NOT NULL,
+    finished_at timestamp without time zone,
+    succeeded boolean,
+    error_id integer
+);
+
+
+--
+-- Name: jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE jobs_id_seq OWNED BY jobs.id;
 
 
 --
@@ -685,7 +751,9 @@ CREATE TABLE oauth_providers (
     authorize_path character varying NOT NULL,
     token_path character varying NOT NULL,
     client_id character varying NOT NULL,
-    client_secret character varying NOT NULL
+    client_secret character varying NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -1685,6 +1753,13 @@ ALTER TABLE ONLY deploys ALTER COLUMN id SET DEFAULT nextval('deploys_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY errors ALTER COLUMN id SET DEFAULT nextval('errors_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY feedback_comments ALTER COLUMN id SET DEFAULT nextval('feedback_comments_id_seq'::regclass);
 
 
@@ -1700,6 +1775,13 @@ ALTER TABLE ONLY feedback_comments_user_flags ALTER COLUMN id SET DEFAULT nextva
 --
 
 ALTER TABLE ONLY feedback_customers ALTER COLUMN id SET DEFAULT nextval('feedback_customers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY jobs ALTER COLUMN id SET DEFAULT nextval('jobs_id_seq'::regclass);
 
 
 --
@@ -1955,6 +2037,14 @@ ALTER TABLE ONLY deploys
 
 
 --
+-- Name: errors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY errors
+    ADD CONSTRAINT errors_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: feedback_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1976,6 +2066,14 @@ ALTER TABLE ONLY feedback_comments_user_flags
 
 ALTER TABLE ONLY feedback_customers
     ADD CONSTRAINT feedback_customers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY jobs
+    ADD CONSTRAINT jobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -2331,6 +2429,13 @@ CREATE INDEX index_deploys_on_project_id_and_environment_name ON deploys USING b
 
 
 --
+-- Name: index_errors_on_sha; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_errors_on_sha ON errors USING btree (sha);
+
+
+--
 -- Name: index_feedback_comments_on_tsvector; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2342,6 +2447,13 @@ CREATE INDEX index_feedback_comments_on_tsvector ON feedback_comments USING gin 
 --
 
 CREATE UNIQUE INDEX index_feedback_comments_user_flags_on_user_id_and_comment_id ON feedback_comments_user_flags USING btree (user_id, comment_id);
+
+
+--
+-- Name: index_jobs_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_jobs_on_name ON jobs USING btree (name);
 
 
 --
@@ -3245,4 +3357,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160419230411');
 INSERT INTO schema_migrations (version) VALUES ('20160420000616');
 
 INSERT INTO schema_migrations (version) VALUES ('20160421022627');
+
+INSERT INTO schema_migrations (version) VALUES ('20160507135209');
+
+INSERT INTO schema_migrations (version) VALUES ('20160507135846');
 
