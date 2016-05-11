@@ -28,6 +28,10 @@ class CasualDay
 
   def self.next
     today = Date.today
+
+    # if the workday has started, look afterwards
+    # TODO: maybe say "well, today's a casual day. After that..."
+    today += 1 if Time.now.hour > 9
     event = cphevents.items_between(today, today + 31)
       .select { |event|
         event.subject =~ CARDINALS_DAY ||
