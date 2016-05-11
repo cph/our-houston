@@ -31,7 +31,7 @@ Houston.config.at "7:30am", "report:weekly:engineyard:patches", every: :monday d
 
   message = "Looks like these EngineYard VMs have unapplied patches:\n"
   environments_that_have_unapplied_patches.each do |environment|
-    message << "    - #{environment.text}\n"
+    message << "    - #{slack_link_to environment.text, "https://cloud.engineyard.com/#{environment.href}/upgrade"}\n"
   end
   slack_send_message_to message, "ops"
 end
