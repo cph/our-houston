@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/DimaSamodurov/ruby-ntlm.git
+  revision: 538ea6b86ca30042f761684d24ac8a6942197506
+  branch: properly_resolve_ntlm_module
+  specs:
+    ruby-ntlm (0.0.1)
+
+GIT
   remote: git://github.com/cph/houston-dashboards.git
   revision: 21b79cc7238ae4aab7b0224c530be7a6301e5a42
   branch: master
@@ -360,6 +367,15 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mechanize (2.7.4)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (>= 1.17.2, < 3)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.6)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
     meta_request (0.4.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -380,12 +396,15 @@ GEM
     multipart-post (2.0.0)
     neat-rails (0.5.0)
     nested_editor_for (0.1.0)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
     net-ldap (0.12.1)
     net-ssh (2.9.4)
     netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nori (2.6.0)
+    ntlm-http (0.1.1)
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0, < 1.5.2)
@@ -460,7 +479,6 @@ GEM
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     rr (1.1.2)
-    ruby-ntlm (0.0.1)
     ruby-progressbar (1.8.0)
     rubyntlm (0.6.0)
     rubyzip (1.1.7)
@@ -557,6 +575,7 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
+    webrobots (0.1.2)
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -588,12 +607,14 @@ DEPENDENCIES
   itsm!
   letter_opener
   logeater!
+  mechanize
   meta_request
   minitest
   minitest-reporters
   minitest-reporters-turn_reporter
   pry
   rr
+  ruby-ntlm!
   shoulda-context
   simplecov-json
   skylight

@@ -8,6 +8,9 @@ gem "therubyracer", platforms: :ruby
 # For talking to Office365
 gem "viewpoint"
 
+# For page-scraping
+gem "mechanize"
+
 group :development do
   gem "letter_opener"
   gem "unicorn-rails"
@@ -45,6 +48,10 @@ gem "skylight"
 gem "star", github: "cph/star", branch: "master"
 gem "itsm", github: "cph/itsm", branch: "master"
 gem "logeater", github: "cph/logeater", branch: "master", require: "logeater/request"
+
+# This gem hasn't been maintained... :`(
+# https://github.com/DimaSamodurov/ruby-ntlm/pull/7
+gem "ruby-ntlm", github: "DimaSamodurov/ruby-ntlm", branch: "properly_resolve_ntlm_module"
 
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
