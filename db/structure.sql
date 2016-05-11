@@ -889,7 +889,9 @@ CREATE TABLE pull_requests (
     avatar_url character varying(255),
     json_labels jsonb DEFAULT '[]'::jsonb,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    closed_at timestamp without time zone,
+    merged_at timestamp without time zone
 );
 
 
@@ -2555,6 +2557,13 @@ CREATE UNIQUE INDEX index_projects_roadmaps_on_project_id_and_roadmap_id ON proj
 
 
 --
+-- Name: index_pull_requests_on_closed_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pull_requests_on_closed_at ON pull_requests USING btree (closed_at);
+
+
+--
 -- Name: index_pull_requests_on_project_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3361,4 +3370,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160421022627');
 INSERT INTO schema_migrations (version) VALUES ('20160507135209');
 
 INSERT INTO schema_migrations (version) VALUES ('20160507135846');
+
+INSERT INTO schema_migrations (version) VALUES ('20160510233329');
 
