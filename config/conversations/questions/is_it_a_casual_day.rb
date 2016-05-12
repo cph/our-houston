@@ -5,6 +5,7 @@ Houston::Slack.config do
 
     date = e.matched?("date") ? e.match["date"] : Date.today
 
+    e.typing
     case CasualDay.check(date)
     when :cardinals
       e.reply "Yep! It's a Cardinals Casual Day :+1:"
@@ -24,6 +25,7 @@ Houston::Slack.config do
              "how long until the next casual day",
              "when can I wear jeans again" do |e|
 
+    e.typing
     event_type, event_time = CasualDay.next
     case event_type
     when :cardinals

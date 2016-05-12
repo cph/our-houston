@@ -3,6 +3,7 @@ Houston::Slack.config do
              "what is for lunch on {{date:relative-date}}",
              "what is for lunch" do |e|
 
+    e.typing
     response = Faraday.get "http://cphweb09/mycph/menu.asp"
     unless response.status == 200
       e.reply "Uh, oh. Looks like I can't get to the menu right now. :sweat_smile: Maybe you can try: http://cphweb09/mycph/menu.asp"

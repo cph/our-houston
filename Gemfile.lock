@@ -514,7 +514,7 @@ GEM
       simplecov
     skylight (0.10.3)
       activesupport (>= 3.0.0)
-    slacks (0.2.1)
+    slacks (0.2.2)
       attentive
       faraday
       faraday-raise-errors
