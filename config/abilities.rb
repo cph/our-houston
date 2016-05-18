@@ -2,6 +2,10 @@
 # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
 Houston.config.abilities do |user|
+
+  # Anyone can see the Nanoconf schedule
+  can :read, Houston::Nanoconfs::Presentation
+
   if user.nil?
 
     # Customers are allowed to see Release Notes of products, for production
@@ -59,6 +63,9 @@ Houston.config.abilities do |user|
 
     # Folks can update their own presentations
     can :update, Houston::Nanoconfs::Presentation, presenter_id: user.id
+
+    # If you're signed in, you can create a Nanoconfs
+    can :create, Houston::Nanoconfs::Presentation
 
     # Developers can
     #  - create tickets
