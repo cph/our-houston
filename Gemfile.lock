@@ -141,7 +141,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: fae5b50d4fc07999609425138b2ea98068780880
+  revision: f99dbe018a6360ea9917ebec4809dc6eb6fffc7a
   branch: master
   specs:
     houston-feedback (0.0.1)
