@@ -2651,7 +2651,7 @@ CREATE INDEX index_roadmap_milestone_versions_on_versioned ON roadmap_milestone_
 -- Name: index_roadmap_milestones_on_milestone_id_and_roadmap_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_roadmap_milestones_on_milestone_id_and_roadmap_id ON roadmap_milestones USING btree (milestone_id, roadmap_id);
+CREATE INDEX index_roadmap_milestones_on_milestone_id_and_roadmap_id ON roadmap_milestones USING btree (milestone_id, roadmap_id);
 
 
 --
@@ -3372,4 +3372,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160507135209');
 INSERT INTO schema_migrations (version) VALUES ('20160507135846');
 
 INSERT INTO schema_migrations (version) VALUES ('20160510233329');
+
+INSERT INTO schema_migrations (version) VALUES ('20160520201427');
 
