@@ -18,6 +18,7 @@ FULL_TIME_DEVELOPERS = [LUKE, BOB, BEN, ORDIE, CHASE, MATT].freeze
 require_relative "../lib/slack_helpers"
 require_relative "../lib/casual_day"
 require_relative "../lib/time_helpers"
+require_relative "../lib/engineyard_helpers"
 require_relative "../lib/engine"
 
 # Configure Houston
