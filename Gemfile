@@ -42,7 +42,20 @@ end
 
 # Tooling
 gem "airbrake", "~> 4.0"
-gem "sucker_punch", "~> 1.6" # for Airbrake
+
+# Houston is experiencing this problem:
+#   github.com/brandonhilkert/sucker_punch/issues/135
+# which is apparently fixed in version 2.0.
+#
+# However, we have to wait for Rails 5 to upgrade b/c:
+#   github.com/brandonhilkert/sucker_punch/issues/156
+#
+# Test by setting:
+#   config.development_environments = []
+# and then pasting in the terminal:
+#   begin; raise "test"; rescue; Airbrake.notify($!); end
+gem "sucker_punch", "~> 1.6"
+
 gem "skylight"
 
 gem "star", github: "cph/star", branch: "master"
