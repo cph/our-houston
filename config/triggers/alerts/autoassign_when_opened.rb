@@ -4,7 +4,7 @@ AUTOASSIGN_MAP = {
   "oic" => MATT,
   "our-houston" => BOB,
   "dr" => BOB,
-  "ledger" => ORDIE,
+  "ledger" => LUKE,
   "errbit" => BOB
 }.freeze
 

@@ -7,13 +7,12 @@ require "houston/application"
 LUKE = "luke.booth@cph.org".freeze
 BOB = "robert.lail@cph.org".freeze
 BEN = "ben.govero@cph.org".freeze
-ORDIE = "ordie.page@cph.org".freeze
 CHASE = "chase.clettenberg@cph.org".freeze
 MATT = "matt.kobs@cph.org".freeze
 JEREMY = "jeremy.roegner@cph.org".freeze
 MEAGAN = "meagan.thole@cph.org".freeze
 BRAD = "brad.egberts@cph.org".freeze
-FULL_TIME_DEVELOPERS = [LUKE, BOB, BEN, ORDIE, CHASE, MATT].freeze
+FULL_TIME_DEVELOPERS = [LUKE, BOB, BEN, CHASE, MATT].freeze
 
 require_relative "../lib/slack_helpers"
 require_relative "../lib/casual_day"
