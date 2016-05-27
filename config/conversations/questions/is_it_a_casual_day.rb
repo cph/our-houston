@@ -7,11 +7,13 @@ Houston::Slack.config do
 
     e.typing
     case CasualDay.check(date)
-    when :cardinals
+    when :cardinals_casual_day
       e.reply "Yep! It's a Cardinals Casual Day :+1:"
-    when :blues
+    when :blues_casual_day
       e.reply "Yep! It's a Blues Casual Day :+1:"
-    when :employee_appreciation
+    when :casual_for_a_cause
+      e.reply "It's a _Casual for a Cause_ Day"
+    when :employee_appreciation_day
       e.reply "Yep! It's an Employee Appreciation Day :tada:"
     else
       e.reply "Well... it's not on the *CPH Events* calendar... :confused:"
@@ -26,14 +28,16 @@ Houston::Slack.config do
              "when can I wear jeans again" do |e|
 
     e.typing
-    event_type, event_time = CasualDay.next
-    case event_type
-    when :cardinals
-      e.reply "#{event_time.strftime('%A (%-m/%-d)')} is a Cardinals Casual Day"
-    when :blues
-      e.reply "#{event_time.strftime('%A (%-m/%-d)')} is a Blues Casual Day"
-    when :employee_appreciation
-      e.reply "#{event_time.strftime('%A (%-m/%-d)')} is an Employee Appreciation Day"
+    event = CasualDay.next
+    case event.recognize
+    when :cardinals_casual_day
+      e.reply "#{event.time.strftime('%A (%-m/%-d)')} is a Cardinals Casual Day"
+    when :blues_casual_day
+      e.reply "#{event.time.strftime('%A (%-m/%-d)')} is a Blues Casual Day"
+    when :casual_for_a_cause
+      e.reply "#{event.time.strftime('%A (%-m/%-d)')} is a _Casual for a Cause_ Day"
+    when :employee_appreciation_day
+      e.reply "#{event.time.strftime('%A (%-m/%-d)')} is an Employee Appreciation Day"
     else
       e.reply "I don't know! :anguished:"
     end
