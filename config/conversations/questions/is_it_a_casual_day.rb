@@ -1,7 +1,7 @@
 Houston::Slack.config do
-  listen_for "is it a casual day {{date:relative-date}}",
+  listen_for "is it a casual day {{date:core.date.future}}",
              "is it a casual day",
-             "is {{date:relative-date}} a casual day" do |e|
+             "is {{date:core.date.future}} a casual day" do |e|
 
     date = e.matched?("date") ? e.match["date"] : Date.today
 

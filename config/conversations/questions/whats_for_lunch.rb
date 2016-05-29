@@ -1,6 +1,6 @@
 Houston::Slack.config do
-  listen_for "what is for lunch {{date:relative-date}}",
-             "what is for lunch on {{date:relative-date}}",
+  listen_for "what is for lunch {{date:core.date.future}}",
+             "what is for lunch on {{date:core.date.future}}",
              "what is for lunch" do |e|
 
     e.typing
