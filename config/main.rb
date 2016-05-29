@@ -18,7 +18,7 @@ require_relative "../lib/slack_helpers"
 require_relative "../lib/casual_day"
 require_relative "../lib/time_helpers"
 require_relative "../lib/engineyard_helpers"
-require_relative "../lib/engine"
+require_relative "../lib/houston/engine"
 
 # Configure Houston
 Houston.config do

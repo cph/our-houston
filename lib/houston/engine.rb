@@ -1,5 +1,12 @@
-module OurHouston
+module Houston
   class Engine < ::Rails::Engine
+
+    # Precompile this modules assets
+    initializer :assets do |config|
+      Rails.application.config.assets.precompile += %w(
+        application.js
+        application.css )
+    end
 
     # Include the Engine's migrations with the Application
     # http://pivotallabs.com/leave-your-migrations-in-your-rails-engines/

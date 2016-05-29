@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-dashboards.git
-  revision: 21b79cc7238ae4aab7b0224c530be7a6301e5a42
+  revision: 751ef840e46f14fa807eb8b54b0250b5bef1069e
   branch: master
   specs:
     houston-dashboards (0.0.1)
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-reports.git
-  revision: 5d4d880039a2ef2266e424b880e63f7ccd2a574a
+  revision: 6ce2d1cee9ba01f8c5e9f9892599f6db988e7dea
   branch: master
   specs:
     houston-reports (0.0.1)
@@ -89,7 +89,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 8481ff54bdece7327eeeaab5d9ef39e4560a9f05
+  revision: ff2bf460cef3c82c28eff6e446fa9ab389547fc5
   branch: master
   specs:
     houston-core (0.6.3)
