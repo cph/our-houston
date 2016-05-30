@@ -16,6 +16,11 @@ def list_engineyard_vms_that_need_patches
   end
 
   environments = page.links.select { |link| link.href =~ /\/app_deployments\/\d+\/environment$/ }
+
+  # EngineYard might add a second link that says "Please Apply Changes"
+  # We don't need to check each app twice.
+  environments.uniq!(&:href)
+
   environments_that_have_unapplied_patches = environments.select do |environment|
     url = "https://cloud.engineyard.com/#{environment.href}/upgrade"
     Rails.logger.debug "\e[34mChecking [#{environment.text}](#{url})...\e[0m"
