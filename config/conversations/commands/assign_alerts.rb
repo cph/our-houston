@@ -1,12 +1,12 @@
 Houston::Slack.config do
-  overhear %q{assign (?<type>err|itsm|cve) (?<number>\d+) to (?<nickname>@.*\b)} do |e|
+  overhear "assign (?<type>err|itsm|cve) {{number:core.number.integer.positive}} to {{user:slack.user}}" do |e|
     alert = Houston::Alerts::Alert.find_by(type: e.match["type"], number: e.match["number"])
     unless alert
       e.reply "I'm sorry. I couldn't find an #{e.match["type"]} #{e.match["number"]}."
       next
     end
 
-    nickname = e.match["nickname"]
+    nickname = e.match["user"].to_s
     assignee = User.find_by_slack_username(nickname)
     unless assignee
       e.reply "I'm sorry. I don't know #{nickname}."
@@ -20,10 +20,10 @@ Houston::Slack.config do
       next
     end
 
-    e.reply ":+1:"
+    e.react ":white_check_mark:"
   end
 
-  overhear %q{i will take (?<type>err|itsm|cve) (?<number>\d+)} do |e|
+  overhear "i will take (?<type>err|itsm|cve) {{number:core.number.integer.positive}}" do |e|
     alert = Houston::Alerts::Alert.find_by(type: e.match["type"], number: e.match["number"])
     unless alert
       e.reply "I'm sorry. I couldn't find an #{e.match["type"]} #{e.match["number"]}."
