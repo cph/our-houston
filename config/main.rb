@@ -61,7 +61,7 @@ Houston.config do
     "sea"           => "335996",
     "indigo"        => "7d63b8",
     "thistle"       => "b35ab8",
-    "tomato"        => "e74c23",
+    "chili"         => "e74c23",
     "bark"          => "756e54",
     "hazelnut"      => "a4703d",
     "burnt_sienna"  => "df8a3d",
