@@ -1,0 +1,10 @@
+<table style="border-collapse:collapse; border: 1px solid #ccc;">
+<% Houston.config.project_colors.each do |color, value| %>
+  <tr>
+    <td style="width: 32px; height: 32px; border: 1px solid #ccc;">
+      <div style="display: inline-block; width: 28px; height: 28px; border-radius: 28px; background: #<%= value %>;"></div>
+    </td>
+    <td><%= color %><td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,31 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag :application %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag :application %>
+<% end %>
+
+<div class="conversation-sandbox">
+
+  <form id="conversation_examples_form">
+    <h4>When someone says...</h4>
+    <p>Start by entering a few examples of the message you would like Houston to hear.</p>
+    <ul id="conversation_examples" class="conversation-examples">
+      <li>
+        <input type="text" autocomplete="off" name="examples[]" placeholder="Add message..." class="conversation-example" />
+      </li>
+    </ul>
+
+    <div class="buttons">
+      <button id="recognize_examples" class="btn btn-primary">Continue</button>
+    </div>
+  </form>
+
+  <div id="conversation_form" style="display: none;">
+    <h4>Listen for</h4>
+    <p>Start by entering a few examples of the message you would like Houston to hear.</p>
+    <ul id="conversation_phrases" class="conversation-phrases"></ul>
+  </div>
+
+</div>

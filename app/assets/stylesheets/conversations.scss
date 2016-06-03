@@ -1,0 +1,32 @@
+.conversation-sandbox ul {
+  margin: 0;
+  padding: 0;
+
+  > li {
+    display: block;
+
+    input[type="text"] {
+      border: 1px solid #ddd;
+      margin: 0;
+      box-sizing: border-box;
+      border-radius: 0;
+      padding: 6px 12px;
+      height: 36px;
+      line-height: 36px;
+      display: block;
+      width: 100%;
+      box-shadow: none;
+
+      &:focus {
+        outline: 0;
+        box-shadow: none;
+      }
+    }
+  }
+
+  > li + li {
+    input[type="text"] {
+      border-top: none;
+    }
+  }
+}
