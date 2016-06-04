@@ -22,6 +22,7 @@ Houston::Slack.config do
     target = "branch" if e.matched? "branch"
     value = e.match[target]
 
+    Rails.logger.info "[houston:deploy] starting deploy of #{target} #{value}"
     Houston::SideProject::Deploy.start!(e, target, value)
   end
 
@@ -88,6 +89,7 @@ module Houston
 
 
       def find_pull_request
+        Rails.logger.info "[houston:deploy] looking for pull requests"
         pulls = find_pull_requests_for_branch(target.value) if target.type == "branch"
         pulls = find_pull_requests_with_number(target.value.to_i) if target.type == "number"
 
@@ -117,6 +119,9 @@ module Houston
 
       rescue ActiveRecord::RecordNotFound
         end! "Sorry, I'm not sure what project you want to deploy :sweat:"
+      rescue Exception
+        Houston.report_exception $!
+        end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
       def find_pull_requests_for_branch(branch)
@@ -132,6 +137,7 @@ module Houston
 
 
       def find_branch
+        Rails.logger.info "[houston:deploy] looking for a branch"
         branch = target.value
         advise "I am looking for a branch named *#{branch}*"
         repos = find_repos_with_a_branch_named(branch)
@@ -154,11 +160,15 @@ module Houston
 
       rescue ActiveRecord::RecordNotFound
         end! "Sorry, I'm not sure what project you want to deploy :sweat:"
+      rescue Exception
+        Houston.report_exception $!
+        end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
 
 
       def create_pull_request_for_branch
+        Rails.logger.info "[houston:deploy] creating a pull request"
         branch = target.value
         repo = project.repo
 
@@ -171,12 +181,16 @@ module Houston
 
       rescue Octokit::UnprocessableEntity
         end! "Sorry, I couldn't find a pull request for the branch *#{branch}* and I got an error when trying to create one. :disappointed:"
+      rescue Exception
+        Houston.report_exception $!
+        end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
 
 
       # !todo: strictly, all of the following should be atomic
       def determine_deploy_strategy
+        Rails.logger.info "[houston:deploy] determining deploy strategy"
         other_deploys = Houston.side_projects
           .select { |other| other.is_a? Houston::SideProject::Deploy }
           .reject { |other| other == self }
@@ -199,11 +213,15 @@ module Houston
         # so we can assume that the strategy is Engineyard
         @environment = Houston::Adapters::Deployment::Engineyard.new(project, "staging")
         check_if_another_pull_request_is_on_staging
+      rescue Exception
+        Houston.report_exception $!
+        end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
 
 
       def check_if_another_pull_request_is_on_staging
+        Rails.logger.info "[houston:deploy] checking if another pull request is on staging"
         advise nil
         other_pr = list_pull_requests_on_staging_for_project(project)
           .reject { |pr| pr.number == self.pr.number }
@@ -226,6 +244,9 @@ module Houston
         else
           execute_deploy
         end
+      rescue Exception
+        Houston.report_exception $!
+        end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
 
@@ -235,6 +256,7 @@ module Houston
       end
 
       def execute_deploy
+        Rails.logger.info "[houston:deploy] deploying"
         advise nil
         @executing = true
         return pretend_to_deploy if Rails.env.development?
@@ -261,7 +283,10 @@ module Houston
         end! ":rotating_light: I'm sorry. An error occurred: #{$!.message}"
       rescue EY::CloudClient::BadBridgeStatusError
         Houston.report_exception $!
-        end! ":rotating_light: Um... :sweat: I just got this error: #{$!.message}"
+        end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
+      rescue Exception
+        Houston.report_exception $!
+        end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
       def pretend_to_deploy
