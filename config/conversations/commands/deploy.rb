@@ -6,6 +6,8 @@ Houston::Slack.config do
              # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
              %q{deploy (?<branch>[\w\d\+\-\._\/]+)} do |e|
 
+    e.typing
+
     unless e.user
       e.reply "I'm sorry. I don't know who you are."
       next
@@ -191,7 +193,6 @@ module Houston
         end
 
         other_deploys.each(&:cancel!)
-        conversation.reply "ok"
 
         # !todo: support other strategies
         # we're just deploying members, unite, and ledger to Staging for now,
