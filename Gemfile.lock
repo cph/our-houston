@@ -141,7 +141,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: bfd197cc0e05723feaeea098b796a64adcfeae09
+  revision: abbdbf0b90f42efb6d1a31675e2709eac876f8b8
   branch: master
   specs:
     houston-feedback (0.0.1)
@@ -167,7 +167,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: ca1d1def08ed7065b04bc3d36f745688e8c9f13c
+  revision: 6b36ba2ffed456b9a60ae9dab17a93c16bf0dc56
   branch: master
   specs:
     houston-slack (0.0.1)
