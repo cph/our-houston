@@ -1,12 +1,11 @@
-require "thread_safe"
+require "concurrent/array"
 require_relative "side_project/base"
-
 
 module Houston
   class SideProjects
 
     def initialize
-      @array = ThreadSafe::Array.new
+      @array = Concurrent::Array.new
     end
 
     def start!(project)
