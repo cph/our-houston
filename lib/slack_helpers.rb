@@ -68,6 +68,10 @@ def alert_unfurl_url(alert)
   "http://#{Houston.config.host}/#{alert.type}/#{alert.number}"
 end
 
+def feedback_unfurl_url(comment)
+  "http://#{Houston.config.host}/feedback/#{comment.id}"
+end
+
 def slack_github_comment_attachment(body)
   body = Slackdown.new(body).convert
 
