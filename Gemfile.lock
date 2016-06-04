@@ -167,10 +167,11 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: dc730fa417dab6da4d075ba0642047cf2415f722
+  revision: 665ea4d5853a6beda9b6f06db7fa668b1e492761
   branch: master
   specs:
     houston-slack (0.0.1)
+      attentive
       slacks
 
 GEM
@@ -514,12 +515,11 @@ GEM
       simplecov
     skylight (0.10.3)
       activesupport (>= 3.0.0)
-    slacks (0.2.3)
-      attentive
+    slacks (0.3.0)
+      concurrent-ruby
       faraday
       faraday-raise-errors
       multi_json
-      thread_safe
       websocket-driver
     slop (3.6.0)
     socksify (1.7.0)
