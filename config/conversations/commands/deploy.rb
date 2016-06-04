@@ -2,8 +2,7 @@ require_relative "../../../lib/side_project/base"
 require "ostruct"
 
 Houston::Slack.config do
-  listen_for %q{deploy (?<number>\d+)},
-             %q{deploy #(?<number>\d+)},
+  listen_for "deploy {{number:core.number.integer.positive}}",
              # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
              %q{deploy (?<branch>[\w\d\+\-\._\/]+)} do |e|
 
