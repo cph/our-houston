@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-nanoconfs.git
-  revision: fc4c7101d8aaeb15f3000ab0ee2012860191a398
+  revision: 41d110e4ee3992ef476d6805a9716881dc7a44a7
   branch: master
   specs:
     houston-nanoconfs (0.0.1)
