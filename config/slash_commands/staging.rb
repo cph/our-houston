@@ -9,7 +9,7 @@ Houston::Slack.config do
         pulls.each do |pull|
           message << "*#{pull.repository.name.capitalize}* has #{slack_link_to_pull_request(pull)} on Staging\n"
           pull.labels.each { |lb| message << "`#{lb.name}` " }
-          message << "\n"
+          message << checkbox_emojis(pull)
         end
       end
     else
@@ -21,7 +21,7 @@ Houston::Slack.config do
         else
           message = "*#{project.slug}* has #{slack_link_to_pull_request(pull)} on Staging\n"
           pull.labels.each { |lb| message << "`#{lb.name}` " }
-          message << "\n"
+          message << checkbox_emojis(pull)
         end
       else
         message = "I don't have a project with the slug *#{e.text}*"
@@ -37,4 +37,16 @@ def list_pull_requests_on_staging_for_project(project)
       labels: "on-staging",
       filter: "all")
     .select(&:pull_request)
+end
+
+def checkbox_emojis(pull_request)
+  " *#{unchecked(pull_request)}* :white_large_square: *#{checked(pull_request)}* :white_check_mark:\n"
+end
+
+def checked(pull_request)
+  pull_request.body.to_s.scan("[x]").count
+end
+
+def unchecked(pull_request)
+  pull_request.body.to_s.scan("[ ]").count
 end
