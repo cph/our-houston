@@ -466,7 +466,8 @@ CREATE TABLE feedback_comments (
     ticket_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    customer_id integer
+    customer_id integer,
+    average_signal_strength double precision
 );
 
 
@@ -499,7 +500,8 @@ CREATE TABLE feedback_comments_user_flags (
     comment_id integer NOT NULL,
     read boolean DEFAULT false,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    signal_strength double precision
 );
 
 
@@ -3374,4 +3376,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160507135846');
 INSERT INTO schema_migrations (version) VALUES ('20160510233329');
 
 INSERT INTO schema_migrations (version) VALUES ('20160520201427');
+
+INSERT INTO schema_migrations (version) VALUES ('20160618181128');
 
