@@ -89,10 +89,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: ed3bb058dd9c509a26e9074c4dc0e3ade0f63ba6
+  revision: 63426c2e25a1d91e4e5baa8d46f3743aa7e34b8d
   branch: master
   specs:
-    houston-core (0.6.3)
+    houston-core (0.7.0.beta)
       activerecord-import
       activerecord-pluck_in_batches
       addressable (~> 2.3.8)
@@ -160,14 +160,14 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: ecf5ece01d5761ae59f6940fdcd8c63528e1127a
+  revision: 938b36dc8604632a7851c548b44b62851353ed7c
   branch: master
   specs:
     houston-scheduler (0.0.1)
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: b31450007749dfca36638161893e8518de8e1045
+  revision: 89dcc6d64a70c40d2b480d8b49744c2ef77e1487
   branch: master
   specs:
     houston-slack (0.0.1)

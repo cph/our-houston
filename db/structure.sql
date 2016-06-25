@@ -836,7 +836,8 @@ CREATE TABLE projects (
     view_options hstore DEFAULT ''::hstore NOT NULL,
     feature_states hstore DEFAULT ''::hstore NOT NULL,
     selected_features text[],
-    head_sha character varying(255)
+    head_sha character varying(255),
+    props jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -1611,7 +1612,8 @@ CREATE TABLE users (
     environments_subscribed_to text[] DEFAULT '{}'::text[] NOT NULL,
     current_project_id integer,
     nickname character varying(255),
-    username character varying(255)
+    username character varying(255),
+    props jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3378,4 +3380,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160510233329');
 INSERT INTO schema_migrations (version) VALUES ('20160520201427');
 
 INSERT INTO schema_migrations (version) VALUES ('20160618181128');
+
+INSERT INTO schema_migrations (version) VALUES ('20160625203412');
+
+INSERT INTO schema_migrations (version) VALUES ('20160625221840');
+
+INSERT INTO schema_migrations (version) VALUES ('20160625230420');
 
