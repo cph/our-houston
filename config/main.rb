@@ -12,6 +12,8 @@ MATT = "matt.kobs@cph.org".freeze
 JEREMY = "jeremy.roegner@cph.org".freeze
 MEAGAN = "meagan.thole@cph.org".freeze
 BRAD = "brad.egberts@cph.org".freeze
+KEVIN = "kevin.applegate@cph.org".freeze
+DAVID = "david.bowman@cph.org".freeze
 FULL_TIME_DEVELOPERS = [LUKE, BOB, BEN, CHASE, MATT].freeze
 
 require_relative "../lib/slack_helpers"
@@ -194,7 +196,7 @@ Houston.config do
   end
 
   use :alerts do
-    workers { User.with_email_address(FULL_TIME_DEVELOPERS) }
+    workers { User.with_email_address(FULL_TIME_DEVELOPERS + [KEVIN, DAVID]) }
     set_deadline do |alert|
       time_allowed = 2.days
       time_allowed = 5.days if alert.project && %w{houston errbit}.member?(alert.project.slug)
