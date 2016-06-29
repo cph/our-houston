@@ -1,13 +1,13 @@
 Houston.config.at "6:30pm", "repo:prune", every: :sunday do
   credentials = Houston::Adapters::VersionControl::GitAdapter.credentials
 
-  %w{members unite ledger}.each do |project_slug|
+  %w{members unite ledger lsb confb bsb dr epic-auth our-houston ep}.each do |project_slug|
     project = Project.find_by_slug(project_slug)
 
     # Don't delete certain required branches
     # or any branch which is the head or target
     # of an open pull request.
-    protected_branches = %w{master beta dev}.to_set
+    protected_branches = %w{master beta dev old-angular-version}.to_set
     project.repo.pull_requests.each do |pr|
       protected_branches.add(pr.head.ref).add(pr.base.ref)
     end
