@@ -167,7 +167,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 7c0736320a21508dd453fcdef59896744efc0a71
+  revision: 5b0d6b0f35d86c79fd30fdcb90aa67596d8eb638
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -226,7 +226,7 @@ GEM
       nokogiri
     ansi (1.5.0)
     arel (6.0.3)
-    attentive (0.3.1)
+    attentive (0.3.2)
       thread_safe
     bcrypt (3.1.11)
     better_errors (2.1.1)
