@@ -17,7 +17,7 @@ Airbrake.configure do |config|
 end
 
 # Inform Errbit of the version of the codebase checked out
-GIT_COMMIT = ENV.fetch("COMMIT_HASH", `git log -n1 --format='%H'`.chomp).freeze
+GIT_COMMIT = ENV.fetch("COMMIT_HASH", `git log -n1 --format='%H'`.chomp).freeze unless defined?(GIT_COMMIT)
 module SendCommitWithNotice
   def cgi_data; (super || {}).merge("GIT_COMMIT" => GIT_COMMIT); end
 end
