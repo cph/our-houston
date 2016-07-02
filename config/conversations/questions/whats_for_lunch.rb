@@ -1,9 +1,9 @@
-Houston::Slack.config do
+Houston::Conversations.config do
   listen_for "what is for lunch {{date:core.date.future}}",
              "what is for lunch on {{date:core.date.future}}",
              "what is for lunch" do |e|
 
-    e.typing
+    e.responding
     response = Faraday.get "http://cphweb09/mycph/menu.asp"
     unless response.status == 200
       e.reply "Uh, oh. Looks like I can't get to the menu right now. :sweat_smile: Maybe you can try: http://cphweb09/mycph/menu.asp"

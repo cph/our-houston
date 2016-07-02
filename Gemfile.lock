@@ -30,10 +30,11 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-support_form.git
-  revision: bbfe2533e44053d6c4c0d60b67bcdaa3097129b3
+  revision: d8ebc08bffb7f5f9ffcfbea3d1b7d0ff36e00762
   branch: master
   specs:
     houston-support_form (0.0.1)
+      houston-core (>= 0.7.0.beta2)
 
 GIT
   remote: git://github.com/cph/itsm.git
@@ -75,10 +76,11 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: 9fccc0a40a09469a8ddeb03f0d8f0dd944fcc012
+  revision: 94d44dc460ec1e3d88f84bbd7b0aaa09b2fdef90
   branch: master
   specs:
     houston-alerts (0.0.1)
+      houston-core (>= 0.7.0.beta2)
 
 GIT
   remote: git://github.com/houston/houston-brakeman.git
@@ -88,11 +90,21 @@ GIT
     houston-brakeman (0.0.1)
 
 GIT
-  remote: git://github.com/houston/houston-core.git
-  revision: 2ec6dcc8d161ce4401e1fa6a363f555499f0cad2
+  remote: git://github.com/houston/houston-conversations.git
+  revision: 5355dd8813eda956345b9a3082172f44009d6714
   branch: master
   specs:
-    houston-core (0.7.0.beta)
+    houston-conversations (0.1.0)
+      attentive
+      concurrent-ruby
+      houston-core (>= 0.7.0.beta3)
+
+GIT
+  remote: git://github.com/houston/houston-core.git
+  revision: 502d5d5f6ef0fbf903acdf031a22ee7d42895132
+  branch: master
+  specs:
+    houston-core (0.7.0.beta3)
       activerecord-import
       activerecord-pluck_in_batches
       addressable (~> 2.3.8)
@@ -141,39 +153,40 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 8ec3b7628dc8ba03f19be354b1d9af33b5861006
+  revision: b733c91a75ab8011f7ec0a2c494bf1cc5f6385d7
   branch: master
   specs:
     houston-feedback (0.0.1)
       activerecord-import
+      houston-core (>= 0.7.0.beta2)
       pg_search
-      rails
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
-  revision: 1c16d68eed84ce0620c1f77bfc2eb344d10ca683
+  revision: 638642012ea4c561159d028dd83174ca5cc9e76e
   branch: master
   specs:
     houston-roadmaps (0.1.0)
-      houston-core (>= 0.6.2)
+      houston-core (>= 0.7.0.beta2)
       neat-rails (>= 0.2.0)
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: 938b36dc8604632a7851c548b44b62851353ed7c
+  revision: 870ca798775e8fa3572c3965f0c73108d959f372
   branch: master
   specs:
     houston-scheduler (0.0.1)
+      houston-core (>= 0.7.0.beta2)
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 5b0d6b0f35d86c79fd30fdcb90aa67596d8eb638
+  revision: 51239de34b873905be50ccc64379ef7cde7ab207
   branch: master
   specs:
     houston-slack (0.0.1)
       attentive
-      concurrent-ruby
-      slacks
+      houston-conversations (>= 0.1.0)
+      slacks (>= 0.4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -279,7 +292,7 @@ GEM
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    css_parser (1.4.2)
+    css_parser (1.4.5)
       addressable
     default_value_for (3.0.1)
       activerecord (>= 3.2.0, < 5.0)
@@ -354,7 +367,7 @@ GEM
       socksify
     i18n (0.7.0)
     json (1.8.3)
-    jwt (1.5.1)
+    jwt (1.5.4)
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -408,9 +421,9 @@ GEM
       pkg-config (~> 1.1.7)
     nori (2.6.0)
     ntlm-http (0.1.1)
-    oauth2 (1.1.0)
+    oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
-      jwt (~> 1.0, < 1.5.2)
+      jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
@@ -425,15 +438,15 @@ GEM
       nokogiri
       openxml-package (>= 0.2.0)
     orm_adapter (0.5.0)
-    ox (2.4.2)
+    ox (2.4.3)
     pg (0.18.4)
     pg_search (1.0.6)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
     pkg-config (1.1.7)
-    premailer (1.8.6)
-      css_parser (>= 1.3.6)
+    premailer (1.8.7)
+      css_parser (>= 1.4.5)
       htmlentities (>= 4.0.0)
     progressbar (0.21.0)
     pry (0.10.3)
@@ -490,8 +503,8 @@ GEM
     rugged (0.24.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
-    sass-rails (5.0.4)
-      railties (>= 4.0.0, < 5.0)
+    sass-rails (5.0.5)
+      railties (>= 4.0.0, < 6)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
@@ -518,7 +531,7 @@ GEM
       simplecov
     skylight (0.10.5)
       activesupport (>= 3.0.0)
-    slacks (0.3.2)
+    slacks (0.4.0)
       concurrent-ruby
       faraday
       faraday-raise-errors
@@ -526,11 +539,11 @@ GEM
       websocket-driver
     slop (3.6.0)
     socksify (1.7.0)
-    spring (1.7.1)
-    sprockets (3.6.2)
+    spring (1.7.2)
+    sprockets (3.6.3)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.4)
+    sprockets-rails (3.1.1)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -598,6 +611,7 @@ DEPENDENCIES
   factory_girl_rails
   houston-alerts!
   houston-brakeman!
+  houston-conversations!
   houston-core!
   houston-dashboards!
   houston-feedback!

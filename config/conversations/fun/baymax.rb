@@ -1,4 +1,4 @@
-Houston::Slack.config do
+Houston::Conversations.config do
   overhear "ouch" do |e|
     e.reply "On a scale of 1 to 10, how would you rate your pain?",
       attachments: [{

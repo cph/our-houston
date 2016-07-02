@@ -1,6 +1,6 @@
-Houston::Slack.config do
+Houston::Conversations.config do
   listen_for "what is on staging" do |e|
-    e.typing
+    e.responding
 
     pulls = Houston.github.org_issues(Houston.config.github[:organization], labels: "on-staging", filter: "all")
     e.reply "There are no pull requests on Staging" if pulls.none?

@@ -1,11 +1,11 @@
-Houston::Slack.config do
+Houston::Conversations.config do
   listen_for "is it a casual day {{date:core.date.future}}",
              "is it a casual day",
              "is {{date:core.date.future}} a casual day" do |e|
 
     date = e.matched?("date") ? e.match["date"] : Date.today
 
-    e.typing
+    e.responding
     case CasualDay.check(date)
     when :cardinals_casual_day
       e.reply "Yep! It's a Cardinals Casual Day :+1:"
@@ -21,13 +21,13 @@ Houston::Slack.config do
   end
 end
 
-Houston::Slack.config do
+Houston::Conversations.config do
   listen_for "when is the next casual day",
              "how long is it until the next casual day",
              "how long until the next casual day",
              "when can I wear jeans again" do |e|
 
-    e.typing
+    e.responding
     event = CasualDay.next
     case event.recognize
     when :cardinals_casual_day

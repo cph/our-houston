@@ -1,12 +1,12 @@
 require_relative "../../../lib/side_project/base"
 require "ostruct"
 
-Houston::Slack.config do
+Houston::Conversations.config do
   listen_for "deploy {{number:core.number.integer.positive}}",
              # A complete regex looks like this: http://stackoverflow.com/a/12093994/731300
              %q{deploy (?<branch>[\w\d\+\-\._\/]+)} do |e|
 
-    e.typing
+    e.responding
 
     unless e.user
       e.reply "I'm sorry. I don't know who you are."
@@ -25,7 +25,9 @@ Houston::Slack.config do
     Rails.logger.info "[houston:deploy] starting deploy of #{target} #{value}"
     Houston::SideProject::Deploy.start!(e, target, value)
   end
+end
 
+Houston::Slack.config do
   slash("deploy") do |e|
     unless e.user
       e.respond! "I'm sorry. I don't know who you are."

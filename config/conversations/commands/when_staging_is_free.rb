@@ -1,4 +1,4 @@
-Houston::Slack.config do
+Houston::Conversations.config do
   listen_for "tell me when staging is free" do |e|
     project = Project.find_by_slug e.channel.name
     if project

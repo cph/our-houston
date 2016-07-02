@@ -1,4 +1,4 @@
-Houston::Slack.config do
+Houston::Conversations.config do
   overhear "assign (?<type>err|itsm|cve) {{number:core.number.integer.positive}} to {{user:slack.user}}" do |e|
     alert = Houston::Alerts::Alert.find_by(type: e.match["type"], number: e.match["number"])
     unless alert

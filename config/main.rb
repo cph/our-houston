@@ -214,7 +214,6 @@ Houston.config do
   use :slack do
     token Rails.env.production? ? ENV["HOUSTON_SLACK_TOKEN"] : ENV["HOUSTON_DEV_SLACK_TOKEN"]
     typing_speed 120 # characters/second
-    listen_for("hello") { |e| e.reply "hello" }
   end
   load "conversations/**/*"
   load "slash_commands/*"

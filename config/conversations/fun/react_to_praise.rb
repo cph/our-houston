@@ -8,8 +8,8 @@ praise = %w{
   good\ job
 }.freeze
 
-Houston::Slack.config do
-  listen_for *praise do |e|
+Houston::Conversations.config do
+  listen_for *praise, context: { in: :slack } do |e|
     emoji = %w{simple_smile grin +1}.sample
 
     if e.user

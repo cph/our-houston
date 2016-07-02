@@ -66,6 +66,15 @@ gem "logeater", github: "cph/logeater", branch: "master", require: "logeater/req
 # https://github.com/DimaSamodurov/ruby-ntlm/pull/7
 gem "ruby-ntlm", github: "DimaSamodurov/ruby-ntlm", branch: "properly_resolve_ntlm_module"
 
+# Develop on houston-conversations
+gem "houston-conversations", github: "houston/houston-conversations", branch: "master"
+
+# Develop on attentive
+# gem "attentive", github: "houston/attentive", branch: "master"
+
+# Develop on slacks
+# gem "slacks", github: "houston/slacks", branch: "master"
+
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
 gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
