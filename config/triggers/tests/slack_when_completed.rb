@@ -5,12 +5,8 @@ Houston.config do
     next if test_run.branch.nil?
     next if test_run.aborted?
 
-    branch = "#{test_run.project.slug}/#{test_run.branch}"
     text = test_run.short_description(with_duration: true) + "\n"
     attachment = case test_run.result
-    when "pass"
-      { color: "#5DB64C",
-        title: "All tests passed on #{branch}" }
     when "fail"
       if test_run.fail_count > 0
         text << "```"
@@ -22,13 +18,14 @@ Houston.config do
         text << "```"
       end
 
-      { color: "#E24E32",
-        title: "#{test_run.fail_count} #{test_run.fail_count == 1 ? "test" : "tests"} failed on #{branch}" }
+      { color: "#E24E32" }
+    when "pass"
+      { color: "#5DB64C" }
     else
-      { color: "#DFCC3D",
-        title: "The tests are broken on #{branch}" }
+      { color: "#DFCC3D" }
     end
     attachment.merge!(
+      title: test_run.summary,
       title_link: test_run.url,
       fallback: attachment[:title],
       text: text,
