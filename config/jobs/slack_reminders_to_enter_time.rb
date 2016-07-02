@@ -9,7 +9,7 @@ Houston.config do
     dates_expected = date_range.select { |date| (1..5).include?(date.wday) }
     next if dates_expected.empty?
 
-    FULL_TIME_DEVELOPERS.each do |email|
+    EP_EMPLOYEES.each do |email|
       user = User.find_by_email_address(email)
       next unless user
 
