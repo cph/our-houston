@@ -1,5 +1,5 @@
 Houston::Conversations.config do
-  overhear "assign (?<type>err|itsm|cve) {{number:core.number.integer.positive}} to {{user:slack.user}}" do |e|
+  overhear "assign {{type:houston.alerts.type}} {{number:core.number.integer.positive}} to {{user:slack.user}}" do |e|
     alert = Houston::Alerts::Alert.find_by(type: e.match["type"], number: e.match["number"])
     unless alert
       e.reply "I'm sorry. I couldn't find an #{e.match["type"]} #{e.match["number"]}."
@@ -23,7 +23,7 @@ Houston::Conversations.config do
     e.react ":white_check_mark:"
   end
 
-  overhear "i will take (?<type>err|itsm|cve) {{number:core.number.integer.positive}}" do |e|
+  overhear "i will take {{type:houston.alerts.type}} {{number:core.number.integer.positive}}" do |e|
     alert = Houston::Alerts::Alert.find_by(type: e.match["type"], number: e.match["number"])
     unless alert
       e.reply "I'm sorry. I couldn't find an #{e.match["type"]} #{e.match["number"]}."
