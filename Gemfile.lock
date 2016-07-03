@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 3a84bb4be391be78aaa48ef463c0fb150f3f9da0
+  revision: 7c29d7eba14bdc5ed9acd8fafa3dfecb77fd32e5
   branch: master
   specs:
     houston-core (0.7.0.beta3)
@@ -153,7 +153,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: b733c91a75ab8011f7ec0a2c494bf1cc5f6385d7
+  revision: 2ccd25019df476d3f844271db5a0c478ea55b551
   branch: master
   specs:
     houston-feedback (0.0.1)
