@@ -8,6 +8,8 @@ Houston.config.at "6:30pm", "repo:prune", every: :sunday do
     # or any branch which is the head or target
     # of an open pull request.
     protected_branches = %w{master beta dev old-angular-version}.to_set
+    next unless project.repo.respond_to? :pull_requests
+
     project.repo.pull_requests.each do |pr|
       protected_branches.add(pr.head.ref).add(pr.base.ref)
     end
