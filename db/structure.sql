@@ -92,7 +92,8 @@ CREATE TABLE alerts (
     text character varying(255),
     requires_verification boolean DEFAULT false NOT NULL,
     verified boolean DEFAULT false NOT NULL,
-    suppressed boolean DEFAULT false NOT NULL
+    suppressed boolean DEFAULT false NOT NULL,
+    props jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3381,6 +3382,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160510233329');
 INSERT INTO schema_migrations (version) VALUES ('20160520201427');
 
 INSERT INTO schema_migrations (version) VALUES ('20160618181128');
+
+INSERT INTO schema_migrations (version) VALUES ('20160625170737');
 
 INSERT INTO schema_migrations (version) VALUES ('20160625203412');
 

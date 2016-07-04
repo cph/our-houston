@@ -34,6 +34,7 @@ Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" 
       summary: ticket["subject"],
       environment_name: "production",
       text: ticket["description"],
+      props: ticket.pick("collaborator_ids"),
       url: "https://#{ZENDESK_HOST}/agent/tickets/#{ticket["id"]}" } }
 
 end
