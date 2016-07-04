@@ -27,7 +27,7 @@ Houston.config do
     attachment.merge!(
       title: test_run.summary,
       title_link: test_run.url,
-      fallback: attachment[:title],
+      fallback: test_run.summary,
       text: text,
       mrkdwn_in: %w{text})
 
