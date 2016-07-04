@@ -467,7 +467,8 @@ CREATE TABLE feedback_comments (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     customer_id integer,
-    average_signal_strength double precision
+    average_signal_strength double precision,
+    archived boolean DEFAULT false NOT NULL
 );
 
 
@@ -3386,4 +3387,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160625203412');
 INSERT INTO schema_migrations (version) VALUES ('20160625221840');
 
 INSERT INTO schema_migrations (version) VALUES ('20160625230420');
+
+INSERT INTO schema_migrations (version) VALUES ('20160704144651');
 
