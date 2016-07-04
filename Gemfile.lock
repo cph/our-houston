@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 2bacc5ab295e7eca9339a2b9f420977cd1b75abc
+  revision: a0e37672b7e63ec9714e76be9242bfbbde3afac8
   branch: master
   specs:
     houston-core (0.7.0.beta3)
@@ -187,6 +187,13 @@ GIT
       attentive
       houston-conversations (>= 0.1.0)
       slacks (>= 0.4.0)
+
+GIT
+  remote: git://github.com/houston/houston-testing_report.git
+  revision: 15c3cbc0e58ff36436817c3f30f0793b7c599195
+  branch: master
+  specs:
+    houston-testing_report (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -621,6 +628,7 @@ DEPENDENCIES
   houston-scheduler!
   houston-slack!
   houston-support_form!
+  houston-testing_report!
   itsm!
   letter_opener
   logeater!

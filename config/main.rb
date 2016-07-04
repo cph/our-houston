@@ -193,6 +193,7 @@ Houston.config do
   use :dashboards
   use :reports
   use :support_form
+  use :testing_report
   use :brakeman
   use :nanoconfs
 
