@@ -9,7 +9,7 @@ praise = %w{
 }.freeze
 
 Houston::Conversations.config do
-  listen_for *praise, context: { in: :slack } do |e|
+  listen_for *praise, context: { in: [:conversation, :slack] } do |e|
     emoji = %w{simple_smile grin +1}.sample
 
     if e.user
