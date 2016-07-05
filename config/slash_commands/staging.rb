@@ -1,6 +1,6 @@
 Houston::Slack.config do
   slash("staging") do |e|
-    if e.text.blank?
+    if e.message.blank?
       pulls = Houston.github.org_issues(Houston.config.github[:organization], labels: "on-staging", filter: "all")
       if pulls.none?
         message = "There are no pull requests on Staging"
@@ -13,7 +13,7 @@ Houston::Slack.config do
         end
       end
     else
-      project = Project.find_by_slug e.text
+      project = Project.find_by_slug e.message
       if project
         pull = list_pull_requests_on_staging_for_project(project).first
         if pull.nil?
@@ -24,7 +24,7 @@ Houston::Slack.config do
           message << "\n"
         end
       else
-        message = "I don't have a project with the slug *#{e.text}*"
+        message = "I don't have a project with the slug *#{e.message}*"
       end
     end
     e.respond! message
