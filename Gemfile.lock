@@ -11,6 +11,7 @@ GIT
   branch: master
   specs:
     houston-dashboards (0.0.1)
+      houston-core (>= 0.7.0.beta4)
       ruby-ntlm
       savon (~> 2.0)
 
@@ -76,18 +77,19 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: 242e133711d514bd3856307048928d68b95b6879
+  revision: cfc318d8febea95defc6d28823c43acfcc36e6d2
   branch: master
   specs:
     houston-alerts (0.0.1)
-      houston-core (>= 0.7.0.beta2)
+      houston-core (>= 0.7.0.beta4)
 
 GIT
   remote: git://github.com/houston/houston-brakeman.git
-  revision: e0994c243bb304cc4e5e133a20d0168d49cc9790
+  revision: 6812db460cadd921c96b14a07fbf45524177587a
   branch: master
   specs:
     houston-brakeman (0.0.1)
+      houston-core (>= 0.7.0.beta4)
 
 GIT
   remote: git://github.com/houston/houston-conversations.git
@@ -97,14 +99,14 @@ GIT
     houston-conversations (0.1.0)
       attentive
       concurrent-ruby
-      houston-core (>= 0.7.0.beta3)
+      houston-core (>= 0.7.0.beta4)
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 71cff1c01b39c6998c6bfd568410c3713e7ad99a
+  revision: 5944f85eacb90ae62808db9aa6e6b5364aed153a
   branch: master
   specs:
-    houston-core (0.7.0.beta3)
+    houston-core (0.7.0.beta4)
       activerecord-import
       activerecord-pluck_in_batches
       addressable (~> 2.3.8)
@@ -139,7 +141,7 @@ GIT
       premailer (~> 1.8.6)
       progressbar
       rack-utf8_sanitizer (~> 1.3.1)
-      rails (~> 4.2.5.1)
+      rails (~> 4.2.5)
       redcarpet (~> 3.3.2)
       rufus-scheduler (~> 3.2.0)
       rugged (~> 0.24.0)
@@ -153,12 +155,12 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: f5756c6f42343aaaaa867d92dde43ef0df40ff82
+  revision: 993c5fc3a31c29e4223a5a9093a4bf09c8e5c03f
   branch: master
   specs:
     houston-feedback (0.0.1)
       activerecord-import
-      houston-core (>= 0.7.0.beta2)
+      houston-core (>= 0.7.0.beta4)
       pg_search
 
 GIT
@@ -180,58 +182,60 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: d0268e3d621d519276a935618f006699611c2429
+  revision: 2d6707721696e95b5f433daf589a842d7821cdf0
   branch: master
   specs:
     houston-slack (0.0.1)
       attentive
       houston-conversations (>= 0.1.0)
+      houston-core (>= 0.7.0.beta4)
       slacks (>= 0.4.0)
 
 GIT
   remote: git://github.com/houston/houston-testing_report.git
-  revision: c3367025d0a04db954f6ef7e8f7de0ac6b0e7ad1
+  revision: 024220e15352c43c0a6ea479f8284f1d915d187e
   branch: master
   specs:
     houston-testing_report (0.0.1)
+      houston-core (>= 0.7.0.beta4)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.2.5.2)
-      actionpack (= 4.2.5.2)
-      actionview (= 4.2.5.2)
-      activejob (= 4.2.5.2)
+    actionmailer (4.2.7)
+      actionpack (= 4.2.7)
+      actionview (= 4.2.7)
+      activejob (= 4.2.7)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (4.2.5.2)
-      actionview (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    actionpack (4.2.7)
+      actionview (= 4.2.7)
+      activesupport (= 4.2.7)
       rack (~> 1.6)
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    actionview (4.2.7)
+      activesupport (= 4.2.7)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    activejob (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activejob (4.2.7)
+      activesupport (= 4.2.7)
       globalid (>= 0.3.0)
-    activemodel (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activemodel (4.2.7)
+      activesupport (= 4.2.7)
       builder (~> 3.1)
-    activerecord (4.2.5.2)
-      activemodel (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activerecord (4.2.7)
+      activemodel (= 4.2.7)
+      activesupport (= 4.2.7)
       arel (~> 6.0)
-    activerecord-import (0.14.1)
+    activerecord-import (0.15.0)
       activerecord (>= 3.2)
     activerecord-pluck_in_batches (0.1.1)
       activerecord
-    activesupport (4.2.5.2)
+    activesupport (4.2.7)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -259,7 +263,6 @@ GEM
       faraday (>= 0.8, < 0.10)
     browser (1.1.0)
     builder (3.2.2)
-    callsite (0.0.11)
     cancan (1.6.10)
     capybara (2.7.1)
       addressable
@@ -344,7 +347,6 @@ GEM
     faraday-raise-errors (0.2.0)
       faraday
     gemoji (2.1.0)
-    git-version-bump (0.15.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     googlecharts (1.6.12)
@@ -398,15 +400,11 @@ GEM
       nokogiri (~> 1.6)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
-    meta_request (0.4.0)
-      callsite (~> 0.0, >= 0.0.11)
-      rack-contrib (~> 1.1)
-      railties (>= 3.0.0, < 5.1.0)
     method_source (0.8.2)
     mime-types (2.99.2)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
-    minitest-reporters (1.1.9)
+    minitest-reporters (1.1.10)
       ansi
       builder
       minitest (>= 5.0)
@@ -436,7 +434,7 @@ GEM
       rack (>= 1.2, < 3)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
-    oj (2.16.1)
+    oj (2.17.1)
     openxml-package (0.2.4)
       nokogiri
       ox
@@ -456,28 +454,25 @@ GEM
       css_parser (>= 1.4.5)
       htmlentities (>= 4.0.0)
     progressbar (0.21.0)
-    pry (0.10.3)
+    pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.6.4)
-    rack-contrib (1.4.0)
-      git-version-bump (~> 0.15)
-      rack (~> 1.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-utf8_sanitizer (1.3.2)
       rack (>= 1.0, < 3.0)
-    rails (4.2.5.2)
-      actionmailer (= 4.2.5.2)
-      actionpack (= 4.2.5.2)
-      actionview (= 4.2.5.2)
-      activejob (= 4.2.5.2)
-      activemodel (= 4.2.5.2)
-      activerecord (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    rails (4.2.7)
+      actionmailer (= 4.2.7)
+      actionpack (= 4.2.7)
+      actionview (= 4.2.7)
+      activejob (= 4.2.7)
+      activemodel (= 4.2.7)
+      activerecord (= 4.2.7)
+      activesupport (= 4.2.7)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.5.2)
+      railties (= 4.2.7)
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -487,9 +482,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    railties (4.2.5.2)
-      actionpack (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    railties (4.2.7)
+      actionpack (= 4.2.7)
+      activesupport (= 4.2.7)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.16.0)
@@ -554,9 +549,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    standalone_migrations (4.0.3)
-      activerecord (~> 4.2.5.1)
-      railties (~> 4.2.5.1)
+    standalone_migrations (4.0.4)
+      activerecord (~> 4.2.5, >= 4.2.5.1)
+      railties (~> 4.2.5, >= 4.2.5.1)
       rake (~> 10.0)
     strongbox (0.7.2)
       activerecord
@@ -581,7 +576,7 @@ GEM
     unicorn (5.1.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    unicorn-rails (2.2.0)
+    unicorn-rails (2.2.1)
       rack
       unicorn
     viewpoint (1.0.0)
@@ -594,7 +589,7 @@ GEM
     wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
-    webmock (1.24.3)
+    webmock (2.1.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -633,7 +628,6 @@ DEPENDENCIES
   letter_opener
   logeater!
   mechanize
-  meta_request
   minitest
   minitest-reporters
   minitest-reporters-turn_reporter
@@ -644,6 +638,7 @@ DEPENDENCIES
   simplecov-json
   skylight
   spring
+  standalone_migrations (~> 4.0.4)
   star!
   sucker_punch (~> 1.6)
   therubyracer

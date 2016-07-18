@@ -66,6 +66,41 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: actions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE actions (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    started_at timestamp without time zone NOT NULL,
+    finished_at timestamp without time zone,
+    succeeded boolean,
+    error_id integer,
+    trigger character varying,
+    params text
+);
+
+
+--
+-- Name: actions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE actions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: actions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE actions_id_seq OWNED BY actions.id;
+
+
+--
 -- Name: alerts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -557,39 +592,6 @@ ALTER SEQUENCE feedback_customers_id_seq OWNED BY feedback_customers.id;
 
 
 --
--- Name: jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE jobs (
-    id integer NOT NULL,
-    name character varying NOT NULL,
-    started_at timestamp without time zone NOT NULL,
-    finished_at timestamp without time zone,
-    succeeded boolean,
-    error_id integer
-);
-
-
---
--- Name: jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE jobs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE jobs_id_seq OWNED BY jobs.id;
-
-
---
 -- Name: measurements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -778,6 +780,38 @@ CREATE SEQUENCE oauth_providers_id_seq
 --
 
 ALTER SEQUENCE oauth_providers_id_seq OWNED BY oauth_providers.id;
+
+
+--
+-- Name: persistent_triggers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE persistent_triggers (
+    id integer NOT NULL,
+    type character varying NOT NULL,
+    value text NOT NULL,
+    params text DEFAULT '{}'::text NOT NULL,
+    action character varying NOT NULL
+);
+
+
+--
+-- Name: persistent_triggers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE persistent_triggers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: persistent_triggers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE persistent_triggers_id_seq OWNED BY persistent_triggers.id;
 
 
 --
@@ -1712,6 +1746,13 @@ ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY actions ALTER COLUMN id SET DEFAULT nextval('actions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY alerts ALTER COLUMN id SET DEFAULT nextval('alerts_id_seq'::regclass);
 
 
@@ -1789,13 +1830,6 @@ ALTER TABLE ONLY feedback_customers ALTER COLUMN id SET DEFAULT nextval('feedbac
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY jobs ALTER COLUMN id SET DEFAULT nextval('jobs_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY measurements ALTER COLUMN id SET DEFAULT nextval('measurements_id_seq'::regclass);
 
 
@@ -1825,6 +1859,13 @@ ALTER TABLE ONLY nanoconf_presentations ALTER COLUMN id SET DEFAULT nextval('nan
 --
 
 ALTER TABLE ONLY oauth_providers ALTER COLUMN id SET DEFAULT nextval('oauth_providers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY persistent_triggers ALTER COLUMN id SET DEFAULT nextval('persistent_triggers_id_seq'::regclass);
 
 
 --
@@ -1989,6 +2030,14 @@ ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq':
 
 
 --
+-- Name: actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY actions
+    ADD CONSTRAINT actions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: alerts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2077,14 +2126,6 @@ ALTER TABLE ONLY feedback_customers
 
 
 --
--- Name: jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY jobs
-    ADD CONSTRAINT jobs_pkey PRIMARY KEY (id);
-
-
---
 -- Name: measurements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2122,6 +2163,14 @@ ALTER TABLE ONLY nanoconf_presentations
 
 ALTER TABLE ONLY oauth_providers
     ADD CONSTRAINT oauth_providers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: persistent_triggers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY persistent_triggers
+    ADD CONSTRAINT persistent_triggers_pkey PRIMARY KEY (id);
 
 
 --
@@ -2325,6 +2374,13 @@ ALTER TABLE ONLY versions
 
 
 --
+-- Name: index_actions_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_actions_on_name ON actions USING btree (name);
+
+
+--
 -- Name: index_alerts_commits_on_alert_id_and_commit_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2455,13 +2511,6 @@ CREATE INDEX index_feedback_comments_on_tsvector ON feedback_comments USING gin 
 --
 
 CREATE UNIQUE INDEX index_feedback_comments_user_flags_on_user_id_and_comment_id ON feedback_comments_user_flags USING btree (user_id, comment_id);
-
-
---
--- Name: index_jobs_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_jobs_on_name ON jobs USING btree (name);
 
 
 --
@@ -3394,4 +3443,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160625230420');
 INSERT INTO schema_migrations (version) VALUES ('20160704144651');
 
 INSERT INTO schema_migrations (version) VALUES ('20160704173318');
+
+INSERT INTO schema_migrations (version) VALUES ('20160711170921');
+
+INSERT INTO schema_migrations (version) VALUES ('20160713204605');
+
+INSERT INTO schema_migrations (version) VALUES ('20160715173039');
 
