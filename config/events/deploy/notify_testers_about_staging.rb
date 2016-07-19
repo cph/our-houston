@@ -2,12 +2,15 @@ Houston.config do
   on "deploy:succeeded" => "deploy:slack-testers-when-staging-changes" do
     project = deploy.project
     if deploy.environment == "staging" && deploy.branch && project.on_github?
-      pr_deployed = project.repo.pull_requests.find { |pr| pr.head.ref == deploy.branch }
-      if pr_deployed
+      if pr_deployed = project.pull_requests.open.find_by(head_ref: deploy.branch)
+
+        # Remove the `on-staging` label from any other pull requests
         on_staging = project.repo.issues(labels: "on-staging").map(&:number)
         on_staging.each do |pr_number|
           project.repo.remove_label_from("on-staging", pr_number) unless pr_number == pr_deployed.number
         end
+
+        # Raise events about changes to Staging
         if on_staging.member?(pr_deployed.number)
           Houston.observer.fire "staging:updated", deploy: deploy, pull_request: pr_deployed
         else
