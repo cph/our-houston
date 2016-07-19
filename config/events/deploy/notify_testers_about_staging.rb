@@ -1,8 +1,3 @@
-Houston.register_events {{
-  "staging:changed" => params("deploy", "pull_request").desc("A new pull request is on Staging"),
-  "staging:updated" => params("deploy", "pull_request").desc("New commits have been deployed on Staging")
-}}
-
 Houston.config do
   on "deploy:succeeded" => "deploy:slack-testers-when-staging-changes" do
     project = deploy.project

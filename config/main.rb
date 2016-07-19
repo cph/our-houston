@@ -27,6 +27,22 @@ require_relative "../lib/time_helpers"
 require_relative "../lib/engineyard_helpers"
 require_relative "../lib/houston/engine"
 
+
+
+Houston.register_events {{
+  "github:pull:label-removed" => params("pull_request", "label").desc("A label was removed from a pull request"),
+  "github:pull:label-added" => params("pull_request", "label").desc("A label was added to a pull request"),
+  "staging:changed" => params("deploy", "pull_request").desc("A new pull request is on Staging"),
+  "staging:updated" => params("deploy", "pull_request").desc("New commits have been deployed on Staging"),
+  "staging:{project}:free" => desc("The staging environment for project {project} is free"),
+
+  # TODO: move these to the houston-nanoconfs module
+  "nanoconf:create" => params("presentation").desc("..."),
+  "nanoconf:update" => params("presentation").desc("...")
+}}
+
+
+
 # Configure Houston
 Houston.config do
 

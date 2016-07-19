@@ -1,9 +1,3 @@
-# Temporary
-Houston.register_events {{
-  "nanoconf:create" => params("presentation").desc("..."),
-  "nanoconf:update" => params("presentation").desc("...")
-}}
-
 Houston.config do
   on "nanoconf:create" => "nanoconf:slack-officer-when-nanoconf-created" do
     presentation_url = "http://#{Houston.config.host}/nanoconfs/#{presentation.id}"

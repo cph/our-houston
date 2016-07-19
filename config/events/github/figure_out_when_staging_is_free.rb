@@ -1,9 +1,3 @@
-Houston.register_events {{
-  "github:pull:label-removed" => params("pull_request", "label").desc("A label was removed from a pull request"),
-  "github:pull:label-added"   => params("pull_request", "label").desc("A label was added to a pull request"),
-  "staging:{project}:free"    => desc("The staging environment for project {project} is free")
-}}
-
 Houston.config do
   on "github:pull:updated" => "github:fire-events-for-label-changes" do
     next unless changes.key? "json_labels"
