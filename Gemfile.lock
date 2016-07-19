@@ -103,7 +103,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: f7ab22cd717f6ffd9b9ff4cd2219ca0ba176fbc2
+  revision: c9293ed394bf11190c267fdf1a29b6a26c914990
   branch: master
   specs:
     houston-core (0.7.0.beta4)

@@ -73,12 +73,14 @@ Houston.config.abilities do |user|
     #  - update Sprints
     #  - change Milestones' tickets
     #  - break tickets into tasks
+    #  - see actions and triggers
     if user.developer?
       can :read, [Commit, ReleaseChange]
       can :manage, Sprint
       can :update_tickets, Milestone
       can :manage, Task
       can :manage, Github::PullRequest
+      can :read, Action
       can :read, :star_report
     end
 
