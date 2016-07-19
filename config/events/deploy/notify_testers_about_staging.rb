@@ -14,10 +14,10 @@ Houston.config do
           project.repo.remove_label_from("on-staging", pr_number) unless pr_number == pr_deployed.number
         end
         if on_staging.member?(pr_deployed.number)
-          Houston.observer.fire "staging:updated", deploy, pr_deployed
+          Houston.observer.fire "staging:updated", deploy: deploy, pull_request: pr_deployed
         else
           project.repo.add_label_to "on-staging", pr_deployed
-          Houston.observer.fire "staging:changed", deploy, pr_deployed
+          Houston.observer.fire "staging:changed", deploy: deploy, pull_request: pr_deployed
         end
       end
     end
