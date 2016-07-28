@@ -17,10 +17,11 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-nanoconfs.git
-  revision: 41d110e4ee3992ef476d6805a9716881dc7a44a7
+  revision: ead80183777aec0425a4b75597922e87fa60d154
   branch: master
   specs:
     houston-nanoconfs (0.0.1)
+      houston-core (>= 0.7.0.beta4)
 
 GIT
   remote: git://github.com/cph/houston-reports.git
