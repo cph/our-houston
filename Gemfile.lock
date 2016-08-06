@@ -78,11 +78,11 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: ae4bd0956d1cbc7bca047bf71a3b66adf136355b
+  revision: 79425d87be72b10702c43d8ecd08b5c701edaa86
   branch: master
   specs:
     houston-alerts (0.0.1)
-      houston-core (>= 0.7.0.beta4)
+      houston-core (>= 0.7.0)
 
 GIT
   remote: git://github.com/houston/houston-brakeman.git
@@ -104,10 +104,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 790d42a310a220c1136f9fd2665f5a67dfa6d88f
+  revision: 5b75cb8d8cbd1d6f6da1b21ffdec013e1f464956
   branch: master
   specs:
-    houston-core (0.7.0.beta4)
+    houston-core (0.7.0)
       activerecord-import
       activerecord-pluck_in_batches
       addressable (~> 2.3.8)
@@ -166,11 +166,11 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
-  revision: 638642012ea4c561159d028dd83174ca5cc9e76e
+  revision: 45de78bdacf36b445adb9d9ddbcb0a328b8882e1
   branch: master
   specs:
     houston-roadmaps (0.1.0)
-      houston-core (>= 0.7.0.beta2)
+      houston-core (>= 0.7.0)
       neat-rails (>= 0.2.0)
 
 GIT
