@@ -104,7 +104,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: d496999d756b5ca655510c0fce61948d09993459
+  revision: 96ca85171f71e82511694e00aeb45d5a3cb86803
   branch: master
   specs:
     houston-core (0.7.0)
@@ -175,11 +175,11 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: 870ca798775e8fa3572c3965f0c73108d959f372
+  revision: d869289400c60c24e1b09be5bc3249d55bb17212
   branch: master
   specs:
     houston-scheduler (0.0.1)
-      houston-core (>= 0.7.0.beta2)
+      houston-core (>= 0.7.0)
 
 GIT
   remote: git://github.com/houston/houston-slack.git
