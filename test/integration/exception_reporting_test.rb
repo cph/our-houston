@@ -16,12 +16,12 @@ class ExceptionReportingTest < ActionDispatch::IntegrationTest
   context "when an exception occurs during a normal web hook, it" do
     setup do
       # Suppose we're listening for this
-      Houston.observer.on("hooks:something") { }
+      Houston.observer.on("hooks:project:something") { }
     end
 
     should "report the exception" do
       begin
-        mock(Houston.observer).fire(anything, anything, anything) { raise "hell" }
+        mock(Houston.observer).fire("hooks:project:something", anything) { raise "hell" }
         post "/projects/#{project.slug}/hooks/something"
       rescue
       end
@@ -34,12 +34,12 @@ class ExceptionReportingTest < ActionDispatch::IntegrationTest
   context "when an exception occurs during the exception_report webhook, it" do
     setup do
       # Suppose we're listening for this
-      Houston.observer.on("hooks:exception_report") { }
+      Houston.observer.on("hooks:project:exception_report") { }
     end
 
     should "not report the exception" do
       begin
-        mock(Houston.observer).fire(anything, anything, anything) { raise "hell" }
+        mock(Houston.observer).fire("hooks:project:exception_report", anything) { raise "hell" }
         post "/projects/#{project.slug}/hooks/exception_report"
       rescue
       end
