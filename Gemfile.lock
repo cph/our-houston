@@ -156,13 +156,14 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 993c5fc3a31c29e4223a5a9093a4bf09c8e5c03f
+  revision: ce332cf85649cc36c0a696a774530276c7484632
   branch: master
   specs:
     houston-feedback (0.0.1)
       activerecord-import
       houston-core (>= 0.7.0.beta4)
       pg_search
+      pluck_map
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
@@ -451,6 +452,7 @@ GEM
       activesupport (>= 3.1)
       arel
     pkg-config (1.1.7)
+    pluck_map (0.1.0)
     premailer (1.8.7)
       css_parser (>= 1.4.5)
       htmlentities (>= 4.0.0)
