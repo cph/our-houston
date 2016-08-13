@@ -1,8 +1,8 @@
-Houston.config.on "deploy:succeeded" => "deploy:slack-deployer-of-finished-deploy" do
-  next if deploy.build_release.ignore?
+Houston.config do
+  on "deploy:succeeded" => "deploy:slack-deployer-of-finished-deploy" do
+    next if deploy.build_release.ignore?
+    next unless deployer = deploy.user
 
-  deployer = deploy.user
-  if deployer
     message = "#{deployer.first_name}, your deploy of #{deploy.project.slug} " <<
               "to #{deploy.environment_name} just finished. " <<
               slack_link_to("Click here to write release notes",
@@ -15,7 +15,17 @@ Houston.config.on "deploy:succeeded" => "deploy:slack-deployer-of-finished-deplo
     slack_send_message_to message, deployer
   end
 
-  Houston.try({max_tries: 3}, Net::OpenTimeout) do
-    DeployNotification.new(deploy).deliver! # <-- after extracting releases, move this to Releases
+  on "deploy:succeeded" => "deploy:email-deployer-of-finished-deploy" do
+    next if deploy.build_release.ignore?
+
+    maintainers = deploy.project.maintainers
+    maintainers.each do |maintainer|
+      Houston.deliver! ProjectNotification.maintainer_of_deploy(maintainer, deploy)
+    end
+
+    deployer = deploy.deployer
+    if !deployer.blank? && !maintainers.with_email_address(deployer).exists?
+      Houston.deliver! ProjectNotification.maintainer_of_deploy(deployer, deploy)
+    end
   end
 end

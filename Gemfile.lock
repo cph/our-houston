@@ -78,7 +78,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: 79425d87be72b10702c43d8ecd08b5c701edaa86
+  revision: 252a2b8efa0427914967875ce079788fc7d57082
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -104,10 +104,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 96ca85171f71e82511694e00aeb45d5a3cb86803
+  revision: 1b4fa2abf77f8f1d3a35c05ceb0e486eba8bbd74
   branch: master
   specs:
-    houston-core (0.7.0)
+    houston-core (0.8.0.pre)
       activerecord-import
       activerecord-pluck_in_batches
       addressable (~> 2.3.8)
@@ -176,7 +176,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: d869289400c60c24e1b09be5bc3249d55bb17212
+  revision: f9427ab1f82aa3342015e166115d520a4e3726da
   branch: master
   specs:
     houston-scheduler (0.0.1)
@@ -195,7 +195,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-testing_report.git
-  revision: afaa1c36ac07c6686d9629b7044bedca671fc712
+  revision: f5c1ab3bf027ac9c996d51dcd88de18a7ce2d7af
   branch: master
   specs:
     houston-testing_report (0.0.1)
@@ -204,40 +204,40 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.2.7)
-      actionpack (= 4.2.7)
-      actionview (= 4.2.7)
-      activejob (= 4.2.7)
+    actionmailer (4.2.7.1)
+      actionpack (= 4.2.7.1)
+      actionview (= 4.2.7.1)
+      activejob (= 4.2.7.1)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (4.2.7)
-      actionview (= 4.2.7)
-      activesupport (= 4.2.7)
+    actionpack (4.2.7.1)
+      actionview (= 4.2.7.1)
+      activesupport (= 4.2.7.1)
       rack (~> 1.6)
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (4.2.7)
-      activesupport (= 4.2.7)
+    actionview (4.2.7.1)
+      activesupport (= 4.2.7.1)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    activejob (4.2.7)
-      activesupport (= 4.2.7)
+    activejob (4.2.7.1)
+      activesupport (= 4.2.7.1)
       globalid (>= 0.3.0)
-    activemodel (4.2.7)
-      activesupport (= 4.2.7)
+    activemodel (4.2.7.1)
+      activesupport (= 4.2.7.1)
       builder (~> 3.1)
-    activerecord (4.2.7)
-      activemodel (= 4.2.7)
-      activesupport (= 4.2.7)
+    activerecord (4.2.7.1)
+      activemodel (= 4.2.7.1)
+      activesupport (= 4.2.7.1)
       arel (~> 6.0)
     activerecord-import (0.15.0)
       activerecord (>= 3.2)
     activerecord-pluck_in_batches (0.1.1)
       activerecord
-    activesupport (4.2.7)
+    activesupport (4.2.7.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -372,7 +372,7 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httpclient (2.8.0)
+    httpclient (2.8.1)
     httpi (2.4.2)
       rack
       socksify
@@ -417,7 +417,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     neat-rails (0.5.0)
-    nested_editor_for (0.1.0)
+    nested_editor_for (0.1.1)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
     net-ldap (0.12.1)
@@ -445,7 +445,7 @@ GEM
       nokogiri
       openxml-package (>= 0.2.0)
     orm_adapter (0.5.0)
-    ox (2.4.3)
+    ox (2.4.4)
     pg (0.18.4)
     pg_search (1.0.6)
       activerecord (>= 3.1)
@@ -466,16 +466,16 @@ GEM
       rack (>= 1.0)
     rack-utf8_sanitizer (1.3.2)
       rack (>= 1.0, < 3.0)
-    rails (4.2.7)
-      actionmailer (= 4.2.7)
-      actionpack (= 4.2.7)
-      actionview (= 4.2.7)
-      activejob (= 4.2.7)
-      activemodel (= 4.2.7)
-      activerecord (= 4.2.7)
-      activesupport (= 4.2.7)
+    rails (4.2.7.1)
+      actionmailer (= 4.2.7.1)
+      actionpack (= 4.2.7.1)
+      actionview (= 4.2.7.1)
+      activejob (= 4.2.7.1)
+      activemodel (= 4.2.7.1)
+      activerecord (= 4.2.7.1)
+      activesupport (= 4.2.7.1)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.7)
+      railties (= 4.2.7.1)
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -485,9 +485,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    railties (4.2.7)
-      actionpack (= 4.2.7)
-      activesupport (= 4.2.7)
+    railties (4.2.7.1)
+      actionpack (= 4.2.7.1)
+      activesupport (= 4.2.7.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.17.0)
@@ -534,7 +534,7 @@ GEM
     simplecov-json (0.2)
       json
       simplecov
-    skylight (0.10.5)
+    skylight (0.10.6)
       activesupport (>= 3.0.0)
     slacks (0.4.0)
       concurrent-ruby

@@ -1,116 +1,109 @@
 # This block uses the DSL defined by CanCan.
 # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
-Houston.config.abilities do |user|
+Houston.config do
 
-  # Anyone can see the Nanoconf schedule
-  can :read, Houston::Nanoconfs::Presentation
 
-  if user.nil?
+  role "Maintainer" do |team|
+    can :manage, Release, project_id: team.project_ids
+    can :update, Project, id: team.project_ids
+    can :close, Ticket, project_id: team.project_ids
+    can :estimate, Project, id: team.project_ids # <-- !todo: remove
+  end
 
-    # Customers are allowed to see Release Notes of products, for production
-    can :read, Release do |release|
-      release.environment_name == "production"
-    end
 
-    # Customers are allowed to see Features, Improvements, and Bugfixes
-    can :read, ReleaseChange, tag_slug: %w{feature improvement fix}
+  role "Developer" do |team|
+    can :read, Commit, project_id: team.project_ids
+    can :update_tickets, Milestone, project_id: team.project_ids
+    can :manage, Task, project_id: team.project_ids
+    can :create, Ticket, project_id: team.project_ids
+    can :manage, Github::PullRequest, project_id: team.project_ids
+    can :manage, Houston::Alerts::Alert, project_id: team.project_ids
 
-  else
+    # globally, right now
+    can :manage, Sprint
+  end
 
-    # Everyone can see Releases to staging
-    can :read, Release
 
-    # Everyone is allowed to see Features, Improvements, and Bugfixes
-    can :read, ReleaseChange, tag_slug: %w{feature improvement fix}
+  # Testers can create tickets and be assigned Alerts
+  role "Tester" do |team|
+    can :create, Ticket, project_id: team.project_ids
+    can :manage, Houston::Alerts::Alert, project_id: team.project_ids
+  end
 
-    # Everyone can see Projects
-    can :read, Project
 
-    # Everyone can see Tickets
-    can :read, Ticket
+  # Product Owners can prioritize tickets
+  role "Product Owner" do |team|
+    can :prioritize, Project, id: team.project_ids
+  end
 
-    # Everyone can see Roadmaps
-    can :read, Roadmap
-    can :read, Milestone
 
-    # Everyone can see Users and update themselves
-    can :read, User
-    can :update, user
+  abilities do |user|
+    if user.nil?
 
-    # Everyone can make themselves a "Follower"
-    can :create, Role, name: "Follower"
-
-    # Everyone can remove themselves from a role
-    can :destroy, Role, user_id: user.id
-
-    # Everyone can edit their own testing notes
-    can [:update, :destroy], TestingNote, user_id: user.id
-
-    # Everyone can see project quotas
-    can :read, Houston::Scheduler::ProjectQuota
-
-    # Everyone can read and tag and create feedback
-    can :read, Houston::Feedback::Comment
-    can :tag, Houston::Feedback::Comment
-    can :create, Houston::Feedback::Comment
-
-    # Everyone can update their own feedback
-    can [:update, :destroy], Houston::Feedback::Comment, user_id: user.id
-
-    # The Nanoconf officer can update all the presentations
-    can :update, Houston::Nanoconfs::Presentation if user.email == "chase.clettenberg@cph.org"
-
-    # Folks can update their own presentations
-    can :update, Houston::Nanoconfs::Presentation, presenter_id: user.id
-
-    # If you're signed in, you can create a Nanoconfs
-    can :create, Houston::Nanoconfs::Presentation
-
-    # Developers can
-    #  - create tickets
-    #  - see other kinds of Release Changes (like Refactors)
-    #  - update Sprints
-    #  - change Milestones' tickets
-    #  - break tickets into tasks
-    #  - see actions and triggers
-    if user.developer?
-      can :read, [Commit, ReleaseChange]
-      can :manage, Sprint
-      can :update_tickets, Milestone
-      can :manage, Task
-      can :manage, Github::PullRequest
-      can :read, Action
-      can :read, :star_report
-    end
-
-    # Testers and Developers can
-    #  - see and comment on all testing notes
-    #  - create tickets
-    #  - see and manage alerts
-    if user.tester? or user.developer?
-      can :create, Ticket
-      can [:create, :read], TestingNote
-      can :manage, Houston::Alerts::Alert
-    end
-
-    # The following abilities are project-specific and depend on one's role
-    roles = user.roles.participants
-    if roles.any?
-
-      # Everyone can see and comment on Testing Reports for projects they are involved in
-      can [:create, :read], TestingNote, project_id: roles.pluck(:project_id)
-
-      # Maintainers can manage Releases, close and estimate Tickets, and update Projects
-      roles.maintainers.pluck(:project_id).tap do |project_ids|
-        can :manage, Release, project_id: project_ids
-        can :update, Project, id: project_ids
-        can :close, Ticket, project_id: project_ids
-        can :estimate, Project, id: project_ids # <-- !todo: remove
+      # Customers are allowed to see Release Notes of products, for production
+      can :read, Release do |release|
+        release.environment_name == "production"
       end
 
-      # Product Owners can prioritize tickets
-      can :prioritize, Project, id: roles.owners.pluck(:project_id)
+    else
+
+      if user.admin?
+
+        # Admins can see Actions
+        can :read, Action
+
+      end
+
+      # Employees can see Teams
+      can :read, Team
+
+      # Employees can see the Nanoconf schedule
+      can :read, Houston::Nanoconfs::Presentation
+
+      # Employees can see Releases to staging
+      can :read, Release
+
+      # Employees can see Projects
+      can :read, Project
+
+      # Employees can see Tickets
+      can :read, Ticket
+
+      # Employees can see Roadmaps
+      can :read, Roadmap
+      can :read, Milestone
+
+      # Employees can see Users and update themselves
+      can :read, User
+      can :update, user
+
+      # Employees can edit their own testing notes
+      can [:update, :destroy], TestingNote, user_id: user.id
+
+      # Employees can see project quotas
+      can :read, Houston::Scheduler::ProjectQuota
+
+      # Employees can read and tag and create feedback
+      can :read, Houston::Feedback::Comment
+      can :tag, Houston::Feedback::Comment
+      can :create, Houston::Feedback::Comment
+
+      # Employees can update their own feedback
+      can [:update, :destroy], Houston::Feedback::Comment, user_id: user.id
+
+      # The Nanoconf officer can update all the presentations
+      can :update, Houston::Nanoconfs::Presentation if user.email == "chase.clettenberg@cph.org"
+
+      # Folks can update their own presentations
+      can :update, Houston::Nanoconfs::Presentation, presenter_id: user.id
+
+      # If you're signed in, you can create a Nanoconfs
+      can :create, Houston::Nanoconfs::Presentation
+
+      # Employees can see and comment on Testing Reports for projects they are involved in
+      can [:create, :read], TestingNote, project_id: user.teams.project_ids
+
     end
   end
 end
