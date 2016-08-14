@@ -37,6 +37,11 @@ Houston.register_events {{
   "staging:{project}:free" => desc("The staging environment for project {project} is free")
 }}
 
+Houston.add_navigation_renderer :activity_feed do
+  name "Activity"
+  path { Houston::Engine.routes.url_helpers.activity_feed_path }
+end
+
 
 
 # Configure Houston
@@ -157,7 +162,8 @@ Houston.config do
   # For examples, see config/initializers/add_navigation_renderers.rb
   #
   # These are the menu items that will be shown in Houston
-  navigation       :alerts,
+  navigation       :activity_feed,
+                   :alerts,
                    :roadmaps,
                    :sprint,
                    :pulls
