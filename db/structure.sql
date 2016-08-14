@@ -865,11 +865,9 @@ CREATE TABLE projects (
     ci_server_name character varying(255) DEFAULT 'None'::character varying NOT NULL,
     min_passing_verdicts integer DEFAULT 1 NOT NULL,
     error_tracker_name character varying(255) DEFAULT 'None'::character varying,
-    extended_attributes hstore DEFAULT ''::hstore NOT NULL,
     code_climate_repo_token character varying(255) DEFAULT ''::character varying NOT NULL,
     last_ticket_tracker_sync_at timestamp without time zone,
     ticket_tracker_sync_started_at timestamp without time zone,
-    view_options hstore DEFAULT ''::hstore NOT NULL,
     feature_states hstore DEFAULT ''::hstore NOT NULL,
     selected_features text[],
     head_sha character varying(255),
@@ -1702,11 +1700,9 @@ CREATE TABLE users (
     legacy_role character varying(255) DEFAULT 'Guest'::character varying,
     authentication_token character varying(255),
     legacy_administrator boolean DEFAULT false,
-    unfuddle_id integer,
     first_name character varying(255),
     last_name character varying(255),
     retired_at timestamp without time zone,
-    view_options hstore DEFAULT ''::hstore NOT NULL,
     email_addresses text[],
     invitation_created_at timestamp without time zone,
     environments_subscribed_to text[] DEFAULT '{}'::text[] NOT NULL,
@@ -3555,4 +3551,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160715173039');
 INSERT INTO schema_migrations (version) VALUES ('20160812233255');
 
 INSERT INTO schema_migrations (version) VALUES ('20160813001242');
+
+INSERT INTO schema_migrations (version) VALUES ('20160814024129');
 
