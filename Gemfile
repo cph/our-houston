@@ -61,9 +61,6 @@ gem "star", github: "cph/star", branch: "master"
 gem "itsm", github: "cph/itsm", branch: "master"
 gem "logeater", github: "cph/logeater", branch: "master", require: "logeater/request"
 
-# 4.0.4 fixes a bug where we couldn't upgrade to Rails 4.2.7
-gem "standalone_migrations", "~> 4.0.4"
-
 # This gem hasn't been maintained... :`(
 # https://github.com/DimaSamodurov/ruby-ntlm/pull/7
 gem "ruby-ntlm", github: "DimaSamodurov/ruby-ntlm", branch: "properly_resolve_ntlm_module"
