@@ -13,7 +13,7 @@ gem "mechanize"
 
 group :development do
   gem "letter_opener"
-  gem "unicorn-rails"
+  gem "puma"
   gem "spring"
 
   # Better error messages
