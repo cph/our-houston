@@ -1,0 +1,22 @@
+<h1>Staging</h1>
+
+<div id="staging">
+  <%= render "staging" %>
+</div>
+
+<%= content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    var $staging = $('#staging');
+
+    new Refresher()
+      .container('#container')
+      .interval(45 * 1000) // 45 seconds
+      .callback(function() {
+        $.get('/dashboards/staging').done(function(html) {
+          $staging.html(html);
+        });
+      }).render();
+  });
+</script>
+<% end %>

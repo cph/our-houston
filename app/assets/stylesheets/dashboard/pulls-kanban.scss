@@ -1,0 +1,161 @@
+#container {
+  display: flex;
+  flex-direction: column;
+}
+
+#pulls {
+  flex-grow: 100;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '.';
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&1+0,0+100 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+  }
+}
+
+$bubble-size: 14px;
+
+.kanban {
+  table-layout: fixed;
+  width: 100%;
+
+  &.kanban-data {
+    position: absolute;
+    bottom: 0;
+
+    .kanban-column { padding: 0 0 4px 0; }
+  }
+
+  td { vertical-align: bottom; }
+
+  tfoot th {
+    text-align: left;
+    padding: 0;
+    line-height: normal;
+    font-weight: normal;
+    vertical-align: top;
+    color: #444;
+    font-size: 13px;
+
+    div {
+      white-space: nowrap;
+      margin: 0 3px;
+    }
+
+    .kanban-queue-count {
+      font-size: 11px;
+      letter-spacing: -1px;
+      text-indent: -1px;
+      display: inline-block;
+      border-radius: 1em;
+      background: #444;
+      min-width: $bubble-size;
+      height: $bubble-size;
+      line-height: $bubble-size;
+      text-align: center;
+      color: black;
+      margin-left: 0.5em;
+      font-weight: bold;
+    }
+
+    .small {
+      display: block;
+      margin: 0.75em 0.75em 0;
+      font-size: 0.66em;
+      text-align: left;
+      line-height: 1.15em;
+
+      u {
+        text-decoration: none;
+        background-color: #FFB;
+      }
+    }
+  }
+
+  td.alt, th.alt { background: #efefef; }
+
+  ol, ul {
+    margin: 0;
+    padding: 0;
+    display: block;
+    overflow: hidden;
+  }
+
+  li {
+    position: relative;
+    list-style-type: none;
+    display: block;
+    margin: 14px 3px;
+    line-height: normal;
+
+    a {
+      display: block;
+      padding: 0;
+      text-decoration: none;
+      line-height: 1em;
+    }
+
+    &.hover {
+      border-color: #ed8 !important;
+      background-color: #ffffcf !important;
+    }
+
+    .pull-request-title {
+      display: block;
+      font-size: 13px;
+      max-height: 29px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #808080;
+      margin-bottom: 1px;
+    }
+
+    .bubble {
+      width: 12px;
+      height: 12px;
+      vertical-align: middle;
+      margin: 0;
+
+      // to show an initial for the project
+      width: $bubble-size;
+      height: $bubble-size;
+      color: black;
+      font-size: 11px;
+      text-align: center;
+      line-height: $bubble-size;
+      font-weight: 400;
+    }
+
+    .pull-request-number {
+      margin-left: 0.5em;
+      color: #444;
+      font-size: 10.844px;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+
+    .pull-request-avatar {
+      vertical-align: middle;
+      > img {
+        margin-left: 1px;
+        width: $bubble-size;
+        height: $bubble-size;
+      }
+    }
+
+  }
+}

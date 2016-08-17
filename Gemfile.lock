@@ -6,16 +6,6 @@ GIT
     ruby-ntlm (0.0.1)
 
 GIT
-  remote: git://github.com/cph/houston-dashboards.git
-  revision: 32cc14fe5dba58188df0744857a6aa3bac079dc4
-  branch: master
-  specs:
-    houston-dashboards (0.0.1)
-      houston-core (>= 0.7.0.beta4)
-      ruby-ntlm
-      savon (~> 2.0)
-
-GIT
   remote: git://github.com/cph/houston-nanoconfs.git
   revision: ead80183777aec0425a4b75597922e87fa60d154
   branch: master
@@ -615,7 +605,6 @@ DEPENDENCIES
   houston-brakeman!
   houston-conversations!
   houston-core!
-  houston-dashboards!
   houston-feedback!
   houston-nanoconfs!
   houston-reports!

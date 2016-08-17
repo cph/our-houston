@@ -1,0 +1,19 @@
+<% @on_staging.each do |pull_request| %>
+  <tr class="on-staging-pr">
+    <td class="staging-pr-project">
+      <span class="label <%= pull_request.project.color %>">
+        <%= pull_request.repo %>
+      </span>
+    </td>
+    <td class="staging-pr-title">
+      <%= link_to truncate(pull_request.title, length: 100), pull_request.url, target: "_blank" %>
+      <%= staging_status(pull_request) %>
+    </td>
+    <td class="checkboxes">
+      <%= checkboxes(pull_request) %>
+    </td>
+    <td class="staging-user">
+      <%= avatar_for(pull_request.user) %>
+    </td>
+  </tr>
+<% end %>

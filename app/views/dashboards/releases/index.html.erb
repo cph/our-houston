@@ -1,0 +1,36 @@
+<h1>Releases</h1>
+
+<div id="upcoming_changes" class="-houston-changelog release-changes">
+  <%= render partial: "changes", locals: {changes: upcoming_changes} %>
+</div>
+
+<div class="dashboards-divider-releases">
+  <label><i class="fa fa-caret-up"></i> Upcoming</label>
+  <hr>
+  <label><i class="fa fa-caret-down"></i> Recent</label>
+</div>
+
+<div id="recent_changes" class="-houston-changelog release-changes">
+  <%= render partial: "changes", locals: {changes: recent_changes} %>
+</div>
+
+<%= content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    var $upcomingChanges = $('#upcoming_changes'),
+        $recentChanges = $('#recent_changes');
+
+    new Refresher()
+      .container('#container')
+      .interval(45 * 1000) // 45 seconds
+      .callback(function() {
+        $.get('/dashboards/upcoming').done(function(html) {
+          $upcomingChanges.html(html);
+        });
+        $.get('/dashboards/recent').done(function(html) {
+          $recentChanges.html(html);
+        });
+      }).render();
+  });
+</script>
+<% end %>

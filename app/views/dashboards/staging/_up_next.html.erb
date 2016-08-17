@@ -1,0 +1,18 @@
+<% @up_next.each do |pull_request| %>
+    <tr class="up-next-pr">
+      <td class="up-next-project">
+        <span class="label <%= pull_request.project.color %>">
+          <%= pull_request.repo %>
+        </span>
+      </td>
+      <td class="up-next-title">
+        <%= link_to truncate(pull_request.title, length: 100), pull_request.url, target: "_blank" %>
+      </td>
+      <td class="checkboxes">
+        <%= checkboxes(pull_request) %>
+      </td>
+      <td class="up-next-user">
+        <%= avatar_for(pull_request.user) %>
+      </td>
+    </tr>
+<% end %>

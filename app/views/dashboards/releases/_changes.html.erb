@@ -1,0 +1,18 @@
+<% release = nil %>
+<% changes.each do |change| %>
+  <div class="dashboards-change">
+    <% unless change.release == release %>
+      <% release = change.release %>
+      <div class="dashboards-change-project">
+        <span class="label"><%= release.project.slug %></span>
+      </div>
+      <div class="dashboards-change-release">
+        <%= format_time(release.released_at) if release.released_at %>
+      </div>
+    <% end %>
+    <div class="dashboards-change-change change">
+      <%= format_change_tag change.tag %>
+      <div class="change-summary"><%= format_change(change) %></div>
+    </div>
+  </div>
+<% end %>

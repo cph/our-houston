@@ -208,7 +208,6 @@ Houston.config do
   #
 
   use :feedback
-  use :dashboards
   use :reports
   use :support_form
   use :testing_report

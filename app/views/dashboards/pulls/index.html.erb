@@ -1,0 +1,47 @@
+<h1>Pull Requests</h1>
+
+<div id="pulls">
+  <%= render "pulls" %>
+</div>
+
+<table class="kanban kanban-labels">
+  <tfoot>
+    <tr>
+      <% @queues.each do |slug, pulls| %>
+        <th class="kanban-column" data-queue="<%= slug %>">
+          <div class="title">
+            <%= slug %>
+            <span class="kanban-queue-count"></span>
+          </div>
+        </th>
+      <% end %>
+    </tr>
+  </tfoot>
+</table>
+
+<%= content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    var $pulls = $('#pulls'), count;
+
+    function refreshCounts() {
+      <% @queues.keys.each do |slug| %>
+      count = $('.kanban-data [data-queue="<%= slug %>"] .kanban-pull-request').length
+      $('.kanban-labels [data-queue="<%= slug %>"] .kanban-queue-count').html(count);
+      <% end %>
+    }
+
+    refreshCounts();
+
+    new Refresher()
+      .container('#container')
+      .interval(45 * 1000) // 45 seconds
+      .callback(function() {
+        $.get('/dashboards/pulls').done(function(html) {
+          $pulls.html(html);
+          refreshCounts();
+        });
+      }).render();
+  });
+</script>
+<% end %>

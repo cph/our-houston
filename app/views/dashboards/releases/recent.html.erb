@@ -1,0 +1,22 @@
+<h1>Recent</h1>
+
+<div id="changes" class="-houston-changelog release-changes">
+  <%= render partial: "changes", locals: {changes: recent_changes} %>
+</div>
+
+<%= content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    var $changes = $('#changes');
+
+    new Refresher()
+      .container('#container')
+      .interval(45 * 1000) // 45 seconds
+      .callback(function() {
+        $.get('/dashboards/recent').done(function(html) {
+          $changes.html(html);
+        });
+      }).render();
+  });
+</script>
+<% end %>
