@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 730225f4eeb0409eb8267e0af6f3f8a4ddad6605
+  revision: f0a126e66647b2ae1571a402da3e2750778c2e35
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -486,6 +486,7 @@ GEM
     record_tag_helper (1.0.0)
       actionview (~> 5.x)
     redcarpet (3.3.4)
+    redis (3.3.1)
     ref (2.0.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
@@ -622,6 +623,7 @@ DEPENDENCIES
   minitest-reporters-turn_reporter
   pry
   puma
+  redis
   rr
   ruby-ntlm!
   shoulda-context

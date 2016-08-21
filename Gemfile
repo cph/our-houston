@@ -11,6 +11,10 @@ gem "viewpoint"
 # For page-scraping
 gem "mechanize"
 
+group :production do
+  gem "redis"
+end
+
 group :development do
   gem "letter_opener"
   gem "puma"
