@@ -1,6 +1,7 @@
 #on-staging {
   table-layout: fixed;
   width: 100%;
+
   tr.on-staging-pr {
     padding: 10px;
 
@@ -14,6 +15,8 @@
     td {
       padding: 1px 1em 1px 0;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       &.staging-pr-project{
         text-align: right;
@@ -54,6 +57,8 @@
     td {
       padding: 1px 1em 1px 0;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       &.up-next-project{
         text-align: right;

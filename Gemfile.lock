@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 8424f6e7e071474f3e9f7759adc37faf0a061856
+  revision: 825d2990b682dcbdcd0064f916d0513dc8ef4cd7
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -175,7 +175,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: d446f6f5f1f496908f575bc841591f5d20f0bea7
+  revision: 0b4d44210b2067d519a06490b8193f84e108bc63
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -529,7 +529,7 @@ GEM
       simplecov
     skylight (0.10.6)
       activesupport (>= 3.0.0)
-    slacks (0.4.0)
+    slacks (0.4.1)
       concurrent-ruby
       faraday
       faraday-raise-errors
@@ -564,7 +564,7 @@ GEM
       hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.1)
+    uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
