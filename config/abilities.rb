@@ -55,9 +55,6 @@ Houston.config do
 
       end
 
-      # Employees can see Teams
-      can :read, Team
-
       # Employees can see the Nanoconf schedule
       can :read, Houston::Nanoconfs::Presentation
 
