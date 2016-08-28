@@ -8,6 +8,9 @@ gem "therubyracer", platforms: :ruby
 # For talking to Office365
 gem "viewpoint"
 
+# For talking to backoffice
+gem "tiny_tds", "1.0.2" # v1.0.3+ use FTP which is blocked on Houston.prd
+
 # For page-scraping
 gem "mechanize"
 
