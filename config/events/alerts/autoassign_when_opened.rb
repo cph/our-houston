@@ -1,11 +1,8 @@
 AUTOASSIGN_MAP = {
   "unite" => LUKE,
-  "confb" => MATT,
-  "oic" => MATT,
-  "our-houston" => BOB,
-  "dr" => BOB,
   "ledger" => LUKE,
-  "errbit" => BOB
+  "members" => BEN,
+  "our-houston" => BOB
 }.freeze
 
 Houston.config do
