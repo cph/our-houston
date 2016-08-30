@@ -15,8 +15,8 @@ BRAD = "brad.egberts@cph.org".freeze
 KEVIN = "kevin.applegate@cph.org".freeze
 DAVID = "david.bowman@cph.org".freeze
 RYAN = "ryan.shea@cph.org".freeze
-EP_DEVELOPERS = [LUKE, BOB, BEN, CHASE, MATT].freeze
-EP_EMPLOYEES = EP_DEVELOPERS + [RYAN].freeze
+EP_DEVELOPERS = [LUKE, BOB, BEN, MATT].freeze
+EP_EMPLOYEES = EP_DEVELOPERS.freeze
 SS_DEVELOPERS = [KEVIN, DAVID].freeze
 
 
