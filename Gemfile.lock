@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: e7fcb0fe84e8c5dd79b09e66e4112d8aea92419c
+  revision: accccad8845540abe126ad719b3e12341ed98f7a
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -364,7 +364,7 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httpclient (2.8.2.2)
+    httpclient (2.8.2.3)
     httpi (2.4.2)
       rack
       socksify
