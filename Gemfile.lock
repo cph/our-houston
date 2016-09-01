@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-reports.git
-  revision: 6cb612c4faf1b2a8a64f0f5b37023a10bc41cedf
+  revision: fe2b1e8ad4087ccbfe06273ac78fadeae01ad6ca
   branch: master
   specs:
     houston-reports (0.0.1)
