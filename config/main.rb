@@ -34,7 +34,10 @@ Houston.register_events {{
   "github:pull:label-added" => params("pull_request", "label").desc("A label was added to a pull request"),
   "staging:changed" => params("deploy", "pull_request").desc("A new pull request is on Staging"),
   "staging:updated" => params("deploy", "pull_request").desc("New commits have been deployed on Staging"),
-  "staging:{project}:free" => desc("The staging environment for project {project} is free")
+  "staging:{project}:free" => desc("The staging environment for project {project} is free"),
+
+  "alerts:new" => desc("An alert was added to EP's Alerts Dashboard"),
+  "alerts:none" => desc("EP's Alerts Dashboard is all-clear")
 }}
 
 Houston.add_navigation_renderer :activity_feed do
@@ -230,6 +233,11 @@ Houston.config do
         deadline = 2.days.after(deadline) if weekend?(deadline)
         deadline
       end
+    end
+
+    sounds do
+      new_alert *(10.times.map { |i| "/sounds/sword-strike-#{i}.mp3" })
+      no_alerts "/sounds/get-orb.mp3"
     end
   end
   load "alerts/*"
