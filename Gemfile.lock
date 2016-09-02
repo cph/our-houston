@@ -175,13 +175,13 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: ad4c37438569732a5ee58fe9ef651d55aae13d39
+  revision: 4ffaa01291030ce22bdb06b12b0d2ac09e1c0b02
   branch: master
   specs:
     houston-slack (0.0.1)
       attentive
       houston-conversations (>= 0.1.0)
-      houston-core (>= 0.7.0.beta4)
+      houston-core (>= 0.8.0.pre)
       slacks (>= 0.4.0)
 
 GIT
