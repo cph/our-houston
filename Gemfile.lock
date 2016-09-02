@@ -530,7 +530,7 @@ GEM
       simplecov
     skylight (0.10.6)
       activesupport (>= 3.0.0)
-    slacks (0.4.1)
+    slacks (0.4.2)
       concurrent-ruby
       faraday
       faraday-raise-errors
