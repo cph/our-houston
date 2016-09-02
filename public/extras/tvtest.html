@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        font-size: 24px;
+        white-space: pre;
+        line-height: 1.5em;
+        padding: 2em;
+      }
+    </style>
+  </head>
+
+  <body><script type="text/javascript">
+    function write(text) {
+      document.body.appendChild(document.createTextNode(text));
+    }
+
+    function writeLine(text) {
+      write(text + "\n");
+    }
+
+    if(window['Audio']) {
+      writeLine("Audio: exists");
+      new Audio("http://houst.in/sounds/sword-strike-3.mp3").play();
+    } else {
+      writeLine("Audio: does not exist");
+    }
+
+    if(window['WebSocket']) {
+      writeLine("WebSocket: exists");
+
+      var socket = new WebSocket('wss://houst.in:4200/');
+      // var socket = new WebSocket('ws://localhost:3000/cable');
+      socket.onopen = function() { writeLine("WebSocket: connected"); };
+      socket.onerror = function(error) {
+        writeLine("WebSocket: error connecting");
+      };
+    } else {
+      writeLine("WebSocket: does not exist");
+    }
+  </script></body>
+</html>
