@@ -81,13 +81,13 @@ Houston.config do
       # Employees can see project quotas
       can :read, Houston::Scheduler::ProjectQuota
 
-      # Employees can read and tag and create feedback
-      can :read, Houston::Feedback::Comment
-      can :tag, Houston::Feedback::Comment
-      can :create, Houston::Feedback::Comment
+      # Employees can read and tag and create and comment on feedback
+      can :read, Houston::Feedback::Conversation
+      can :tag, Houston::Feedback::Conversation
+      can :create, Houston::Feedback::Conversation
 
       # Employees can update their own feedback
-      can [:update, :destroy], Houston::Feedback::Comment, user_id: user.id
+      can [:update, :destroy], Houston::Feedback::Conversation, user_id: user.id
 
       # The Nanoconf officer can update all the presentations
       can :update, Houston::Nanoconfs::Presentation if user.email == "chase.clettenberg@cph.org"

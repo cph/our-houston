@@ -3,7 +3,7 @@ Houston.config do
     next unless value = emoji[/signal_strength_(\d)/, 1]
 
     id = message.text[/<https?:\/\/[^\/>]+\/feedback\/(\d+)>/, 1]
-    comment = id && Houston::Feedback::Comment.find_by_id(id)
+    comment = id && Houston::Feedback::Conversation.find_by_id(id)
     next unless comment && sender.user
 
     Rails.logger.info "\e[35m#{sender.user.name} set signal_strength of comment ##{comment.id} to #{value}\e[0m"
@@ -14,7 +14,7 @@ Houston.config do
     next unless value = emoji[/signal_strength_(\d)/, 1]
 
     id = message.text[/<https?:\/\/[^\/>]+\/feedback\/(\d+)>/, 1]
-    comment = id && Houston::Feedback::Comment.find_by_id(id)
+    comment = id && Houston::Feedback::Conversation.find_by_id(id)
     next unless comment && sender.user
 
     next unless comment.get_signal_strength_by(sender.user) == value.to_i

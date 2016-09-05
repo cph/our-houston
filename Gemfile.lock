@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-support_form.git
-  revision: 9998b78f68e114e47a45da4dc628f61fbd56ccdd
+  revision: 927af5c4ff56ac77ffe57cd9feb6c19824f0fe0e
   branch: master
   specs:
     houston-support_form (0.0.1)
@@ -68,7 +68,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: 3e1a72630930d130357ef34dc46d2e5d835ab9a4
+  revision: cf1a2592ee095b561667194de74e698a8bcf370a
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 74852deeedf32335066a4ca0e169c923816a4028
+  revision: dd371af9d4d210355bd853f875080e4d0e4afdbb
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -147,18 +147,18 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: cecd9983726b5e3bbe503b369dc98fa09c4ef9a8
+  revision: fd41accc2fd6a35612885ce2343c267b0fb4fff5
   branch: master
   specs:
     houston-feedback (0.0.1)
       activerecord-import
-      houston-core (>= 0.7.0.beta4)
+      houston-core (>= 0.8.0.pre)
       pg_search
       pluck_map
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
-  revision: 9360d20666b7055939fed368b4df8fcf93815091
+  revision: 9106f3feb63ca195263a86e47a2fa88cb5768af8
   branch: master
   specs:
     houston-roadmaps (0.1.0)
@@ -167,7 +167,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: f6a3c977e96e3a69a27570f0bb8bdc9596bb6f83
+  revision: 9947971f48d7e939dcbfc7bb27f84f0585cbaa56
   branch: master
   specs:
     houston-scheduler (0.0.1)
@@ -186,7 +186,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-testing_report.git
-  revision: 5541dc0857b0e90b150ef90f5af8c684f36bd754
+  revision: e149d35b7e35d8ea181f944f8532215071cfa7c5
   branch: master
   specs:
     houston-testing_report (0.0.1)
@@ -311,7 +311,7 @@ GEM
       actionmailer (>= 4.0.0)
       devise (>= 4.0.0)
     docile (1.1.5)
-    domain_name (0.5.20160615)
+    domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     engineyard (3.2.1)
       engineyard-cloud-client (~> 2.1)
@@ -428,7 +428,7 @@ GEM
       rack (>= 1.2, < 3)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
-    oj (2.17.3)
+    oj (2.17.4)
     openxml-package (0.2.5)
       nokogiri
       ox
@@ -542,7 +542,7 @@ GEM
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.1.1)
+    sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)

@@ -30,12 +30,12 @@ class KpiSurveyComment
 
   def self.import!(comments)
     ids = comments.map { |comment| comment[:EventQuestionID].to_s }
-    already_imported_ids = Houston::Feedback::Comment.where(legacy_id: ids).pluck(:legacy_id)
+    already_imported_ids = Houston::Feedback::Conversation.where(legacy_id: ids).pluck(:legacy_id)
     to_import = comments.reject { |comment| already_imported_ids.member?(comment[:EventQuestionID].to_s) }
     project = Project["kpi-survey"]
 
     comments = to_import.map do |comment|
-      Houston::Feedback::Comment.new(
+      Houston::Feedback::Conversation.new(
         project: project,
         text: "###### #{comment[:QuestionText]}\n\n#{comment[:Text]}",
         attributed_to: comment[:EmailAddress],
@@ -45,8 +45,8 @@ class KpiSurveyComment
       end
     end
 
-    Houston::Feedback::Comment.import(comments).tap do
-      Houston::Feedback::Comment.for_project(project).reindex!
+    Houston::Feedback::Conversation.import(comments).tap do
+      Houston::Feedback::Conversation.for_project(project).reindex!
     end
   end
 
