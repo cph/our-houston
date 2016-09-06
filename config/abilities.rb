@@ -85,6 +85,7 @@ Houston.config do
       can :read, Houston::Feedback::Conversation
       can :tag, Houston::Feedback::Conversation
       can :create, Houston::Feedback::Conversation
+      can :comment_on, Houston::Feedback::Conversation
 
       # Employees can update their own feedback
       can [:update, :destroy], Houston::Feedback::Conversation, user_id: user.id
