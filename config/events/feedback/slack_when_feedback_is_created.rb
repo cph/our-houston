@@ -7,7 +7,7 @@ Houston.config do
     # We don't want this thread to run until the transaction has
     # been committed on the main thread — or else this conversation
     # won't be visible to Slack.
-    sleep 0.1
+    sleep 1.0
 
     message = feedback_unfurl_url(conversation)
     slack_send_message_to message, project_channel
