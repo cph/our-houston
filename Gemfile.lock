@@ -186,7 +186,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-testing_report.git
-  revision: e149d35b7e35d8ea181f944f8532215071cfa7c5
+  revision: 5354e5327571853ee4f318d19f2335fb20c3ce9c
   branch: master
   specs:
     houston-testing_report (0.0.1)
