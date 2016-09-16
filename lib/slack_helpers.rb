@@ -9,59 +9,77 @@ def slack_send_message_to(message, channels, options={})
 end
 
 def _slack_send_message_to_channel(message, channel, options={})
-  if channel.respond_to?(:slack_channel)
-    channel = channel.slack_channel
+  Houston.try({max_tries: 3},
+            Errno::ECONNRESET,
+            Errno::EPIPE,
+            Errno::ETIMEDOUT,
+            Net::OpenTimeout,
+            Net::ReadTimeout,
+            Net::SMTPServerBusy,
+            EOFError) do
+    if channel.respond_to?(:slack_channel)
+      channel = channel.slack_channel
 
-    unless channel
-      Rails.logger.info "\e[34m[slack:say] I don't know the Slack username for #{channel.name}\e[0m"
-      return
+      unless channel
+        Rails.logger.info "\e[34m[slack:say] I don't know the Slack username for #{channel.name}\e[0m"
+        return
+      end
     end
-  end
 
-  # In development, we'll send messages for specific users
-  # to public channels that shadow the direct-message channels.
-  # This just lets us troubleshoot Houston
-  if Rails.env.development?
-    channel.gsub! /^@/, "#user-"
-  end
+    # In development, we'll send messages for specific users
+    # to public channels that shadow the direct-message channels.
+    # This just lets us troubleshoot Houston
+    if Rails.env.development?
+      channel.gsub! /^@/, "#user-"
+    end
 
-  if options.delete(:as) == :github
-    options.merge!(
-      as_user: false,
-      username: "github",
-      icon_url: "https://slack.global.ssl.fastly.net/5721/plugins/github/assets/service_128.png")
-  end
+    if options.delete(:as) == :github
+      options.merge!(
+        as_user: false,
+        username: "github",
+        icon_url: "https://slack.global.ssl.fastly.net/5721/plugins/github/assets/service_128.png")
+    end
 
-  Rails.logger.debug "\e[95m[slack:say] #{channel}: #{message}\e[0m"
-  Houston::Slack.send message, options.merge(channel: channel)
+    Rails.logger.debug "\e[95m[slack:say] #{channel}: #{message}\e[0m"
+    Houston::Slack.send message, options.merge(channel: channel)
+  end
 end
 
 def slack_replace_message_on_channel(ts, message, channel, options={})
-  if channel.respond_to?(:slack_channel)
-    channel = channel.slack_channel
+  Houston.try({max_tries: 3},
+            Errno::ECONNRESET,
+            Errno::EPIPE,
+            Errno::ETIMEDOUT,
+            Net::OpenTimeout,
+            Net::ReadTimeout,
+            Net::SMTPServerBusy,
+            EOFError) do
+    if channel.respond_to?(:slack_channel)
+      channel = channel.slack_channel
 
-    unless channel
-      Rails.logger.info "\e[34m[slack:say] I don't know the Slack username for #{channel.name}\e[0m"
-      return
+      unless channel
+        Rails.logger.info "\e[34m[slack:say] I don't know the Slack username for #{channel.name}\e[0m"
+        return
+      end
     end
-  end
 
-  # In development, we'll send messages for specific users
-  # to public channels that shadow the direct-message channels.
-  # This just lets us troubleshoot Houston
-  if Rails.env.development?
-    channel.gsub! /^@/, "#user-"
-  end
+    # In development, we'll send messages for specific users
+    # to public channels that shadow the direct-message channels.
+    # This just lets us troubleshoot Houston
+    if Rails.env.development?
+      channel.gsub! /^@/, "#user-"
+    end
 
-  if options.delete(:as) == :github
-    options.merge!(
-      as_user: false,
-      username: "github",
-      icon_url: "https://slack.global.ssl.fastly.net/5721/plugins/github/assets/service_128.png")
-  end
+    if options.delete(:as) == :github
+      options.merge!(
+        as_user: false,
+        username: "github",
+        icon_url: "https://slack.global.ssl.fastly.net/5721/plugins/github/assets/service_128.png")
+    end
 
-  Rails.logger.debug "\e[95m[slack:update] #{channel}: #{message}\e[0m"
-  Houston::Slack.connection.update_message ts, message, options.merge(channel: channel)
+    Rails.logger.debug "\e[95m[slack:update] #{channel}: #{message}\e[0m"
+    Houston::Slack.connection.update_message ts, message, options.merge(channel: channel)
+  end
 end
 
 def alert_unfurl_url(alert)
