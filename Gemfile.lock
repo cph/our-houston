@@ -563,8 +563,6 @@ GEM
     timecop (0.8.1)
     timers (4.1.1)
       hitimes
-    tiny_tds (1.0.2)
-      mini_portile2 (~> 2.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.2)
@@ -636,7 +634,6 @@ DEPENDENCIES
   sucker_punch (~> 1.6)
   therubyracer
   timecop
-  tiny_tds (= 1.0.2)
   viewpoint
   webmock
 
