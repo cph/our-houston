@@ -147,11 +147,12 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 602ce8eec2865932025fe979e5915276b84b5bd4
+  revision: 29e7271392c78bc1228ba9251faa5e10a97a954c
   branch: master
   specs:
     houston-feedback (0.0.1)
       activerecord-import
+      charlock_holmes
       houston-core (>= 0.8.0.pre)
       pg_search
       pluck_map
@@ -292,6 +293,7 @@ GEM
       timers (>= 4.1.1)
     celluloid-supervision (0.20.6)
       timers (>= 4.1.1)
+    charlock_holmes (0.7.3)
     chronic (0.10.2)
     codeclimate-test-reporter (0.4.8)
       simplecov (>= 0.7.1, < 1.0.0)
