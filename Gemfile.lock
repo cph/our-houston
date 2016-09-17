@@ -84,7 +84,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-conversations.git
-  revision: a327e5baf21039d64319c9d6e4be722e6616c38b
+  revision: 2bffae847f4e30d3351146859076937d06644eaa
   branch: master
   specs:
     houston-conversations (0.1.0)
@@ -175,7 +175,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: abe5c1be97d4b8977262b0e1572ce6b1f2a12bd6
+  revision: 65f634bf4b38ef4aa1bba4a032fb4af5fd9b4e96
   branch: master
   specs:
     houston-slack (0.0.1)
