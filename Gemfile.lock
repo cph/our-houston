@@ -84,7 +84,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-conversations.git
-  revision: 0c63d1098d8950d47949bd010be70e88085e5830
+  revision: a327e5baf21039d64319c9d6e4be722e6616c38b
   branch: master
   specs:
     houston-conversations (0.1.0)
@@ -175,7 +175,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 4ffaa01291030ce22bdb06b12b0d2ac09e1c0b02
+  revision: abe5c1be97d4b8977262b0e1572ce6b1f2a12bd6
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -245,7 +245,7 @@ GEM
       nokogiri
     ansi (1.5.0)
     arel (7.1.1)
-    attentive (0.3.2)
+    attentive (0.3.3)
       thread_safe
     bcrypt (3.1.11)
     better_errors (2.1.1)
