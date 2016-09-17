@@ -2,15 +2,11 @@ module Gemnasium
   class Alert
 
     def self.all
-      connection = Faraday.new(url: "https://api.gemnasium.com/v1/")
-      connection.basic_auth "X", $GEMNASIUM_API_KEY
-      connection.use Faraday::RaiseErrors
-
-      response = connection.get "projects"
+      response = $gemnasium.get "projects"
       projects = MultiJson.load(response.body).values.flatten
 
       projects.flat_map do |project|
-        response = connection.get "projects/#{project["slug"]}/alerts"
+        response = $gemnasium.get "projects/#{project["slug"]}/alerts"
         Array(MultiJson.load(response.body)).map { |alert| alert.merge(
           "project_id" => project["slug"],
           "project_slug" => project["name"]) }

@@ -1,2 +1,4 @@
 # Configuration for Gemnasium
-$GEMNASIUM_API_KEY = ENV["HOUSTON_GEMNASIUM_API_KEY"]
+$gemnasium = Faraday.new(url: "https://api.gemnasium.com/v1/")
+$gemnasium.basic_auth "X", ENV["HOUSTON_GEMNASIUM_API_KEY"]
+$gemnasium.use Faraday::RaiseErrors

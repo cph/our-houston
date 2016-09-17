@@ -1,5 +1,3 @@
-require_relative "outlook_calendar"
-
 class CasualDay
 
   def self.check(date)
