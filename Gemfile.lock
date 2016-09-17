@@ -192,6 +192,15 @@ GIT
     houston-testing_report (0.0.1)
       houston-core (>= 0.8.0.pre)
 
+GIT
+  remote: git://github.com/houston/houston-twilio.git
+  revision: 34a5d2916901514eb3fbb320fda4385643d68089
+  branch: master
+  specs:
+    houston-twilio (0.0.1)
+      houston-core (>= 0.8.0.pre)
+      twilio-ruby (~> 4.11.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -563,6 +572,10 @@ GEM
     timecop (0.8.1)
     timers (4.1.1)
       hitimes
+    twilio-ruby (4.11.1)
+      builder (>= 2.1.2)
+      jwt (~> 1.0)
+      multi_json (>= 1.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.2)
@@ -614,6 +627,7 @@ DEPENDENCIES
   houston-slack!
   houston-support_form!
   houston-testing_report!
+  houston-twilio!
   itsm!
   letter_opener
   logeater!

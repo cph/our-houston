@@ -249,6 +249,12 @@ Houston.config do
   load "conversations/**/*"
   load "slash_commands/*"
 
+  use :twilio do
+    sid ENV["HOUSTON_TWILIO_SID"]
+    token ENV["HOUSTON_TWILIO_TOKEN"]
+    number ENV["HOUSTON_TWILIO_NUMBER"]
+  end
+
   use :scheduler do
     planning_poker :off
     estimate_effort :off
