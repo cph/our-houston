@@ -88,9 +88,9 @@ GIT
   branch: master
   specs:
     houston-conversations (0.1.0)
-      attentive
+      attentive (~> 0.3.3)
       concurrent-ruby
-      houston-core (>= 0.7.0.beta4)
+      houston-core (>= 0.8.0.pre)
 
 GIT
   remote: git://github.com/houston/houston-core.git
@@ -175,7 +175,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 323edaf2b60cf06aab6586f013970a7ddb359478
+  revision: ba48d436c6868bb8ca797a37d6f5a954114bcb4b
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -194,7 +194,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-twilio.git
-  revision: 34a5d2916901514eb3fbb320fda4385643d68089
+  revision: 7d449389773a1bd61f646a1ce7e454375e28f109
   branch: master
   specs:
     houston-twilio (0.0.1)
@@ -253,7 +253,7 @@ GEM
       gyoku (>= 0.4.0)
       nokogiri
     ansi (1.5.0)
-    arel (7.1.1)
+    arel (7.1.2)
     attentive (0.3.3)
       thread_safe
     bcrypt (3.1.11)
@@ -373,13 +373,13 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httpclient (2.8.2.3)
+    httpclient (2.8.2.4)
     httpi (2.4.2)
       rack
       socksify
     i18n (0.7.0)
     json (2.0.2)
-    jwt (1.5.4)
+    jwt (1.5.5)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -403,7 +403,7 @@ GEM
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
-    mime-types (2.99.2)
+    mime-types (2.99.3)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     minitest-reporters (1.1.11)
@@ -446,7 +446,7 @@ GEM
       nokogiri
       openxml-package (>= 0.2.0)
     orm_adapter (0.5.0)
-    ox (2.4.4)
+    ox (2.4.5)
     pg (0.18.4)
     pg_search (1.0.6)
       activerecord (>= 3.1)
@@ -505,7 +505,7 @@ GEM
       netrc (~> 0.7)
     rr (1.2.0)
     ruby-progressbar (1.8.1)
-    rubyntlm (0.6.0)
+    rubyntlm (0.6.1)
     rubyzip (1.1.7)
     rufus-scheduler (3.2.2)
     rugged (0.24.0)
