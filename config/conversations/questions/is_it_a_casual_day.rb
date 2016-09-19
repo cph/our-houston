@@ -29,7 +29,7 @@ Houston::Conversations.config do
 
     e.responding
     event = CasualDay.next
-    case event.recognize
+    case event && event.recognize
     when :cardinals_casual_day
       e.reply "#{event.time.strftime('%A (%-m/%-d)')} is a Cardinals Casual Day"
     when :blues_casual_day
