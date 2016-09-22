@@ -84,7 +84,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-conversations.git
-  revision: af65328fcada22d4f156dd47503ecbeb1213299d
+  revision: 4650335a147285ec0bfd1e720484c118e26b2258
   branch: master
   specs:
     houston-conversations (0.1.0)
