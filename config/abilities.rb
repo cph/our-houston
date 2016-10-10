@@ -14,7 +14,6 @@ Houston.config do
 
   role "Developer" do |team|
     can :read, Commit, project_id: team.project_ids
-    can :update_tickets, Milestone, project_id: team.project_ids
     can :manage, Task, project_id: team.project_ids
     can :create, Ticket, project_id: team.project_ids
     can :manage, Github::PullRequest, project_id: team.project_ids
