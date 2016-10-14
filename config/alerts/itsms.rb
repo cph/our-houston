@@ -8,7 +8,7 @@ Houston::Alerts.config.sync :open, "itsm", every: "60s", icon: "fa-fire-extingui
       summary = "No summary provided" if summary.blank?
       { key: issue.key,
         number: issue.number,
-        project_slug: (project_slug && project_slug.downcase),
+        project_slug: project_slug ? project_slug.downcase : "no-project",
         summary: summary,
         checked_out_by_email: issue.assigned_to_email,
         checked_out_remotely: false,
