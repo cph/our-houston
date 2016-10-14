@@ -309,8 +309,4 @@ Houston.config do
 
   load "timers/**/*"
 
-
-
-  # Perform any other initialization
-  load "initializers/*"
 end
