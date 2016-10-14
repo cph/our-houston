@@ -1,5 +1,5 @@
 Houston.config do
-  on "feedback:create" => "feedback:announce-in-slack" do
+  on "feedback:add" => "feedback:announce-in-slack" do
     project = conversation.project.slug
     feedback_channels = %W{#{project}-feedback ##{project}-feedback #{project} ##{project}}
     channel = feedback_channels.find { |channel| Houston::Slack.connection.channels.include?(channel) }
