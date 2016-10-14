@@ -1,7 +1,9 @@
 Houston.config do
   on "feedback:create" => "feedback:announce-in-slack" do
-    project_channel = "##{conversation.project.slug}"
-    next unless Houston::Slack.connection.channels.include? project_channel
+    project = conversation.project.slug
+    feedback_channels = %W{#{project}-feedback ##{project}-feedback #{project} ##{project}}
+    channel = feedback_channels.find { |channel| Houston::Slack.connection.channels.include?(channel) }
+    next unless channel
 
     # GOTCHA: this was triggered from an after_save callback.
     # We don't want this thread to run until the transaction has
@@ -10,6 +12,6 @@ Houston.config do
     sleep 1.0
 
     message = feedback_unfurl_url(conversation)
-    slack_send_message_to message, project_channel
+    slack_send_message_to message, channel
   end
 end
