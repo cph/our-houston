@@ -18,7 +18,7 @@ Houston.config do
   on "deploy:succeeded" => "deploy:email-deployer-of-finished-deploy" do
     next if deploy.build_release.ignore?
 
-    maintainers = deploy.project.maintainers.to_users
+    maintainers = deploy.project.maintainers
     maintainers.each do |maintainer|
       Houston.deliver! ProjectNotification.maintainer_of_deploy(maintainer, deploy)
     end

@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 5edd79d93e088a267aa1f2c061c5c208fd7f6c33
+  revision: 149b03795000bcff833e0115e81b0d1fc962c2e6
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -654,4 +654,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.11.2
+   1.13.4
