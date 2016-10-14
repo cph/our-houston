@@ -2,7 +2,7 @@ Houston.config do
   on "feedback:add" => "feedback:announce-in-slack" do
     project = conversation.project.slug
     feedback_channels = %W{#{project}-feedback ##{project}-feedback #{project} ##{project}}
-    channel = feedback_channels.find { |channel| Houston::Slack.connection.channels.include?(channel) }
+    channel = feedback_channels.find { |channel| Houston::Slack.connection.can_see?(channel) }
     next unless channel
 
     # GOTCHA: this was triggered from an after_save callback.
