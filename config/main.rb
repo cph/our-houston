@@ -67,6 +67,9 @@ Houston.config do
   # This is the email address for emails send from Houston
   mailer_sender "houston@cphepdev.com"
 
+  # CPH allows passwords to be 7 characters
+  password_length 7..128
+
   # This is the passphrase Houston will use to encrypt and decrypt sensitive data
   passphrase "challenge accepted!"
 
