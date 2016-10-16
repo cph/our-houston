@@ -7,6 +7,7 @@ defaults: &defaults
   reaping_frequency: 30
   variables:
     lock_timeout: 1000
+    idle_in_transaction_session_timeout: 45000
 
 development:
   <<: *defaults
