@@ -5,19 +5,14 @@ Houston.config.on "hooks:kpi-survey-comments" => "record-kpi-survey-comments" do
   to_import = comments.reject { |comment| already_imported_ids.member?(comment["EventQuestionID"].to_s) }
 
   project = Project["kpi-survey-private"]
-  comments = to_import.map do |comment|
-    Houston::Feedback::Conversation.new(
+  import = Time.now.iso8601
+  to_import.each do |comment|
+    Houston::Feedback::Conversation.create!(
       project: project,
-      import: Time.now.iso8601,
+      import: import,
       text: "###### #{comment["QuestionText"]}\n\n#{comment["Text"]}",
       attributed_to: comment["EmailAddress"],
       legacy_id: comment["EventQuestionID"],
-      created_at: comment["DateSurveyTaken"]).tap do |comment|
-      comment.update_plain_text # because the import command won't
-    end
-  end
-
-  Houston::Feedback::Conversation.import(comments).tap do
-    Houston::Feedback::Conversation.for_project(project).reindex!
+      created_at: comment["DateSurveyTaken"])
   end
 end
