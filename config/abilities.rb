@@ -37,6 +37,11 @@ Houston.config do
   end
 
 
+  role "Team Owner" do |team|
+    can [:update, :destroy], Houston::Feedback::Conversation, project_id: team.project_ids
+  end
+
+
   abilities do |user|
     if user.nil?
 
