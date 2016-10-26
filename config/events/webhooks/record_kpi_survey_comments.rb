@@ -10,7 +10,7 @@ Houston.config.on "hooks:kpi-survey-comments" => "record-kpi-survey-comments" do
     Houston::Feedback::Conversation.create!(
       project: project,
       import: import,
-      text: "###### #{comment["QuestionText"]}\n\n#{comment["Text"]}",
+      text: comment["Text"],
       attributed_to: comment["EmailAddress"],
       legacy_id: comment["EventQuestionID"],
       created_at: comment["DateSurveyTaken"])
