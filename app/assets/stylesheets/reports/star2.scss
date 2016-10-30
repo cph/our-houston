@@ -1,0 +1,57 @@
+#timesheets {
+  display: table;
+  margin: 0;
+  padding: 0;
+}
+
+.timesheet {
+  display: table-row;
+
+  .timesheet-employee {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 1em 0;
+    font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", 'Arial Narrow', Arial, sans-serif;
+    font-size: 2em;
+  }
+
+  .timesheet-graph {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 1em 0;
+    height: 102px;
+
+    dl.legend {
+      position: fixed;
+      left: 1em;
+      border-color: transparent;
+      box-shadow: none;
+      border-radius: 3px;
+      white-space: nowrap;
+      width: 1em;
+      transition: all 100ms;
+
+      &:hover {
+        width: 12em;
+        box-shadow: -1px 1px 4px rgba(0,0,0,0.05);
+        border-color: #ddd;
+      }
+    }
+
+    .ceil {
+      stroke: #505050;
+      stroke-width: 2px;
+    }
+
+    .axis {
+      .line, .domain { stroke: #ddd; }
+      .tick line { stroke: #ddd; }
+      .tick text {
+        font-size: 11px;
+        fill: #999;
+      }
+
+      &.y .domain { display: none; }
+    }
+  }
+}

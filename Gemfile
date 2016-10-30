@@ -82,7 +82,6 @@ gem "houston-conversations", github: "houston/houston-conversations", branch: "m
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
 gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
 gem "houston-feedback", github: "houston/houston-feedback", branch: "master"
-gem "houston-reports", github: "cph/houston-reports", branch: "master"
 gem "houston-roadmaps", github: "houston/houston-roadmaps", branch: "master"
 gem "houston-scheduler", github: "houston/houston-scheduler", branch: "master"
 gem "houston-slack", github: "houston/houston-slack", branch: "master"

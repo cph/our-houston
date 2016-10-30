@@ -1,0 +1,108 @@
+<form method="GET" id="filters">
+  <%= label_tag :project_id do %>
+    Project
+    <%= select_tag :project_id,
+      options_from_collection_for_select(
+        ([Struct.new(:id, :name).new(-1, "All Projects")] +
+          @projects +
+         [Struct.new(:id, :name).new(nil, "Unknown")]),
+        :id,
+        :name,
+        params[:project_id]) %>
+  <% end %>
+
+  <%= label_tag :user_id do %>
+    Assigned to
+    <%= select_tag :user_id,
+      options_from_collection_for_select(
+        ([Struct.new(:id, :name).new(-1, "All Users")] +
+          @users +
+         [Struct.new(:id, :name).new(nil, "Unassigned")]),
+        :id,
+        :name,
+        params[:user_id]) %>
+  <% end %>
+
+  <%= label_tag :show_percent do %>
+    <%= check_box_tag :show_percent %>
+    Percent
+  <% end %>
+</form>
+
+
+<div id="alerts_overview" class="alerts-graph"></div>
+<div id="alerts_breakdowns"></div>
+
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    var $filters = $('#filters');
+    $filters.on('change', 'select', function() {
+      $filters.submit();
+    });
+    
+    var alertsDueOnTimeByType = {};
+  <% @alerts_due_on_time_by_type.each do |type, rows| -%>
+    alertsDueOnTimeByType[<%= raw type.to_json %>] = [<%= raw rows.map { |row|
+      date = row["week"].to_date
+      due = row["due"].to_i
+      onTime = row["on_time"].to_i
+      <<-JavaScript
+      { date: new Date(#{date.year}, #{date.month - 1}, #{date.day}),
+        due: #{due},
+        closedLate: #{due - onTime},
+        closedOnTime: #{onTime} }
+      JavaScript
+    }.join(",") %>];
+  <% end -%>
+    
+    var alertsDueOnTime = [],
+        values = _.values(alertsDueOnTimeByType),
+        closedLate,
+        closedOnTime,
+        j,
+        jj = values.length;
+    for(var i=0, ii=values[0].length; i<ii; i++) {
+      closedLate = closedOnTime = 0;
+      for(j=0; j<jj; j++) {
+        closedLate = closedLate + values[j][i].closedLate;
+        closedOnTime = closedOnTime + values[j][i].closedOnTime;
+      }
+      alertsDueOnTime.push({
+        date: values[0][i].date,
+        due: closedLate + closedOnTime,
+        closedLate: closedLate,
+        closedOnTime: closedOnTime});
+    }
+    
+    var overview = new AlertsDueView({
+      el: $('#alerts_overview')[0],
+      data: alertsDueOnTime
+    }).render();
+    
+    var $graph,
+        graphs = [],
+        $breakdowns = $('#alerts_breakdowns');
+    for(var type in alertsDueOnTimeByType) {
+      $graph = $breakdowns
+        .append('<dl><dt>' + type.toUpperCase() + 's</dt><dd class="alerts-graph" data-type="' + type + '"></dd></dl>')
+        .find('.alerts-graph[data-type="' + type + '"]')
+      graphs.push(new AlertsDueView({
+        el: $graph[0],
+        data: alertsDueOnTimeByType[type],
+        domain: overview.domain(),
+        width: 640
+      }).render());
+    }
+    
+    $('#show_percent').click(function(e) {
+      var showPercent = $(e.target).prop('checked');
+      overview.toggleShowPercent(showPercent);
+      graphs.each(function(graph) {
+        graph.toggleShowPercent(showPercent);
+      });
+    });
+  });
+</script>
+<% end %>

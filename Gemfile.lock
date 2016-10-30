@@ -14,13 +14,6 @@ GIT
       houston-core (>= 0.7.0.beta4)
 
 GIT
-  remote: git://github.com/cph/houston-reports.git
-  revision: dedf83089bca8141fd2328e29ede4123662523bf
-  branch: master
-  specs:
-    houston-reports (0.0.1)
-
-GIT
   remote: git://github.com/cph/houston-support_form.git
   revision: 927af5c4ff56ac77ffe57cd9feb6c19824f0fe0e
   branch: master
@@ -94,7 +87,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 59434ecf621b0ed1491306f4204d732a00f6687b
+  revision: 3e8ab820fdcc747827033f369fe10a456549515c
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -623,7 +616,6 @@ DEPENDENCIES
   houston-core!
   houston-feedback!
   houston-nanoconfs!
-  houston-reports!
   houston-roadmaps!
   houston-scheduler!
   houston-slack!

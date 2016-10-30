@@ -1,0 +1,4 @@
+<%= score_card :giant do |s| %>
+  <% s.fraction "completed<br/>(in #{@report.quarter_name})".html_safe, @report.sprints_completed, @report.sprints_completed_target, :class => @report.sprint_quarter_status %>
+  <% s.score "weeks left<br/>(in #{@report.quarter_name})".html_safe, @report.quarter.select { |date| date > @report.date }.count %>
+<% end %>

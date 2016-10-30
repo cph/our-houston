@@ -1,0 +1,217 @@
+<ul id="reports_timeframes" class="nav nav-tabs" role="tablist">
+  <li role="presentation">
+    <a href="#week" aria-controls="home" role="tab" data-toggle="tab">Last Week</a>
+  </li>
+  <li role="presentation" class="active">
+    <a href="#month" aria-controls="home" role="tab" data-toggle="tab">Last Month</a>
+  </li>
+  <li role="presentation">
+    <a href="#3months" aria-controls="profile" role="tab" data-toggle="tab">Last 3 Months</a>
+  </li>
+  <li role="presentation">
+    <a href="#6months" aria-controls="profile" role="tab" data-toggle="tab">Last 6 Months</a>
+  </li>
+</ul>
+
+<div id="reports"></div>
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    function byTimestamp(measurements, iterator) {
+      var resultsByTimestamp = {}, result;
+      _.each(measurements, function(measurement) {
+        result = resultsByTimestamp[measurement.timestamp];
+        resultsByTimestamp[measurement.timestamp] = iterator(measurement, result);
+      });
+      return resultsByTimestamp;
+    }
+
+    function mapValues(resultsByTimestamp, iterator) {
+      return _.map(resultsByTimestamp, function(result, timestamp) {
+        return { timestamp: timestamp, value: iterator(timestamp, result) };
+      });
+    }
+
+    function reducePercent(measurements, defaultValue, mapper) {
+      return mapValues(
+        byTimestamp(measurements, function(measurement, accumulator) {
+          accumulator = accumulator || { total: 0, variable: 0 };
+          mapper(measurement, accumulator);
+          return accumulator;
+        }),
+        function(timestamp, accumulator) {
+          return accumulator.total > 0 ? ((accumulator.variable * 100) / accumulator.total) : defaultValue;
+        }
+      );
+    }
+
+    function meanPercent(measurements, defaultValue, mapper) {
+      var accumulator = { total: 0, variable: 0 };
+      _.each(measurements, function(measurement) {
+        mapper(measurement, accumulator);
+      });
+      return accumulator.total > 0 ? ((accumulator.variable * 100) / accumulator.total) : defaultValue;
+    }
+
+
+
+    function ofTimeWorked(measurement, accumulator) {
+      var date = new Date(measurement.timestamp);
+      if(date.getDay() > 0 && date.getDay() < 6) {
+        if(measurement.name == 'daily.hours.worked') {
+          accumulator.total += +measurement.value;
+        } else {
+          accumulator.variable += +measurement.value;
+        }
+      }
+    }
+
+    function reducePercentOfTimeWorked(measurements) {
+      return reducePercent(measurements, null, ofTimeWorked);
+    }
+
+    function meanPercentOfTimeWorked(measurements) {
+      return meanPercent(measurements, null, ofTimeWorked);
+    }
+
+
+
+    function ofAlertsCompletedOnTime(measurement, accumulator) {
+      if(measurement.name == 'daily.alerts.due') {
+        accumulator.total += +measurement.value;
+      } else {
+        accumulator.variable += +measurement.value;
+      }
+    }
+
+    function reducePercentOfAlertsCompletedOnTime(measurements) {
+      return reducePercent(measurements, 100, ofAlertsCompletedOnTime);
+    }
+
+    function meanPercentOfAlertsCompletedOnTime(measurements) {
+      return meanPercent(measurements, null, ofAlertsCompletedOnTime);
+    }
+
+
+
+    function ofRequests5xx(measurement, accumulator) {
+      if(measurement.name == 'daily.requests') {
+        accumulator.total += +measurement.value;
+      } else {
+        accumulator.variable += +measurement.value;
+      }
+    }
+
+    function reducePercentOfRequests5xx(measurements) {
+      return reducePercent(measurements, null, ofRequests5xx);
+    }
+
+    function meanPercentOfRequests5xx(measurements) {
+      return meanPercent(measurements, null, ofRequests5xx);
+    }
+
+
+
+    var sections = [
+        {
+          section: 'Alerts',
+          reports: [ {
+              name: 'Open Alerts at 9am',
+              min: 0,
+              measurements: { name: 'daily.alerts.open' }
+            }, {
+              name: 'Time Spent on Alerts',
+              units: '%',
+              min: 0,
+              measurements: {
+                name: ['daily.hours.worked', 'daily.hours.charged.{cve,exception,itsm}'],
+                subject_type: 'User' },
+              map: reducePercentOfTimeWorked,
+              mean: meanPercentOfTimeWorked
+            }, {
+              name: 'Alerts Closed On-Time',
+              units: '%',
+              min: 0,
+              max: 100,
+              measurements: { name: ['daily.alerts.due', 'daily.alerts.due.completed-on-time'] },
+              map: reducePercentOfAlertsCompletedOnTime,
+              mean: meanPercentOfAlertsCompletedOnTime
+            } ]
+        },
+
+        {
+          section: 'Time',
+          reports: [ {
+            name: 'Time Charged',
+            units: '%',
+            min: 0,
+            measurements: {
+              name: ['daily.hours.worked', 'daily.hours.charged'],
+              subject_type: 'User' },
+            map: reducePercentOfTimeWorked,
+            mean: meanPercentOfTimeWorked
+          }, {
+            name: 'Time Spent on Development',
+            units: '%',
+            min: 0,
+            measurements: {
+              subject_type: 'User',
+              name: ['daily.hours.worked', 'daily.hours.charged.{development,ix-design}'] },
+            map: reducePercentOfTimeWorked,
+            mean: meanPercentOfTimeWorked
+          }, {
+            name: 'Time Spent on Maintenance',
+            units: '%',
+            min: 0,
+            measurements: {
+              subject_type: 'User',
+              name: ['daily.hours.worked', 'daily.hours.charged.{chore,cve,exception,itsm,support}'] },
+            map: reducePercentOfTimeWorked,
+            mean: meanPercentOfTimeWorked
+          } ]
+        }
+      ];
+
+    _.each(['members', 'unite', 'ledger'], function(project) {
+      sections.push({
+          section: project,
+          reports: [ {
+            name: 'Number of Requests',
+            min: 0,
+            measurements: {
+              project: project,
+              name: 'daily.requests' }
+          }, {
+            name: 'Mean Response Time',
+            units: 'ms',
+            measurements: {
+              project: project,
+              name: 'daily.requests.duration.mean' }
+          }, {
+            name: '98th Percentile Response Time',
+            units: 'ms',
+            measurements: {
+              project: project,
+              name: 'daily.requests.duration.percentile.98' }
+          }, {
+            name: 'Exception Percentage',
+            units: '%',
+            format: '.3f',
+            min: 0,
+            measurements: {
+              project: project,
+              name: ['daily.requests', 'daily.requests.5*'] },
+            map: reducePercentOfRequests5xx,
+            mean: meanPercentOfRequests5xx
+          } ]
+        });
+    });
+
+    new ReportsView({
+      el: $('#reports')[0],
+      sections: sections
+    }).render();
+  });
+</script>
+<% end %>

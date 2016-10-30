@@ -1,0 +1,105 @@
+<% unless request.xhr? %>
+<% content_for :stylesheets do %>
+  <style type="text/css">
+    thead th { text-align: center; line-height: 1em; font-weight: 500; padding-bottom: 0.5em; vertical-align: bottom; }
+    tbody th { text-align: right; line-height: 1em; font-weight: 500; }
+    td { text-align: right; }
+    td, th { padding: 0.25em 0.75em; color: #555; }
+    td span { display: block; }
+    th span { display: block; }
+    span.weekday { font-size: 0.85em; font-weight: bold; color: #3d3d3d; }
+    tbody td { font-size: 0.85em; color: #3d3d3d; }
+  
+    b { 
+      font-size: 11px;
+      width: 1em;
+      height: 1em;
+      border-radius: 1em;
+      display: block;
+      margin: 0.5em auto;
+    }
+    b { background: #da6427; } /* not recorded */
+    b.today { background: transparent; }
+    b.recorded { background: #1b1b1b; }
+    b.partially-recorded { background: rgb(178, 164, 33); }
+  </style>
+<% end %>
+
+<h1>Time</h1>
+
+<div id="reports_dashboard_body">
+<% end %>
+
+  <table id="reports_dashboard_team">
+    <thead>
+      <tr>
+        <th></th>
+        <% @date_range.each do |date|; next if date.wday == 0 or date.wday == 6 %>
+          <th>
+            <span class="weekday"><%= date.strftime("%a") %></span>
+            <span class="date"><%= date.strftime("%-m/%-d") %></span>
+          </th>
+        <% end %>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @measurements.group_by(&:subject).each do |user, measurements| %>
+        <% next if user.nil? %>
+        <% next if user.id == 29 # Kendall doesn't work here anymore %>
+        <tr>
+          <th><%= avatar_for(user, size: 28) %></th>
+          <% @date_range.each do |date|; next if date.wday == 0 or date.wday == 6 %>
+            <% if (user.id == 60 && date < Date.new(2015, 6, 1)) || # Chase didn't work here yet
+                  (user.id == 61 && date < Date.new(2015, 6, 15)) # Matt didn't work here yet %>
+              <td></td>
+            <% else %>
+              <% charged = measurements.find { |m| m.taken_on?(date) && m.name == "daily.hours.charged" }.try(:value).to_s.to_d
+                 worked = measurements.find { |m| m.taken_on?(date) && m.name == "daily.hours.worked" }.try(:value).to_s.to_d
+                 off = measurements.find { |m| m.taken_on?(date) && m.name == "daily.hours.off" }.try(:value).to_s.to_d
+                 recorded = worked + off
+                 star_goal = (user.id == 1 ? 0.25 : 0.5) * worked
+                 empower_goal = 6.0
+                 star_css = ""
+                 empower_css = ""
+                 star_css = "partially-recorded" if charged > 0
+                 star_css = "recorded" if recorded >= empower_goal && (charged >= star_goal)
+                 empower_css = "recorded" if recorded >= empower_goal
+
+                 if date == Date.today
+                   star_css << " today" 
+                   empower_css << " today"
+                 end %>
+              <td>
+                <b class="star <%= star_css %>"></b>
+                <b class="empower <%= empower_css %>"></b>
+              </td>
+            <% end %>
+          <% end %>
+          <td style="text-align: left">
+            <span>Star</span>
+            <span>Empower</span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% unless request.xhr? %>
+</div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $(function() {
+      new Refresher()
+        .container('#container')
+        .interval(30 * 60 * 1000) // 30 minutes
+        .callback(function() {
+          $.get(window.location.path, function(html) {
+            $('#reports_dashboard_body').html(html);
+          });
+        }).render();
+    });
+  </script>
+<% end %>
+<% end %>

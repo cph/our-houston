@@ -1,0 +1,129 @@
+table.weekly-report-list {
+  margin: 0 -0.5em 4em 0;
+  width: 100%;
+
+  td {
+    padding: 0.25em 0.5em;
+    vertical-align: top;
+  }
+
+  .task-project,
+  .houston-alert-project {
+    white-space: nowrap;
+    padding-right: 1em;
+    padding-top: 0.33em;
+  }
+
+  .task-worker,
+  .houston-alert-user {
+    min-width: 26px;
+  }
+
+  .houston-alert-type {
+    min-width: 26px;
+    text-align: center;
+    padding-right: 0;
+    font-size: 16px;
+  }
+
+  .task-summary,
+  .houston-alert-summary {
+    padding-left: 0.25em;
+    padding-top: 0.36em;
+    word-break: break-word;
+  }
+
+  .task-completed-this-week,
+  .houston-alert-completed-on-time {
+    min-width: 26px;
+    text-align: center;
+    padding-left: 1.5em;
+    padding-top: 0.36em;
+
+    &::after {
+      font-family: 'FontAwesome';
+      font-size: 18px;
+    }
+  }
+
+  tr.failure {
+    background: rgba(#e24e32, 0.1);
+  }
+
+  tr.success .task-completed-this-week::after,
+  tr.success .houston-alert-completed-on-time::after {
+    content: '\f00c';
+    color: #5db64c; // pass
+  }
+
+  tr.failure .task-completed-this-week::after,
+  tr.failure .houston-alert-completed-on-time::after {
+    content: '\f00d';
+    color: #e24e32; // fail
+  }
+
+  tbody > tr:last-child > td {
+    padding-bottom: 2.5em;
+  }
+
+  tbody + tfoot {
+    border-top: 1px solid #e4e4e4;
+
+    &::before {
+      line-height: 2.5em;
+      content: '.';
+      color: transparent;
+      display: block;
+    }
+  }
+}
+
+tr[rel="alert"]:hover td {
+  cursor: pointer;
+  background-color: rgba(128, 212, 255, 0.1);
+}
+
+h2.light {
+  margin: 2em 0;
+  display: block;
+
+  b.count {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 1em;
+    background-color: #f4f4f4;
+    padding: 0.33em 0.4em 0.33em 0.23em;
+    font-size: 0.88em;
+    line-height: 1em;
+    text-align: right;
+  }
+
+  .score {
+    float: right;
+    font-size: 14px;
+    position: relative;
+    top: -16px;
+  }
+}
+
+.alerts-opened-closed-graph {
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .axis text {
+    font-size: 10px;
+  }
+
+  rect.alerts-opened {
+    fill: #e24e32;
+  }
+
+  rect.alerts-closed {
+    fill: #5db64c;
+  }
+}

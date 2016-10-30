@@ -1,0 +1,86 @@
+<style type="text/css">
+  body { background: #14191B; margin: 0; }
+</style>
+
+<%= cool_avatar @report.user, size: 318 %>
+
+<h1 class="reports-user-nickname"><%= @report.username %></h1>
+<h2 class="reports-user-date"><%= @report.date.strftime("%b %-d, %Y") %></h2>
+<% r = 30; height = r * 2 + 8; width = height + 24; translate = "translate(#{r + 4 + 24}, #{r + 4})" %>
+
+
+<%# Sprint -%>
+<%= score_card :giant do |s| %>
+  <% s.raw do %>
+    <div class="<%= @report.sprint_week_status %>">
+      <svg width="<%= width %>" height="<%= height %>">
+        <text class="heading" x="-61" y="12" transform="rotate(270)">Sprint</text>
+        <path class="guide" d="<%= arc(outer_radius: r) %>" transform="<%= translate %>" />
+        <path class="value" d="<%= arc(outer_radius: r, end_angle: 360 * @report.sprint_rate) %>" transform="<%= translate %>" />
+        <path class="tick" d="<%= arc_tick(inner_radius: r / 2, outer_radius: r, angle: 0) %>" transform="<%= translate %>" />
+      </svg>
+    </div>
+  <% end %>
+  <% s.fraction "complete<br/>(this week)".html_safe, @report.sprint_completed, @report.sprint_intended, :class => @report.sprint_week_status, precision: 0 %>
+  <% s.fraction "completed<br/>(in #{@report.quarter_name})".html_safe, @report.sprints_completed, @report.sprints_completed_target, :class => @report.sprint_quarter_status %>
+  <% s.score "weeks left<br/>(in #{@report.quarter_name})".html_safe, @report.quarter.select { |date| date > @report.date }.count %>
+<% end %>
+
+
+<%# Alerts -%>
+<%= score_card :giant do |s| %>
+  <% s.raw do %>
+    <div class="<%= @report.alerts_week_status %>">
+      <svg width="<%= width %>" height="<%= height %>">
+        <text class="heading" x="-62" y="12" transform="rotate(270)">Alerts</text>
+        <path class="guide" d="<%= arc(outer_radius: r) %>" transform="<%= translate %>" />
+        <path class="target" d="<%= arc(outer_radius: r, end_angle: 360 * @report.alerts_rate_target) %>" transform="<%= translate %>" />
+        <path class="value" d="<%= arc(outer_radius: r, end_angle: 360 * @report.alerts_rate) %>" transform="<%= translate %>" />
+        <path class="bonus" d="<%= arc(outer_radius: r, start_angle: 360 * @report.alerts_rate_target) %>" transform="<%= translate %>" />
+        <path class="tick" d="<%= arc_tick(inner_radius: r / 2, outer_radius: r, angle: 360 * @report.alerts_rate_target) %>" transform="<%= translate %>" />
+      </svg>
+    </div>
+  <% end %>
+  <% s.percent "closed on-time<br/>(this week)".html_safe, @report.alerts_rate * 100, :class => @report.alerts_week_status %>
+  <% s.percent "closed on-time<br/>(since Jan 1)".html_safe, @report.alerts_rate_average * 100, :class => @report.alerts_average_status %>
+  <% s.score "alerts closed<br/>(this week)".html_safe, @report.alerts_closed, precision: 0 %>
+<% end %>
+
+
+<%# Star -%>
+<%= score_card :giant do |s| %>
+  <% s.raw do %>
+    <div class="<%= @report.productivity_week_status %>">
+      <svg width="<%= width %>" height="<%= height %>">
+        <text class="heading" x="-54" y="12" transform="rotate(270)">Star</text>
+        <path class="guide" d="<%= arc(outer_radius: r) %>" transform="<%= translate %>" />
+        <% if @report.productivity_rate_target -%>
+        <path class="target" d="<%= arc(outer_radius: r, end_angle: 360 * @report.productivity_rate_target) %>" transform="<%= translate %>" />
+        <% end -%>
+        <path class="value" d="<%= arc(outer_radius: r, end_angle: 360 * @report.productivity_rate) %>" transform="<%= translate %>" />
+        <% if @report.productivity_rate_target -%>
+        <path class="bonus" d="<%= arc(outer_radius: r, start_angle: 360 * @report.productivity_rate_target) %>" transform="<%= translate %>" />
+        <% end -%>
+        <path class="overlay" d="<%= arc(outer_radius: r + 2, inner_radius: (r / 2) - 2, end_angle: 360 * @report.productivity_alerts_rate) %>" transform="<%= translate %>" />
+        <% if @report.productivity_rate_target -%>
+        <path class="tick" d="<%= arc_tick(inner_radius: r / 2, outer_radius: r, angle: 360 * @report.productivity_rate_target) %>" transform="<%= translate %>" />
+        <% end -%>
+      </svg>
+    </div>
+  <% end %>
+  <% s.percent "of time charged<br/>(this week)".html_safe, @report.productivity_rate * 100, :class => @report.productivity_week_status %>
+  <% s.percent "of time charged<br/>(since Jan 1)".html_safe, @report.productivity_rate_average * 100, :class => @report.productivity_average_status %>
+  <% s.score "spent on alerts<br/>(this week)".html_safe, @report.hours_charged_to_alerts, unit: "h", precision: 1 %>
+<% end %>
+
+<div class="report-details">
+  <h6>Team measurements</h6>
+  <pre><%= @report.team_measurements.reorder(:name).map { |m|
+    [ m.name.ljust(50),
+      m.value.rjust(8) ].join(" ") }.join("\n") %></pre>
+  
+  <h6>My measurements</h6>
+  <pre><%= @report.user_measurements.reorder(:name).map { |m|
+    [ m.name.ljust(50),
+      m.value.rjust(8) ].join(" ") }.join("\n") %></pre>
+</div>

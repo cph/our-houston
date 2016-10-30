@@ -213,7 +213,6 @@ Houston.config do
   #
 
   use :feedback
-  use :reports
   use :support_form
   use :testing_report
   use :brakeman

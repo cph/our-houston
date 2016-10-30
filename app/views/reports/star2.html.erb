@@ -1,0 +1,28 @@
+<ul id="reports_timeframes" class="nav nav-tabs" role="tablist">
+  <li role="presentation">
+    <a href="#week" aria-controls="home" role="tab" data-toggle="tab">Last Week</a>
+  </li>
+  <li role="presentation" class="active">
+    <a href="#month" aria-controls="home" role="tab" data-toggle="tab">Last Month</a>
+  </li>
+  <li role="presentation">
+    <a href="#3months" aria-controls="profile" role="tab" data-toggle="tab">Last 3 Months</a>
+  </li>
+  <li role="presentation">
+    <a href="#6months" aria-controls="profile" role="tab" data-toggle="tab">Last 6 Months</a>
+  </li>
+</ul>
+
+<ul id="timesheets">
+</ul>
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    new TimesheetView({
+      el: $('#timesheets')[0],
+      users: <%=raw Hash[User.unretired.pluck(:id, :first_name)].to_json %>
+    }).fetch();
+  });
+</script>
+<% end %>
