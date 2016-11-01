@@ -7,6 +7,11 @@ Houston::Conversations.config do
     today = Date.today
     date = e.matched?("date") ? e.match["date"] : today
 
+    if date < today
+      e.reply "Sorry! I can't look _back!_ :sweat:"
+      next
+    end
+
     begin
       menu_items = LunchMenu.for date
     rescue Faraday::HTTP::Error
@@ -14,12 +19,14 @@ Houston::Conversations.config do
       next
     end
 
+    formatted_date = date.strftime("%A (%-m/%-d)")
+
     unless menu_items
-      e.reply "Hm, looks like _nothing's_ on the menu for #{date_query} :sweat:"
+      e.reply "Hm, looks like _nothing's_ on the menu for #{formatted_date} :sweat:"
       next
     end
 
-    message = date == today ? "Today's menu is:" : "The menu for #{date.strftime('%A (%-m/%-d)')} is:"
+    message = date == today ? "Today's menu is:" : "The menu for #{formatted_date} is:"
     e.reply "#{message}\n#{menu_items.map { |item| "> #{item}" }.join("\n")}"
   end
 end
