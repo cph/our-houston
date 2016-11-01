@@ -1,7 +1,7 @@
 class ReportsMailer < ::ViewMailer
   self.stylesheets = stylesheets + %w{reports/charts.scss}
 
-  helper Houston::ReportsHelper
+  helper ReportsHelper
 
   def weekly_user_report(report, options={})
     @report = report
