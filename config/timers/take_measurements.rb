@@ -100,7 +100,7 @@ def measure_star_time!(time=Time.now)
   # Find entries for the last 3 weeks
   taken_at = to_end_of_thursday(time)
   date = taken_at.to_date
-  weeks = (-14..0).step(7).map { |ago| (date + (ago - 6))..(date + ago) }
+  weeks = (-35..0).step(7).map { |ago| (date + (ago - 6))..(date + ago) }
   weeks.each do |week|
     measure_star_time_for_week!(week)
   end
