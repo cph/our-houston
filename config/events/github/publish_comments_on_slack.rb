@@ -3,6 +3,14 @@
 $comments_posted_on_slack = {}
 
 Houston.config do
+  on "github:pull:reviewed" => "github:slack-when-a-pull-request-has-been-reviewed" do
+    body, url = review.values_at "body", "html_url"
+    message = "#{review["user"]["login"]} commented on #{slack_link_to("##{pull_request["number"]} #{pull_request["title"]}", url)}"
+    response = slack_send_message_to message, "#code-review", as: :github,
+      attachments: [slack_github_comment_attachment(body)]
+    $comments_posted_on_slack[url] = response["ts"] if response["ok"]
+  end
+
   on "github:comment:commit:create" => "github:slack-when-commit-comment-created" do
     body, url = comment.values_at "body", "html_url"
     message = "#{comment["user"]["login"]} commented on #{slack_link_to(comment["commit_id"][0...7], url)}"
