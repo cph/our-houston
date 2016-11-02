@@ -87,7 +87,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 1c76c25a4bdd1b1a99ee41e8a5a394fd7963b0b4
+  revision: 3b581281d2dd13b71c21d750a6bcfc787c3a9928
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -98,7 +98,6 @@ GIT
       browser (~> 2.3.0)
       bundler
       cancan (~> 1.6.10)
-      codeclimate-test-reporter (= 0.4.8)
       coffee-rails (~> 4.1.0)
       default_value_for (= 3.0.2)
       devise
@@ -288,8 +287,6 @@ GEM
       timers (>= 4.1.1)
     charlock_holmes (0.7.3)
     chronic (0.10.2)
-    codeclimate-test-reporter (0.4.8)
-      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
