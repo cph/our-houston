@@ -42,7 +42,7 @@ Houston.config do
   #   9. Houston publishes results to Code Climate.
   on "test_run:complete" => "test-run:publish-coverage-to-codeclimate" do
     begin
-      return if test_run.project.code_climate_repo_token.blank?
+      next if test_run.project.code_climate_repo_token.blank?
       CodeClimate::CoverageReport.publish!(test_run)
     rescue Houston::Adapters::VersionControl::CommitNotFound
       # Got a bad Test Run, nothing we can do about it.
