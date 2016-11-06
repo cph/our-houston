@@ -3,7 +3,7 @@ Houston.config.every "friday at 6:00am", "report:weekly:developer" do
   User.with_email_address(EP_DEVELOPERS).each do |user|
     report = Houston::Reports::WeeklyUserReport.new(user, date)
     Houston.try({max_tries: 3}, Net::OpenTimeout) do
-      Houston::Reports::Mailer.weekly_user_report(report, bcc: "bob.lail@cph.org").deliver!
+      ReportsMailer.weekly_user_report(report, bcc: "bob.lail@cph.org").deliver!
     end
   end
 end
