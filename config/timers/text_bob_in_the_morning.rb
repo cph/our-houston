@@ -1,4 +1,4 @@
-Houston.config.at [:weekday, "5:45am"], "send-bob-morning-text" do
+Houston.config.every "weekday at 5:45am", "send-bob-morning-text" do
   date = Date.today
   messages = []
 

@@ -1,4 +1,4 @@
-Houston.config.at [:friday, "6:00am"], "report:weekly:developer" do
+Houston.config.every "friday at 6:00am", "report:weekly:developer" do
   date = Date.today - 1
   User.with_email_address(EP_DEVELOPERS).each do |user|
     report = Houston::Reports::WeeklyUserReport.new(user, date)

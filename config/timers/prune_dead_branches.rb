@@ -1,4 +1,4 @@
-Houston.config.at [:sunday, "6:30pm"], "repo:prune" do
+Houston.config.every "sunday at 6:30pm", "repo:prune" do
   credentials = Houston::Adapters::VersionControl::GitAdapter.credentials
 
   %w{members unite ledger lsb confb bsb dr epic-auth our-houston ep}.each do |project_slug|

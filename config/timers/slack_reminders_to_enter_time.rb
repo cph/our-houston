@@ -1,6 +1,6 @@
 Houston.config do
 
-  at [:weekday, "12:00pm"], "remind:startime" do
+  every "weekday at 12:00pm", "remind:startime" do
     today = Date.today
     first_of_month = today.beginning_of_month
     yesterday = today - 1

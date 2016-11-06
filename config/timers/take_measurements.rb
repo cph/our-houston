@@ -1,5 +1,5 @@
 Houston.config do
-  at [:thursday, "11:50pm"], "measure:sprint" do
+  every "thursday at 11:50pm", "measure:sprint" do
     measure_sprint_effort_for_week!
     measure_alerts_for_week!
   end
@@ -8,11 +8,11 @@ Houston.config do
     measure_star_time!
   end
 
-  at "6:30am", "measure:logs" do
+  every "day at 6:30am", "measure:logs" do
     measure_log_files!
   end
 
-  at "9:00am", "measure:alerts.open" do
+  every "day at 9:00am", "measure:alerts.open" do
     measure_open_alerts!
     measure_alerts_closed_on_time!(1.day.ago)
   end

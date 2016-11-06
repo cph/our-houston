@@ -1,4 +1,4 @@
-Houston.config.at "2:58pm", "announce:casual-days" do
+Houston.config.every "day at 2:58pm", "announce:casual-days" do
   casual_day_type = case CasualDay.check(Date.today + 1)
   when :cardinals_casual_day then "a Cardinals Casual Day"
   when :blues_casual_day then "a Blues Casual Day"

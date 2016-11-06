@@ -87,7 +87,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 9810931e741b396b741f90893c645a6227692651
+  revision: deffc7640e4d3b75b2e07024dd2936f62c2c7bed
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -139,7 +139,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: b3d229cac2c4981206395941fc6bb49bb8ad8ca3
+  revision: 7b040d336f932d50fd033afcccd7bd5d73898919
   branch: master
   specs:
     houston-feedback (0.0.1)
@@ -247,7 +247,7 @@ GEM
       nokogiri
     ansi (1.5.0)
     arel (7.1.4)
-    attentive (0.3.3)
+    attentive (0.3.5)
       thread_safe
     bcrypt (3.1.11)
     better_errors (2.1.1)
