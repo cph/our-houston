@@ -87,7 +87,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: deffc7640e4d3b75b2e07024dd2936f62c2c7bed
+  revision: 8ca2709f579e9685856aadb3626ac5899c2b9ceb
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -151,11 +151,11 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
-  revision: b51acf6eb139f4e342d47c07f24a1ae07cfada63
+  revision: 04b6e08cf3cc807729ac302d962ce7500d6102b3
   branch: master
   specs:
     houston-roadmaps (0.1.0)
-      houston-core (>= 0.7.0)
+      houston-core (>= 0.8.0.pre)
       neat-rails (>= 0.2.0)
 
 GIT

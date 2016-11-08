@@ -39,6 +39,9 @@ Houston.config do
 
   role "Team Owner" do |team|
     can [:update, :destroy], Houston::Feedback::Conversation, project_id: team.project_ids
+    can :manage, Roadmap do |roadmap|
+      roadmap.team_ids.member?(team.id)
+    end
   end
 
 
