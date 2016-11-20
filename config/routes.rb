@@ -62,5 +62,6 @@ Houston::Engine.routes.draw do
   # Misc
 
   get "colors", to: "colors#index"
+  get "extras/pairs", to: "extras#pairs"
 
 end
