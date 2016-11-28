@@ -247,7 +247,7 @@ GEM
       nokogiri
     ansi (1.5.0)
     arel (7.1.4)
-    attentive (0.3.5)
+    attentive (0.3.6)
       thread_safe
     bcrypt (3.1.11)
     better_errors (2.1.1)
