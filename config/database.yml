@@ -3,7 +3,7 @@ defaults: &defaults
   encoding: utf8
   host: localhost
   prepared_statements: false
-  pool: 10
+  pool: 20
   reaping_frequency: 30
   variables:
     lock_timeout: 3000
