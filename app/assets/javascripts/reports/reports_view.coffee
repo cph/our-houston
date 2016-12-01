@@ -13,6 +13,7 @@ class @ReportsView extends Backbone.View
         when "#month" then view.start = 1.month().ago()
         when "#3months" then view.start = 3.months().ago()
         when "#6months" then view.start = 6.months().ago()
+        when "#12months" then view.start = 12.months().ago()
       view.rerender()
 
   render: ->
