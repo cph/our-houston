@@ -106,11 +106,6 @@ def measure_star_time!(time=Time.now)
   end
 end
 
-def measure_star_time_for_year!
-  now = Time.now
-  measure_alerts_for_range!(Time.new(now.year, 1, 1)..now)
-end
-
 def measure_star_time_for_range!(range)
   taken_at = to_end_of_thursday(range.begin).to_date
   while taken_at < range.end
