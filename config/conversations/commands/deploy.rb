@@ -67,6 +67,7 @@ module Houston
         cph/members
         cph/unite
         cph/ledger
+        cph/lsb
       }.freeze
 
 
