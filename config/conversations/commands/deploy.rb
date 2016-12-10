@@ -215,7 +215,7 @@ module Houston
         # we're just deploying members, unite, and ledger to Staging for now,
         # so we can assume that the strategy is Engineyard
         environment_name = project == "lsb" ? "staging2" : "staging"
-        @environment = Houston::Adapters::Deployment::Engineyard.new(project, environment_name)
+        @environment = Deployers::Engineyard.new(project, environment_name)
         check_if_another_pull_request_is_on_staging
       rescue Exception
         Houston.report_exception $!

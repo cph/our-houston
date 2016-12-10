@@ -78,6 +78,9 @@ gem "houston-conversations", github: "houston/houston-conversations", branch: "m
 # Develop on slacks
 # gem "slacks", github: "houston/slacks", branch: "master"
 
+# For deploying to EngineYard
+gem "engineyard", "~> 3.2.1"
+
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
 gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
