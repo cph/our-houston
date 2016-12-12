@@ -72,6 +72,12 @@ Houston.config do
   # This is the passphrase Houston will use to encrypt and decrypt sensitive data
   passphrase "challenge accepted!"
 
+  # Enter your Google Analytics Tracking ID to add Google's
+  # Universal Analytics script to every page.
+  google_analytics do
+    tracking_id "UA-88832132-1"
+  end
+
   # This is the SMTP server Houston will use to send emails
   smtp do
     authentication :plain
