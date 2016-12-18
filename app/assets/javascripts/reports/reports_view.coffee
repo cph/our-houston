@@ -80,19 +80,15 @@ class @ReportsView extends Backbone.View
     mean = if report.mean then report.mean(measurements) else d3.mean(data, (measurement) ->
       if _.isNull(measurement.value) then null else +measurement.value)
 
-    tickFormat = switch report.units
-      when "%" then (n) -> d3.format(report.format ? ".1f")(n) + "%"
-      when "ms" then (n) -> d3.format(report.format ? "f")(n) + "ms"
-      else d3.format(report.format ? ",f")
+    tickFormat = Houston.getTickFormat(report)
     $report.find(".report-big-number").text(tickFormat(mean))
 
-    graph = new Houston.LineGraph()
-      .selector($report.find(".report-graph")[0])
-      .width(324)
-      .height(102)
-      .min(report.min)
-      .max(report.max)
-      .tickFormat(tickFormat)
-      .timeFrame([@start, @end])
-      .data(data)
-      .render()
+    Houston.graphLine
+      selector: $report.find(".report-graph")[0]
+      data: data
+      width: 324
+      height: 102
+      min: report.min
+      max: report.max
+      tickFormat: tickFormat
+      timeFrame: [@start, @end]
