@@ -16,6 +16,8 @@ class MeasurementGraphOptions
     max
     width
     height
+    format
+    transform
   }.freeze
 
 
@@ -35,6 +37,10 @@ class MeasurementGraphOptions
       when "u" then options[:max] = value.to_i
       when "w" then options[:width] = value.to_i
       when "h" then options[:height] = value.to_i
+      when "f" then options[:format] = value
+
+      # Other params
+      when "x" then options[:transform] = value
       end
     end)
   end
@@ -52,6 +58,9 @@ class MeasurementGraphOptions
     params["u"] = max unless default?(:max)
     params["w"] = width unless default?(:width)
     params["h"] = height unless default?(:height)
+    params["f"] = format unless default?(:format)
+
+    params["x"] = transform unless default?(:transform)
     params
   end
 
@@ -95,6 +104,14 @@ class MeasurementGraphOptions
 
   def projects
     Array(options.fetch(:projects, []))
+  end
+
+  def format
+    options.fetch(:format, nil)
+  end
+
+  def transform
+    options.fetch(:transform, nil)
   end
 
   def default?(value)
