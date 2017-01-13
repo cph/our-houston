@@ -118,25 +118,6 @@ class ReportsController < ApplicationController
     render layout: request.xhr? ? false : "instance_dashboard"
   end
 
-  def sprint
-    @title = "Sprint"
-    @sprint = Sprint.find_by_id(params[:id]) || Sprint.current || Sprint.create!
-
-    @report = WeeklyGoalReport.new(@sprint.start_date)
-
-    respond_to do |format|
-      format.json do
-        render json: {
-          start: @sprint.start_date,
-          tasks: SprintTaskPresenter.new(@sprint).as_json,
-          sprintGoalHtml: render_to_string(partial: "sprint_goal", formats: [:html]) }
-      end
-      format.html do
-        render layout: "instance_dashboard"
-      end
-    end
-  end
-
 
 
   def star_export_by_component

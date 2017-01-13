@@ -1,6 +1,5 @@
 Houston.config do
-  every "thursday at 11:50pm", "measure:sprint" do
-    measure_sprint_effort_for_week!
+  every "thursday at 11:50pm", "measure:alerts" do
     measure_alerts_for_week!
   end
 
@@ -179,37 +178,6 @@ def record_star_measurements!(taken_at: nil, user: nil, prefix: nil, star_entrie
 end
 
 
-
-
-
-def measure_sprint_effort_for_week!(time=Time.now)
-  taken_at = to_end_of_thursday(time)
-
-  sprint = Sprint.find_by_date(taken_at)
-  return unless sprint
-
-  sprint.sprint_tasks.joins(:task)
-    .group("sprints_tasks.checked_out_by_id")
-    .pluck("sprints_tasks.checked_out_by_id", "SUM(tasks.effort)")
-    .each do |(user_id, effort)|
-      Measurement.take!(name: "weekly.sprint.effort.intended", taken_at: taken_at,
-        subject_type: "User", subject_id: user_id, value: effort) if user_id
-  end
-
-  sprint.sprint_tasks.joins(:task)
-    .completed_during(sprint)
-    .group("sprints_tasks.checked_out_by_id")
-    .pluck("sprints_tasks.checked_out_by_id", "SUM(tasks.effort)")
-    .each do |(user_id, effort)|
-      Measurement.take!(name: "weekly.sprint.effort.completed", taken_at: taken_at,
-        subject_type: "User", subject_id: user_id, value: effort) if user_id
-  end
-
-  intended = sprint.sprint_tasks.joins(:task).sum("tasks.effort")
-  completed = sprint.sprint_tasks.joins(:task).completed_during(sprint).sum("tasks.effort")
-  Measurement.take!(name: "weekly.sprint.completed", taken_at: taken_at,
-    value: intended == completed ? "1" : "0")
-end
 
 
 

@@ -15,7 +15,6 @@ Houston::Engine.routes.draw do
     get "upcoming", :to => "releases#upcoming"
     get "staging", :to => "staging#index"
     get "pulls", :to => "pulls#index"
-    get "roadmap", :to => "roadmap#index"
   end
 
 
@@ -29,10 +28,6 @@ Houston::Engine.routes.draw do
 
     # Shows who has entered their Star and Empower time over the last two weeks
     get "star/dashboard", to: "reports#star"
-
-    # Modified Sprint dashboard that shows GoalKeeper goal progress as well
-    get "sprint/dashboard", to: "reports#sprint"
-    get "sprint/:id/dashboard", to: "reports#sprint"
 
     # Alerts, historical
     get "alerts", to: "reports#alerts"

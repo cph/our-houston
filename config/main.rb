@@ -178,7 +178,6 @@ Houston.config do
   navigation       :activity_feed,
                    :alerts,
                    :roadmaps,
-                   :sprint,
                    :pulls
   project_features :support_form,
                    :feedback,
@@ -269,6 +268,9 @@ Houston.config do
     estimate_value :off
     mixer :off
   end
+
+  # For now, just for old reports
+  use :sprints
 
 
 

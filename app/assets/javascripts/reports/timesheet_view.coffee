@@ -117,7 +117,7 @@ class @TimesheetView extends Backbone.View
     ceils = _.values(ceilsByDate)
     bands = _.reject _.values(ptoByDate), ([date, a, b]) -> a == b
 
-    @sprintGraph = new StackedBarGraph()
+    new StackedBarGraph()
       .selector("#timesheet_#{timesheet.subject.id} > .timesheet-graph")
       .width(572)
       .height(102)

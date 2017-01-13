@@ -18,9 +18,6 @@ Houston.config do
     can :manage, Ticket, project_id: team.project_ids
     can :manage, Github::PullRequest, project_id: team.project_ids
     can :manage, Houston::Alerts::Alert, project_id: team.project_ids
-
-    # globally, right now
-    can :manage, Sprint
   end
 
 
