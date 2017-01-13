@@ -1,0 +1,65 @@
+<%= form_for @presentation, :html => {class: "container-fluid", id: "edit-nanoconf-form"} do |f| %>
+
+  <div class="row-fluid">
+    <div class="span6 controls">
+      <% if @presentation.past? %>
+        <h4><%= @presentation.date.strftime("%B %d, %Y") %></h4>
+      <% else %>
+        <%= select("presentation", "date", @dropdown_dates, selected: @presentation.date.strftime("%B %d, %Y")) %>
+      <% end %>
+
+      <% if current_user.email == "chase.clettenberg@cph.org" %>
+        <%= select("presentation", "presenter", User.unretired.map { |u| ["#{u.name} (#{u.role}#{", Admin" if u.administrator?})", u.email]}, selected: @presentation.presenter.try(:email))%>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6 controls">
+      <%= f.text_field :title, placeholder: "Title" %>
+    </div>
+  </div>
+
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#markdown" data-toggle="tab">
+        <p>Markdown</p>
+      </a>
+    </li>
+    <li id="preview_tab">
+      <a href="#preview" data-toggle="tab">
+        <p>Preview</p>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="markdown">
+      <div class="row-fluid" id="nanoconf-description">
+        <div class="uploader">
+          <%= f.text_area :description, placeholder: "Description" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane markdown-body" id="preview">
+      <h5>Nothing to Preview</h5>
+    </div>
+
+  </div>
+  <i class="fa fa-tag" aria-hidden="true"></i>
+  <div class="row-fluid">
+    <div class="span6 controls">
+      <%= f.text_field :tags, placeholder: "Tags (comma separated)", id: "tags" %>
+    </div>
+  </div>
+
+  <%= link_to "https://guides.github.com/features/mastering-markdown/", target: "_blank" do %>
+    <small>
+      <span class="octicon octicon-markdown"></span> Styling with Markdown is supported
+    </small>
+  <% end %>
+  <div class="buttons">
+    <%= submit_tag "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

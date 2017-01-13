@@ -1,0 +1,43 @@
+<% content_for :title do %>
+<h1 class="project-banner space-below">
+  Upcoming Presentations
+  <%= link_to nanoconfs_past_presentations_path, class: "project-banner-btn" do %>
+  <i class="fa fa-television" aria-hidden="true"></i>
+    <span>Past <br />
+    Presentations</span>
+  <% end %>
+</h1>
+<% end %>
+
+<div id="presentation-list">
+  <% @presentations.each do |friday, presentation| %>
+    <div class="presentation">
+      <h4><%= friday.strftime("%b %d, %Y") %></h4>
+      <% if presentation %>
+        <div class="presentation-info">
+          <h3 class="presentation-title">
+            <a href="/nanoconfs/<%= presentation.id %>">
+              <%= presentation.title %>
+            </a>
+          </h3>
+          <% if can? :update, presentation %>
+            <%= link_to "Edit", nanoconfs_edit_presentation_path(presentation) %>
+          <% else %>
+            <p class="presenter-info">By: <%= presentation.presenter.name %> <%= avatar_for(presentation.presenter) %></p>
+          <% end %>
+          <% if presentation.tags? %>
+            <div class="tags">
+              <% presentation.tags.each do |tag| %>
+                <span class="tag"><%= tag %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <% if can? :create, Nanoconfs::Presentation %>
+          <h5 class="signup-link"><%= link_to "Sign up to Present!", nanoconfs_new_presentation_path(date: friday.strftime("%Y-%m-%d")) %></h5>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

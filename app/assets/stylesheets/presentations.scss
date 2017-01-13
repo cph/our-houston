@@ -1,0 +1,126 @@
+#presentation-list {
+  .presentation h4 {
+    position: relative;
+    margin: 0 0 0px 0;
+    padding: 10px 14px 8px;
+    background: #efefef;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+
+  .signup-link{
+    margin: 0 0 14px 0;
+    padding: 10px 14px 8px;
+    font-size: 16px;
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .presentation-title {
+    position: relative;
+    margin: 0 0 0px 0;
+    padding: 0px 14px 0px;
+    display: inline-block;
+
+    a {
+      color: black;
+    }
+
+    a:hover {
+      color: #0088cc;
+      text-decoration: none;
+    }
+  }
+
+  .presenter-info {
+    display: inline-block;
+  }
+
+  .tags {
+    padding-bottom: 10px;
+    padding-left: 14px;
+  }
+
+  .presentation-info {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+
+#nanoconf-form {
+  margin-top: -100px;
+
+  input#presentation_title {
+    width: 500px;
+  }
+
+  #nanoconf-description {
+    display: block;
+    width: 500px;
+    textarea {
+      width: 500px;
+      height: 300px;
+    }
+  }
+
+  .tab-pane#preview {
+    min-height: 200px
+  }
+
+  h2 {
+    padding-left: 20px;
+  }
+
+  .fa-tag {
+    float: left;
+    margin-top: 7px;
+  }
+
+  input#tags {
+    min-width: 470px;
+    margin-left: 5px;
+  }
+}
+
+.nanoconf-info {
+  margin-top: -50px;
+  margin-left: 30px;
+
+  .light-text {
+    color: grey;
+    font-style: italic;
+  }
+
+  .date {
+    font-size: 16px;
+  }
+
+  hr {
+    height: 1px;
+  }
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: 11.844px;
+  line-height: 14px;
+  color: #ffffff;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #aaa;
+  border-radius: 3px;
+  margin-right: 0.33em;
+}
+
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  min-height: 200px;
+  max-width: 700px;
+}

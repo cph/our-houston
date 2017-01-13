@@ -1,0 +1,29 @@
+<div class="nanoconf-info">
+  <span class="date"><i class="fa fa-calendar" aria-hidden="true"></i> <%= @presentation.date.strftime("%b %d, %Y") %></span>
+  <h2 class="presentation-title">
+    <%= @presentation.title %>
+    <% if can? :update, @presentation %>
+      <small><%= link_to "Edit", nanoconfs_edit_presentation_path(@presentation) %></small>
+    <% end %>
+  </h2>
+
+  <% unless can? :update, @presentation %>
+    <p class="presenter-info"><%= avatar_for(@presentation.presenter) %> By: <%= @presentation.presenter.name %> </p>
+  <% end %>
+  <% if @presentation.tags %>
+    <% @presentation.tags.each do |tag| %>
+      <span class="tag"><%= tag %></span>
+    <% end %>
+  <% end %>
+  <hr>
+
+  <div class="tab-pane markdown-body" id="preview">
+    <% unless @presentation.description.blank? %>
+      <%= mdown(@presentation.description) %>
+    <% else %>
+      <span class="light-text">No Description</span>
+    <% end %>
+  </div>
+
+  <%= render "back_link" %>
+</div>

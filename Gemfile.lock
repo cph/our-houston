@@ -6,14 +6,6 @@ GIT
     ruby-ntlm (0.0.1)
 
 GIT
-  remote: git://github.com/cph/houston-nanoconfs.git
-  revision: ead80183777aec0425a4b75597922e87fa60d154
-  branch: master
-  specs:
-    houston-nanoconfs (0.0.1)
-      houston-core (>= 0.7.0.beta4)
-
-GIT
   remote: git://github.com/cph/houston-support_form.git
   revision: 927af5c4ff56ac77ffe57cd9feb6c19824f0fe0e
   branch: master
@@ -603,7 +595,6 @@ DEPENDENCIES
   houston-conversations!
   houston-core!
   houston-feedback!
-  houston-nanoconfs!
   houston-roadmaps!
   houston-scheduler!
   houston-slack!
