@@ -180,7 +180,6 @@ Houston.config do
                    :bugs,
                    :scheduler,
                    :goals,
-                   :testing,
                    :releases
 
 
@@ -216,7 +215,6 @@ Houston.config do
 
   use :feedback
   use :support_form
-  use :testing_report
   use :brakeman
   use :sprints # For now, just for old reports
   use :roadmaps

@@ -78,9 +78,6 @@ Houston.config do
       can :read, User
       can :update, user
 
-      # Employees can edit their own testing notes
-      can [:update, :destroy], TestingNote, user_id: user.id
-
       # Employees can see project quotas
       can :read, Houston::Scheduler::ProjectQuota
 
@@ -101,9 +98,6 @@ Houston.config do
 
       # If you're signed in, you can create a Nanoconfs
       can :create, Nanoconfs::Presentation
-
-      # Employees can see and comment on Testing Reports for projects they are involved in
-      can [:create, :read], TestingNote, project_id: user.teams.project_ids
 
     end
   end

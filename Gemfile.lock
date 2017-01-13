@@ -184,14 +184,6 @@ GIT
       houston-core (>= 0.8.0.pre)
 
 GIT
-  remote: git://github.com/houston/houston-testing_report.git
-  revision: 5354e5327571853ee4f318d19f2335fb20c3ce9c
-  branch: master
-  specs:
-    houston-testing_report (0.0.1)
-      houston-core (>= 0.8.0.pre)
-
-GIT
   remote: git://github.com/houston/houston-twilio.git
   revision: 7d449389773a1bd61f646a1ce7e454375e28f109
   branch: master
@@ -618,7 +610,6 @@ DEPENDENCIES
   houston-slack!
   houston-sprints!
   houston-support_form!
-  houston-testing_report!
   houston-twilio!
   itsm!
   letter_opener
