@@ -2,6 +2,7 @@ module Dashboards
   class ReleasesController < ApplicationController
     layout "instance_dashboard"
     helper_method :recent_changes, :upcoming_changes
+    helper Houston::Releases::ReleaseHelper
 
     def index
       @title = "Releases"
@@ -21,7 +22,7 @@ module Dashboards
 
     def recent_changes
       projects = Project.where(slug: %w{members unite ledger})
-      releases = Release.where(project_id: projects.map(&:id)).to("production").limit(20)
+      releases = Houston::Releases::Release.where(project_id: projects.map(&:id)).to("production").limit(20)
       releases.flat_map(&:release_changes).take(15)
     end
 
@@ -31,9 +32,9 @@ module Dashboards
         master = project.repo.branch "master"
         beta = project.repo.branch "beta"
         if master && beta
-          release = Release.new(project: project)
+          release = Houston::Releases::Release.new(project: project)
           project.commits.between(master, beta)
-            .map { |commit| ReleaseChange.from_commit(release, commit) }
+            .map { |commit| Houston::Releases::ReleaseChange.from_commit(release, commit) }
             .reject { |change| change.tag.nil? }
         else
           []

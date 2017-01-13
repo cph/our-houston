@@ -5,7 +5,7 @@ Houston.config do
 
 
   role "Maintainer" do |team|
-    can :manage, Release, project_id: team.project_ids
+    can :manage, Houston::Releases::Release, project_id: team.project_ids
     can :update, Project, id: team.project_ids
     can :close, Ticket, project_id: team.project_ids
     can :estimate, Project, id: team.project_ids # <-- !todo: remove
@@ -45,7 +45,7 @@ Houston.config do
     if user.nil?
 
       # Customers are allowed to see Release Notes of products, for production
-      can :read, Release do |release|
+      can :read, Houston::Releases::Release do |release|
         release.environment_name == "production"
       end
 
@@ -62,7 +62,7 @@ Houston.config do
       can :read, Nanoconfs::Presentation
 
       # Employees can see Releases to staging
-      can :read, Release
+      can :read, Houston::Releases::Release
 
       # Employees can see Projects
       can :read, Project

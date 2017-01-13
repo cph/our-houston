@@ -109,11 +109,6 @@ Houston.config do
     "slate"         => "6c7a80",
     "silver"        => "a2a38b" )
 
-  # These are the tags available for each change in Release Notes
-  change_tags( {name: "New Feature", as: "feature", color: "8DB500"},
-               {name: "Improvement", as: "improvement", color: "3383A8", aliases: %w{enhancement}},
-               {name: "Bugfix", as: "fix", color: "C64537", aliases: %w{bugfix}} )
-
   # These are the types of tickets
   ticket_types(
     "Chore"       => "909090",
@@ -223,9 +218,13 @@ Houston.config do
   use :support_form
   use :testing_report
   use :brakeman
+  use :sprints # For now, just for old reports
+  use :roadmaps
 
-  use :roadmaps do
-    date "2016-09-30", "End of Members Push"
+  use :releases do
+    change_tags( {name: "New Feature", as: "feature", color: "8DB500"},
+                 {name: "Improvement", as: "improvement", color: "3383A8", aliases: %w{enhancement}},
+                 {name: "Bugfix", as: "fix", color: "C64537", aliases: %w{bugfix}} )
   end
 
   use :alerts do
@@ -269,8 +268,6 @@ Houston.config do
     mixer :off
   end
 
-  # For now, just for old reports
-  use :sprints
 
 
 

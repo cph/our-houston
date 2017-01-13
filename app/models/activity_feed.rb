@@ -29,7 +29,7 @@ class ActivityFeed
   end
 
   def releases
-    Release.for_projects(projects).includes(:project, :user).before(time).limit(count)
+    Houston::Releases::Release.for_projects(projects).includes(:project, :user).before(time).limit(count)
       .map { |release| ReleaseEvent.new(release) }
   end
 

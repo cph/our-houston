@@ -6,6 +6,7 @@ class ActivityFeedController < ApplicationController
   layout "minimal"
 
   helper ::TimelineHelper
+  helper Houston::Releases::ReleaseHelper
 
   def index
     load_activity
