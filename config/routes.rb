@@ -68,6 +68,12 @@ Houston::Engine.routes.draw do
 
 
 
+  # Pull Requests
+
+  get "pulls", to: "github/pulls#index"
+
+
+
   # Misc
 
   get "colors", to: "colors#index"

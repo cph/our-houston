@@ -46,6 +46,12 @@ Houston.add_navigation_renderer :activity_feed do
   path { Houston::Engine.routes.url_helpers.activity_feed_path }
 end
 
+Houston.add_navigation_renderer :pulls do
+  name "Pulls"
+  path { Houston::Engine.routes.url_helpers.pulls_path }
+  ability { |ability| ability.can?(:read, Github::PullRequest) }
+end
+
 
 
 # Configure Houston
