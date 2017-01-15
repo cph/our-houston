@@ -773,18 +773,17 @@ CREATE TABLE milestones (
     name character varying(255) NOT NULL,
     tickets_count integer DEFAULT 0,
     completed_at timestamp without time zone,
-    extended_attributes hstore DEFAULT ''::hstore NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     destroyed_at timestamp without time zone,
-    start_date date,
     band integer DEFAULT 1 NOT NULL,
     end_date date,
     locked boolean DEFAULT false NOT NULL,
     closed_tickets_count integer DEFAULT 0 NOT NULL,
     lanes integer DEFAULT 1 NOT NULL,
     goal text,
-    feedback_query character varying(255)
+    feedback_query character varying(255),
+    props jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3508,6 +3507,8 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170113230723'),
 ('20170113230944'),
 ('20170113231303'),
-('20170113232119');
+('20170113232119'),
+('20170115003303'),
+('20170115003536');
 
 
