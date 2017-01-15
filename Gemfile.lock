@@ -97,7 +97,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 87b5b5fda3bb6161525947eecdd410fbc73c9f7a
+  revision: cbe97bba96d74ddcc39be26c17342ca8ab082b4b
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -140,6 +140,14 @@ GIT
       strongbox (~> 0.7.2)
       thor
       uglifier (>= 2.7.2)
+
+GIT
+  remote: git://github.com/houston/houston-exceptions.git
+  revision: 915af627be7ec6bf6c561c16f37f548b43e6e870
+  branch: master
+  specs:
+    houston-exceptions (0.0.1)
+      houston-core (>= 0.8.0.pre)
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
@@ -612,6 +620,7 @@ DEPENDENCIES
   houston-ci!
   houston-conversations!
   houston-core!
+  houston-exceptions!
   houston-feedback!
   houston-releases!
   houston-roadmaps!
