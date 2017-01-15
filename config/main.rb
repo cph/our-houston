@@ -213,6 +213,7 @@ Houston.config do
   #   bundle config local.houston-<MODULE> ~/Projects/houston-<MODULE>
   #
 
+  use :ci
   use :feedback
   use :support_form
   use :brakeman

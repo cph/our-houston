@@ -68,6 +68,16 @@ GIT
       houston-core (>= 0.7.0.beta4)
 
 GIT
+  remote: git://github.com/houston/houston-ci.git
+  revision: 3b8090ca8d3cebca32cb5661ee627c301c1e41e1
+  branch: master
+  specs:
+    houston-ci (0.0.1)
+      googlecharts (~> 1.6.12)
+      houston-core (>= 0.8.0.pre)
+      simplecov (~> 0.9.1)
+
+GIT
   remote: git://github.com/houston/houston-conversations.git
   revision: c65f78f2ab76d4c442d5e679ced60f6870cc681a
   branch: master
@@ -79,7 +89,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 75e75d25d2aaf26fdbb0d251b5e818769c09de4c
+  revision: 9d6b445315a95f06a04cb66c81b9a76accc8e90b
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -99,7 +109,6 @@ GIT
       faraday-http-cache (~> 1.2.2)
       faraday-raise-errors (~> 0.2.0)
       gemoji (~> 2.1.0)
-      googlecharts (~> 1.6.12)
       handlebars_assets (~> 0.23.0)
       houston-devise_ldap_authenticatable
       houston-vestal_versions
@@ -120,7 +129,6 @@ GIT
       rufus-scheduler (~> 3.2.0)
       rugged (~> 0.24.0)
       sass-rails (~> 5.0)
-      simplecov (~> 0.9.1)
       strongbox (~> 0.7.2)
       thor
       uglifier (>= 2.7.2)
@@ -601,6 +609,7 @@ DEPENDENCIES
   factory_girl_rails
   houston-alerts!
   houston-brakeman!
+  houston-ci!
   houston-conversations!
   houston-core!
   houston-feedback!

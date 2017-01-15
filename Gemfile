@@ -84,6 +84,7 @@ gem "engineyard", "~> 3.2.1"
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
 gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
+gem "houston-ci", github: "houston/houston-ci", branch: "master"
 gem "houston-feedback", github: "houston/houston-feedback", branch: "master"
 gem "houston-releases", github: "houston/houston-releases", branch: "master"
 gem "houston-roadmaps", github: "houston/houston-roadmaps", branch: "master"
