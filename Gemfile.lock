@@ -61,7 +61,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: ac081c8d838d3e5583d9a06f3e2a9791c34d789a
+  revision: aec0ce987260cd3f5570711ee428185c4cc175a4
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -69,7 +69,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-brakeman.git
-  revision: 6812db460cadd921c96b14a07fbf45524177587a
+  revision: 3c765e74341bb115d3780c7e067a734ab4935401
   branch: master
   specs:
     houston-brakeman (0.0.1)
@@ -77,7 +77,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-ci.git
-  revision: 3b8090ca8d3cebca32cb5661ee627c301c1e41e1
+  revision: 8e8a58303b0a021024bb4414843dd38243c2e6cc
   branch: master
   specs:
     houston-ci (0.0.1)
@@ -97,7 +97,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 4024dba9b73b2d6d25a9d860fe42e481462ed17d
+  revision: 87b5b5fda3bb6161525947eecdd410fbc73c9f7a
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -155,7 +155,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-releases.git
-  revision: 03ab28e33d32452c23fc6d7ddd96e5f8bd5fd959
+  revision: f7307b9c8c43ccf76206a184a29e88e65bccf70f
   branch: master
   specs:
     houston-releases (0.0.1)
