@@ -6,6 +6,14 @@ GIT
     ruby-ntlm (0.0.1)
 
 GIT
+  remote: git://github.com/cph/houston-sprints.git
+  revision: 0b1563b3d510f3adc6c8ffae036ee5ad23946ad6
+  branch: master
+  specs:
+    houston-sprints (0.0.1)
+      houston-core (>= 0.8.0.pre)
+
+GIT
   remote: git://github.com/cph/houston-support_form.git
   revision: 927af5c4ff56ac77ffe57cd9feb6c19824f0fe0e
   branch: master
@@ -182,14 +190,6 @@ GIT
       houston-conversations (>= 0.1.0)
       houston-core (>= 0.8.0.pre)
       slacks (>= 0.4.3)
-
-GIT
-  remote: git://github.com/houston/houston-sprints.git
-  revision: 0b1563b3d510f3adc6c8ffae036ee5ad23946ad6
-  branch: master
-  specs:
-    houston-sprints (0.0.1)
-      houston-core (>= 0.8.0.pre)
 
 GIT
   remote: git://github.com/houston/houston-twilio.git
