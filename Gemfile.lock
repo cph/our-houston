@@ -79,7 +79,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 4dde8d455d1b6d0b72dcaa7dcb6464335ef2708a
+  revision: 75e75d25d2aaf26fdbb0d251b5e818769c09de4c
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -116,7 +116,6 @@ GIT
       progressbar (~> 0.21.0)
       rack-utf8_sanitizer (~> 1.3.1)
       rails (~> 5.0.0)
-      record_tag_helper (~> 1.0)
       redcarpet (~> 3.3.2)
       rufus-scheduler (~> 3.2.0)
       rugged (~> 0.24.0)
@@ -140,12 +139,13 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-releases.git
-  revision: 986f88936fc84ee0467d46443855c9b61a423dfd
+  revision: 03ab28e33d32452c23fc6d7ddd96e5f8bd5fd959
   branch: master
   specs:
     houston-releases (0.0.1)
       houston-core (>= 0.8.0.pre)
       nested_editor_for (~> 0.1.1)
+      record_tag_helper (~> 1.0)
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
