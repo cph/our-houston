@@ -12,13 +12,6 @@ module TimelineHelper
     end
   end
 
-  def icon_for_resolution(resolution)
-    case resolution
-    when nil, "", "fixed" then "fa fa-ok"
-    else "fa fa-minus"
-    end
-  end
-
   def format_timeline_time(event)
     event.time.strftime("%-I:%M %p")
       .gsub(/ AM/, "a")

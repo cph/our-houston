@@ -79,7 +79,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: ac03d893610033eeebfccf63afb05a780d2c8b6f
+  revision: a505c25bb50b18858513498c22b4c361f295e6ef
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -140,7 +140,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-releases.git
-  revision: 185ffeaacf46fc7fc144707c302e96ed82d2fb5f
+  revision: 986f88936fc84ee0467d46443855c9b61a423dfd
   branch: master
   specs:
     houston-releases (0.0.1)
@@ -149,7 +149,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
-  revision: fddfc18b581f11a1ef6f76382e7137087067c66e
+  revision: e50755d2c5a8902e60d3909e9c2583546f3b030a
   branch: master
   specs:
     houston-roadmaps (0.1.0)
@@ -158,7 +158,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: 9947971f48d7e939dcbfc7bb27f84f0585cbaa56
+  revision: 5360fc38db02f366b0b4b2b8b630151df703c3dc
   branch: master
   specs:
     houston-scheduler (0.0.1)
@@ -177,7 +177,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-sprints.git
-  revision: e31c33a0eb60f9abe28d4bdd3c55357be0fe350d
+  revision: 0b1563b3d510f3adc6c8ffae036ee5ad23946ad6
   branch: master
   specs:
     houston-sprints (0.0.1)
