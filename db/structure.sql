@@ -1088,26 +1088,6 @@ ALTER SEQUENCE releases_id_seq OWNED BY releases.id;
 
 
 --
--- Name: releases_tasks; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE releases_tasks (
-    release_id integer,
-    task_id integer
-);
-
-
---
--- Name: releases_tickets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE releases_tickets (
-    release_id integer,
-    ticket_id integer
-);
-
-
---
 -- Name: roadmap_commits; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2922,20 +2902,6 @@ CREATE INDEX index_releases_on_search_vector ON releases USING gin (search_vecto
 
 
 --
--- Name: index_releases_tasks_on_release_id_and_task_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_releases_tasks_on_release_id_and_task_id ON releases_tasks USING btree (release_id, task_id);
-
-
---
--- Name: index_releases_tickets_on_release_id_and_ticket_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_releases_tickets_on_release_id_and_ticket_id ON releases_tickets USING btree (release_id, ticket_id);
-
-
---
 -- Name: index_roadmap_milestone_versions_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3462,6 +3428,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20151226155305'),
 ('20151228183704'),
 ('20151228183705'),
+('20151228183706'),
 ('20160120145757'),
 ('20160202021439'),
 ('20160206214746'),
@@ -3510,6 +3477,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170113232119'),
 ('20170115003303'),
 ('20170115003536'),
-('20170115150643');
+('20170115150643'),
+('20170116002818');
 
 

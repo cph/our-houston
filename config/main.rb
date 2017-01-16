@@ -115,13 +115,6 @@ Houston.config do
     "slate"         => "6c7a80",
     "silver"        => "a2a38b" )
 
-  # These are the types of tickets
-  ticket_types(
-    "Chore"       => "909090",
-    "Feature"     => "8DB500",
-    "Enhancement" => "3383A8",
-    "Bug"         => "C64537" )
-
 
 
   # General
@@ -259,6 +252,14 @@ Houston.config do
   end
   load "conversations/**/*"
   load "slash_commands/*"
+
+  use :tickets do
+    ticket_types(
+      "Chore"       => "909090",
+      "Feature"     => "8DB500",
+      "Enhancement" => "3383A8",
+      "Bug"         => "C64537")
+  end
 
   use :twilio do
     sid ENV["HOUSTON_TWILIO_SID"]

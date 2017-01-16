@@ -15,7 +15,7 @@ end
 
 
 # Configure the Github Issues TicketTracker adapter
-Houston.config.ticket_tracker :github do
+Houston::Tickets.config.ticket_tracker :github do
   identify_type lambda { |ticket|
     labels = Array(ticket.raw_attributes["labels"]).map { |label| label["name"].downcase }
     return "Bug"      if (labels & %w{bug}).any?

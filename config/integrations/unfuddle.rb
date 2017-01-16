@@ -1,5 +1,5 @@
 # Configure the Unfuddle TicketTracker adapter
-Houston.config.ticket_tracker :unfuddle do
+Houston::Tickets.config.ticket_tracker :unfuddle do
   subdomain "cphep"
   username ENV["HOUSTON_UNFUDDLE_USERNAME"]
   password ENV["HOUSTON_UNFUDDLE_PASSWORD"]

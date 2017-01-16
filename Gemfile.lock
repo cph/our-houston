@@ -7,15 +7,16 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-sprints.git
-  revision: 0b1563b3d510f3adc6c8ffae036ee5ad23946ad6
+  revision: 5fc5e64c9fb4dbe245d0df2f3545e91fa1fd3b19
   branch: master
   specs:
     houston-sprints (0.0.1)
       houston-core (>= 0.8.0.pre)
+      houston-tickets
 
 GIT
   remote: git://github.com/cph/houston-support_form.git
-  revision: 927af5c4ff56ac77ffe57cd9feb6c19824f0fe0e
+  revision: c9c94ccffe2382a884397127754d02d0b8078bf7
   branch: master
   specs:
     houston-support_form (0.0.1)
@@ -77,7 +78,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-ci.git
-  revision: 8e8a58303b0a021024bb4414843dd38243c2e6cc
+  revision: 56c5802eba96ed86fc89aa801dc8cfe644c13095
   branch: master
   specs:
     houston-ci (0.0.1)
@@ -97,7 +98,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: cbe97bba96d74ddcc39be26c17342ca8ab082b4b
+  revision: 7d456af4f5a545de3ddd6b21385e932ab45e07fa
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -105,7 +106,6 @@ GIT
       activerecord-pluck_in_batches (~> 0.2.0)
       addressable (~> 2.3.8)
       attentive (>= 0.3.6)
-      boblail-unfuddle
       browser (~> 2.3.0)
       bundler
       cancan (~> 1.6.10)
@@ -151,7 +151,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 9152dbf3c8be0a7db33d4eb6102169340e171e87
+  revision: 4b743d453a96323a3d6228e7e6326c9fc0d72237
   branch: master
   specs:
     houston-feedback (0.0.1)
@@ -163,7 +163,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-releases.git
-  revision: f7307b9c8c43ccf76206a184a29e88e65bccf70f
+  revision: 1321dc035cdb510b9b8ce157f1bebf5986de93aa
   branch: master
   specs:
     houston-releases (0.0.1)
@@ -173,20 +173,22 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
-  revision: e50755d2c5a8902e60d3909e9c2583546f3b030a
+  revision: 4ae754851b25ebce8d42db36fceca2c66e09f40e
   branch: master
   specs:
     houston-roadmaps (0.1.0)
       houston-core (>= 0.8.0.pre)
+      houston-tickets
       neat-rails (>= 0.2.0)
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: 5360fc38db02f366b0b4b2b8b630151df703c3dc
+  revision: 83a8c4772eeb65fea97e61762e4a4a910e648f07
   branch: master
   specs:
     houston-scheduler (0.0.1)
       houston-core (>= 0.7.0)
+      houston-tickets
 
 GIT
   remote: git://github.com/houston/houston-slack.git
@@ -198,6 +200,15 @@ GIT
       houston-conversations (>= 0.1.0)
       houston-core (>= 0.8.0.pre)
       slacks (>= 0.4.3)
+
+GIT
+  remote: git://github.com/houston/houston-tickets.git
+  revision: b9432b2674e0097a56c072d4ac0f2fce1d491f4e
+  branch: master
+  specs:
+    houston-tickets (0.0.1)
+      boblail-unfuddle
+      houston-core (>= 0.8.0.pre)
 
 GIT
   remote: git://github.com/houston/houston-twilio.git
@@ -448,7 +459,7 @@ GEM
       nokogiri
       openxml-package (>= 0.2.0)
     orm_adapter (0.5.0)
-    ox (2.4.7)
+    ox (2.4.8)
     pg (0.19.0)
     pg_search (1.0.6)
       activerecord (>= 3.1)
@@ -628,6 +639,7 @@ DEPENDENCIES
   houston-slack!
   houston-sprints!
   houston-support_form!
+  houston-tickets!
   houston-twilio!
   itsm!
   letter_opener
