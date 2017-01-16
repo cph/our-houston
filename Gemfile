@@ -11,6 +11,9 @@ gem "viewpoint"
 # For page-scraping
 gem "mechanize"
 
+# Bundler is a runtime dependency because it used to parse Gemfiles
+gem "bundler"
+
 group :production do
   gem "redis"
 end

@@ -98,7 +98,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 7d456af4f5a545de3ddd6b21385e932ab45e07fa
+  revision: 22a86cb36c649ac2734cbe5dc4d58d8986e1d2b2
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -107,7 +107,6 @@ GIT
       addressable (~> 2.3.8)
       attentive (>= 0.3.6)
       browser (~> 2.3.0)
-      bundler
       cancan (~> 1.6.10)
       coffee-rails (~> 4.1.0)
       concurrent-ruby (~> 1.0.2)
@@ -203,7 +202,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
-  revision: b9432b2674e0097a56c072d4ac0f2fce1d491f4e
+  revision: 16366b3506f65338f183e896edd3a48d9b861142
   branch: master
   specs:
     houston-tickets (0.0.1)
@@ -623,6 +622,7 @@ PLATFORMS
 DEPENDENCIES
   airbrake (~> 4.0)
   better_errors
+  bundler
   capybara
   engineyard (~> 3.2.1)
   factory_girl_rails
