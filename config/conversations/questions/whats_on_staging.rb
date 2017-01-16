@@ -2,7 +2,7 @@ Houston::Conversations.config do
   listen_for "what is on staging" do |e|
     e.responding
 
-    pulls = Houston.github.org_issues(Houston.config.github[:organization], labels: "on-staging", filter: "all")
+    pulls = Houston.github.org_issues(Houston::Commits.config.github[:organization], labels: "on-staging", filter: "all")
     e.reply "There are no pull requests on Staging" if pulls.none?
     message = ""
     pulls.each do |pull|

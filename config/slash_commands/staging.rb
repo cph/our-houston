@@ -1,7 +1,7 @@
 Houston::Slack.config do
   slash("staging") do |e|
     if e.message.blank?
-      pulls = Houston.github.org_issues(Houston.config.github[:organization], labels: "on-staging", filter: "all")
+      pulls = Houston.github.org_issues(Houston::Commits.config.github[:organization], labels: "on-staging", filter: "all")
       if pulls.none?
         message = "There are no pull requests on Staging"
       else

@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-sprints.git
-  revision: 5fc5e64c9fb4dbe245d0df2f3545e91fa1fd3b19
+  revision: d6f5b3e9f6313a80970055295991cf2f1656e54d
   branch: master
   specs:
     houston-sprints (0.0.1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: aec0ce987260cd3f5570711ee428185c4cc175a4
+  revision: fa8df94f4389c51d13dec3d30cff709c5dd0c962
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -70,7 +70,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-brakeman.git
-  revision: 3c765e74341bb115d3780c7e067a734ab4935401
+  revision: 0a39f0ce533a2cbb2402c0fe03c8b49a17e3dc39
   branch: master
   specs:
     houston-brakeman (0.0.1)
@@ -78,13 +78,23 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-ci.git
-  revision: 56c5802eba96ed86fc89aa801dc8cfe644c13095
+  revision: 3cd6d4b6aef0c1591ccc4bf791bc0b641071fe3d
   branch: master
   specs:
     houston-ci (0.0.1)
       googlecharts (~> 1.6.12)
       houston-core (>= 0.8.0.pre)
       simplecov (~> 0.9.1)
+
+GIT
+  remote: git://github.com/houston/houston-commits.git
+  revision: f12855951ed162ae97142e3bae20d1c5de87cc0a
+  branch: master
+  specs:
+    houston-commits (0.0.1)
+      houston-core (>= 0.8.0.pre)
+      octokit (~> 4.4.1)
+      rugged (~> 0.24.0)
 
 GIT
   remote: git://github.com/houston/houston-conversations.git
@@ -98,7 +108,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 22a86cb36c649ac2734cbe5dc4d58d8986e1d2b2
+  revision: c4a5d48b6f82f8a6e297f3a5cca20a12ea5b871a
   branch: master
   specs:
     houston-core (0.8.0.pre)
@@ -123,7 +133,6 @@ GIT
       nested_editor_for
       nokogiri
       oauth2
-      octokit (~> 4.4.1)
       oj (~> 2.18)
       openxml-xlsx (>= 0.2.0)
       pg (~> 0.19.0)
@@ -134,7 +143,6 @@ GIT
       rails (~> 5.0.0)
       redcarpet (~> 3.3.2)
       rufus-scheduler (~> 3.2.0)
-      rugged (~> 0.24.0)
       sass-rails (~> 5.0)
       strongbox (~> 0.7.2)
       thor
@@ -162,7 +170,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-releases.git
-  revision: 1321dc035cdb510b9b8ce157f1bebf5986de93aa
+  revision: added3bbf05822c945a4d001c8df97c9d06d3473
   branch: master
   specs:
     houston-releases (0.0.1)
@@ -202,7 +210,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
-  revision: 16366b3506f65338f183e896edd3a48d9b861142
+  revision: f7f2dbf32983eb53ec93aa9a03b769bb8675674e
   branch: master
   specs:
     houston-tickets (0.0.1)
@@ -417,6 +425,7 @@ GEM
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
     mime-types (2.99.3)
+    mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     minitest-reporters (1.1.13)
@@ -629,6 +638,7 @@ DEPENDENCIES
   houston-alerts!
   houston-brakeman!
   houston-ci!
+  houston-commits!
   houston-conversations!
   houston-core!
   houston-exceptions!

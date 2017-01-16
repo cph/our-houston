@@ -151,16 +151,6 @@ Houston.config do
   # (Optional) These are the categories you can organize your projects by
   project_categories "Products", "Services", "Libraries", "Tools"
 
-  # (Optional) Given a commit, return an array of email addresses
-  # This is useful if your team uses pair-programming and attributes
-  # commits to pairs by combining email addresses.
-  # https://robots.thoughtbot.com/how-to-create-github-avatars-for-pairs
-  identify_committers do |commit|
-    emails = [commit.committer_email]
-    emails = ["#{$1}@cph.org", "#{$2}@cph.org"] if commit.committer_email =~ /^pair=([a-z\.]*)\+([a-z\.]*)@/
-    emails
-  end
-
 
 
   # Navigation
@@ -216,6 +206,18 @@ Houston.config do
   #
   #   bundle config local.houston-<MODULE> ~/Projects/houston-<MODULE>
   #
+
+  use :commits do
+    # (Optional) Given a commit, return an array of email addresses
+    # This is useful if your team uses pair-programming and attributes
+    # commits to pairs by combining email addresses.
+    # https://robots.thoughtbot.com/how-to-create-github-avatars-for-pairs
+    identify_committers do |commit|
+      emails = [commit.committer_email]
+      emails = ["#{$1}@cph.org", "#{$2}@cph.org"] if commit.committer_email =~ /^pair=([a-z\.]*)\+([a-z\.]*)@/
+      emails
+    end
+  end
 
   use :ci
   use :feedback
