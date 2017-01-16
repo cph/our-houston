@@ -1,5 +1,5 @@
 Houston.config do
-  action "alert:notify-committers-that-alert-was-deployed" do
+  action "alert:notify-committers-that-alert-was-deployed", %w{alert} do
     user = alert.checked_out_by
     addressee, channel = user ? [user.first_name, user]: ["@group", "developers-only"]
 
