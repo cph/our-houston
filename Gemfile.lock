@@ -88,7 +88,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-commits.git
-  revision: 1aa0301664718c8273fcf24ac91f1fd88f532fd0
+  revision: bb69448cccc4ece1f9bbb0e89b2648039481a9fc
   branch: master
   specs:
     houston-commits (0.0.1)
@@ -425,7 +425,6 @@ GEM
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
     mime-types (2.99.3)
-    mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     minitest-reporters (1.1.13)
