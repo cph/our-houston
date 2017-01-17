@@ -82,7 +82,7 @@ module Nanoconfs
 
 
     def presentation_params
-      permitted_params = params.require(:presentation).permit(:title, :description, :date, :tags, :presenter)
+      permitted_params = params.require(:nanoconfs_presentation).permit(:title, :description, :date, :tags, :presenter)
       permitted_params[:date] = permitted_params[:date].to_date if permitted_params[:date]
       permitted_params[:tags] = permitted_params[:tags].split(',').map(&:strip)
 
