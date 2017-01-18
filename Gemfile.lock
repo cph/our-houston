@@ -210,7 +210,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
-  revision: 7e3aaa52a1701e1e10f480bfcf31c5afda0af40a
+  revision: 13fa27cf47ea5627aac0919125867e8040a55d81
   branch: master
   specs:
     houston-tickets (0.0.1)
