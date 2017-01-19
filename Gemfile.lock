@@ -199,7 +199,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: b6cb58ba359166eef3e72ef4290f2fde3b82c4e4
+  revision: 64d1777e50c22053877faae6d9b3c70556bc9dd2
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -558,7 +558,7 @@ GEM
       simplecov
     skylight (1.0.1)
       activesupport (>= 3.0.0)
-    slacks (0.4.3)
+    slacks (0.4.4)
       concurrent-ruby
       faraday
       faraday-raise-errors
