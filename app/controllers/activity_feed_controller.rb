@@ -7,6 +7,7 @@ class ActivityFeedController < ApplicationController
 
   helper ::TimelineHelper
   helper Houston::Releases::ReleaseHelper
+  helper TicketHelper
 
   def index
     load_activity
