@@ -108,10 +108,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: e5a9c29b85775a9000b8c504031a5dd17b6a87a3
+  revision: 01dee306bbb46bbcb6759a69f94f90a3a1bb4d83
   branch: master
   specs:
-    houston-core (0.8.0.pre)
+    houston-core (0.8.0.pre2)
       activerecord-import
       activerecord-pluck_in_batches (~> 0.2.0)
       addressable (~> 2.3.8)
