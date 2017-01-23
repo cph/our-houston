@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "houston-core", github: "houston/houston-core", branch: "master"
+gem "houston-core", github: "houston/houston-core", branch: "noroboto"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem "therubyracer", platforms: :ruby

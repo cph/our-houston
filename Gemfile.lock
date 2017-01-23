@@ -108,8 +108,8 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 01dee306bbb46bbcb6759a69f94f90a3a1bb4d83
-  branch: master
+  revision: ef405ff41ee1a05ff04cb07f2f0a9c5df4f944ec
+  branch: noroboto
   specs:
     houston-core (0.8.0.pre2)
       activerecord-import
