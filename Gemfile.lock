@@ -108,7 +108,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: ef405ff41ee1a05ff04cb07f2f0a9c5df4f944ec
+  revision: 113fa5a86e03d6fd3dd13020e0c73de93529c843
   branch: noroboto
   specs:
     houston-core (0.8.0.pre2)
@@ -199,7 +199,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 518033f140ab3c908a2739cfce24f6e1f7b4580e
+  revision: b3fd85622f8d2772559d5ec3966b58e9cc464ccf
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -225,6 +225,18 @@ GIT
     houston-twilio (0.0.1)
       houston-core (>= 0.8.0.pre)
       twilio-ruby (~> 4.11.1)
+
+GIT
+  remote: git://github.com/houston/slacks.git
+  revision: 32458914ad62e34e127835e30fba270a4ad99e98
+  branch: master
+  specs:
+    slacks (0.4.4)
+      concurrent-ruby
+      faraday
+      faraday-raise-errors
+      multi_json
+      websocket-driver
 
 GEM
   remote: https://rubygems.org/
@@ -558,12 +570,6 @@ GEM
       simplecov
     skylight (1.0.1)
       activesupport (>= 3.0.0)
-    slacks (0.4.4)
-      concurrent-ruby
-      faraday
-      faraday-raise-errors
-      multi_json
-      websocket-driver
     slop (3.6.0)
     socksify (1.7.0)
     spring (2.0.1)
@@ -665,6 +671,7 @@ DEPENDENCIES
   shoulda-context
   simplecov-json
   skylight
+  slacks!
   spring
   star!
   sucker_punch (~> 1.6)
