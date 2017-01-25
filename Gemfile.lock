@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: fa8df94f4389c51d13dec3d30cff709c5dd0c962
+  revision: d5f06b976c9f50b630844f43d0a4c0c56e1a7f8d
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -108,7 +108,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 113fa5a86e03d6fd3dd13020e0c73de93529c843
+  revision: 52ef45d4bc2519db994005fac9e5d5f8b1164f69
   branch: noroboto
   specs:
     houston-core (0.8.0.pre2)
