@@ -7,6 +7,11 @@ module GraphHelper
       description << " for the last #{match[:duration]}"
     end
 
+    if matched?(:start)
+      options[:start_time] = match[:start].to_time
+      description << " since #{match[:start]}"
+    end
+
     reply nil, attachments: [{
       fallback: "[A graph of #{options.fetch(:description)}]",
       text: description,
@@ -31,6 +36,7 @@ Houston::Conversations.config do
     ].each do |(values, options)|
       values.each do |value|
         listen_for "show me #{possessive} #{value} for the last {{duration:core.date.duration}}",
+                   "show me #{possessive} #{value} since {{start:core.date.past}}",
                    "show me #{possessive} #{value}" do |e|
           e.extend GraphHelper
           e.graph options.merge(description: "#{possessive.capitalize} #{values[0]}", projects: project)
@@ -38,4 +44,17 @@ Houston::Conversations.config do
       end
     end
   end
+
+  listen_for "show me our alerts closure rate for the last {{duration:core.date.duration}}",
+             "show me our alerts closure rate since {{start:core.date.past}}",
+             "show me our alerts closure rate" do |e|
+     e.extend GraphHelper
+     e.graph measurements: %w{daily.alerts.due daily.alerts.due.completed-on-time},
+             description: "Percent of Alerts closed on-time",
+             transform: "percent-cumulative",
+             format: "d",
+             min: 70,
+             max: 100
+  end
+
 end
