@@ -199,14 +199,14 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: b3fd85622f8d2772559d5ec3966b58e9cc464ccf
+  revision: 7e9ba9ce1e8750b0f26c55a01e5b577e191a5e81
   branch: master
   specs:
     houston-slack (0.0.1)
       attentive
       houston-conversations (>= 0.1.0)
       houston-core (>= 0.8.0.pre)
-      slacks (>= 0.4.3)
+      slacks (>= 0.5.0.pre)
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
@@ -228,10 +228,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/slacks.git
-  revision: 32458914ad62e34e127835e30fba270a4ad99e98
+  revision: 336ea1a45795aa4d20ff62f0a832f58faacd9b1c
   branch: master
   specs:
-    slacks (0.4.4)
+    slacks (0.5.0.pre)
       concurrent-ruby
       faraday
       faraday-raise-errors
@@ -671,7 +671,7 @@ DEPENDENCIES
   shoulda-context
   simplecov-json
   skylight
-  slacks!
+  slacks (>= 0.5.0.pre)!
   spring
   star!
   sucker_punch (~> 1.6)

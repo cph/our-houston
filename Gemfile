@@ -79,7 +79,7 @@ gem "houston-conversations", github: "houston/houston-conversations", branch: "m
 # gem "attentive", github: "houston/attentive", branch: "master"
 
 # Develop on slacks
-gem "slacks", github: "houston/slacks", branch: "master"
+gem "slacks", ">= 0.5.0.pre", github: "houston/slacks", branch: "master"
 
 # For deploying to EngineYard
 gem "engineyard", "~> 3.2.1"
