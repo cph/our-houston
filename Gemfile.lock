@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-support_form.git
-  revision: c9c94ccffe2382a884397127754d02d0b8078bf7
+  revision: 18f42ae6b8f7d6bc55aafdd470120f2c4e7abc1e
   branch: master
   specs:
     houston-support_form (0.0.1)
