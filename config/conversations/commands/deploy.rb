@@ -123,7 +123,7 @@ module Houston
       rescue ActiveRecord::RecordNotFound
         end! "Sorry, I'm not sure what project you want to deploy :sweat:"
       rescue Exception
-        Houston.report_exception $!
+        report! $!
         end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
@@ -164,7 +164,7 @@ module Houston
       rescue ActiveRecord::RecordNotFound
         end! "Sorry, I'm not sure what project you want to deploy :sweat:"
       rescue Exception
-        Houston.report_exception $!
+        report! $!
         end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
@@ -185,7 +185,7 @@ module Houston
       rescue Octokit::UnprocessableEntity
         end! "Sorry, I couldn't find a pull request for the branch *#{branch}* and I got an error when trying to create one. :disappointed:"
       rescue Exception
-        Houston.report_exception $!
+        report! $!
         end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
@@ -218,7 +218,7 @@ module Houston
         @environment = Deployers::Engineyard.new(project, environment_name)
         check_if_another_pull_request_is_on_staging
       rescue Exception
-        Houston.report_exception $!
+        report! $!
         end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
@@ -249,7 +249,7 @@ module Houston
           execute_deploy
         end
       rescue Exception
-        Houston.report_exception $!
+        report! $!
         end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
@@ -283,13 +283,13 @@ module Houston
         end
 
       rescue EY::CloudClient::RequestFailed
-        Houston.report_exception $!
+        report! $!
         end! ":rotating_light: I'm sorry. An error occurred: #{$!.message}"
       rescue EY::CloudClient::BadBridgeStatusError
-        Houston.report_exception $!
+        report! $!
         end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       rescue Exception
-        Houston.report_exception $!
+        report! $!
         end! ":rotating_light: Uh-oh. I just got this error: #{$!.message}"
       end
 
@@ -329,6 +329,14 @@ module Houston
             false
           end
         end.map { |full_name| full_name.split("/").last }
+      end
+
+      def report!(exception)
+        exception.additional_information["target"] = target.value if target
+        exception.additional_information["user"] = user.slack_username if user
+        exception.additional_information["pr"] = "#{pr.base.repo.name}.#{pr.number}" if pr
+        exception.additional_information["project"] = project.slug if project
+        Houston.report_exception exception
       end
 
     end
