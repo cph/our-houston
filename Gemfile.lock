@@ -108,8 +108,8 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 52ef45d4bc2519db994005fac9e5d5f8b1164f69
-  branch: noroboto
+  revision: 3a5ffc03418f3028b8f4fcaccdf079df3adf02c2
+  branch: master
   specs:
     houston-core (0.8.0.pre2)
       activerecord-import
@@ -158,7 +158,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 4b743d453a96323a3d6228e7e6326c9fc0d72237
+  revision: 2e3b70a0679465fd388757d35aa6a1caff6f726a
   branch: master
   specs:
     houston-feedback (0.0.1)

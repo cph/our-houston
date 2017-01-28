@@ -12,6 +12,7 @@ Houston.config do
     sleep 1.0
 
     message = feedback_unfurl_url(conversation)
-    slack_send_message_to message, channel
+    result = slack_send_message_to message, channel
+    conversation.update_prop!("slack.ts", conversation.props.fetch("slack.ts", []) + result.values_at("ts"))
   end
 end

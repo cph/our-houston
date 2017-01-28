@@ -565,7 +565,8 @@ CREATE TABLE feedback_conversations (
     customer_id integer,
     average_signal_strength double precision,
     archived boolean DEFAULT false NOT NULL,
-    legacy_id character varying
+    legacy_id character varying,
+    props jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3481,6 +3482,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170115150643'),
 ('20170116002818'),
 ('20170116210225'),
-('20170118005958');
+('20170118005958'),
+('20170128161237');
 
 
