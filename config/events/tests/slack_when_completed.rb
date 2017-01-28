@@ -32,7 +32,7 @@ Houston.config do
       mrkdwn_in: %w{text})
 
     channels = test_run.commit.committers.map(&:slack_username).reject(&:nil?)
-    channels = %w{developers-only} if channels.empty?
+    channels = %w{ep-developers} if channels.empty?
     slack_send_message_to nil, channels, attachments: [attachment]
   end
 end

@@ -20,7 +20,7 @@ Houston.config do
     end if regressions.count <= MAX_BROKEN_TESTS
 
     channels = test_run.commit.committers.map(&:slack_username).reject(&:nil?)
-    channels = %w{developers-only} if channels.empty?
+    channels = %w{ep-developers} if channels.empty?
     slack_send_message_to message, channels
   end
 end

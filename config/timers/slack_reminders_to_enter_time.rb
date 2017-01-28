@@ -55,7 +55,7 @@ Houston.config do
         message << missing.to_sentence
       end
 
-      slack_send_message_to message, "developers-only"
+      slack_send_message_to message, "ep-developers"
     end
   end
 

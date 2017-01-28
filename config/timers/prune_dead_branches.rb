@@ -30,7 +30,7 @@ Houston.config.every "sunday at 6:30pm", "repo:prune" do
       Rails.logger.info "\e[34m[repo:prune] Completed in %.2fs\e[0m" % (Time.now - started_at)
 
       message = "I pruned #{branches.length} branches from *#{project_slug}*:\n```#{branches.join("\n")}\n```"
-      slack_send_message_to message, "developers-only"
+      slack_send_message_to message, "ep-developers"
     end
   end
 end
