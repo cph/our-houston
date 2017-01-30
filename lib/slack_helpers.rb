@@ -90,6 +90,10 @@ def feedback_unfurl_url(comment)
   "http://#{Houston.config.host}/feedback/#{comment.id}"
 end
 
+def slack_author_icon_for(user)
+  "https://www.gravatar.com/avatar/#{Digest::MD5::hexdigest(user.email)}?r=g&d=retro"
+end
+
 def slack_github_comment_attachment(body)
   body = Slackdown.new(body).convert
 
@@ -107,6 +111,14 @@ def slack_alert_attachment(alert, options={})
 
   attachment.merge!(text: alert.text) unless alert.text.blank?
   attachment
+end
+
+def slack_nanoconf_attachment(nanoconf, options={})
+  { fallback: nanoconf.title,
+    footer: "by #{nanoconf.presenter.name}",
+    footer_icon: slack_author_icon_for(nanoconf.presenter),
+    title: nanoconf.title,
+    text: nanoconf.description }
 end
 
 def slack_link_to_pull_request(pr)
