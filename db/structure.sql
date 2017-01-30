@@ -1783,7 +1783,6 @@ CREATE TABLE users (
     retired_at timestamp without time zone,
     email_addresses text[],
     invitation_created_at timestamp without time zone,
-    environments_subscribed_to text[] DEFAULT '{}'::text[] NOT NULL,
     current_project_id integer,
     nickname character varying(255),
     username character varying(255),
@@ -3483,6 +3482,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170116002818'),
 ('20170116210225'),
 ('20170118005958'),
-('20170128161237');
+('20170128161237'),
+('20170130011016');
 
 
