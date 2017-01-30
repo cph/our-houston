@@ -3,7 +3,7 @@
   <h2 class="presentation-title">
     <%= @presentation.title %>
     <% if can? :update, @presentation %>
-      <small><%= link_to "Edit", nanoconfs_edit_presentation_path(@presentation) %></small>
+      <small><%= link_to "Edit", edit_nanoconf_path(@presentation) %></small>
     <% end %>
   </h2>
 

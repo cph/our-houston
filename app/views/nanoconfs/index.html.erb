@@ -1,7 +1,7 @@
 <% content_for :title do %>
 <h1 class="project-banner space-below">
   Upcoming Presentations
-  <%= link_to nanoconfs_past_presentations_path, class: "project-banner-btn" do %>
+  <%= link_to past_nanoconfs_path, class: "project-banner-btn" do %>
   <i class="fa fa-television" aria-hidden="true"></i>
     <span>Past <br />
     Presentations</span>
@@ -21,7 +21,7 @@
             </a>
           </h3>
           <% if can? :update, presentation %>
-            <%= link_to "Edit", nanoconfs_edit_presentation_path(presentation) %>
+            <%= link_to "Edit", edit_nanoconf_path(presentation) %>
           <% else %>
             <p class="presenter-info">By: <%= presentation.presenter.name %> <%= avatar_for(presentation.presenter) %></p>
           <% end %>
@@ -34,8 +34,8 @@
           <% end %>
         </div>
       <% else %>
-        <% if can? :create, Nanoconfs::Presentation %>
-          <h5 class="signup-link"><%= link_to "Sign up to Present!", nanoconfs_new_presentation_path(date: friday.strftime("%Y-%m-%d")) %></h5>
+        <% if can? :create, Nanoconf %>
+          <h5 class="signup-link"><%= link_to "Sign up to Present!", new_nanoconf_path(date: friday.strftime("%Y-%m-%d")) %></h5>
         <% end %>
       <% end %>
     </div>

@@ -5,7 +5,7 @@
       <% if @presentation.past? %>
         <h4><%= @presentation.date.strftime("%B %d, %Y") %></h4>
       <% else %>
-        <%= select("nanoconfs_presentation", "date", @dropdown_dates, selected: @presentation.date.strftime("%B %d, %Y")) %>
+        <%= select("nanoconf", "date", @dropdown_dates, selected: @presentation.date.strftime("%B %d, %Y")) %>
       <% end %>
 
       <% if current_user.email == "chase.clettenberg@cph.org" %>

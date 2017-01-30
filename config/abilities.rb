@@ -62,7 +62,7 @@ Houston.config do
       end
 
       # Employees can see the Nanoconf schedule
-      can :read, Nanoconfs::Presentation
+      can :read, Nanoconf
 
       # Employees can see Releases to staging
       can :read, Houston::Releases::Release
@@ -94,13 +94,13 @@ Houston.config do
       can [:update, :destroy], Houston::Feedback::Conversation, user_id: user.id
 
       # The Nanoconf officer can update all the presentations
-      can :update, Nanoconfs::Presentation if user.email == "chase.clettenberg@cph.org"
+      can :update, Nanoconf if user.email == "chase.clettenberg@cph.org"
 
       # Folks can update their own presentations
-      can :update, Nanoconfs::Presentation, presenter_id: user.id
+      can :update, Nanoconf, presenter_id: user.id
 
       # If you're signed in, you can create a Nanoconfs
-      can :create, Nanoconfs::Presentation
+      can :create, Nanoconf
 
     end
   end

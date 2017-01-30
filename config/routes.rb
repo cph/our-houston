@@ -48,14 +48,14 @@ Houston::Engine.routes.draw do
 
   # Nanoconfs
 
-  namespace "nanoconfs" do
-    get "past", to: "presentations#past_presentations", as: :past_presentations
-    get "", to: "presentations#index", as: :presentations
-    get "new", to: "presentations#new", as: :new_presentation
-    post "", to: "presentations#create", as: :create_presentation
-    get ":id", to: "presentations#show", as: :presentation
-    get ":id/edit", to: "presentations#edit", as: :edit_presentation
-    patch ":id", to: "presentations#update", as: :update_presentation
+  scope "nanoconfs" do
+    get "past", to: "nanoconfs#past", as: :past_nanoconfs
+    get "", to: "nanoconfs#index", as: :nanoconfs
+    get "new", to: "nanoconfs#new", as: :new_nanoconf
+    post "", to: "nanoconfs#create", as: :create_nanoconf
+    get ":id", to: "nanoconfs#show", as: :nanoconf
+    get ":id/edit", to: "nanoconfs#edit", as: :edit_nanoconf
+    patch ":id", to: "nanoconfs#update", as: :update_nanoconf
   end
 
 

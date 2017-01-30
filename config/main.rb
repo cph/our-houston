@@ -37,8 +37,8 @@ Houston.register_events {{
   "alerts:new" => desc("An alert was added to EP's Alerts Dashboard"),
   "alerts:none" => desc("EP's Alerts Dashboard is all-clear"),
 
-  "nanoconf:create" => params("presentation").desc("A nanoconf presentation was created"),
-  "nanoconf:update" => params("presentation").desc("A nanoconf presentation was updated")
+  "nanoconf:create" => params("nanoconf").desc("A nanoconf was created"),
+  "nanoconf:update" => params("nanoconf").desc("A nanoconf was updated")
 }}
 
 Houston.add_navigation_renderer :activity_feed do
