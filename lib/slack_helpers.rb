@@ -95,7 +95,7 @@ def slack_author_icon_for(user)
 end
 
 def slack_github_comment_attachment(body)
-  body = Slackdown.new(body).convert
+  body = Slackdown.convert(body)
 
   { fallback: body, text: body, mrkdwn_in: %w{text} }
 end
