@@ -88,13 +88,13 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-commits.git
-  revision: f6cb498497d63a2f4b2c1890c68d8f29a23af4a9
+  revision: c5fe85acd39b6175e1658fda219a9afc66a499b1
   branch: master
   specs:
     houston-commits (0.0.1)
-      houston-core (>= 0.8.0.pre)
+      houston-core (>= 0.8.0)
       octokit (~> 4.4.1)
-      rugged (~> 0.24.0)
+      rugged (~> 0.25.0)
 
 GIT
   remote: git://github.com/houston/houston-conversations.git
@@ -542,7 +542,7 @@ GEM
     rubyntlm (0.6.1)
     rubyzip (1.1.7)
     rufus-scheduler (3.2.2)
-    rugged (0.24.6.1)
+    rugged (0.25.1.1)
     safe_yaml (1.0.4)
     sass (3.4.23)
     sass-rails (5.0.6)
