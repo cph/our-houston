@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-alerts.git
-  revision: e762acab08a3c6502f1e5a958ab2124e13de0fc6
+  revision: 42c3b289260d4cceaedceeec2c10187f3cc6393c
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -108,7 +108,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: fe44434c91abc17a70fe02b73e1e69a88318411f
+  revision: 0bcca11907719a4038111671f3f9ffca99882c7b
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -212,7 +212,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
-  revision: 13fa27cf47ea5627aac0919125867e8040a55d81
+  revision: 1a62777edf3c07e485975321bfe862e86d7d414d
   branch: master
   specs:
     houston-tickets (0.0.1)
@@ -343,7 +343,7 @@ GEM
     concurrent-ruby (1.0.4)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    css_parser (1.4.7)
+    css_parser (1.4.8)
       addressable
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -412,7 +412,7 @@ GEM
     httpi (2.4.2)
       rack
       socksify
-    i18n (0.7.0)
+    i18n (0.8.0)
     json (2.0.3)
     jwt (1.5.6)
     kramdown (1.13.2)

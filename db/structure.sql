@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.0
--- Dumped by pg_dump version 9.6.0
+-- Dumped from database version 9.6.1
+-- Dumped by pg_dump version 9.6.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -26,20 +26,6 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
--- Name: hstore; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
-
-
---
--- Name: EXTENSION hstore; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
 
 
 SET search_path = public, pg_catalog;
@@ -133,7 +119,6 @@ CREATE TABLE alerts (
     project_slug character varying(255),
     priority character varying(255) DEFAULT 'high'::character varying NOT NULL,
     deadline timestamp without time zone NOT NULL,
-    hours hstore DEFAULT ''::hstore,
     destroyed_at timestamp without time zone,
     checked_out_remotely boolean DEFAULT false,
     can_change_project boolean DEFAULT false,
@@ -1278,36 +1263,6 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE settings (
-    id integer NOT NULL,
-    name character varying(255) NOT NULL,
-    value character varying(255) NOT NULL
-);
-
-
---
--- Name: settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE settings_id_seq OWNED BY settings.id;
-
-
---
 -- Name: sprints; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1682,7 +1637,6 @@ CREATE TABLE tickets (
     updated_at timestamp without time zone NOT NULL,
     remote_id integer,
     expires_at timestamp without time zone,
-    extended_attributes hstore DEFAULT ''::hstore NOT NULL,
     tags character varying[],
     type character varying(255),
     closed_at timestamp without time zone,
@@ -1775,9 +1729,7 @@ CREATE TABLE users (
     invitation_limit integer,
     invited_by_id integer,
     invited_by_type character varying(255),
-    legacy_role character varying(255) DEFAULT 'Guest'::character varying,
     authentication_token character varying(255),
-    legacy_administrator boolean DEFAULT false,
     first_name character varying(255),
     last_name character varying(255),
     retired_at timestamp without time zone,
@@ -2081,13 +2033,6 @@ ALTER TABLE ONLY roadmaps ALTER COLUMN id SET DEFAULT nextval('roadmaps_id_seq':
 --
 
 ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
-
-
---
--- Name: settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY settings ALTER COLUMN id SET DEFAULT nextval('settings_id_seq'::regclass);
 
 
 --
@@ -2433,14 +2378,6 @@ ALTER TABLE ONLY roadmaps
 
 ALTER TABLE ONLY roles
     ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
-
-
---
--- Name: settings settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY settings
-    ADD CONSTRAINT settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -3483,6 +3420,11 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170116210225'),
 ('20170118005958'),
 ('20170128161237'),
-('20170130011016');
+('20170130011016'),
+('20170205004452'),
+('20170206002030'),
+('20170206002307'),
+('20170206002718'),
+('20170206002732');
 
 
