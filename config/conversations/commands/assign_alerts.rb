@@ -30,7 +30,7 @@ Houston::Conversations.config do
       next
     end
 
-    unless e.user && e.user.developer?
+    unless ep_developer?(e.user)
       e.reply "I'm sorry. Only a developer can claim an alert."
       next
     end

@@ -13,7 +13,7 @@ Houston::Conversations.config do
       next
     end
 
-    unless e.user.developer?
+    unless ep_developer?(e.user)
       e.reply "I'm sorry. You have to be a developer to deploy a pull request"
       next
     end

@@ -23,6 +23,7 @@ SS_DEVELOPERS = [KEVIN, DAVID].freeze
 require_relative "../lib/slack_helpers"
 require_relative "../lib/time_helpers"
 require_relative "../lib/engineyard_helpers"
+require_relative "../lib/misc_helpers"
 require_relative "../lib/houston/engine"
 
 
