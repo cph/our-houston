@@ -573,7 +573,7 @@ GEM
       simplecov
     skylight (1.0.1)
       activesupport (>= 3.0.0)
-    slackdown (0.2.1)
+    slackdown (0.2.2)
       kramdown (~> 1.13.2)
     slop (3.6.0)
     socksify (1.7.0)
