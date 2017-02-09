@@ -938,7 +938,7 @@ CREATE TABLE projects (
     slug character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    color character varying(255) DEFAULT 'default'::character varying NOT NULL,
+    color_name character varying(255) DEFAULT 'default'::character varying NOT NULL,
     retired_at timestamp without time zone,
     category character varying(255),
     version_control_name character varying(255) DEFAULT 'None'::character varying NOT NULL,
@@ -3425,6 +3425,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170206002030'),
 ('20170206002307'),
 ('20170206002718'),
-('20170206002732');
+('20170206002732'),
+('20170209022159');
 
 
