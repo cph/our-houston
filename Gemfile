@@ -14,6 +14,9 @@ gem "mechanize"
 # Bundler is a runtime dependency because it used to parse Gemfiles
 gem "bundler"
 
+# LDAP for authentication
+gem "houston-devise_ldap_authenticatable"
+
 group :production do
   gem "redis"
 end

@@ -1,3 +1,5 @@
+require "houston/railtie"
+
 module Houston
   class Engine < ::Rails::Engine
 

@@ -108,7 +108,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 36a08d309aada5ce5572f4d97e01db52f28596c5
+  revision: 5abbe5ec86b08c0dc65bacaf6cd55d1a1fddb81e
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -127,7 +127,6 @@ GIT
       faraday-raise-errors (~> 0.2.0)
       gemoji (~> 2.1.0)
       handlebars_assets (~> 0.23.0)
-      houston-devise_ldap_authenticatable
       houston-vestal_versions
       kramdown
       neat-rails
@@ -454,7 +453,7 @@ GEM
     multipart-post (2.0.0)
     neat-rails (0.5.0)
     nested_editor_for (0.1.1)
-    net-http-digest_auth (1.4)
+    net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
     net-ldap (0.12.1)
     net-ssh (2.9.4)
@@ -651,6 +650,7 @@ DEPENDENCIES
   houston-commits!
   houston-conversations!
   houston-core!
+  houston-devise_ldap_authenticatable
   houston-exceptions!
   houston-feedback!
   houston-releases!
