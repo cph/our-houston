@@ -93,9 +93,6 @@ Houston.config do
       # Employees can update their own feedback
       can [:update, :destroy], Houston::Feedback::Conversation, user_id: user.id
 
-      # The Nanoconf officer can update all the presentations
-      can :update, Nanoconf if user.email == "chase.clettenberg@cph.org"
-
       # Folks can update their own presentations
       can :update, Nanoconf, presenter_id: user.id
 

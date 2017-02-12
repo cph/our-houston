@@ -87,7 +87,6 @@ private
 
     presenter_email = permitted_params.delete(:presenter)
     permitted_params[:presenter] = current_user
-    permitted_params[:presenter] = User.find_by_email(presenter_email) if current_user.email == "chase.clettenberg@cph.org"
 
     permitted_params
   end
