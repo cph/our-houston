@@ -73,9 +73,14 @@ Houston.config do
       # Employees can see Tickets
       can :read, Ticket
 
-      # Employees can see Roadmaps
-      can :read, Roadmap
+      # Employees can see Roadmaps that are visible to Everyone
+      can :read, Roadmap, visibility: "Everyone"
       can :read, Milestone
+
+      # Team Members can see Roadmaps that are visible to them
+      can :read, Roadmap do |roadmap|
+        roadmap.visibility == "Team Members" && (roadmap.team_ids & user.team_ids).any?
+      end
 
       # Employees can see Users and update themselves
       can :read, User

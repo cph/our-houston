@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.1
--- Dumped by pg_dump version 9.6.1
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1187,7 +1187,8 @@ ALTER SEQUENCE roadmap_milestones_id_seq OWNED BY roadmap_milestones.id;
 
 CREATE TABLE roadmaps (
     id integer NOT NULL,
-    name character varying NOT NULL
+    name character varying NOT NULL,
+    visibility character varying DEFAULT 'Team Members'::character varying NOT NULL
 );
 
 
@@ -3426,6 +3427,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170206002307'),
 ('20170206002718'),
 ('20170206002732'),
-('20170209022159');
+('20170209022159'),
+('20170211232146');
 
 
