@@ -180,7 +180,6 @@ CREATE TABLE ar_internal_metadata (
 CREATE TABLE authorizations (
     id integer NOT NULL,
     name character varying NOT NULL,
-    provider_id integer,
     scope character varying,
     access_token character varying,
     refresh_token character varying,
@@ -188,7 +187,9 @@ CREATE TABLE authorizations (
     expires_in integer,
     expires_at timestamp without time zone,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    provider_name character varying NOT NULL,
+    user_id integer NOT NULL
 );
 
 
@@ -828,42 +829,6 @@ ALTER SEQUENCE nanoconf_presentations_id_seq OWNED BY nanoconf_presentations.id;
 
 
 --
--- Name: oauth_providers; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE oauth_providers (
-    id integer NOT NULL,
-    name character varying NOT NULL,
-    site character varying NOT NULL,
-    authorize_path character varying NOT NULL,
-    token_path character varying NOT NULL,
-    client_id character varying NOT NULL,
-    client_secret character varying NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: oauth_providers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE oauth_providers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: oauth_providers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE oauth_providers_id_seq OWNED BY oauth_providers.id;
-
-
---
 -- Name: persistent_triggers; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1305,6 +1270,38 @@ CREATE TABLE sprints_tasks (
     checked_out_at timestamp without time zone,
     checked_out_by_id integer
 );
+
+
+--
+-- Name: tasklists; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tasklists (
+    id integer NOT NULL,
+    milestone_id integer,
+    name character varying NOT NULL,
+    ticket_tracker_name character varying NOT NULL,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL
+);
+
+
+--
+-- Name: tasklists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tasklists_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tasklists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tasklists_id_seq OWNED BY tasklists.id;
 
 
 --
@@ -1960,13 +1957,6 @@ ALTER TABLE ONLY nanoconf_presentations ALTER COLUMN id SET DEFAULT nextval('nan
 
 
 --
--- Name: oauth_providers id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY oauth_providers ALTER COLUMN id SET DEFAULT nextval('oauth_providers_id_seq'::regclass);
-
-
---
 -- Name: persistent_triggers id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2041,6 +2031,13 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 --
 
 ALTER TABLE ONLY sprints ALTER COLUMN id SET DEFAULT nextval('sprints_id_seq'::regclass);
+
+
+--
+-- Name: tasklists id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tasklists ALTER COLUMN id SET DEFAULT nextval('tasklists_id_seq'::regclass);
 
 
 --
@@ -2294,14 +2291,6 @@ ALTER TABLE ONLY nanoconf_presentations
 
 
 --
--- Name: oauth_providers oauth_providers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY oauth_providers
-    ADD CONSTRAINT oauth_providers_pkey PRIMARY KEY (id);
-
-
---
 -- Name: persistent_triggers persistent_triggers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2387,6 +2376,14 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY sprints
     ADD CONSTRAINT sprints_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tasklists tasklists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tasklists
+    ADD CONSTRAINT tasklists_pkey PRIMARY KEY (id);
 
 
 --
@@ -2550,6 +2547,13 @@ CREATE INDEX index_alerts_on_opened_at ON alerts USING btree (opened_at);
 --
 
 CREATE UNIQUE INDEX index_alerts_on_type_and_key ON alerts USING btree (type, key);
+
+
+--
+-- Name: index_authorizations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_authorizations_on_user_id ON authorizations USING btree (user_id);
 
 
 --
@@ -2910,6 +2914,13 @@ CREATE UNIQUE INDEX index_sprints_tasks_on_sprint_id_and_task_id ON sprints_task
 
 
 --
+-- Name: index_tasklists_on_milestone_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tasklists_on_milestone_id ON tasklists USING btree (milestone_id);
+
+
+--
 -- Name: index_tasks_on_ticket_id_and_number; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3117,6 +3128,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 --
 
 CREATE TRIGGER create_snippet_for_conversation_on_insert_trigger AFTER INSERT ON feedback_conversations FOR EACH ROW EXECUTE PROCEDURE create_snippet_for_conversation();
+
+
+--
+-- Name: authorizations fk_rails_4ecef5b8c5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY authorizations
+    ADD CONSTRAINT fk_rails_4ecef5b8c5 FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
@@ -3428,6 +3447,8 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170206002718'),
 ('20170206002732'),
 ('20170209022159'),
-('20170211232146');
+('20170211232146'),
+('20170212002739'),
+('20170213001453');
 
 

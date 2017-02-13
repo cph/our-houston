@@ -63,6 +63,22 @@ Houston.add_project_column :devise_version do
   html { |project| project.props["keyDependency.devise"] }
 end
 
+Houston.oauth.add_provider :office365 do
+  site "https://login.microsoftonline.com"
+  authorize_path "/common/oauth2/v2.0/authorize"
+  token_path "/common/oauth2/v2.0/token"
+  client_id ENV["HOUSTON_OFFICE365_CLIENT_ID"]
+  client_secret ENV["HOUSTON_OFFICE365_CLIENT_SECRET"]
+end
+
+Houston.oauth.add_provider :todoist do
+  site "https://todoist.com"
+  authorize_path "/oauth/authorize"
+  token_path "/oauth/access_token"
+  client_id ENV["HOUSTON_TODOIST_CLIENT_ID"]
+  client_secret ENV["HOUSTON_TODOIST_CLIENT_SECRET"]
+end
+
 
 
 

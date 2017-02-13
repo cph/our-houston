@@ -77,6 +77,11 @@ Houston.config do
       can :read, Roadmap, visibility: "Everyone"
       can :read, Milestone
 
+      # Employees can authorize Houston to use third-party services
+      # and can see their own authorizations
+      can :create, Authorization
+      can :manage, Authorization, user_id: user.id
+
       # Team Members can see Roadmaps that are visible to them
       can :read, Roadmap do |roadmap|
         roadmap.visibility == "Team Members" && (roadmap.team_ids & user.team_ids).any?
