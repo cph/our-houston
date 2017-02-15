@@ -8,5 +8,5 @@ Houston::Conversations.config do
   end
 
   listen_for("hurry up") { |e| e.reply "I am not fast" }
-  listen_for("fist bump") { |e| e.reply ":fist:", "ba da lata lata la" }
+  listen_for("fist bump") { |e| e.reply [":fist:", "ba da lata lata la"] }
 end
