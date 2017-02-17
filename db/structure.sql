@@ -189,7 +189,8 @@ CREATE TABLE authorizations (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     provider_name character varying NOT NULL,
-    user_id integer NOT NULL
+    user_id integer NOT NULL,
+    props jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -837,7 +838,8 @@ CREATE TABLE persistent_triggers (
     type character varying NOT NULL,
     value text NOT NULL,
     params text DEFAULT '{}'::text NOT NULL,
-    action character varying NOT NULL
+    action character varying NOT NULL,
+    user_id integer NOT NULL
 );
 
 
@@ -3449,6 +3451,8 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170209022159'),
 ('20170211232146'),
 ('20170212002739'),
-('20170213001453');
+('20170213001453'),
+('20170215012012'),
+('20170216041034');
 
 
