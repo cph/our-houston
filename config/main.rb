@@ -114,9 +114,6 @@ Houston.config do
   # CPH allows passwords to be 7 characters
   password_length 7..128
 
-  # This is the passphrase Houston will use to encrypt and decrypt sensitive data
-  passphrase "challenge accepted!"
-
   # Enter your Google Analytics Tracking ID to add Google's
   # Universal Analytics script to every page.
   google_analytics do
@@ -242,6 +239,11 @@ Houston.config do
       emails = ["#{$1}@cph.org", "#{$2}@cph.org"] if commit.committer_email =~ /^pair=([a-z\.]*)\+([a-z\.]*)@/
       emails
     end
+  end
+
+  use :credentials do
+    # This is the passphrase Houston will use to encrypt and decrypt sensitive data
+    passphrase "challenge accepted!"
   end
 
   use :ci

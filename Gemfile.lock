@@ -108,7 +108,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 01ddd5adadb52c74d0878455816727f6f9054b3d
+  revision: 798a13a4c19a0e92d766cc82fa8dc0e84da42bfc
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -144,9 +144,17 @@ GIT
       rufus-scheduler (~> 3.2.0)
       sass-rails (~> 5.0)
       slackdown (>= 0.2.1)
-      strongbox (~> 0.7.2)
       thor
       uglifier (>= 2.7.2)
+
+GIT
+  remote: git://github.com/houston/houston-credentials.git
+  revision: aea052dc982375f5698db341bb8c56acf89e2470
+  branch: master
+  specs:
+    houston-credentials (0.0.1)
+      houston-core (>= 0.8.3)
+      strongbox (~> 0.7.2)
 
 GIT
   remote: git://github.com/houston/houston-exceptions.git
@@ -211,13 +219,14 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
-  revision: a9d8bb0d8b0617b63326ecf1ca967346c1ed3b76
+  revision: 6b95ec16ff62153ce5ac8c7bb63e54e1443f8fbf
   branch: master
   specs:
     houston-tickets (0.0.1)
       boblail-unfuddle
       houston-commits
       houston-core (>= 0.8.0.pre)
+      houston-credentials
 
 GIT
   remote: git://github.com/houston/houston-twilio.git
@@ -651,6 +660,7 @@ DEPENDENCIES
   houston-commits!
   houston-conversations!
   houston-core!
+  houston-credentials!
   houston-devise_ldap_authenticatable
   houston-exceptions!
   houston-feedback!
