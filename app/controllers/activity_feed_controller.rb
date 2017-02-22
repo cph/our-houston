@@ -2,7 +2,7 @@
 require_dependency "../helpers/timeline_helper"
 
 class ActivityFeedController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   layout "minimal"
 
   helper ::TimelineHelper
