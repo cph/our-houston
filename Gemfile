@@ -73,7 +73,8 @@ gem "logeater", github: "cph/logeater", branch: "master", require: "logeater/req
 
 # This gem hasn't been maintained... :`(
 # https://github.com/DimaSamodurov/ruby-ntlm/pull/7
-gem "ruby-ntlm", github: "DimaSamodurov/ruby-ntlm", branch: "properly_resolve_ntlm_module"
+# This one looks more active: https://github.com/winrb/rubyntlm
+gem "ruby-ntlm", github: "macks/ruby-ntlm"
 
 # Develop on houston-conversations
 gem "houston-conversations", github: "houston/houston-conversations", branch: "master"

@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/DimaSamodurov/ruby-ntlm.git
-  revision: 538ea6b86ca30042f761684d24ac8a6942197506
-  branch: properly_resolve_ntlm_module
-  specs:
-    ruby-ntlm (0.0.1)
-
-GIT
   remote: git://github.com/cph/houston-sprints.git
   revision: d6f5b3e9f6313a80970055295991cf2f1656e54d
   branch: master
@@ -248,6 +241,12 @@ GIT
       faraday-raise-errors
       multi_json
       websocket-driver
+
+GIT
+  remote: git://github.com/macks/ruby-ntlm.git
+  revision: ff9bf86577d39c9a6b8d68742823e6cf2aab808c
+  specs:
+    ruby-ntlm (0.0.3)
 
 GEM
   remote: https://rubygems.org/
