@@ -104,7 +104,7 @@ Houston.config do
       can [:update, :destroy], Houston::Feedback::Conversation, user_id: user.id
 
       # Folks can update their own presentations
-      can :update, Nanoconf, presenter_id: user.id
+      can [:update, :destroy], Nanoconf, presenter_id: user.id
 
       # If you're signed in, you can create a Nanoconfs
       can :create, Nanoconf
