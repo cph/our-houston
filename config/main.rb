@@ -53,6 +53,12 @@ Houston.add_navigation_renderer :pulls do
   ability { |ability| ability.can?(:read, Github::PullRequest) }
 end
 
+Houston.add_navigation_renderer :nanoconfs do
+  name "Nanoconfs"
+  path { Houston::Engine.routes.url_helpers.nanoconfs_path }
+  ability { |ability| ability.can?(:read, Nanoconf) }
+end
+
 Houston.add_project_column :rails_version do
   name "Rails"
   html { |project| project.props["keyDependency.rails"] }
@@ -189,7 +195,8 @@ Houston.config do
   navigation       :activity_feed,
                    :alerts,
                    :roadmaps,
-                   :pulls
+                   :pulls,
+                   :nanoconfs
   project_features :support_form,
                    :feedback,
                    :ideas,
