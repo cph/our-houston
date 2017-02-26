@@ -2605,10 +2605,10 @@ CREATE INDEX index_authorizations_on_user_id ON authorizations USING btree (user
 
 
 --
--- Name: index_brakeman_warnings_on_fingerprint; Type: INDEX; Schema: public; Owner: -
+-- Name: index_brakeman_warnings_on_project_id_and_fingerprint; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_brakeman_warnings_on_fingerprint ON brakeman_warnings USING btree (fingerprint);
+CREATE UNIQUE INDEX index_brakeman_warnings_on_project_id_and_fingerprint ON brakeman_warnings USING btree (project_id, fingerprint);
 
 
 --
@@ -3532,6 +3532,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170216041034'),
 ('20170224025652'),
 ('20170225035649'),
-('20170226201504');
+('20170226201504'),
+('20170226213622');
 
 

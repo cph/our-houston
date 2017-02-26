@@ -63,7 +63,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-brakeman.git
-  revision: 0a39f0ce533a2cbb2402c0fe03c8b49a17e3dc39
+  revision: bb09dc4c329293ed76b57c843a0f1465fbb970c5
   branch: master
   specs:
     houston-brakeman (0.0.1)
