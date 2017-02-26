@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: c1bd084d28750a5ac3308c873b519c804d33aef2
+  revision: a291028e0bb44adb7d52f0ad958d104c5d3281ca
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -212,7 +212,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
-  revision: 6b95ec16ff62153ce5ac8c7bb63e54e1443f8fbf
+  revision: c705c275c4c951d202582f8bd5b53e97ac2f1432
   branch: master
   specs:
     houston-tickets (0.0.1)
