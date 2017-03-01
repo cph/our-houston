@@ -1306,38 +1306,6 @@ CREATE TABLE sprints_tasks (
 
 
 --
--- Name: tasklists; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE tasklists (
-    id integer NOT NULL,
-    milestone_id integer,
-    name character varying NOT NULL,
-    ticket_tracker_name character varying NOT NULL,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL
-);
-
-
---
--- Name: tasklists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE tasklists_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: tasklists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE tasklists_id_seq OWNED BY tasklists.id;
-
-
---
 -- Name: tasks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2074,13 +2042,6 @@ ALTER TABLE ONLY sprints ALTER COLUMN id SET DEFAULT nextval('sprints_id_seq'::r
 
 
 --
--- Name: tasklists id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY tasklists ALTER COLUMN id SET DEFAULT nextval('tasklists_id_seq'::regclass);
-
-
---
 -- Name: tasks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2424,14 +2385,6 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY sprints
     ADD CONSTRAINT sprints_pkey PRIMARY KEY (id);
-
-
---
--- Name: tasklists tasklists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY tasklists
-    ADD CONSTRAINT tasklists_pkey PRIMARY KEY (id);
 
 
 --
@@ -2973,13 +2926,6 @@ CREATE UNIQUE INDEX index_sprints_on_end_date ON sprints USING btree (end_date);
 --
 
 CREATE UNIQUE INDEX index_sprints_tasks_on_sprint_id_and_task_id ON sprints_tasks USING btree (sprint_id, task_id);
-
-
---
--- Name: index_tasklists_on_milestone_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_tasklists_on_milestone_id ON tasklists USING btree (milestone_id);
 
 
 --
@@ -3526,7 +3472,6 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170206002732'),
 ('20170209022159'),
 ('20170211232146'),
-('20170212002739'),
 ('20170213001453'),
 ('20170215012012'),
 ('20170216041034'),
