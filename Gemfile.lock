@@ -479,11 +479,11 @@ GEM
       rack (>= 1.2, < 3)
     octokit (4.6.2)
       sawyer (~> 0.8.0, >= 0.5.3)
-    oj (2.18.1)
-    openxml-package (0.2.6)
+    oj (2.18.2)
+    openxml-package (0.2.7)
       nokogiri
       ox
-      rubyzip (~> 1.1.0)
+      rubyzip (~> 1.2.1)
     openxml-xlsx (0.2.3)
       nokogiri
       openxml-package (>= 0.2.0)
@@ -547,7 +547,7 @@ GEM
     rr (1.2.0)
     ruby-progressbar (1.8.1)
     rubyntlm (0.6.1)
-    rubyzip (1.1.7)
+    rubyzip (1.2.1)
     rufus-scheduler (3.3.4)
       tzinfo
     rugged (0.25.1.1)
