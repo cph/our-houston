@@ -179,7 +179,6 @@ CREATE TABLE ar_internal_metadata (
 
 CREATE TABLE authorizations (
     id integer NOT NULL,
-    name character varying NOT NULL,
     scope character varying,
     access_token character varying,
     refresh_token character varying,
@@ -3478,6 +3477,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170224025652'),
 ('20170225035649'),
 ('20170226201504'),
-('20170226213622');
+('20170226213622'),
+('20170301014051');
 
 
