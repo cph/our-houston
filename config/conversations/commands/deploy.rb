@@ -276,7 +276,13 @@ module Houston
         conversation.say "I am deploying #{slack_link_to_pull_request(pr)}"
         conversation.say "You can follow my progress #{slack_link_to "here", deploy.url}"
 
-        if environment.deploy(deploy, maintenance_page: maintenance_page)
+        options = { maintenance_page: maintenance_page }
+        if project == "lsb"
+          options[:precompile_assets] = true if project == "lsb"
+          options[:precompile_unchanged_assets] = true
+        end
+
+        if environment.deploy(deploy, options)
           end! "I have finished deploying #{target.value} (#{slack_link_to "output", deploy.url})"
         else
           end! ":rotating_light: #{user.first_name}, the deploy of #{target.value} just failed. (#{slack_link_to "output", deploy.url})"
