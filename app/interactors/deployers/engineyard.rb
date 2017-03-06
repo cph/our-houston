@@ -23,13 +23,13 @@ module Deployers
 
     # https://github.com/engineyard/engineyard/blob/v3.0.1/lib/engineyard/cli.rb#L123
     def deploy(deploy, options={})
-      config = { maintenance_on_migrate: options[:maintenance_page] }
-      config[:precompile_assets] = options[:precompile_assets] if options.key? :precompile_assets
-      config[:precompile_unchanged_assets] = options[:precompile_unchanged_assets] if options.key? :precompile_unchanged_assets
+      config_override = { maintenance_on_migrate: options[:maintenance_page] }
+      config_override[:precompile_assets] = options[:precompile_assets] if options.key? :precompile_assets
+      config_override[:precompile_unchanged_assets] = options[:precompile_unchanged_assets] if options.key? :precompile_unchanged_assets
       options = {
         ref: deploy.branch,
         environment: environment_name,
-        config: config
+        config: config_override
       }.with_indifferent_access
 
       env_config = config.environment_config(app_env.environment_name)
