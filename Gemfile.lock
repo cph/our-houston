@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/itsm.git
-  revision: dbe9b64b9fd8a5c6dcc577adb6075c2f603d5fa8
+  revision: 230e6a7e1c9f2e164864a44a5a115feac9b52383
   branch: master
   specs:
     itsm (0.0.1)
