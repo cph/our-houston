@@ -232,7 +232,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/slacks.git
-  revision: 7a5bfab454114d11070d88e081b6bc5b5ba1d0c1
+  revision: a8c3b2b9e47f7a3332289aa3ee585981a4cc8f2f
   branch: master
   specs:
     slacks (0.5.0.pre)
