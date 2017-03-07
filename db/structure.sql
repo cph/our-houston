@@ -73,7 +73,7 @@ SET default_with_oids = false;
 CREATE TABLE actions (
     id integer NOT NULL,
     name character varying NOT NULL,
-    started_at timestamp without time zone NOT NULL,
+    started_at timestamp without time zone,
     finished_at timestamp without time zone,
     succeeded boolean,
     error_id integer,
@@ -3176,7 +3176,7 @@ ALTER TABLE ONLY feedback_snippets
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES
+INSERT INTO "schema_migrations" (version) VALUES
 ('20120324185914'),
 ('20120324202224'),
 ('20120324212848'),
@@ -3480,6 +3480,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170226201504'),
 ('20170226213622'),
 ('20170301014051'),
-('20170307032041');
+('20170307032041'),
+('20170307035755');
 
 
