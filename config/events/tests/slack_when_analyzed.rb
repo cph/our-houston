@@ -15,7 +15,7 @@ Houston.config do
     regressions.each do |regression|
       test = regression.test
       test_name = "*#{test.suite}* #{test.name}"
-      url = "http://#{Houston.config.host}/projects/#{test.project.slug}/tests/#{test.id}?at=#{test_run.sha}"
+      url = "#{Houston.root_url}/projects/#{test.project.slug}/tests/#{test.id}?at=#{test_run.sha}"
       message << "\n> #{slack_link_to(test_name, url)}"
     end if regressions.count <= MAX_BROKEN_TESTS
 

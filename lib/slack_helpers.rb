@@ -83,11 +83,11 @@ def slack_replace_message_on_channel(ts, message, channel, options={})
 end
 
 def alert_unfurl_url(alert)
-  "http://#{Houston.config.host}/#{alert.type}/#{alert.number}"
+  "#{Houston.root_url}/#{alert.type}/#{alert.number}"
 end
 
 def feedback_unfurl_url(comment)
-  "http://#{Houston.config.host}/feedback/#{comment.id}"
+  "#{Houston.root_url}/feedback/#{comment.id}"
 end
 
 def slack_author_icon_for(user)
