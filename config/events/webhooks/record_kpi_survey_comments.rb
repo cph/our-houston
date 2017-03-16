@@ -1,5 +1,5 @@
 Houston.config.on "hooks:kpi-survey-comments" => "record-kpi-survey-comments" do
-  comments = Array(params[:comments])
+  comments = Array(params.with_indifferent_access["comments"])
   ids = comments.map { |comment| comment["EventQuestionID"].to_s }
   already_imported_ids = Houston::Feedback::Conversation.where(legacy_id: ids).pluck(:legacy_id)
   to_import = comments.reject { |comment| already_imported_ids.member?(comment["EventQuestionID"].to_s) }
