@@ -223,7 +223,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-todolists.git
-  revision: 362682a80498899fad282dba28bfc7a4cad86762
+  revision: 60be2611a13079dba84f40776642dd4993a733e0
   branch: master
   specs:
     houston-todolists (0.0.1)
