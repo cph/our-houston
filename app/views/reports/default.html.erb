@@ -59,6 +59,21 @@
 
 
 
+    function reduceSum(measurements) {
+      return mapValues(
+        byTimestamp(measurements, function(measurement, accumulator) {
+          accumulator = accumulator || 0;
+          accumulator += +measurement.value;
+          return accumulator;
+        }),
+        function(timestamp, accumulator) {
+          return accumulator;
+        }
+      );
+    }
+
+
+
     function ofTimeWorked(measurement, accumulator) {
       var date = new Date(measurement.timestamp);
       if(date.getDay() > 0 && date.getDay() < 6) {
@@ -140,6 +155,11 @@
               measurements: { name: ['daily.alerts.due', 'daily.alerts.due.completed-on-time'] },
               map: reducePercentOfAlertsCompletedOnTime,
               mean: meanPercentOfAlertsCompletedOnTime
+            }, {
+              name: 'Alerts Opened (/wk)',
+              min: 0,
+              measurements: { name: 'weekly.alerts.opened' },
+              map: reduceSum
             } ]
         },
 
