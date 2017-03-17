@@ -241,6 +241,7 @@ Houston.config do
   use :support_form
   use :brakeman
   use :sprints # For now, just for old reports
+  use :todolists
   use :roadmaps
 
   use :releases do

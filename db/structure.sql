@@ -42,6 +42,35 @@ CREATE TYPE test_result_status AS ENUM (
 
 
 --
+-- Name: cache_items_count_on_todo_list(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION cache_items_count_on_todo_list() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  IF TG_OP IN ('DELETE', 'UPDATE') THEN
+    UPDATE todo_lists SET
+      items_count=(SELECT COUNT(*) FROM todo_list_items WHERE todo_list_items.todolist_id=todo_lists.id),
+      completed_items_count=(SELECT COUNT(*) FROM todo_list_items WHERE todo_list_items.todolist_id=todo_lists.id AND todo_list_items.completed_at IS NOT NULL)
+    WHERE id=OLD.todolist_id;
+  END IF;
+
+  IF TG_OP IN ('UPDATE', 'INSERT') THEN
+    UPDATE todo_lists SET
+      items_count=(SELECT COUNT(*) FROM todo_list_items WHERE todo_list_items.todolist_id=todo_lists.id),
+      completed_items_count=(SELECT COUNT(*) FROM todo_list_items WHERE todo_list_items.todolist_id=todo_lists.id AND todo_list_items.completed_at IS NOT NULL)
+    WHERE id=NEW.todolist_id;
+
+    RETURN NEW;
+  ELSE
+    RETURN OLD;
+  END IF;
+END;
+$$;
+
+
+--
 -- Name: create_snippet_for_conversation(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -703,6 +732,50 @@ CREATE SEQUENCE follows_id_seq
 --
 
 ALTER SEQUENCE follows_id_seq OWNED BY follows.id;
+
+
+--
+-- Name: goals; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE goals (
+    id integer NOT NULL,
+    project_id integer,
+    name character varying NOT NULL,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
+    destroyed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: goals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE goals_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: goals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE goals_id_seq OWNED BY goals.id;
+
+
+--
+-- Name: goals_todo_lists; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE goals_todo_lists (
+    todo_list_id integer NOT NULL,
+    goal_id integer NOT NULL
+);
 
 
 --
@@ -1669,6 +1742,83 @@ ALTER SEQUENCE tickets_id_seq OWNED BY tickets.id;
 
 
 --
+-- Name: todo_list_items; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE todo_list_items (
+    id integer NOT NULL,
+    authorization_id integer,
+    todolist_id integer,
+    created_by_id integer,
+    assigned_to_id integer,
+    remote_id character varying NOT NULL,
+    summary character varying NOT NULL,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
+    destroyed_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: todo_list_items_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE todo_list_items_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: todo_list_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE todo_list_items_id_seq OWNED BY todo_list_items.id;
+
+
+--
+-- Name: todo_lists; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE todo_lists (
+    id integer NOT NULL,
+    authorization_id integer,
+    remote_id character varying NOT NULL,
+    name character varying NOT NULL,
+    sequence integer DEFAULT 0 NOT NULL,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
+    destroyed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    items_count integer DEFAULT 0 NOT NULL,
+    completed_items_count integer DEFAULT 0 NOT NULL
+);
+
+
+--
+-- Name: todo_lists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE todo_lists_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: todo_lists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE todo_lists_id_seq OWNED BY todo_lists.id;
+
+
+--
 -- Name: user_credentials; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1937,6 +2087,13 @@ ALTER TABLE ONLY follows ALTER COLUMN id SET DEFAULT nextval('follows_id_seq'::r
 
 
 --
+-- Name: goals id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY goals ALTER COLUMN id SET DEFAULT nextval('goals_id_seq'::regclass);
+
+
+--
 -- Name: measurements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2112,6 +2269,20 @@ ALTER TABLE ONLY tickets ALTER COLUMN id SET DEFAULT nextval('tickets_id_seq'::r
 
 
 --
+-- Name: todo_list_items id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_list_items ALTER COLUMN id SET DEFAULT nextval('todo_list_items_id_seq'::regclass);
+
+
+--
+-- Name: todo_lists id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_lists ALTER COLUMN id SET DEFAULT nextval('todo_lists_id_seq'::regclass);
+
+
+--
 -- Name: user_credentials id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2265,6 +2436,14 @@ ALTER TABLE ONLY feedback_user_flags
 
 ALTER TABLE ONLY follows
     ADD CONSTRAINT follows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: goals goals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY goals
+    ADD CONSTRAINT goals_pkey PRIMARY KEY (id);
 
 
 --
@@ -2481,6 +2660,22 @@ ALTER TABLE ONLY ticket_queues
 
 ALTER TABLE ONLY tickets
     ADD CONSTRAINT tickets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: todo_list_items todo_list_items_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_list_items
+    ADD CONSTRAINT todo_list_items_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: todo_lists todo_lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_lists
+    ADD CONSTRAINT todo_lists_pkey PRIMARY KEY (id);
 
 
 --
@@ -2709,6 +2904,20 @@ CREATE INDEX index_follows_on_project_id ON follows USING btree (project_id);
 --
 
 CREATE INDEX index_follows_on_user_id ON follows USING btree (user_id);
+
+
+--
+-- Name: index_goals_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_goals_on_project_id ON goals USING btree (project_id);
+
+
+--
+-- Name: index_goals_todo_lists_on_goal_id_and_todo_list_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_goals_todo_lists_on_goal_id_and_todo_list_id ON goals_todo_lists USING btree (goal_id, todo_list_id);
 
 
 --
@@ -3041,6 +3250,55 @@ CREATE INDEX index_tickets_on_milestone_id ON tickets USING btree (milestone_id)
 
 
 --
+-- Name: index_todo_list_items_on_assigned_to_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todo_list_items_on_assigned_to_id ON todo_list_items USING btree (assigned_to_id);
+
+
+--
+-- Name: index_todo_list_items_on_authorization_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todo_list_items_on_authorization_id ON todo_list_items USING btree (authorization_id);
+
+
+--
+-- Name: index_todo_list_items_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todo_list_items_on_created_by_id ON todo_list_items USING btree (created_by_id);
+
+
+--
+-- Name: index_todo_list_items_on_remote_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todo_list_items_on_remote_id ON todo_list_items USING btree (remote_id);
+
+
+--
+-- Name: index_todo_list_items_on_todolist_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todo_list_items_on_todolist_id ON todo_list_items USING btree (todolist_id);
+
+
+--
+-- Name: index_todo_lists_on_authorization_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todo_lists_on_authorization_id ON todo_lists USING btree (authorization_id);
+
+
+--
+-- Name: index_todo_lists_on_remote_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todo_lists_on_remote_id ON todo_lists USING btree (remote_id);
+
+
+--
 -- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3132,10 +3390,49 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: todo_list_items cache_items_count_on_todo_list_trigger; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER cache_items_count_on_todo_list_trigger AFTER INSERT OR DELETE OR UPDATE ON todo_list_items FOR EACH ROW EXECUTE PROCEDURE cache_items_count_on_todo_list();
+
+
+--
 -- Name: feedback_conversations create_snippet_for_conversation_on_insert_trigger; Type: TRIGGER; Schema: public; Owner: -
 --
 
 CREATE TRIGGER create_snippet_for_conversation_on_insert_trigger AFTER INSERT ON feedback_conversations FOR EACH ROW EXECUTE PROCEDURE create_snippet_for_conversation();
+
+
+--
+-- Name: todo_list_items fk_rails_0e0067e526; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_list_items
+    ADD CONSTRAINT fk_rails_0e0067e526 FOREIGN KEY (created_by_id) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: goals_todo_lists fk_rails_1040255f10; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY goals_todo_lists
+    ADD CONSTRAINT fk_rails_1040255f10 FOREIGN KEY (goal_id) REFERENCES goals(id) ON DELETE CASCADE;
+
+
+--
+-- Name: goals fk_rails_17291b67f3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY goals
+    ADD CONSTRAINT fk_rails_17291b67f3 FOREIGN KEY (project_id) REFERENCES projects(id);
+
+
+--
+-- Name: todo_list_items fk_rails_2e5e833107; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_list_items
+    ADD CONSTRAINT fk_rails_2e5e833107 FOREIGN KEY (todolist_id) REFERENCES todo_lists(id) ON DELETE CASCADE;
 
 
 --
@@ -3144,6 +3441,22 @@ CREATE TRIGGER create_snippet_for_conversation_on_insert_trigger AFTER INSERT ON
 
 ALTER TABLE ONLY follows
     ADD CONSTRAINT fk_rails_32479bd030 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: todo_list_items fk_rails_3497ac4841; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_list_items
+    ADD CONSTRAINT fk_rails_3497ac4841 FOREIGN KEY (assigned_to_id) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: todo_list_items fk_rails_499b6292a6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_list_items
+    ADD CONSTRAINT fk_rails_499b6292a6 FOREIGN KEY (authorization_id) REFERENCES authorizations(id) ON DELETE SET NULL;
 
 
 --
@@ -3168,6 +3481,22 @@ ALTER TABLE ONLY follows
 
 ALTER TABLE ONLY feedback_snippets
     ADD CONSTRAINT fk_rails_bde07ddc98 FOREIGN KEY (conversation_id) REFERENCES feedback_conversations(id) ON DELETE CASCADE;
+
+
+--
+-- Name: goals_todo_lists fk_rails_ce39dcc1f3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY goals_todo_lists
+    ADD CONSTRAINT fk_rails_ce39dcc1f3 FOREIGN KEY (todo_list_id) REFERENCES todo_lists(id) ON DELETE CASCADE;
+
+
+--
+-- Name: todo_lists fk_rails_ee7a587d4b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY todo_lists
+    ADD CONSTRAINT fk_rails_ee7a587d4b FOREIGN KEY (authorization_id) REFERENCES authorizations(id) ON DELETE SET NULL;
 
 
 --
@@ -3482,4 +3811,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170301014051'),
 ('20170307032041'),
 ('20170307035755'),
-('20170310024505');
+('20170310024505'),
+('20170311033426'),
+('20170311033629'),
+('20170311152016'),
+('20170314230755');
+
+
