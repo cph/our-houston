@@ -56,13 +56,13 @@ class NanoconfsController < ApplicationController
   end
 
   def past
-    @presentations = Nanoconf.where("date < ?", Date.today).order(date: :desc)
+    @presentations = Nanoconf.preload(:presenter).where("date < ?", Date.today).order(date: :desc)
   end
 
 private
 
   def set_presentation
-    @presentation = Nanoconf.find(params[:id])
+    @presentation = Nanoconf.preload(:presenter).find(params[:id])
     @presentation_list_path = @presentation.past? ?  past_nanoconfs_path : nanoconfs_path
   end
 
@@ -88,7 +88,7 @@ private
   end
 
   def set_presentations
-    presentations = Nanoconf.where(date: upcoming_fridays)
+    presentations = Nanoconf.preload(:presenter).where(date: upcoming_fridays)
     @presentations = upcoming_fridays.each_with_object({}) do |friday, by_date|
       by_date[friday] = presentations.find { |presentation| presentation.date == friday }
     end
