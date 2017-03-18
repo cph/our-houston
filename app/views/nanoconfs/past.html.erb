@@ -15,14 +15,13 @@
       <h4><%= presentation.date.strftime("%b %d, %Y") %></h4>
       <div class="presentation-info">
         <h3 class="presentation-title">
+          <%= avatar_for(presentation.presenter) %>
           <a href="/nanoconfs/<%= presentation.id %>">
             <%= presentation.title %>
           </a>
         </h3>
         <% if can? :update, presentation %>
           <%= link_to "Edit", edit_nanoconf_path(presentation) %>
-        <% else %>
-          <p class="presenter-info">By: <%= presentation.presenter.name %> <%= avatar_for(presentation.presenter) %></p>
         <% end %>
         <% if presentation.tags? %>
           <div class="tags">
