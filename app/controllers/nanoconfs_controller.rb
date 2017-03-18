@@ -72,13 +72,9 @@ private
     end.keys.map { |date| date.strftime("%B %d, %Y") }
   end
 
-  def next_six_months
-    start_date = Date.today
-    end_date = Date.today + 6.months
-    my_days = [5] # day of the week in 0-6. Sunday is day-of-week 0; Saturday is day-of-week 6.
-    (start_date..end_date).to_a.select {|k| my_days.include?(k.wday)}
+  def upcoming_fridays
+    @upcoming_fridays ||= (Date.today...4.months.from_now).select { |date| date.wday == 5 } # fridays
   end
-
 
   def presentation_params
     permitted_params = params.require(:nanoconf).permit(:title, :description, :date, :tags, :presenter)
@@ -92,9 +88,9 @@ private
   end
 
   def set_presentations
-    @presentations = next_six_months.each_with_object({}) do |friday, presentations|
-      nanoconf = Nanoconf.find_by(date: friday)
-      presentations[friday] = nanoconf
+    presentations = Nanoconf.where(date: upcoming_fridays)
+    @presentations = upcoming_fridays.each_with_object({}) do |friday, by_date|
+      by_date[friday] = presentations.find { |presentation| presentation.date == friday }
     end
   end
 
