@@ -41,6 +41,8 @@ $.fn.extend
 $ ->
 
   $view = $(".conversation-sandbox")
+  return unless $view.length > 0
+
   $examples = $("#conversation_examples")
   $phrases = $("#conversation_phrases")
   $form = $("#conversation_form")
