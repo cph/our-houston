@@ -56,7 +56,7 @@ class NanoconfsController < ApplicationController
   end
 
   def past
-    @presentations = Nanoconf.where("date < ?", Date.today)
+    @presentations = Nanoconf.where("date < ?", Date.today).order(date: :desc)
   end
 
 private
