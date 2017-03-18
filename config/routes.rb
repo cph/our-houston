@@ -56,6 +56,7 @@ Houston::Engine.routes.draw do
     get ":id", to: "nanoconfs#show", as: :nanoconf
     get ":id/edit", to: "nanoconfs#edit", as: :edit_nanoconf
     patch ":id", to: "nanoconfs#update", as: :update_nanoconf
+    delete ":id", to: "nanoconfs#destroy", as: :destroy_nanoconf
   end
 
 

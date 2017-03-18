@@ -1,4 +1,5 @@
 <div class="nanoconf-info">
+  <div><%= render "back_link" %></div>
   <span class="date"><i class="fa fa-calendar" aria-hidden="true"></i> <%= @presentation.date.strftime("%b %d, %Y") %></span>
   <h2 class="presentation-title">
     <%= @presentation.title %>
@@ -25,5 +26,10 @@
     <% end %>
   </div>
 
-  <%= render "back_link" %>
+  <div>
+    <% if can? :destroy, @presentation %>
+      <% # `link_to` doesn't work without jQuery, so we have to use `button_to` instead %>
+      <%= button_to "Delete", destroy_nanoconf_path(@presentation), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  </div>
 </div>

@@ -1,5 +1,5 @@
 class NanoconfsController < ApplicationController
-  before_action :set_presentation, only: [:show, :edit, :update]
+  before_action :set_presentation, only: [:show, :edit, :update, :destroy]
   before_action :set_presentations, only: [:index, :new, :edit]
   attr_reader :presentations, :presentation
 
@@ -52,6 +52,15 @@ class NanoconfsController < ApplicationController
       redirect_to presentation
     else
       flash[:error] = "There was a problem"
+    end
+  end
+
+  def destroy
+    authorize! :destroy, @presentation
+    if @presentation.destroy
+      redirect_to nanoconfs_path
+    else
+      flash[:error] = "There was a problem deleting your presentation"
     end
   end
 
