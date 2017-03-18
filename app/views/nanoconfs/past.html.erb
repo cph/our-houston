@@ -20,13 +20,10 @@
             <%= presentation.title %>
           </a>
         </h3>
-        <% if can? :update, presentation %>
-          <%= link_to "Edit", edit_nanoconf_path(presentation) %>
-        <% end %>
         <% if presentation.tags? %>
           <div class="tags">
             <% presentation.tags.each do |tag| %>
-              <span class="tag"><%= tag %></span>
+              <span class="label"><%= tag %></span>
             <% end %>
           </div>
         <% end %>

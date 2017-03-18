@@ -1,34 +1,29 @@
 #presentation-list {
+  padding: 2em;
+
   .presentation h4 {
-    position: relative;
-    margin: 0 0 0px 0;
-    padding: 10px 14px 8px;
-    background: #efefef;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    font-size: 16px;
-    line-height: 20px;
+    margin: 0;
     text-transform: uppercase;
+    color: #aaa;
+    font-size: 0.83em;
+    line-height: 1;
   }
 
-  .signup-link{
-    margin: 0 0 14px 0;
-    padding: 10px 14px 8px;
+  .signup-link {
+    margin: 0 0 2em 0;
+    line-height: 32px;
     font-size: 16px;
-    a:hover {
-      text-decoration: none;
-    }
+
+    a:hover { text-decoration: none; }
   }
 
   .presentation-title {
-    position: relative;
-    margin: 0 0 0px 0;
-    padding: 0px 14px 0px;
+    margin: 0.25em 0;
+    padding: 0;
     display: inline-block;
+    line-height: 1;
 
-    a {
-      color: black;
-    }
+    a { color: black; }
 
     a:hover {
       color: #0088cc;
@@ -36,14 +31,8 @@
     }
   }
 
-  .tags {
-    padding-bottom: 10px;
-    padding-left: 14px;
-  }
-
   .presentation-info {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 3em;
   }
 }
 
@@ -99,19 +88,6 @@
   hr {
     height: 1px;
   }
-}
-
-.tag {
-  display: inline-block;
-  padding: 2px 4px;
-  font-size: 11.844px;
-  line-height: 14px;
-  color: #ffffff;
-  white-space: nowrap;
-  vertical-align: baseline;
-  background-color: #aaa;
-  border-radius: 3px;
-  margin-right: 0.33em;
 }
 
 .markdown-body {
