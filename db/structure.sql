@@ -1799,7 +1799,8 @@ CREATE TABLE todo_lists (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     items_count integer DEFAULT 0 NOT NULL,
-    completed_items_count integer DEFAULT 0 NOT NULL
+    completed_items_count integer DEFAULT 0 NOT NULL,
+    archived boolean DEFAULT false NOT NULL
 );
 
 
@@ -3836,6 +3837,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170311152016'),
 ('20170314230755'),
 ('20170320002452'),
-('20170323013622');
+('20170323013622'),
+('20170323034420');
 
 
