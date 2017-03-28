@@ -12,13 +12,15 @@ def sync_alert_to_todoist(alert)
   connection.use Faraday::RaiseErrors
   token = ENV["HOUSTON_TODOIST_ACCESS_TOKEN"]
   due_date = alert.deadline.utc.strftime("%Y-%m-%dT%H:%M")
+  project_slug = alert.project&.slug || "unknown"
+  content = "**#{alert.number}** | **#{project_slug}** | #{alert.summary}"
 
   if id.is_a?(Integer)
     response = connection.post("items/get", token: token, item_id: id, all_data: false)
     item = MultiJson.load(response.body).fetch "item"
     item_due_date = Time.parse(item["due_date_utc"]).strftime("%Y-%m-%dT%H:%M")
 
-    if alert.summary != item["content"] || due_date != item_due_date
+    if content != item["content"] || due_date != item_due_date
       connection.post("sync",
         token: token,
         commands:  MultiJson.dump([{
@@ -26,7 +28,7 @@ def sync_alert_to_todoist(alert)
           uuid: SecureRandom.uuid,
           args: {
             id: id,
-            content: alert.summary,
+            content: content,
             date_string: due_date,
             due_date_utc: due_date }
         }]))
@@ -61,7 +63,7 @@ def sync_alert_to_todoist(alert)
         uuid: SecureRandom.uuid,
         args: {
           project_id: TODOIST_ALERTS_PROJECT_ID,
-          content: alert.summary,
+          content: content,
           date_string: due_date,
           due_date_utc: due_date }
       }])).body)
