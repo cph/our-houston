@@ -16,8 +16,9 @@ def sync_alert_to_todoist(alert)
   if id.is_a?(Integer)
     response = connection.post("items/get", token: token, item_id: id, all_data: false)
     item = MultiJson.load(response.body).fetch "item"
+    item_due_date = Time.parse(item["due_date_utc"]).strftime("%Y-%m-%dT%H:%M")
 
-    if alert.summary != item["content"] || due_date != item["due_date_utc"]
+    if alert.summary != item["content"] || due_date != item_due_date
       connection.post("sync",
         token: token,
         commands:  MultiJson.dump([{
