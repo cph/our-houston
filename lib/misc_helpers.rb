@@ -51,11 +51,12 @@ def sync_alert_to_todoist(alert)
     end
 
   elsif alert.open?
+    temp_id = SecureRandom.uuid
     response = connection.post("sync",
       token: token,
       commands:  MultiJson.dump([{
         type: "item_add",
-        temp_id: SecureRandom.uuid,
+        temp_id: temp_id,
         uuid: SecureRandom.uuid,
         args: {
           project_id: TODOIST_ALERTS_PROJECT_ID,
@@ -65,6 +66,6 @@ def sync_alert_to_todoist(alert)
       }]))
 
     json = MultiJson.load(response.body)
-    alert.update_prop! TODOIST_ITEM_ID, json["temp_id_mapping"].values.first
+    alert.update_prop! TODOIST_ITEM_ID, json.fetch("temp_id_mapping").fetch(temp_id)
   end
 end
