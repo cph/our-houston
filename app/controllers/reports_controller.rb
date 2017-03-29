@@ -17,13 +17,13 @@ class ReportsController < ApplicationController
 
   def default
     @title = "Reports"
-    render layout: "instance_naked"
+    render layout: "naked"
   end
 
   def star2
     authorize! :read, :star_report
     @title = "Star"
-    render layout: "instance_naked"
+    render layout: "naked"
   end
 
   def user_report
@@ -102,7 +102,7 @@ class ReportsController < ApplicationController
       ORDER BY days.day ASC
     SQL
 
-    render layout: "instance_naked"
+    render layout: "naked"
   end
 
   def star
@@ -275,7 +275,7 @@ class ReportsController < ApplicationController
       SQL
     end
 
-    render layout: "instance_naked"
+    render layout: "naked"
   end
 
 

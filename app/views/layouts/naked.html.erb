@@ -9,4 +9,6 @@
 <% end %>
 
 <%# Houston's default layout %>
-<%= render template: "layouts/naked" %>
+<% @_layout_show_navigation = false %>
+<% @_layout_container_fluid = false %>
+<%= render template: "layouts/application" %>
