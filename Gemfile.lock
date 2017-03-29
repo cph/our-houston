@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/cph/houston-support_form.git
-  revision: 18f42ae6b8f7d6bc55aafdd470120f2c4e7abc1e
+  revision: f659140376d62154f30dc45dc067b55e62c29d87
   branch: master
   specs:
     houston-support_form (0.0.1)
@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 16def54269c5f05714e6fdab2107c5d1c030bcf4
+  revision: f535586f6defe6b001586a65eac8ccc33cdd006b
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -212,7 +212,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
-  revision: 4c2d96dcbd50b01d76ef340f9822df526e65e2dd
+  revision: 43c369677b3d58a8035ec417c599a43f49349d5d
   branch: master
   specs:
     houston-tickets (0.0.1)
