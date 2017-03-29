@@ -417,43 +417,6 @@ CREATE TABLE commits_users (
 
 
 --
--- Name: consumer_tokens; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE consumer_tokens (
-    id integer NOT NULL,
-    user_id integer,
-    type character varying(30),
-    token character varying(1024),
-    refresh_token character varying(255),
-    secret character varying(255),
-    expires_at integer,
-    expires_in character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: consumer_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE consumer_tokens_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: consumer_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE consumer_tokens_id_seq OWNED BY consumer_tokens.id;
-
-
---
 -- Name: deploys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2029,13 +1992,6 @@ ALTER TABLE ONLY commits ALTER COLUMN id SET DEFAULT nextval('commits_id_seq'::r
 
 
 --
--- Name: consumer_tokens id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY consumer_tokens ALTER COLUMN id SET DEFAULT nextval('consumer_tokens_id_seq'::regclass);
-
-
---
 -- Name: deploys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2369,14 +2325,6 @@ ALTER TABLE ONLY brakeman_warnings
 
 ALTER TABLE ONLY commits
     ADD CONSTRAINT commits_pkey PRIMARY KEY (id);
-
-
---
--- Name: consumer_tokens consumer_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY consumer_tokens
-    ADD CONSTRAINT consumer_tokens_pkey PRIMARY KEY (id);
 
 
 --
@@ -2818,13 +2766,6 @@ CREATE UNIQUE INDEX index_commits_tickets_on_commit_id_and_ticket_id ON commits_
 --
 
 CREATE UNIQUE INDEX index_commits_users_on_commit_id_and_user_id ON commits_users USING btree (commit_id, user_id);
-
-
---
--- Name: index_consumer_tokens_on_token; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_consumer_tokens_on_token ON consumer_tokens USING btree (token);
 
 
 --
@@ -3838,6 +3779,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170314230755'),
 ('20170320002452'),
 ('20170323013622'),
-('20170323034420');
+('20170323034420'),
+('20170329030329');
 
 
