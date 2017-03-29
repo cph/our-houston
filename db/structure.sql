@@ -668,6 +668,26 @@ ALTER SEQUENCE feedback_user_flags_id_seq OWNED BY feedback_user_flags.id;
 
 
 --
+-- Name: feedback_versions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE feedback_versions (
+    id integer,
+    versioned_id integer,
+    versioned_type character varying(255),
+    user_id integer,
+    user_type character varying(255),
+    user_name character varying(255),
+    modifications text,
+    number integer,
+    reverted_from integer,
+    tag character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
 -- Name: follows; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1702,6 +1722,26 @@ CREATE SEQUENCE tickets_id_seq
 --
 
 ALTER SEQUENCE tickets_id_seq OWNED BY tickets.id;
+
+
+--
+-- Name: tickets_versions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tickets_versions (
+    id integer,
+    versioned_id integer,
+    versioned_type character varying(255),
+    user_id integer,
+    user_type character varying(255),
+    user_name character varying(255),
+    modifications text,
+    number integer,
+    reverted_from integer,
+    tag character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
 
 
 --
@@ -2839,6 +2879,48 @@ CREATE UNIQUE INDEX index_feedback_user_flags_on_user_id_and_conversation_id ON 
 
 
 --
+-- Name: index_feedback_versions_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_feedback_versions_on_created_at ON feedback_versions USING btree (created_at);
+
+
+--
+-- Name: index_feedback_versions_on_number; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_feedback_versions_on_number ON feedback_versions USING btree (number);
+
+
+--
+-- Name: index_feedback_versions_on_tag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_feedback_versions_on_tag ON feedback_versions USING btree (tag);
+
+
+--
+-- Name: index_feedback_versions_on_user_id_and_user_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_feedback_versions_on_user_id_and_user_type ON feedback_versions USING btree (user_id, user_type);
+
+
+--
+-- Name: index_feedback_versions_on_user_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_feedback_versions_on_user_name ON feedback_versions USING btree (user_name);
+
+
+--
+-- Name: index_feedback_versions_on_versioned_id_and_versioned_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_feedback_versions_on_versioned_id_and_versioned_type ON feedback_versions USING btree (versioned_id, versioned_type);
+
+
+--
 -- Name: index_follows_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3193,6 +3275,48 @@ CREATE INDEX index_tickets_on_destroyed_at ON tickets USING btree (destroyed_at)
 --
 
 CREATE INDEX index_tickets_on_milestone_id ON tickets USING btree (milestone_id);
+
+
+--
+-- Name: index_tickets_versions_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tickets_versions_on_created_at ON tickets_versions USING btree (created_at);
+
+
+--
+-- Name: index_tickets_versions_on_number; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tickets_versions_on_number ON tickets_versions USING btree (number);
+
+
+--
+-- Name: index_tickets_versions_on_tag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tickets_versions_on_tag ON tickets_versions USING btree (tag);
+
+
+--
+-- Name: index_tickets_versions_on_user_id_and_user_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tickets_versions_on_user_id_and_user_type ON tickets_versions USING btree (user_id, user_type);
+
+
+--
+-- Name: index_tickets_versions_on_user_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tickets_versions_on_user_name ON tickets_versions USING btree (user_name);
+
+
+--
+-- Name: index_tickets_versions_on_versioned_id_and_versioned_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tickets_versions_on_versioned_id_and_versioned_type ON tickets_versions USING btree (versioned_id, versioned_type);
 
 
 --
@@ -3780,6 +3904,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170320002452'),
 ('20170323013622'),
 ('20170323034420'),
-('20170329030329');
+('20170329030329'),
+('20170329162815'),
+('20170329164043');
 
 

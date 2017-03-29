@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 87feded562f1a225509ff6086c0c8ca78ff731ab
+  revision: 42dcffff689a96b83cb4946a381bec3b64c82e2d
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -120,7 +120,6 @@ GIT
       faraday-raise-errors (~> 0.2.0)
       gemoji (~> 2.1.0)
       handlebars_assets (~> 0.23.0)
-      houston-vestal_versions
       kramdown
       neat-rails
       nested_editor_for
@@ -159,13 +158,14 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-feedback.git
-  revision: 56720a6976b1473710c5b3994143c33a9c69dd7c
+  revision: 19401ba25ca686af6310caa22672fab9578fc7a1
   branch: master
   specs:
     houston-feedback (0.0.1)
       activerecord-import
       charlock_holmes
       houston-core (>= 0.8.0.pre)
+      houston-vestal_versions
       pg_search
       pluck_map
       redcarpet
@@ -192,7 +192,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-scheduler.git
-  revision: 77f38044edbc600bd5a5899690aa98314f0de04d
+  revision: f4ea371eb600a0dff7ae4ddb3fd4b360ba473e32
   branch: master
   specs:
     houston-scheduler (0.0.1)
@@ -212,7 +212,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-tickets.git
-  revision: c705c275c4c951d202582f8bd5b53e97ac2f1432
+  revision: 4c2d96dcbd50b01d76ef340f9822df526e65e2dd
   branch: master
   specs:
     houston-tickets (0.0.1)
@@ -220,6 +220,7 @@ GIT
       houston-commits
       houston-core (>= 0.8.0.pre)
       houston-credentials
+      houston-vestal_versions
 
 GIT
   remote: git://github.com/houston/houston-todolists.git
