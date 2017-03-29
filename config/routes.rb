@@ -75,6 +75,11 @@ Houston::Engine.routes.draw do
 
 
 
+  # Tester Bar
+  match "tester_bar/:action", controller: "tester_bar", via: [:get, :post] if Rails.env.development?
+
+
+
   # Misc
 
   get "colors", to: "colors#index"
