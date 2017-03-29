@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/cph/houston-sprints.git
-  revision: d6f5b3e9f6313a80970055295991cf2f1656e54d
+  revision: 7e9b9fec0f7c09d596103841bf4d1c2b12855f0d
   branch: master
   specs:
     houston-sprints (0.0.1)
@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 238c7f458e29bcdde101bc875c48b149f52fecae
+  revision: 218213ae3f742a18cd8cc3f502d8161d0c1e14d9
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
