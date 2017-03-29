@@ -75,6 +75,10 @@ Houston.oauth.add_provider :office365 do
   token_path "/common/oauth2/v2.0/token"
 end
 
+Houston.layout["dashboard"].meta do
+  stylesheet_link_tag "roboto", media: "all"
+end
+
 Houston.layout["application"].footers do
   render partial: "layouts/tester_bar"
 end
