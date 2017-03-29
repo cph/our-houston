@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 6fea3149feb8f01dd821c926ca63f664fb5ba65e
+  revision: 238c7f458e29bcdde101bc875c48b149f52fecae
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -182,7 +182,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-roadmaps.git
-  revision: ffa1ce2a4b4fcb8a775350d048070cbf772905cc
+  revision: d585b13c436de669764d5d790840d8c8264805cb
   branch: master
   specs:
     houston-roadmaps (0.1.0)
