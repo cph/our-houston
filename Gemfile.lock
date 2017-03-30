@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: f535586f6defe6b001586a65eac8ccc33cdd006b
+  revision: 1c04023935e25871ab90a903d14f795028f67d57
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -121,8 +121,7 @@ GIT
       gemoji (~> 2.1.0)
       handlebars_assets (~> 0.23.0)
       kramdown
-      neat-rails
-      nested_editor_for
+      neat-rails (~> 0.5.1)
       nokogiri
       oauth2
       oj (~> 2.18)
@@ -172,12 +171,11 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-releases.git
-  revision: 4371ed41beeae61be3a17a6f9998e8594230d6ae
+  revision: 032d4fa1291299d55ddbc782413e06fc8db8e0ba
   branch: master
   specs:
     houston-releases (0.0.1)
       houston-core (>= 0.8.0.pre)
-      nested_editor_for (~> 0.1.1)
       record_tag_helper (~> 1.0)
 
 GIT
@@ -469,8 +467,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    neat-rails (0.5.0)
-    nested_editor_for (0.1.1)
+    neat-rails (0.5.1)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
     net-ldap (0.12.1)
