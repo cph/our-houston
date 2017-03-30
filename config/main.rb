@@ -81,7 +81,7 @@ end
 
 Houston.layout["application"].footers do
   render partial: "layouts/tester_bar"
-end
+end if ENV.fetch("RAILS_ENV", "development") == "development"
 
 
 
