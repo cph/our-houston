@@ -101,7 +101,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-core.git
-  revision: 1c04023935e25871ab90a903d14f795028f67d57
+  revision: f927a56ddea624925d277d2da9705bb77372c2db
   branch: 0.9-dev
   specs:
     houston-core (0.9.0.pre.dev)
@@ -122,7 +122,7 @@ GIT
       handlebars_assets (~> 0.23.0)
       kramdown
       neat-rails (~> 0.5.1)
-      nokogiri
+      nokogiri (~> 1.7)
       oauth2
       oj (~> 2.18)
       openxml-xlsx (>= 0.2.0)
