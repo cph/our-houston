@@ -199,7 +199,7 @@ GIT
 
 GIT
   remote: git://github.com/houston/houston-slack.git
-  revision: 9c31b9ff7dce60474914c5315391a043cf96eea0
+  revision: a8af772ddcd802c472ca384bf5b4aa61139900c9
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -239,10 +239,10 @@ GIT
 
 GIT
   remote: git://github.com/houston/slacks.git
-  revision: a8c3b2b9e47f7a3332289aa3ee585981a4cc8f2f
+  revision: 1d43065882b8c6c547999d2198c4e573d71dcd78
   branch: master
   specs:
-    slacks (0.5.0.pre)
+    slacks (0.5.0)
       concurrent-ruby
       faraday
       faraday-raise-errors
