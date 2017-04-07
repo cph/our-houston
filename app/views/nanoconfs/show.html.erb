@@ -1,3 +1,9 @@
+<% content_for :title do %>
+  <h1 class="project-banner">
+    <%= @presentation.title %>
+  </h1>
+<% end %>
+
 <div class="nanoconf-info">
   <div><%= render "back_link" %></div>
   <span class="date"><i class="fa fa-calendar" aria-hidden="true"></i> <%= @presentation.date.strftime("%b %d, %Y") %></span>
