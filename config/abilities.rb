@@ -109,6 +109,9 @@ Houston.config do
       # If you're signed in, you can create a Nanoconfs
       can :create, Nanoconf
 
+      # Matt can manage Nanoconfs
+      can :manage, Nanoconf if user.email == MATT
+
     end
   end
 end
