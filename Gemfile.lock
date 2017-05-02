@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/cph/houston-sprints.git
+  remote: https://github.com/cph/houston-sprints.git
   revision: 9bb44fe7fc20d544687aa59622d83dc4265fd7e7
   branch: master
   specs:
@@ -8,7 +8,7 @@ GIT
       houston-tickets
 
 GIT
-  remote: git://github.com/cph/houston-support_form.git
+  remote: https://github.com/cph/houston-support_form.git
   revision: f659140376d62154f30dc45dc067b55e62c29d87
   branch: master
   specs:
@@ -16,7 +16,7 @@ GIT
       houston-core (>= 0.7.0.beta2)
 
 GIT
-  remote: git://github.com/cph/itsm.git
+  remote: https://github.com/cph/itsm.git
   revision: 230e6a7e1c9f2e164864a44a5a115feac9b52383
   branch: master
   specs:
@@ -26,7 +26,7 @@ GIT
       savon (~> 2.0)
 
 GIT
-  remote: git://github.com/cph/logeater.git
+  remote: https://github.com/cph/logeater.git
   revision: 52021b81be977d58f1f571262de73eb52bc54135
   branch: master
   specs:
@@ -42,7 +42,7 @@ GIT
       thor (~> 0.19.1)
 
 GIT
-  remote: git://github.com/cph/star.git
+  remote: https://github.com/cph/star.git
   revision: 830da77964af5e78be4462fc28a83c5c86198409
   branch: master
   specs:
@@ -54,7 +54,7 @@ GIT
       ruby-ntlm
 
 GIT
-  remote: git://github.com/houston/houston-alerts.git
+  remote: https://github.com/houston/houston-alerts.git
   revision: 40f8773cf5033503201612afc26bed8dbfef261e
   branch: master
   specs:
@@ -63,7 +63,7 @@ GIT
       octicons
 
 GIT
-  remote: git://github.com/houston/houston-brakeman.git
+  remote: https://github.com/houston/houston-brakeman.git
   revision: bb09dc4c329293ed76b57c843a0f1465fbb970c5
   branch: master
   specs:
@@ -71,7 +71,7 @@ GIT
       houston-core (>= 0.7.0.beta4)
 
 GIT
-  remote: git://github.com/houston/houston-ci.git
+  remote: https://github.com/houston/houston-ci.git
   revision: 2595f28a5ba9762441c43ac5f9db7e62252a3f75
   branch: master
   specs:
@@ -81,7 +81,7 @@ GIT
       simplecov (~> 0.9.1)
 
 GIT
-  remote: git://github.com/houston/houston-commits.git
+  remote: https://github.com/houston/houston-commits.git
   revision: 927e7ecd2eb20dd5e137cb380b4c10a98d32f4ff
   branch: master
   specs:
@@ -91,7 +91,7 @@ GIT
       rugged (~> 0.25.0)
 
 GIT
-  remote: git://github.com/houston/houston-conversations.git
+  remote: https://github.com/houston/houston-conversations.git
   revision: c65f78f2ab76d4c442d5e679ced60f6870cc681a
   branch: master
   specs:
@@ -101,11 +101,11 @@ GIT
       houston-core (>= 0.8.0.pre)
 
 GIT
-  remote: git://github.com/houston/houston-core.git
-  revision: b07af1bffe5dde29d1d3a8826833bcd4a667cde2
-  branch: 0.9-dev
+  remote: https://github.com/houston/houston-core.git
+  revision: 162600cf15cbe0d9ad9bb6a94ecfd595dc85c11b
+  branch: master
   specs:
-    houston-core (0.9.0.pre.dev)
+    houston-core (0.9.0.rc1)
       activerecord-import
       activerecord-pluck_in_batches (~> 0.2.0)
       addressable (~> 2.3.8)
@@ -140,7 +140,7 @@ GIT
       uglifier (>= 2.7.2)
 
 GIT
-  remote: git://github.com/houston/houston-credentials.git
+  remote: https://github.com/houston/houston-credentials.git
   revision: aea052dc982375f5698db341bb8c56acf89e2470
   branch: master
   specs:
@@ -149,7 +149,7 @@ GIT
       strongbox (~> 0.7.2)
 
 GIT
-  remote: git://github.com/houston/houston-exceptions.git
+  remote: https://github.com/houston/houston-exceptions.git
   revision: 915af627be7ec6bf6c561c16f37f548b43e6e870
   branch: master
   specs:
@@ -157,7 +157,7 @@ GIT
       houston-core (>= 0.8.0.pre)
 
 GIT
-  remote: git://github.com/houston/houston-feedback.git
+  remote: https://github.com/houston/houston-feedback.git
   revision: 19401ba25ca686af6310caa22672fab9578fc7a1
   branch: master
   specs:
@@ -171,7 +171,7 @@ GIT
       redcarpet
 
 GIT
-  remote: git://github.com/houston/houston-releases.git
+  remote: https://github.com/houston/houston-releases.git
   revision: 032d4fa1291299d55ddbc782413e06fc8db8e0ba
   branch: master
   specs:
@@ -180,7 +180,7 @@ GIT
       record_tag_helper (~> 1.0)
 
 GIT
-  remote: git://github.com/houston/houston-roadmaps.git
+  remote: https://github.com/houston/houston-roadmaps.git
   revision: 5da6b098360dbcc232ba93ed130a40c4c20278a7
   branch: master
   specs:
@@ -190,7 +190,7 @@ GIT
       neat-rails (>= 0.2.0)
 
 GIT
-  remote: git://github.com/houston/houston-scheduler.git
+  remote: https://github.com/houston/houston-scheduler.git
   revision: f4ea371eb600a0dff7ae4ddb3fd4b360ba473e32
   branch: master
   specs:
@@ -199,7 +199,7 @@ GIT
       houston-tickets
 
 GIT
-  remote: git://github.com/houston/houston-slack.git
+  remote: https://github.com/houston/houston-slack.git
   revision: a8af772ddcd802c472ca384bf5b4aa61139900c9
   branch: master
   specs:
@@ -210,7 +210,7 @@ GIT
       slacks (>= 0.5.0.pre)
 
 GIT
-  remote: git://github.com/houston/houston-tickets.git
+  remote: https://github.com/houston/houston-tickets.git
   revision: 43c369677b3d58a8035ec417c599a43f49349d5d
   branch: master
   specs:
@@ -222,7 +222,7 @@ GIT
       houston-vestal_versions
 
 GIT
-  remote: git://github.com/houston/houston-todolists.git
+  remote: https://github.com/houston/houston-todolists.git
   revision: 5d2274988b501ca1a031b872e16e4bfb30257c6f
   branch: master
   specs:
@@ -230,7 +230,7 @@ GIT
       houston-core (>= 0.9.0.pre.dev)
 
 GIT
-  remote: git://github.com/houston/houston-twilio.git
+  remote: https://github.com/houston/houston-twilio.git
   revision: 7d449389773a1bd61f646a1ce7e454375e28f109
   branch: master
   specs:
@@ -239,7 +239,7 @@ GIT
       twilio-ruby (~> 4.11.1)
 
 GIT
-  remote: git://github.com/houston/slacks.git
+  remote: https://github.com/houston/slacks.git
   revision: 1d43065882b8c6c547999d2198c4e573d71dcd78
   branch: master
   specs:
@@ -251,10 +251,10 @@ GIT
       websocket-driver
 
 GIT
-  remote: git://github.com/macks/ruby-ntlm.git
-  revision: ff9bf86577d39c9a6b8d68742823e6cf2aab808c
+  remote: https://github.com/macks/ruby-ntlm.git
+  revision: 323ef447c04e130a31940fa6dabe96607677c22b
   specs:
-    ruby-ntlm (0.0.3)
+    ruby-ntlm (0.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -291,7 +291,7 @@ GEM
       activemodel (= 5.0.2)
       activesupport (= 5.0.2)
       arel (~> 7.0)
-    activerecord-import (0.17.2)
+    activerecord-import (0.18.1)
       activerecord (>= 3.2)
     activerecord-pluck_in_batches (0.2.0)
       activerecord (>= 4.2.7, < 5.1.0)
@@ -359,7 +359,7 @@ GEM
     concurrent-ruby (1.0.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    css_parser (1.4.10)
+    css_parser (1.5.0)
       addressable
     devise (4.2.1)
       bcrypt (~> 3.0)
@@ -367,11 +367,11 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise_invitable (1.7.1)
+    devise_invitable (1.7.2)
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
     docile (1.1.5)
-    domain_name (0.5.20170223)
+    domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     engineyard (3.2.5)
       addressable (= 2.3.8)
@@ -402,8 +402,8 @@ GEM
     faraday-raise-errors (0.2.0)
       faraday
     gemoji (2.1.0)
-    globalid (0.3.7)
-      activesupport (>= 4.1.0)
+    globalid (0.4.0)
+      activesupport (>= 4.2.0)
     googlecharts (1.6.12)
     gyoku (1.3.1)
       builder (>= 2.1.2)
@@ -429,7 +429,7 @@ GEM
       rack
       socksify
     i18n (0.8.1)
-    json (2.0.3)
+    json (2.0.4)
     jwt (1.5.6)
     kramdown (1.13.2)
     launchy (2.4.3)
@@ -438,12 +438,12 @@ GEM
       launchy (~> 2.2)
     libv8 (3.16.14.19)
     little-plugger (1.1.4)
-    logging (2.2.0)
+    logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    mail (2.6.4)
+    mail (2.6.5)
       mime-types (>= 1.16, < 4)
     mechanize (2.7.5)
       domain_name (~> 0.5, >= 0.5.1)
@@ -490,7 +490,7 @@ GEM
     octokit (4.6.2)
       sawyer (~> 0.8.0, >= 0.5.3)
     oj (2.18.5)
-    openxml-package (0.2.7)
+    openxml-package (0.2.8)
       nokogiri
       ox
       rubyzip (~> 1.2.1)
@@ -498,14 +498,14 @@ GEM
       nokogiri
       openxml-package (>= 0.2.0)
     orm_adapter (0.5.0)
-    ox (2.4.11)
+    ox (2.4.13)
     pg (0.19.0)
     pg_search (1.0.6)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
     pluck_map (0.1.0)
-    premailer (1.10.2)
+    premailer (1.10.3)
       addressable
       css_parser (>= 1.4.10)
       htmlentities (>= 4.0.0)
@@ -590,7 +590,7 @@ GEM
     simplecov-json (0.2)
       json
       simplecov
-    skylight (1.1.0)
+    skylight (1.2.0)
       activesupport (>= 3.0.0)
     slackdown (0.2.2)
       kramdown (~> 1.13.2)
@@ -626,13 +626,13 @@ GEM
       builder (>= 2.1.2)
       jwt (~> 1.0)
       multi_json (>= 1.3.0)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.1.9)
+    uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.2)
+    unf_ext (0.0.7.3)
     viewpoint (1.1.0)
       httpclient
       logging
@@ -643,7 +643,7 @@ GEM
     wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
-    webmock (2.3.2)
+    webmock (3.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -708,4 +708,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.13.4
+   1.14.6
