@@ -4,30 +4,36 @@ end
 
 TODOIST_ALERTS_PROJECT_ID = Rails.env.production? ? 200021224 : 200357697
 TODOIST_ITEM_ID = "todoist.itemId".freeze
+TODOIST_TEAM_IDS = [10, 1, 3, 8, 7, 12, 6, 11].freeze
 
 def sync_open_alerts_to_todoist
   items = todoist_send("projects/get_data", project_id: TODOIST_ALERTS_PROJECT_ID).fetch "items"
-  expected_item_ids = Houston::Alerts::Alert.open.pluck("props->>'todoist.itemId'")
+  alerts = Houston::Alerts::Alert.where(project_id: Team.where(id: TODOIST_TEAM_IDS).project_ids)
 
-  unexpected_items = items.reject { |item| expected_item_ids.member? item["id"] }
-  unexpected_items.each do |item|
-    alert = Houston::Alerts::Alert.unscoped.find_by_prop(TODOIST_ITEM_ID, item["id"])
+  item_ids = items.map { |item| item["id"] }
+  expected_item_ids = alerts.open.pluck("props->'todoist.itemId'")
+  unexpected_item_ids = item_ids - expected_item_ids
+
+  unexpected_item_ids.each do |item_id|
+    alert = alerts.unscope(where: [:destroyed_at, :suppressed]).find_by_prop(TODOIST_ITEM_ID, item_id)
     if alert.nil?
-      Rails.logger.info "[todoist:sync] An Alert mapped to Item ##{item["id"]} does not exist"
-      todoist_send_command "item_delete", ids: [item["id"]]
+      Rails.logger.info "[todoist:sync] An Alert mapped to Item ##{item_id} does not exist"
+      todoist_send_command "item_delete", ids: [item_id]
     elsif alert.destroyed?
-      Rails.logger.info "[todoist:sync] Alert ##{alert.number} mapped to Item ##{item["id"]} has been destroyed"
-      todoist_send_command "item_delete", ids: [item["id"]]
+      Rails.logger.info "[todoist:sync] Alert ##{alert.number} mapped to Item ##{item_id} has been destroyed"
+      todoist_send_command "item_delete", ids: [item_id]
     elsif alert.suppressed?
-      Rails.logger.info "[todoist:sync] Alert ##{alert.number} mapped to Item ##{item["id"]} has been suppressed"
-      todoist_send_command "item_delete", ids: [item["id"]]
+      Rails.logger.info "[todoist:sync] Alert ##{alert.number} mapped to Item ##{item_id} has been suppressed"
+      todoist_send_command "item_delete", ids: [item_id]
     elsif alert.closed?
-      Rails.logger.info "[todoist:sync] Alert ##{alert.number} mapped to Item ##{item["id"]} has been closed"
-      todoist_send_command "item_close", ids: [item["id"]]
+      Rails.logger.info "[todoist:sync] Alert ##{alert.number} mapped to Item ##{item_id} has been closed"
+      todoist_send_command "item_close", ids: [item_id]
+    else
+      Rails.logger.info "[todoist:sync] Alert ##{alert.number} is not destroyed, suppressed, or closed"
     end
   end
 
-  Houston::Alerts::Alert.open.each do |alert|
+  alerts.open.each do |alert|
     sync_alert_to_todoist alert
   end
 
@@ -35,6 +41,7 @@ def sync_open_alerts_to_todoist
 end
 
 def sync_alert_to_todoist(alert)
+  return unless Team.where(id: TODOIST_TEAM_IDS).project_ids.member?(alert.project_id)
   alert.with_lock do
     item_id = alert.props[TODOIST_ITEM_ID]
     if item_id
@@ -54,7 +61,12 @@ def update_todoist_alert(alert, item_id)
 
   raise ArgumentError, "Expected item_id #{item_id.inspect} to be an Integer" unless item_id.is_a?(Integer)
 
-  item = todoist_send("items/get", item_id: item_id, all_data: false).fetch "item"
+  item = begin
+    todoist_send("items/get", item_id: item_id, all_data: false).fetch "item"
+  rescue Faraday::ResourceNotFound
+    alert.update_prop! TODOIST_ITEM_ID, nil
+    return create_todoist_alert(alert)
+  end
   item_due_date = Time.parse(item["due_date_utc"]).strftime("%Y-%m-%dT%H:%M")
 
   if content != item["content"] || due_date != item_due_date
