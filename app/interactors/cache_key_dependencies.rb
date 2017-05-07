@@ -17,6 +17,7 @@ class CacheKeyDependencies
       version = ProjectDependency.new(project, dependency).version
       project.props["keyDependency.#{dependency.slug}"] = version.to_s
     end
+    project.props["keyDependency.ruby"] = project.ruby_version
     project.update_column :props, project.props.to_h
   end
 

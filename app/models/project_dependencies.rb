@@ -12,6 +12,12 @@ class ProjectDependencies < SimpleDelegator
     end
   end
 
+  def ruby_version
+    read_file(".ruby-version", commit: head_sha)&.strip
+  rescue Houston::Adapters::VersionControl::FileNotFound
+    nil
+  end
+
   def database
     @database = guess_database unless defined?(@database)
     @database

@@ -54,6 +54,11 @@ Houston.navigation
   .add_link(:nanoconfs) { Houston::Engine.routes.url_helpers.nanoconfs_path }
   .ability { can?(:read, Nanoconf) }
 
+Houston.add_project_column :ruby_version do
+  name "Ruby"
+  html { |project| project.props["keyDependency.ruby"] }
+end
+
 Houston.add_project_column :rails_version do
   name "Rails"
   html { |project| project.props["keyDependency.rails"] }
