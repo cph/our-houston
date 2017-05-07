@@ -42,22 +42,17 @@ Houston.register_events {{
   "nanoconf:update" => params("nanoconf").desc("A nanoconf was updated")
 }}
 
-Houston.add_navigation_renderer :activity_feed do
-  name "Activity"
-  path { Houston::Engine.routes.url_helpers.activity_feed_path }
-end
+Houston.navigation
+  .add_link(:activity_feed) { Houston::Engine.routes.url_helpers.activity_feed_path }
+  .name("Activity")
 
-Houston.add_navigation_renderer :pulls do
-  name "Pulls"
-  path { Houston::Engine.routes.url_helpers.pulls_path }
-  ability { |ability| ability.can?(:read, Github::PullRequest) }
-end
+Houston.navigation
+  .add_link(:pulls) { Houston::Engine.routes.url_helpers.pulls_path }
+  .ability { can?(:read, Github::PullRequest) }
 
-Houston.add_navigation_renderer :nanoconfs do
-  name "Nanoconfs"
-  path { Houston::Engine.routes.url_helpers.nanoconfs_path }
-  ability { |ability| ability.can?(:read, Nanoconf) }
-end
+Houston.navigation
+  .add_link(:nanoconfs) { Houston::Engine.routes.url_helpers.nanoconfs_path }
+  .ability { can?(:read, Nanoconf) }
 
 Houston.add_project_column :rails_version do
   name "Rails"
