@@ -195,8 +195,7 @@ Houston.config do
                    :roadmaps,
                    :pulls,
                    :nanoconfs
-  project_features :support_form,
-                   :feedback,
+  project_features :feedback,
                    :ideas,
                    :bugs,
                    :scheduler,
@@ -253,7 +252,6 @@ Houston.config do
 
   use :ci
   use :feedback
-  use :support_form
   use :brakeman
   use :sprints # For now, just for old reports
   use :todolists

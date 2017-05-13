@@ -8,14 +8,6 @@ GIT
       houston-tickets
 
 GIT
-  remote: https://github.com/cph/houston-support_form.git
-  revision: f659140376d62154f30dc45dc067b55e62c29d87
-  branch: master
-  specs:
-    houston-support_form (0.0.1)
-      houston-core (>= 0.7.0.beta2)
-
-GIT
   remote: https://github.com/cph/itsm.git
   revision: 230e6a7e1c9f2e164864a44a5a115feac9b52383
   branch: master
@@ -680,7 +672,6 @@ DEPENDENCIES
   houston-scheduler!
   houston-slack!
   houston-sprints!
-  houston-support_form!
   houston-tickets!
   houston-todolists!
   houston-twilio!
