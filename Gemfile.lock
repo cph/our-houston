@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-ci.git
-  revision: 2595f28a5ba9762441c43ac5f9db7e62252a3f75
+  revision: b101829a8dd9cc424ab7aba42de33b7f4598b78a
   branch: master
   specs:
     houston-ci (0.0.1)
