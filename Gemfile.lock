@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/cph/logeater.git
-  revision: 52021b81be977d58f1f571262de73eb52bc54135
+  revision: 0209a5c4c3d22a8367f6298c3e45818d2c25f787
   branch: master
   specs:
     logeater (0.4.0)
@@ -17,7 +17,7 @@ GIT
       activerecord-import (~> 0.10)
       activesupport (>= 4.2.7, < 5.1.0)
       addressable
-      oj (~> 2.15)
+      oj (>= 2.15)
       pg (>= 0.18.0, < 1.0)
       ruby-progressbar
       standalone_migrations (~> 5.0.0)
@@ -84,10 +84,10 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-core.git
-  revision: 162600cf15cbe0d9ad9bb6a94ecfd595dc85c11b
+  revision: 8c87181ab7fd2047b722177fe94fc7c16050c671
   branch: master
   specs:
-    houston-core (0.9.0.rc1)
+    houston-core (0.9.0)
       activerecord-import
       activerecord-pluck_in_batches (~> 0.2.0)
       addressable (~> 2.3.8)
@@ -107,15 +107,15 @@ GIT
       neat-rails (~> 0.5.1)
       nokogiri (~> 1.7)
       oauth2
-      oj (~> 2.18)
+      oj (~> 3.0)
       openxml-xlsx (>= 0.2.0)
-      pg (~> 0.19.0)
+      pg (~> 0.20.0)
       pg_search (~> 1.0.5)
       premailer (~> 1.10.0)
       progressbar (~> 0.21.0)
       rack-utf8_sanitizer (~> 1.3.1)
       rails (~> 5.0.0)
-      rufus-scheduler (~> 3.3.4)
+      rufus-scheduler (~> 3.4.0)
       sass-rails (~> 5.0)
       slackdown (>= 0.2.1)
       thor
@@ -368,6 +368,8 @@ GEM
       multi_json (~> 1.6)
     erubis (2.7.0)
     escape (0.0.4)
+    et-orbi (1.0.4)
+      tzinfo
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -461,7 +463,7 @@ GEM
       nokogiri (>= 1.6.3.1)
     octokit (4.6.2)
       sawyer (~> 0.8.0, >= 0.5.3)
-    oj (2.18.5)
+    oj (3.0.7)
     openxml-package (0.2.8)
       nokogiri
       ox
@@ -471,7 +473,7 @@ GEM
       openxml-package (>= 0.2.0)
     orm_adapter (0.5.0)
     ox (2.5.0)
-    pg (0.19.0)
+    pg (0.20.0)
     pg_search (1.0.6)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
@@ -532,8 +534,8 @@ GEM
     ruby-progressbar (1.8.1)
     rubyntlm (0.6.2)
     rubyzip (1.2.1)
-    rufus-scheduler (3.3.4)
-      tzinfo
+    rufus-scheduler (3.4.0)
+      et-orbi (~> 1.0)
     rugged (0.25.1.1)
     safe_yaml (1.0.4)
     sass (3.4.23)
