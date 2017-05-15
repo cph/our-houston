@@ -84,7 +84,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-core.git
-  revision: 8c87181ab7fd2047b722177fe94fc7c16050c671
+  revision: 35aa96a6e7c36e8a89e994eb8afec418adf8919d
   branch: master
   specs:
     houston-core (0.9.0)
@@ -104,6 +104,7 @@ GIT
       gemoji (~> 2.1.0)
       handlebars_assets (~> 0.23.0)
       kramdown
+      mail (~> 2.6.6.rc1)
       neat-rails (~> 0.5.1)
       nokogiri (~> 1.7)
       oauth2
@@ -340,10 +341,10 @@ GEM
       safe_yaml (~> 1.0.0)
     css_parser (1.5.0)
       addressable
-    devise (4.2.1)
+    devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.1)
+      railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
     devise_invitable (1.7.2)
@@ -418,7 +419,7 @@ GEM
       multi_json (~> 1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    mail (2.6.5)
+    mail (2.6.6.rc1)
       mime-types (>= 1.16, < 4)
     mechanize (2.7.5)
       domain_name (~> 0.5, >= 0.5.1)
