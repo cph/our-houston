@@ -3,7 +3,7 @@ Houston.config.every "weekday at 7:45am", "prompt:checkin:ep" do
 end
 
 Houston.config.every "weekday at 1:45pm", "prompt:checkup:ep" do
-  slack_send_message_to "Hey @channel, how's going?", "ep-checkin"
+  slack_send_message_to "Hey @channel, how's it going?", "ep-checkin"
 end
 
 Houston.config.every "weekday at 7:45am", "prompt:checkin:cts" do
