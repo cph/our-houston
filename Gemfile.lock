@@ -164,7 +164,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-roadmaps.git
-  revision: d693fea79e032edb2d60d52dead70e8dc96eeda5
+  revision: d77d794d9174f17c1ab034e2315beb0a97d3784a
   branch: master
   specs:
     houston-roadmaps (0.1.0)
@@ -206,7 +206,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-todolists.git
-  revision: f1f7a2e9beebd81a60ae859238e7f4e2a94a1bb5
+  revision: 3b15f10005f7f14791db8aaf7598c0c70106ae5a
   branch: master
   specs:
     houston-todolists (0.0.1)
