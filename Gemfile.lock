@@ -164,7 +164,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-roadmaps.git
-  revision: 867a473ae0717cb7cc64d1775ef077462e566733
+  revision: 8c1024f4bce192a68d12378e3443c1aaa51893c2
   branch: master
   specs:
     houston-roadmaps (0.1.0)
