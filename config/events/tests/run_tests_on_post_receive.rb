@@ -9,7 +9,15 @@ Houston.config do
   #      then corresponding job:
   #      POST /job/houston/buildWithParameters.
   on "hooks:project:post_receive" => "run-tests-on-post-receive" do
-    project.create_a_test_run(params)
+    next unless project.has_ci_server?
+    payload = PostReceivePayload.new(params).to_h
+    commit = project.find_commit_by_sha(payload.fetch(:sha))
+
+    # Since we're using GitHub's Branch Protection on the master
+    # branch, skip running tests for merge commits to master.
+    next if payload.fetch(:branch) == "master" && commit&.merge?
+
+    project.create_a_test_run(payload)
   end
 
   #   4. Houston notifies GitHub that the test run has started:
@@ -17,6 +25,7 @@ Houston.config do
   action "test-run:publish-status-to-github", ["test_run"] do
     test_run.publish_status_to_github
   end
+
   on "test_run:start" => "test-run:publish-status-to-github"
 
   #   5. Jenkins checks out the project, runs the tests, and
