@@ -9,7 +9,8 @@ ZENDESK_BRAND_PROJECT_MAP = {
   "lsb" => "lsb",
   "mysundaysolutions" => "musicmate",
   "oic" => "oic",
-  "shepherdsstaff" => "shepherdsstaff" }.freeze
+  "shepherdsstaff" => "shepherdsstaff",
+  "concordiatech" => "ep-misc" }.freeze
 ZENDESK_BRANDS = {}
 
 Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" do
