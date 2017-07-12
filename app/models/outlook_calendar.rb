@@ -5,8 +5,9 @@ class OutlookCalendar
     CARDINALS_DAY = /cardinal'?s? casual/i.freeze
     FOR_A_CAUSE_DAY = /casual for a cause/i.freeze
     BLUES_DAY = /blues casual/i.freeze
+    OTHER_CASUAL_DAY = /casual day/i.freeze
     EMPLOYEE_APPRECIATION_DAY = /employee (appreciation|activity)/i.freeze
-    CASUAL_DAYS = %i{cardinals_casual_day blues_casual_day employee_appreciation_day}
+    CASUAL_DAYS = %i{cardinals_casual_day blues_casual_day employee_appreciation_day other_casual_day}
 
     def recognize
       case name
@@ -14,6 +15,7 @@ class OutlookCalendar
       when BLUES_DAY then :blues_casual_day
       when FOR_A_CAUSE_DAY then :casual_for_a_cause
       when EMPLOYEE_APPRECIATION_DAY then :employee_appreciation_day
+      when OTHER_CASUAL_DAY then :other_casual_day
       else nil
       end
     end

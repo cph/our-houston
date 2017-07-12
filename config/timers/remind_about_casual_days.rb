@@ -4,6 +4,7 @@ Houston.config.every "day at 2:58pm", "announce:casual-days" do
   when :blues_casual_day then "a Blues Casual Day"
   when :casual_for_a_cause then "a _Casual for a Cause_ Day"
   when :employee_appreciation_day then "an Employee Appreciation Day"
+  when :other_casual_day then "a Casual Day"
   end
 
   if casual_day_type

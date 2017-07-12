@@ -15,6 +15,8 @@ Houston::Conversations.config do
       e.reply "It's a _Casual for a Cause_ Day"
     when :employee_appreciation_day
       e.reply "Yep! It's an Employee Appreciation Day :tada:"
+    when :other_casual_day
+      e.reply "Yep! It's a Casual Day :+1:"
     else
       e.reply "Well... it's not on the *CPH Events* calendar... :confused:"
     end
@@ -38,6 +40,8 @@ Houston::Conversations.config do
       e.reply "#{event.time.strftime('%A (%-m/%-d)')} is a _Casual for a Cause_ Day"
     when :employee_appreciation_day
       e.reply "#{event.time.strftime('%A (%-m/%-d)')} is an Employee Appreciation Day"
+    when :other_casual_day
+      e.reply "#{event.time.strftime('%A (%-m/%-d)')} is a Casual Day"
     else
       e.reply "I don't know! :anguished:"
     end
