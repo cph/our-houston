@@ -6,7 +6,6 @@ require "houston/application"
 # A few constants
 LUKE = "luke.booth@cph.org".freeze
 BOB = "robert.lail@cph.org".freeze
-BEN = "ben.govero@cph.org".freeze
 MATT = "matt.kobs@cph.org".freeze
 ROB = "rob.riebau@cph.org".freeze
 JEREMY = "jeremy.roegner@cph.org".freeze
@@ -14,7 +13,7 @@ MEAGAN = "meagan.thole@cph.org".freeze
 BRAD = "brad.egberts@cph.org".freeze
 KEVIN = "kevin.applegate@cph.org".freeze
 DAVID = "david.bowman@cph.org".freeze
-EP_DEVELOPERS = [LUKE, BOB, BEN, MATT, ROB].freeze
+EP_DEVELOPERS = [LUKE, BOB, MATT, ROB].freeze
 EP_EMPLOYEES = EP_DEVELOPERS.freeze
 SS_DEVELOPERS = [KEVIN, DAVID].freeze
 
