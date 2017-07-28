@@ -22,7 +22,7 @@ Houston.config do
   end
 
   on "staging:changed" => "deploy:slack-testers-about-new-pull-request-on-staging" do
-    slack_send_message_to ":star2: #{slack_link_to_pull_request(pull_request)} is now on *#{deploy.project.slug}* Staging", "#testing"
+    slack_send_message_to ":star2: #{":hotfix: " if pull_request.labeled?("hotfix")}#{slack_link_to_pull_request(pull_request)} is now on *#{deploy.project.slug}* Staging", "#testing"
   end
 
   on "staging:updated" => "deploy:slack-testers-about-new-commits-on-staging" do
