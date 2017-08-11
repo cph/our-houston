@@ -136,8 +136,19 @@ def todoist_send_command(type, args={})
   todoist_send_commands [{ type: type, uuid: SecureRandom.uuid, args: args }]
 end
 
+class TodoistSyncError < RuntimeError
+  def initialize(command, status)
+    super("#{command[:type]} failed: #{status["error"]}")
+  end
+end
+
 def todoist_send_commands(commands)
-  todoist_send("sync", commands: MultiJson.dump(commands))
+  todoist_send("sync", commands: MultiJson.dump(commands)).tap do |response|
+    commands.each do |command|
+      status = response.dig("sync_status", command[:uuid]) || {}
+      raise TodoistSyncError.new(command, status) unless status == "ok"
+    end
+  end
 end
 
 def todoist_send(path, params={})
