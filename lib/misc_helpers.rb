@@ -52,6 +52,14 @@ def sync_alert_to_todoist(alert)
       create_todoist_alert(alert)
     end
   end
+rescue ActiveRecord::RecordNotFound
+  # We couldn't obtain a lock on the alert because it has been deleted
+  # If it was previously tied to a task in Todoist, let's make sure that's cleaned up.
+  item_id = alert.props[TODOIST_ITEM_ID]
+  if item_id
+    Rails.logger.info "[sync_alert_to_todoist] An Alert mapped to Item ##{item_id} does not exist"
+    todoist_send_command "item_delete", ids: [item_id]
+  end
 end
 
 def update_todoist_alert(alert, item_id)
