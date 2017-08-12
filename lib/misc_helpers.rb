@@ -95,25 +95,27 @@ rescue
 end
 
 def create_todoist_alert(alert)
-  return unless alert.open?
+  if alert.suppressed? || alert.destroyed? || alert.closed?
+    Rails.logger.info "[create_todoist_alert] Alert ##{alert.number} has already been closed, suppressed, or destroyed"
+    return
+  end
 
   connection = Faraday.new(url: "https://todoist.com/API/v7")
   connection.use Faraday::RaiseErrors
-  token = ENV["HOUSTON_TODOIST_ACCESS_TOKEN"]
   due_date = alert.deadline.utc.strftime("%Y-%m-%dT%H:%M")
   project_slug = alert.project&.slug || "unknown"
   content = "**#{alert.number}** | **#{project_slug}** | #{alert.summary}"
   id = SecureRandom.uuid
 
   json = todoist_send_commands [{
-      type: "item_add",
-      temp_id: id,
-      uuid: SecureRandom.uuid,
-      args: {
-        project_id: TODOIST_ALERTS_PROJECT_ID,
-        content: content,
-        date_string: due_date,
-        due_date_utc: due_date } }]
+    type: "item_add",
+    temp_id: id,
+    uuid: SecureRandom.uuid,
+    args: {
+      project_id: TODOIST_ALERTS_PROJECT_ID,
+      content: content,
+      date_string: due_date,
+      due_date_utc: due_date } }]
 
   race_id = alert.reload.props[TODOIST_ITEM_ID]
   if race_id.is_a?(Integer)
