@@ -17,9 +17,8 @@ gem "bundler"
 # LDAP for authentication
 gem "houston-devise_ldap_authenticatable"
 
-group :production do
-  gem "redis"
-end
+# for ActionCable
+gem "redis"
 
 group :development do
   gem "letter_opener"
