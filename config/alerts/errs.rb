@@ -9,6 +9,7 @@ $errbit_since_changes_since = 1.week.ago
 
 Houston::Alerts.config.sync :changes, "err", every: "45s", icon: "fa-bug" do
   app_project_map = Hash[Project
+    .unretired
     .with_error_tracker("Errbit")
     .pluck("(props->>'errbit.appId')::integer", :id)]
   app_ids = app_project_map.keys
