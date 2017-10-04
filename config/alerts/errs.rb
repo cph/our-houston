@@ -14,11 +14,12 @@ Houston::Alerts.config.sync :changes, "err", every: "45s", icon: "fa-bug" do
     .pluck("(props->>'errbit.appId')::integer", :id)]
   app_ids = app_project_map.keys
 
-  Houston::Adapters::ErrorTracker::ErrbitAdapter.changed_problems(app_id: app_ids, since: $errbit_since_changes_since).map { |problem|
+  Houston::Adapters::ErrorTracker::ErrbitAdapter.changed_problems(app_id: app_ids, since: $errbit_since_changes_since).map do |problem|
     key = problem.id.to_s
     key << "-#{problem.opened_at.to_i}" if problem.opened_at >= ERRBIT_NEW_KEY_DATE
-    { key: key,
-      number: problem.err_ids.min,
+
+    attrs = {
+      key: key,
       project_id: app_project_map[problem.app_id],
       summary: problem.message,
       environment_name: problem.environment,
@@ -26,7 +27,13 @@ Houston::Alerts.config.sync :changes, "err", every: "45s", icon: "fa-bug" do
       opened_at: problem.opened_at,
       closed_at: problem.resolved_at,
       destroyed_at: problem.deleted_at,
-      url: problem.url } }.tap do
+      url: problem.url }
+
+    # Merged errs won't have a number
+    attrs[:number] = problem.err_ids.min if problem.err_ids.any?
+
+    attrs
+  end.tap do
 
     # From now on, we should expect to sync every 45 seconds,
     # so we'll pull down changes from a smaller window.
