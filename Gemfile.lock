@@ -527,7 +527,7 @@ GEM
     record_tag_helper (1.0.0)
       actionview (~> 5.x)
     redcarpet (3.4.0)
-    redis (4.0.0)
+    redis (3.3.5)
     ref (2.0.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
@@ -662,7 +662,7 @@ DEPENDENCIES
   minitest-reporters-turn_reporter
   pry
   puma
-  redis
+  redis (< 4.0)
   rr
   ruby-ntlm!
   shoulda-context
