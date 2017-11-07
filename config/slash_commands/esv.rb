@@ -22,7 +22,7 @@ Houston::Slack.config do
         e.respond! "It looks like ESV is not available at the moment. :sweat:"
       else
         title, text = response.body.split(/\n/, 2)
-        text.gsub!(/(\[[0-9\:]+\])/, "*\\1* ")         # Bold verse markers
+        text = text.to_s.gsub(/(\[[0-9\:]+\])/, "*\\1* ") # Bold verse markers
 
         e.respond!(
           response_type: "in_channel",
