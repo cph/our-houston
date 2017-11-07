@@ -4,7 +4,7 @@ Houston::Slack.config do
       # Print usage
       e.respond! "Hm, looks like you forgot the scripture reference.\nUse `/esv <reference>` to look up a scripture reference.\nExamples:\n* `/esv John 3:16`\n* `/esv Mt 1`\n(Yep, book abbreviations _are_ supported)"
     else
-      esv_params = { key: "IP",
+      esv_params = { key: "TEST",
                      "output-format" => "plain-text",
                      "include-footnotes" => false,
                      "include-passage-horizontal-lines" => false,
