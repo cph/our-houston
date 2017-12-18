@@ -76,6 +76,8 @@ Houston.config do
       # Employees can see Roadmaps that are visible to Everyone
       can :read, Roadmap, visibility: "Everyone"
       can :read, Milestone
+      can :read, Goal # <-- this could optionally be just for projects that belong
+                      #     to teams you're on, but I don't think it needs to be.
 
       # Employees can authorize Houston to use third-party services
       # and can see their own authorizations
