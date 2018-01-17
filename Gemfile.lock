@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/cph/logeater.git
-  revision: 0209a5c4c3d22a8367f6298c3e45818d2c25f787
+  revision: 424b4f03da330067f0b95b48683d1a231de04791
   branch: master
   specs:
     logeater (0.4.0)
@@ -681,4 +681,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.14.6
+   1.16.1
