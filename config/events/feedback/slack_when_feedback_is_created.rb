@@ -28,12 +28,12 @@ Houston.config do
 
     result = slack_send_message_to nil, channel,
       attachments: [{
-        author_name: "#{conversation.project.slug} / feedback",
+        author_name: "#{conversation.project.slug} feedback",
         title: author,
-        title_link: feedback_unfurl_url(conversation),
         text: message,
-        footer: conversation.created_at.strftime("%b %-e at %l:%M %p"),
-        mrkdwn_in: ["text"] }]
+        footer: "#{conversation.created_at.strftime("%b %-e")} #{conversation.created_at.strftime("%l:%M%p").downcase}  |  #{slack_link_to("open in Houston", feedback_unfurl_url(conversation))}",
+        mrkdwn_in: %w{text footer}
+      }]
 
     conversation.update_prop!("slack.ts", conversation.props.fetch("slack.ts", []) + result.values_at("ts"))
   end
