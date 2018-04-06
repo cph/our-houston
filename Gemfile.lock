@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/cph/logeater.git
-  revision: c430326597020a692729de8e8db8122a535d7349
+  revision: ea778b2ce1c218c790d4eea07daa5a6aa250c21f
   branch: master
   specs:
-    logeater (0.5.1.pre)
+    logeater (0.5.2.pre)
       activerecord (>= 4.2.7, < 5.1.0)
       activerecord-import (~> 0.10)
       activesupport (>= 4.2.7, < 5.1.0)
