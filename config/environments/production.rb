@@ -5,4 +5,6 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :info
 
+  config.force_ssl = true
+
 end
