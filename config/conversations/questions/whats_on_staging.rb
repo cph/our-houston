@@ -3,7 +3,11 @@ Houston::Conversations.config do
     e.responding
 
     pulls = Houston.github.org_issues(Houston::Commits.config.github[:organization], labels: "on-staging", filter: "all")
-    e.reply "There are no pull requests on Staging" if pulls.none?
+    if pulls.none?
+      e.reply "There are no pull requests on Staging"
+      next
+    end
+
     message = ""
     pulls.each do |pull|
       message << "*#{pull.repository.name.capitalize}* has #{slack_link_to_pull_request(pull)} on Staging\n"
