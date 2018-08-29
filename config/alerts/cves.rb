@@ -14,7 +14,7 @@ Houston::Alerts.config.sync :open, "cve", every: "5m", icon: "fa-bank" do
     raise NotImplementedError, "Expected #{alert.fetch(:name)} to look like a CVE identifier" unless cve
 
     { key: alert.fetch(:id),
-      number: cve[:year].to_i,
+      number: cve[:number].to_i,
       project_slug: project_slug_by_repo_name.fetch(alert.fetch(:repo)),
       summary: "Upgrade #{alert.fetch(:dependency)} to #{alert.fetch(:fixed_in_version)}",
       environment_name: "production",
