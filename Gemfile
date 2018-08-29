@@ -1,5 +1,14 @@
 source "https://rubygems.org"
 
+# Use https:// rather than git:// as the protocol for gems installed
+# from GitHub. This will be the default in Bundler 2.0 and resolves
+# a bug with deploying from Heroku.
+# https://github.com/bundler/bundler/issues/4978#issuecomment-272248627
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
 gem "houston-core", github: "houston/houston-core", branch: "master"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
