@@ -6,8 +6,7 @@ Devise.setup do |config|
   if Rails.env.development?
     config.ldap_configuration = {
       "host" => "10.5.3.100",
-      "port" => 636,
-      "ssl" => :simple_tls,
+      "port" => 389,
       "base" => "dc=cph, dc=pri",
       "field" => "samaccountname" }
   else
