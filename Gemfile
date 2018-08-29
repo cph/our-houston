@@ -24,7 +24,7 @@ gem "mechanize"
 gem "bundler"
 
 # LDAP for authentication
-gem "houston-devise_ldap_authenticatable"
+gem "devise_ldap_authenticatable", github: "cph/devise_ldap_authenticatable", branch: "master"
 
 # for ActionCable
 gem "redis", "< 4.0"
