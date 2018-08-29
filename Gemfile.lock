@@ -64,7 +64,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-commits.git
-  revision: 07e0a715bb39d2752628559af79b207e5748f0c6
+  revision: 33592b9ad980b596459a392b49bc6dab1914d8fe
   branch: master
   specs:
     houston-commits (0.0.1)
@@ -390,6 +390,10 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     googlecharts (1.6.12)
+    graphql (1.8.8)
+    graphql-client (0.13.0)
+      activesupport (>= 3.0, < 6.0)
+      graphql (~> 1.6)
     handlebars_assets (0.23.2)
       execjs (~> 2.0)
       sprockets (>= 2.0.0)
@@ -639,6 +643,7 @@ DEPENDENCIES
   capybara
   engineyard (~> 3.2.1)
   factory_girl_rails
+  graphql-client
   houston-alerts!
   houston-brakeman!
   houston-ci!

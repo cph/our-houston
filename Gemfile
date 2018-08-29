@@ -20,6 +20,9 @@ gem "houston-devise_ldap_authenticatable"
 # for ActionCable
 gem "redis", "< 4.0"
 
+# for talking to GitHub
+gem "graphql-client"
+
 group :development do
   gem "letter_opener"
   gem "puma"
