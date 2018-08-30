@@ -149,6 +149,9 @@ end
 class TodoistSyncError < RuntimeError
   def initialize(command, status)
     super("#{command[:type]} failed: #{status["error"]}")
+    command.each do |key, value|
+      additional_information["command.#{key}"] = value
+    end
   end
 end
 
