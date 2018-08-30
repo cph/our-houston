@@ -27,7 +27,7 @@ def sync_open_alerts_to_todoist
       todoist_send_command "item_delete", ids: [item_id]
     elsif alert.closed?
       Rails.logger.info "[todoist:sync] Alert ##{alert.number} mapped to Item ##{item_id} has been closed"
-      todoist_send_command "item_close", ids: [item_id]
+      todoist_send_command "item_close", id: item_id
     else
       Rails.logger.info "[todoist:sync] Alert ##{alert.number} is not destroyed, suppressed, or closed"
     end
