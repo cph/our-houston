@@ -552,7 +552,7 @@ GEM
     rr (1.2.1)
     ruby-progressbar (1.9.0)
     rubyntlm (0.6.2)
-    rubyzip (1.2.1)
+    rubyzip (1.2.2)
     rufus-scheduler (3.4.2)
       et-orbi (~> 1.0)
     rugged (0.26.6)
