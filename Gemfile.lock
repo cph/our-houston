@@ -55,7 +55,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-brakeman.git
-  revision: bb09dc4c329293ed76b57c843a0f1465fbb970c5
+  revision: 1f6eb72c0301e9bc8268893d4bd52d92de62246a
   branch: master
   specs:
     houston-brakeman (0.0.1)
@@ -83,7 +83,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-conversations.git
-  revision: c65f78f2ab76d4c442d5e679ced60f6870cc681a
+  revision: b292c90c3a74c73e2a97e23e20fa640dc3e48c54
   branch: master
   specs:
     houston-conversations (0.1.0)
@@ -164,7 +164,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-releases.git
-  revision: 032d4fa1291299d55ddbc782413e06fc8db8e0ba
+  revision: 1a1a101364ad37dc18ee89a6bb1a9ef84d92d1a4
   branch: master
   specs:
     houston-releases (0.0.1)
@@ -183,7 +183,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-scheduler.git
-  revision: f4ea371eb600a0dff7ae4ddb3fd4b360ba473e32
+  revision: a0f81bd08b4473c8da50e0f841a1072480e13933
   branch: master
   specs:
     houston-scheduler (0.0.1)
@@ -192,7 +192,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-slack.git
-  revision: a8af772ddcd802c472ca384bf5b4aa61139900c9
+  revision: ee991909e88ad7533b19aa555a3c1840da474aeb
   branch: master
   specs:
     houston-slack (0.0.1)
@@ -223,7 +223,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-twilio.git
-  revision: 7d449389773a1bd61f646a1ce7e454375e28f109
+  revision: c1cd9908a7f3d55601533408486e6d484333d15c
   branch: master
   specs:
     houston-twilio (0.0.1)
@@ -432,7 +432,7 @@ GEM
     logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
