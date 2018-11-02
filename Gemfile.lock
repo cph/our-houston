@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-core.git
-  revision: 925a0eeb50d028ee825862d96838e511692a601f
+  revision: 53df107fb70c4753bcecc654d84cdc19970474e7
   branch: master
   specs:
     houston-core (0.9.1)
@@ -358,7 +358,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    devise_invitable (1.7.4)
+    devise_invitable (1.7.5)
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
     docile (1.1.5)
@@ -472,9 +472,9 @@ GEM
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     ntlm-http (0.1.1)
-    oauth2 (1.4.0)
-      faraday (>= 0.8, < 0.13)
-      jwt (~> 1.0)
+    oauth2 (1.4.1)
+      faraday (>= 0.8, < 0.16.0)
+      jwt (>= 1.0, < 3.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
@@ -483,10 +483,10 @@ GEM
     octokit (4.6.2)
       sawyer (~> 0.8.0, >= 0.5.3)
     oj (3.6.10)
-    openxml-package (0.3.2)
+    openxml-package (0.3.3)
       nokogiri
       ox
-      rubyzip (~> 1.2.1)
+      rubyzip (~> 1.2.2)
     openxml-xlsx (0.2.3)
       nokogiri
       openxml-package (>= 0.2.0)
@@ -559,7 +559,7 @@ GEM
       et-orbi (~> 1.0)
     rugged (0.26.6)
     safe_yaml (1.0.4)
-    sass (3.5.7)
+    sass (3.6.0)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
