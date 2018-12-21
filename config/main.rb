@@ -250,8 +250,8 @@ Houston.config do
 
   use :ci
   use :feedback
-  use :brakeman
-  use :sprints # For now, just for old reports
+  # use :brakeman
+  # use :sprints
   use :todolists
   use :roadmaps
 

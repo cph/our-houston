@@ -8,15 +8,6 @@ GIT
       net-ldap (>= 0.16.0)
 
 GIT
-  remote: https://github.com/cph/houston-sprints.git
-  revision: 9bb44fe7fc20d544687aa59622d83dc4265fd7e7
-  branch: master
-  specs:
-    houston-sprints (0.0.1)
-      houston-core (>= 0.8.0.pre)
-      houston-tickets
-
-GIT
   remote: https://github.com/cph/logeater.git
   revision: 4630dcbac6b76afc731ee371816c2b4a475aeec5
   branch: master
@@ -52,14 +43,6 @@ GIT
     houston-alerts (0.0.1)
       houston-core (>= 0.8.0.pre)
       octicons
-
-GIT
-  remote: https://github.com/houston/houston-brakeman.git
-  revision: 1f6eb72c0301e9bc8268893d4bd52d92de62246a
-  branch: master
-  specs:
-    houston-brakeman (0.0.1)
-      houston-core (>= 0.7.0.beta4)
 
 GIT
   remote: https://github.com/houston/houston-ci.git
@@ -656,7 +639,6 @@ DEPENDENCIES
   factory_girl_rails
   graphql-client
   houston-alerts!
-  houston-brakeman!
   houston-ci!
   houston-commits!
   houston-conversations!
@@ -668,7 +650,6 @@ DEPENDENCIES
   houston-roadmaps!
   houston-scheduler!
   houston-slack!
-  houston-sprints!
   houston-tickets!
   houston-todolists!
   houston-twilio!

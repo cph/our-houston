@@ -86,31 +86,35 @@ gem "logeater", github: "cph/logeater", branch: "master", require: "logeater/req
 # This one looks more active: https://github.com/winrb/rubyntlm
 gem "ruby-ntlm", github: "macks/ruby-ntlm"
 
-# Develop on houston-conversations
-gem "houston-conversations", github: "houston/houston-conversations", branch: "master"
-
-# Develop on attentive
-# gem "attentive", github: "houston/attentive", branch: "master"
-
-# Develop on slacks
-gem "slacks", ">= 0.5.0.pre", github: "houston/slacks", branch: "master"
-
 # For deploying to EngineYard
 gem "engineyard", "~> 3.2.1"
 
+
+# Dependency of `houston-slack`; uncomment to develop on houston-conversations
+gem "houston-conversations", github: "houston/houston-conversations", branch: "master"
+
+# Dependency of `houston-conversations`; uncomment to develop on attentive
+# gem "attentive", github: "houston/attentive", branch: "master"
+
+# Dependency of `houston-slack`; uncomment to develop on slacks
+gem "slacks", ">= 0.5.0.pre", github: "houston/slacks", branch: "master"
+
+# Dependency of `houston-tickets`
+# (used only by UnfuddleAdapter; superceded by Authorizations in Houston::Core)
+gem "houston-credentials", github: "houston/houston-credentials", branch: "master"
+
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
-gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
-gem "houston-ci", github: "houston/houston-ci", branch: "master"
-gem "houston-commits", github: "houston/houston-commits", branch: "master"
-gem "houston-credentials", github: "houston/houston-credentials", branch: "master"
-gem "houston-exceptions", github: "houston/houston-exceptions", branch: "master"
+# gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
+gem "houston-ci", github: "houston/houston-ci", branch: "master"                      # Jenkins
+gem "houston-commits", github: "houston/houston-commits", branch: "master"            # GitHub
+gem "houston-exceptions", github: "houston/houston-exceptions", branch: "master"      # Errbit
 gem "houston-feedback", github: "houston/houston-feedback", branch: "master"
 gem "houston-releases", github: "houston/houston-releases", branch: "master"
 gem "houston-roadmaps", github: "houston/houston-roadmaps", branch: "master"
 gem "houston-scheduler", github: "houston/houston-scheduler", branch: "master"
-gem "houston-slack", github: "houston/houston-slack", branch: "master"
-gem "houston-sprints", github: "cph/houston-sprints", branch: "master"
+gem "houston-slack", github: "houston/houston-slack", branch: "master"               # Slack
+# gem "houston-sprints", github: "cph/houston-sprints", branch: "master"
 gem "houston-tickets", github: "houston/houston-tickets", branch: "master"
-gem "houston-todolists", github: "houston/houston-todolists", branch: "master"
-gem "houston-twilio", github: "houston/houston-twilio", branch: "master"
+gem "houston-todolists", github: "houston/houston-todolists", branch: "master"       # Todoist
+gem "houston-twilio", github: "houston/houston-twilio", branch: "master"             # Twilio
