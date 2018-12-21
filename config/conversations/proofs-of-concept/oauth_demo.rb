@@ -4,9 +4,10 @@ Houston::Conversations.config do
       type: "Office365",
       scope: "offline_access https://outlook.office.com/calendars.read"
     })
+
+    e.user.triggers.on("authorization:grant", "oauth-example:granted", channel: e.channel.to_s).save!
+
     e.reply "Alright, I'll need access to your Office365 account.\nTo grant it, click here: #{authorization.url}"
-    trigger = e.user.triggers.on("authorization:grant", "oauth-example:granted", channel: e.channel.to_s)
-    trigger.save!
   end
 end
 
