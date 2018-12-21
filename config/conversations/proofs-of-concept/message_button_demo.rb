@@ -20,7 +20,7 @@ Houston::Slack.config do
     original_message = e.original_message.dup
     attachment = original_message["attachments"][e.attachment_index]
     attachment.delete "actions"
-    attachment["text"] << "\n:white_check_mark: Merged!"
+    attachment["text"] << "\n:white_check_mark: *Merged!*"
     e.respond!(original_message.merge(replace_original: true))
   end
 end
