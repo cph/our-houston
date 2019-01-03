@@ -207,7 +207,6 @@ CREATE TABLE public.api_tokens (
 --
 
 CREATE SEQUENCE public.api_tokens_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1859,42 +1858,6 @@ ALTER SEQUENCE public.todo_lists_id_seq OWNED BY public.todo_lists.id;
 
 
 --
--- Name: user_credentials; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_credentials (
-    id integer NOT NULL,
-    user_id integer,
-    service character varying(255),
-    login character varying(255),
-    password bytea,
-    password_key bytea,
-    password_iv bytea,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: user_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.user_credentials_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.user_credentials_id_seq OWNED BY public.user_credentials.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2323,13 +2286,6 @@ ALTER TABLE ONLY public.todo_lists ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- Name: user_credentials id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_credentials ALTER COLUMN id SET DEFAULT nextval('public.user_credentials_id_seq'::regclass);
-
-
---
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2716,14 +2672,6 @@ ALTER TABLE ONLY public.todo_list_items
 
 ALTER TABLE ONLY public.todo_lists
     ADD CONSTRAINT todo_lists_pkey PRIMARY KEY (id);
-
-
---
--- Name: user_credentials user_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_credentials
-    ADD CONSTRAINT user_credentials_pkey PRIMARY KEY (id);
 
 
 --
@@ -3978,6 +3926,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170502012341'),
 ('20170525233934'),
 ('20170811214556'),
-('20181102202848');
+('20181102202848'),
+('20190103223906');
 
 

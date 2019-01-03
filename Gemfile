@@ -99,10 +99,6 @@ gem "houston-conversations", github: "houston/houston-conversations", branch: "m
 # Dependency of `houston-slack`; uncomment to develop on slacks
 gem "slacks", ">= 0.5.0.pre", github: "houston/slacks", branch: "master"
 
-# Dependency of `houston-tickets`
-# (used only by UnfuddleAdapter; superceded by Authorizations in Houston::Core)
-gem "houston-credentials", github: "houston/houston-credentials", branch: "master"
-
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
 # gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"

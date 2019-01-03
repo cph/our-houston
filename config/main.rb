@@ -243,11 +243,6 @@ Houston.config do
     end
   end
 
-  use :credentials do
-    # This is the passphrase Houston will use to encrypt and decrypt sensitive data
-    passphrase "challenge accepted!"
-  end
-
   use :ci
   use :feedback
   # use :brakeman

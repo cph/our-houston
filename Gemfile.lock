@@ -115,15 +115,6 @@ GIT
       uglifier (>= 2.7.2)
 
 GIT
-  remote: https://github.com/houston/houston-credentials.git
-  revision: aea052dc982375f5698db341bb8c56acf89e2470
-  branch: master
-  specs:
-    houston-credentials (0.0.1)
-      houston-core (>= 0.8.3)
-      strongbox (~> 0.7.2)
-
-GIT
   remote: https://github.com/houston/houston-exceptions.git
   revision: 915af627be7ec6bf6c561c16f37f548b43e6e870
   branch: master
@@ -186,14 +177,12 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-tickets.git
-  revision: 58d2f24bf383cf844315eaf054ea5396a045e7b9
+  revision: a27b08adc44dafa8d75fde59d1923d22df73981e
   branch: master
   specs:
     houston-tickets (0.0.1)
-      boblail-unfuddle
       houston-commits
       houston-core (>= 0.8.0.pre)
-      houston-credentials
       houston-vestal_versions
 
 GIT
@@ -288,10 +277,6 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    boblail-unfuddle (0.7.1)
-      activesupport
-      builder
-      faraday (>= 0.8, < 0.10)
     browser (2.3.0)
     builder (3.2.3)
     cancancan (1.16.0)
@@ -585,8 +570,6 @@ GEM
       activerecord (>= 4.2.7, < 5.1.0)
       railties (>= 4.2.7, < 5.1.0)
       rake (~> 10.0)
-    strongbox (0.7.3)
-      activerecord
     sucker_punch (1.6.0)
       celluloid (~> 0.17.2)
     therubyracer (0.12.3)
@@ -643,7 +626,6 @@ DEPENDENCIES
   houston-commits!
   houston-conversations!
   houston-core!
-  houston-credentials!
   houston-exceptions!
   houston-feedback!
   houston-releases!
