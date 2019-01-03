@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/cph/star.git
-  revision: 638ff3e2797edd62b4e391de03261e06bff8f72e
+  revision: d26329c92ac89779476183ad213bb6a56331287f
   branch: master
   specs:
     star (0.0.1)
