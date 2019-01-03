@@ -24,8 +24,12 @@ end
 Houston::Conversations.config do
   [ %w{members members'},
     %w{unite unite's},
-    %w{ledger ledger's}
+    %w{ledger ledger's},
+    %w{lsb lsb's},
+    %w{builder builder's},
   ].each do |(project, possessive)|
+    project = "lsb" if project == "builder"
+
     [
       [ ["mean response time", "response time", "average response time"],
         { measurements: %w{daily.requests.duration.mean} } ],

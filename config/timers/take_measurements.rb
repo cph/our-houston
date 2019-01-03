@@ -28,7 +28,7 @@ def measure_log_files!(date=Date.today - 2)
   range = date.beginning_of_day.utc..date.end_of_day.utc
   requests = Logeater::Request.where(completed_at: range)
 
-  %w{members unite ledger}.each do |project_slug|
+  %w{members unite ledger lsb}.each do |project_slug|
     project = Project.find_by_slug project_slug
     app_requests = requests.where(app: project_slug)
 
