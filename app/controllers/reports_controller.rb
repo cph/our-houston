@@ -21,7 +21,7 @@ class ReportsController < ApplicationController
   end
 
   def star2
-    authorize! :read, :star_report
+    fail CanCan::AccessDenied unless EP_DEVELOPERS.member?(current_user.email)
     @title = "Star"
     render layout: "naked"
   end
