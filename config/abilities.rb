@@ -41,6 +41,7 @@ Houston.config do
       roadmap.team_ids.member?(team.id)
     end
     can :manage, Milestone, project_id: team.project_ids
+    can :manage, Goal, project_id: team.project_ids
   end
 
 
