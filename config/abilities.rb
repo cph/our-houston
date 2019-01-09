@@ -56,8 +56,9 @@ Houston.config do
 
       if user.admin?
 
-        # Admins can see Actions
+        # Admins can see and run Actions
         can :read, Action
+        can :run, Action
 
       end
 
