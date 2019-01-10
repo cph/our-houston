@@ -6,6 +6,7 @@ ZENDESK_BRAND_PROJECT_MAP = {
   "biblestudybuilder" => "bsb",
   "bible101" => "bible101",
   "confirmationbuilder" => "confb",
+  "lcmsdr" => "dr",
   "lsb" => "lsb",
   "lutheranservicebuilder" => "lsb",
   "lsb2" => "lsb",
