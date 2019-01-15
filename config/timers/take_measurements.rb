@@ -74,7 +74,6 @@ end
 
 
 STAR_USERNAME_FOR_USER = {
-  BOB => "LAILRC",
   LUKE => "BOOTHJL",
   MATT => "KOBSMC",
   ROB => "RIEBAURO"
