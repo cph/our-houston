@@ -37,13 +37,7 @@ class ReportsController < ApplicationController
     @title = "Weekly Report"
     date = Date.parse(params[:date]) rescue 1.day.ago
 
-    @sprint = Sprint.find_by_date!(date)
-    @checked_out_by ||= Hash[SprintTask
-      .where(sprint_id: @sprint.id, task_id: @sprint.tasks.pluck(:id))
-      .includes(:checked_out_by)
-      .map { |task| [task.task_id, task.checked_out_by] }]
-
-    week = @sprint.to_range
+    @week = week_for_date(date)
 
     # Alerts due during this week
     # except for those that aren't closed
@@ -55,38 +49,15 @@ class ReportsController < ApplicationController
     # which were either closed or past-due
     #
     alerts = Houston::Alerts::Alert.arel_table
-    @alerts_due = Houston::Alerts::Alert.where(deadline: week)
+    @alerts_due = Houston::Alerts::Alert.where(deadline: @week)
       .where(
         alerts[:closed_at].not_eq(nil).or(
         alerts[:deadline].lteq(Time.now)))
     @alerts_rate = @alerts_due.select(&:on_time?).count * 100.0 / @alerts_due.count if @alerts_due.any?
 
-    @alerts_closed_not_due = Houston::Alerts::Alert.where(closed_at: week)
-      .where(alerts[:deadline].lt(week.begin))
+    @alerts_closed_not_due = Houston::Alerts::Alert.where(closed_at: @week)
+      .where(alerts[:deadline].lt(@week.begin))
 
-    # week = week.begin..Time.now if week.end > Time.now
-    # @alerts_closed_or_due = Houston::Alerts::Alert.closed_or_due_during(week)
-    #   .includes(:project, :checked_out_by)
-
-
-    # @alerts_opened_closed = ActiveRecord::Base.connection.select_all <<-SQL
-    #   SELECT
-    #     "days"."day",
-    #     "alerts_opened"."count" "alerts_opened",
-    #     "alerts_closed"."count" "alerts_closed"
-    #   FROM generate_series('#{2.days.before(@sprint.start_date)}'::date, '#{@sprint.end_date}'::date, '1 day') AS days(day)
-    #   LEFT JOIN LATERAL (
-    #     SELECT COUNT(*) FROM alerts
-    #     WHERE opened_at::date = days.day
-    #     AND destroyed_at IS NULL
-    #   ) "alerts_opened" ON true
-    #   LEFT JOIN LATERAL (
-    #     SELECT COUNT(*) FROM alerts
-    #     WHERE closed_at::date = days.day
-    #     AND destroyed_at IS NULL
-    #   ) "alerts_closed" ON true
-    #   ORDER BY days.day ASC
-    # SQL
     @alerts_opened_closed = ActiveRecord::Base.connection.select_all <<-SQL
       SELECT
         "days"."day",
@@ -98,7 +69,7 @@ class ReportsController < ApplicationController
           WHERE closed_at::date = days.day
           AND destroyed_at IS NULL
         ) "alerts_closed"
-      FROM generate_series('#{2.days.before(@sprint.start_date)}'::date, '#{@sprint.end_date}'::date, '1 day') AS days(day)
+      FROM generate_series('#{2.days.before(@week.begin)}'::date, '#{@week.end}'::date, '1 day') AS days(day)
       ORDER BY days.day ASC
     SQL
 
@@ -289,6 +260,14 @@ private
       remaining = (remaining - 1) / 26
     end
     bytes.pack "c*"
+  end
+
+  def week_for_date(date)
+    start_date = date.beginning_of_week
+    end_date = start_date.next_day
+    end_date = end_date.next_day while !end_date.friday?
+
+    start_date.beginning_of_day..end_date.end_of_day
   end
 
 

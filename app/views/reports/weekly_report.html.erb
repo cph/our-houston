@@ -1,28 +1,11 @@
 <h1>
-  Week of <%= @sprint.start_date.strftime("%B %-d, %Y") %><br/>
+  Week of <%= @week.begin.strftime("%B %-d, %Y") %><br/>
   <small>
-    <%= link_to "Previous", weekly_report_path(date: 1.week.ago(@sprint.start_date)) %>
-    <%= link_to "Next", weekly_report_path(date: 1.week.after(@sprint.start_date)) %>
+    <%= link_to "Previous", weekly_report_path(date: 1.week.ago(@week.begin)) %>
+    <%= link_to "Next", weekly_report_path(date: 1.week.after(@week.begin)) %>
   </small>
 </h1>
 
-
-
-<% if @sprint.tasks.count > 1 %>
-  <div id="sprint_view"></div>
-
-  <h2 class="light">Tasks <b class="count"><%= @sprint.tasks.count %></b></h2>
-  <table class="weekly-report-list">
-    <% @sprint.tasks.includes(:project).sort_by { |task| task.project ? task.project.slug : "" }.each do |task| %>
-      <tr class="report-sprint-task sprint-task task <%= sprint_task_css(@sprint, task) %>">
-        <td class="task-project"><%= project_label(task.project) %></td>
-        <td class="task-summary"><%= task.description %></td>
-        <td class="task-worker"><%= avatar_for(@checked_out_by[task.id], size: 26) %></td>
-        <td class="task-completed-this-week"></td>
-      </tr>
-    <% end %>
-  </table>
-<% end %>
 
 
 
@@ -67,17 +50,6 @@
 <% content_for :javascripts do %>
 <script type="text/javascript">
   $(function() {
-    if($('#sprint_view')[0]) {
-      var view = new ShowSprintView({
-        el: $('#sprint_view')[0],
-        sprintId: <%= @sprint.try(:id).to_json %>,
-        sprintStart: new Date(<%= @sprint.start_date.year %>, <%= @sprint.start_date.month - 1 %>, <%= @sprint.start_date.day %>),
-        sprintTasks: <%= raw SprintTaskPresenter.new(@sprint).to_json %>
-      });
-
-      view.render();
-    }
-
     var view = new AlertsOpenedClosedView({
       el: $('#alerts_view')[0],
       data: [<%= raw @alerts_opened_closed.map { |row|
