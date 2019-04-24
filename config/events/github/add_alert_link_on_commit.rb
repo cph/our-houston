@@ -1,21 +1,27 @@
 Houston.config do
-  on "commit:create" => "github:add_alert_link_on_commit" do
-    alerts = commit.identify_alerts
-    next if alerts.none? || commit.pull_requests.none?
+  on "github:pull:synchronize" => "github:add_missing_alert_links_to_pr" do
+    alert_urls = Alert.joins(:commits).where(commits: { id: pull_request.commits.ids }).pluck(:url)
+    return if alert_urls.none?
 
-    commit.pull_requests.each do |pr|
-      existing_comments = Houston.github.issue_comments(pr.repo, pr.number)
+    existing_comments = Houston.github.issue_comments(pull_request.repo, pull_request.number)
+    alert_urls.each do |alert_url|
+      message = "cf. [#{alert_url}](#{alert_url})"
+      next if existing_comments.any? { |comment| comment[:body] == message }
 
-      alerts.each do |alert|
-        message = "cf. [#{alert.url}](#{alert.url})"
+      Houston.github.add_comment(pull_request.repo, pull_request.number, message)
+    end
+  end
 
-        # Check for duplicates before posting. This could happen if a commit
-        # is tagged with an alert, but then the PR is rebased, giving the
-        # commit a different SHA.
-        next if existing_comments.any? { |comment| comment[:body] == message }
+  on "github:pull:open" => "github:add_missing_alert_links_to_new_pr" do
+    alert_urls = Alert.joins(:commits).where(commits: { id: pull_request.commits.ids }).pluck(:url)
+    return if alert_urls.none?
 
-        Houston.github.add_comment(pr.repo, pr.number, message)
-      end
+    existing_comments = Houston.github.issue_comments(pull_request.repo, pull_request.number)
+    alert_urls.each do |alert_url|
+      message = "cf. [#{alert_url}](#{alert_url})"
+      next if existing_comments.any? { |comment| comment[:body] == message }
+
+      Houston.github.add_comment(pull_request.repo, pull_request.number, message)
     end
   end
 end
