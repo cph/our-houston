@@ -7,7 +7,8 @@ Houston.config do
 
     emojis, verb = ($1 == "pass") ? [[":tada:"], "passed"] : [negative_reactions, "is being held by"]
     message = "#{emojis.sample} #{slack_link_to_pull_request(pull_request)} #{verb} testing"
-    message << " (#{pull_request.user.slack_username})" if pull_request.user && pull_request.user.slack_username
+    message << " (with suggestions)" if pull_request.labeled? "suggestions"
+    message << " attn. #{pull_request.user.slack_username}" if pull_request.user && pull_request.user.slack_username
     slack_send_message_to message, "#testing"
   end
 
