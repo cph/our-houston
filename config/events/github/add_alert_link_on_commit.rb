@@ -8,7 +8,7 @@ Houston.config do
       message = "cf. [#{alert_url}](#{alert_url})"
       next if existing_comments.any? { |comment| comment[:body] == message }
 
-      Houston.github.add_comment(pull_request.repo, pull_request.number, message)
+      Houston.github.add_comment("cph/#{pull_request.repo}", pull_request.number, message)
     end
   end
 
@@ -21,7 +21,7 @@ Houston.config do
   #     message = "cf. [#{alert_url}](#{alert_url})"
   #     next if existing_comments.any? { |comment| comment[:body] == message }
 
-  #     Houston.github.add_comment(pull_request.repo, pull_request.number, message)
+  #     Houston.github.add_comment("cph/#{pull_request.repo}", pull_request.number, message)
   #   end
   # end
 end
