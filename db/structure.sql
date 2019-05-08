@@ -358,6 +358,40 @@ ALTER SEQUENCE public.brakeman_warnings_id_seq OWNED BY public.brakeman_warnings
 
 
 --
+-- Name: checkins; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.checkins (
+    id integer NOT NULL,
+    project_id integer,
+    status integer,
+    info jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: checkins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.checkins_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: checkins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.checkins_id_seq OWNED BY public.checkins.id;
+
+
+--
 -- Name: commits; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2027,6 +2061,13 @@ ALTER TABLE ONLY public.brakeman_warnings ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: checkins id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.checkins ALTER COLUMN id SET DEFAULT nextval('public.checkins_id_seq'::regclass);
+
+
+--
 -- Name: commits id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2360,6 +2401,14 @@ ALTER TABLE ONLY public.brakeman_scans
 
 ALTER TABLE ONLY public.brakeman_warnings
     ADD CONSTRAINT brakeman_warnings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: checkins checkins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.checkins
+    ADD CONSTRAINT checkins_pkey PRIMARY KEY (id);
 
 
 --
@@ -3927,6 +3976,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170525233934'),
 ('20170811214556'),
 ('20181102202848'),
-('20190103223906');
+('20190103223906'),
+('20190428023415');
 
 

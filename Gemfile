@@ -114,3 +114,4 @@ gem "houston-slack", github: "houston/houston-slack", branch: "master"          
 gem "houston-tickets", github: "houston/houston-tickets", branch: "master"
 gem "houston-todolists", github: "houston/houston-todolists", branch: "master"       # Todoist
 gem "houston-twilio", github: "houston/houston-twilio", branch: "master"             # Twilio
+gem "houston-watcher", github: "cph/houston-watcher", branch: "master"
