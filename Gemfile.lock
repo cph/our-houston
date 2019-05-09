@@ -8,6 +8,15 @@ GIT
       net-ldap (>= 0.16.0)
 
 GIT
+  remote: https://github.com/cph/houston-watcher.git
+  revision: 3ac698d16dd48d3dad3a9648ab6ab7948317cf55
+  branch: master
+  specs:
+    houston-watcher (0.0.1)
+      houston-core (>= 0.9.2)
+      multi_json (~> 1.13.1)
+
+GIT
   remote: https://github.com/cph/logeater.git
   revision: 4630dcbac6b76afc731ee371816c2b4a475aeec5
   branch: master
@@ -635,6 +644,7 @@ DEPENDENCIES
   houston-tickets!
   houston-todolists!
   houston-twilio!
+  houston-watcher!
   letter_opener
   logeater!
   mechanize
