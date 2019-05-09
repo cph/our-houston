@@ -1,4 +1,4 @@
-Houston.config.on "watcher:success" => "watcher:notify-if-cron_inactive" do
+Houston.config.on "watcher:success" => "watcher:notify-if-cron-inactive" do
   return unless checkin.project.slug == "ledger"
 
   last_checkin = Time.parse(checkin.info["last_checkin"])
