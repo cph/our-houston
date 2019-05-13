@@ -1,0 +1,47 @@
+<% content_for :meta do %>
+  <%= link_to_oembed release_url(@release) %>
+  <%= tag "meta", property: "og:type", content: "website" %>
+  <%= tag "meta", property: "og:site_name", content: "#{@project.slug} / #{@release.environment_name}" %>
+  <%= tag "meta", property: "og:title", content: format_release_subject(@release) %>
+  <%= tag "meta", property: "og:description", content: format_release_description(@release) %>
+  <%= tag "meta", property: "og:url", content: release_url(@release) %>
+  <style>
+    h5.release-pull-requests-header { clear: both; }
+
+    .release-pull-requests .release-pull-request {
+      border-radius: 3px;
+      background-color: #efefef;
+      padding: 1em;
+      margin-bottom: 1em;
+    }
+
+    .release-pull-requests .release-pull-request h3 { font-size: 1.4em; }
+    .release-pull-requests .release-pull-request h4 { font-size: 1.2em; }
+    .release-pull-requests .release-pull-request h5 { font-size: 1em; }
+
+    .release-pull-requests .release-pull-request .release-pull-request-title {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .release-pull-requests .release-pull-request .release-pull-request-author {
+      font-size: 0.8em;
+      color: #888;
+    }
+
+    .release-pull-requests .release-pull-request .release-pull-request-labels .release-pull-request-label {
+      display: inline-block;
+      font-size: 0.8em;
+      border-radius: 3px;
+      padding: 0px 6px;
+      color: white;
+      margin-right: 4px;
+    }
+  </style>
+<% end %>
+
+<%= render partial: "projects/header", locals: {project: @project, subtitle: "Release of"} %>
+
+<%= render partial: "houston/releases/releases/changelog" %>
+
+<%= render partial: "houston/releases/releases/pull_requests" %>
