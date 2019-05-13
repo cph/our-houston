@@ -1,4 +1,5 @@
 require "user_ext"
+require "release_ext"
 
 module Houston
   class Railtie < ::Rails::Railtie
@@ -8,6 +9,7 @@ module Houston
     config.to_prepare do
       ::User.devise :ldap_authenticatable
       User.extend UserExt::ClassMethods
+      Houston::Releases::Release.send(:include, ReleaseExt)
     end
 
   end
