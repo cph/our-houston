@@ -11,7 +11,7 @@
     .release-pull-requests .release-pull-request {
       border-radius: 3px;
       background-color: #efefef;
-      padding: 1em;
+      padding: 0.5em 1em;
       margin-bottom: 1em;
     }
 
@@ -19,9 +19,25 @@
     .release-pull-requests .release-pull-request h4 { font-size: 1.2em; }
     .release-pull-requests .release-pull-request h5 { font-size: 1em; }
 
-    .release-pull-requests .release-pull-request .release-pull-request-title {
+    .release-pull-requests .release-pull-request .release-pull-request-title h3 {
       font-size: 1.5em;
       font-weight: bold;
+      display: inline-block;
+      margin: 0;
+    }
+
+    .release-pull-requests .release-pull-request .release-pull-request-title .release-pull-request-link {
+      font-size: 0.8em;
+    }
+
+    .release-pull-requests .release-pull-request .release-pull-request-title .release-pull-request-link:after {
+      content: "\f08e";
+      font: normal normal normal 0.8em/1 FontAwesome;
+      margin-left: 0.25em;
+    }
+
+    .release-pull-requests .release-pull-request .release-pull-request-content {
+      display: none;
     }
 
     .release-pull-requests .release-pull-request .release-pull-request-author {
@@ -38,6 +54,14 @@
       margin-right: 4px;
     }
   </style>
+  <script>
+    function togglePullRequestContent(e) {
+      $(e.target)
+        .closest('.release-pull-request')
+        .find('.release-pull-request-content')
+        .slideToggle();
+    }
+  </script>
 <% end %>
 
 <%= render partial: "projects/header", locals: {project: @project, subtitle: "Release of"} %>
