@@ -2,7 +2,8 @@ def repo_name_from_url(url)
   url[/\Agit@github\.com:(.*)\.git\Z/, 1] || url[/\Agit:\/\/github.com\/(.*)\.git\Z/, 1]
 end
 
-CVE_IDENTIFIER = /\ACVE\-(?<year>\d{4})\-(?<number>\d+)\z/
+# Besides CVE, GitHub also prefixes identifiers with WS for WhiteSource, apparently
+CVE_IDENTIFIER = /\A(?:CVE|WS)\-(?<year>\d{4})\-(?<number>\d+)\z/
 
 Houston::Alerts.config.sync :open, "cve", every: "5m", icon: "fa-bank" do
   project_slug_by_repo_name = Hash[Project.unretired.on_github
