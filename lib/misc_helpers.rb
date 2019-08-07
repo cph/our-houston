@@ -72,6 +72,7 @@ def update_todoist_alert(alert, item_id)
   item = begin
     todoist_send("items/get", item_id: item_id, all_data: false).fetch "item"
   rescue Faraday::ResourceNotFound
+    return if alert.destroyed? # No Todoist Item, no alert, no problem!
     alert.update_prop! TODOIST_ITEM_ID, nil
     return create_todoist_alert(alert)
   end
