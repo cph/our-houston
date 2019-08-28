@@ -1,7 +1,7 @@
 load "deploy"
 set :application, "houston"
 load File.expand_path("~/epic.cap")
-set :repository, "git://github.com/cph/our-houston.git"
+set :repository, "https://github.com/cph/our-houston.git"
 
 before "bundler:install", "deploy:symlink_config"
 after "deploy:setup", "deploy:create_shared_folders"
