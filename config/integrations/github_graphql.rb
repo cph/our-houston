@@ -42,11 +42,11 @@ module GitHubQL
           alerts.push(
             id: alert.id,
             repo: repo.name_with_owner,
-            dependency: alert.package_name,
-            affected_versions: alert.affected_range,
-            fixed_in_version: alert.fixed_in,
-            name: alert.external_identifier,
-            url: alert.external_reference)
+            dependency: alert.security_vulnerability.package.name,
+            affected_versions: alert.security_vulnerability.vulnerable_version_range,
+            fixed_in_version: alert.security_vulnerability.first_patched_version,
+            names: alert.security_advisory.identifiers.map(&:value),
+            url: alert.security_advisory.references.first.url)
         end
       end
     end
@@ -75,13 +75,29 @@ module GitHubQL
               nameWithOwner
               vulnerabilityAlerts(first: 100) {
                 nodes {
-                  affectedRange
                   dismissedAt
-                  externalIdentifier
-                  externalReference
-                  fixedIn
                   id
                   packageName
+                  securityAdvisory {
+                    id
+                    ghsaId
+                    identifiers {
+                      type
+                      value
+                    }
+                    references {
+                      url
+                    }
+                  }
+                  securityVulnerability {
+                    firstPatchedVersion {
+                      identifier
+                    }
+                    package {
+                      name
+                    }
+                    vulnerableVersionRange
+                  }
                 }
               }
             }

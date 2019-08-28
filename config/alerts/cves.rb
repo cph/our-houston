@@ -11,8 +11,10 @@ Houston::Alerts.config.sync :open, "cve", every: "5m", icon: "fa-bank" do
     .map { |url, slug| [repo_name_from_url(url), slug] }]
 
   GitHubQL.vulnerability_alerts(repos: project_slug_by_repo_name.keys).map { |alert|
-    cve = CVE_IDENTIFIER.match(alert.fetch(:name))
-    raise NotImplementedError, "Expected #{alert.fetch(:name)} to look like a CVE identifier" unless cve
+    cve = alert.fetch(:names, []).map { |identifier|
+      CVE_IDENTIFIER.match(identifier)
+    }.compact.first
+    raise NotImplementedError, "Expected #{alert.fetch(:names, []).join(", ")} to look like a CVE identifier" unless cve
 
     { key: alert.fetch(:id),
       number: cve[:number].to_i,
