@@ -782,6 +782,56 @@ ALTER SEQUENCE public.follows_id_seq OWNED BY public.follows.id;
 
 
 --
+-- Name: github_security_advisories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.github_security_advisories (
+    id integer NOT NULL,
+    ghsa_id character varying,
+    number integer NOT NULL
+);
+
+
+--
+-- Name: github_security_advisories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.github_security_advisories_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: github_security_advisories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.github_security_advisories_id_seq OWNED BY public.github_security_advisories.id;
+
+
+--
+-- Name: github_security_advisories_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.github_security_advisories_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: github_security_advisories_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.github_security_advisories_seq OWNED BY public.github_security_advisories.number;
+
+
+--
 -- Name: goals; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2131,6 +2181,20 @@ ALTER TABLE ONLY public.follows ALTER COLUMN id SET DEFAULT nextval('public.foll
 
 
 --
+-- Name: github_security_advisories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.github_security_advisories ALTER COLUMN id SET DEFAULT nextval('public.github_security_advisories_id_seq'::regclass);
+
+
+--
+-- Name: github_security_advisories number; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.github_security_advisories ALTER COLUMN number SET DEFAULT (7000000 + nextval('public.github_security_advisories_seq'::regclass));
+
+
+--
 -- Name: goals id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2481,6 +2545,14 @@ ALTER TABLE ONLY public.feedback_user_flags
 
 ALTER TABLE ONLY public.follows
     ADD CONSTRAINT follows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: github_security_advisories github_security_advisories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.github_security_advisories
+    ADD CONSTRAINT github_security_advisories_pkey PRIMARY KEY (id);
 
 
 --
@@ -2990,6 +3062,20 @@ CREATE INDEX index_follows_on_project_id ON public.follows USING btree (project_
 --
 
 CREATE INDEX index_follows_on_user_id ON public.follows USING btree (user_id);
+
+
+--
+-- Name: index_github_security_advisories_on_ghsa_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_github_security_advisories_on_ghsa_id ON public.github_security_advisories USING btree (ghsa_id);
+
+
+--
+-- Name: index_github_security_advisories_on_number; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_github_security_advisories_on_number ON public.github_security_advisories USING btree (number);
 
 
 --
@@ -3977,6 +4063,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170811214556'),
 ('20181102202848'),
 ('20190103223906'),
-('20190428023415');
+('20190428023415'),
+('20190828160831');
 
 
