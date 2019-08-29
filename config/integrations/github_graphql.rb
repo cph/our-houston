@@ -44,7 +44,7 @@ module GitHubQL
             repo: repo.name_with_owner,
             dependency: alert.security_vulnerability.package.name,
             affected_versions: alert.security_vulnerability.vulnerable_version_range,
-            fixed_in_version: alert.security_vulnerability.first_patched_version,
+            fixed_in_version: alert.security_vulnerability.first_patched_version.identifier,
             names: alert.security_advisory.identifiers.map(&:value),
             url: alert.security_advisory.references.first.url)
         end
