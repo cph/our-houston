@@ -64,10 +64,7 @@ module Houston
       YESORNO = ["(?<affirmative>yes|ok|sure|yeah|ya)", "(?<negative>no)"].freeze
       ACKNOWLEDGEMENT = ["Alright, thanks.", "OK", "got it", "ok", "ok"].freeze
       DEPLOYABLE_REPOS = %w{
-        cph/members
-        cph/unite
         cph/ledger
-        cph/lsb
       }.freeze
 
 
