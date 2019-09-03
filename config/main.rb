@@ -247,7 +247,7 @@ Houston.config do
   use :feedback
   # use :brakeman
   # use :sprints
-  use :todolists
+  # use :todolists
   use :roadmaps
 
   use :releases do
