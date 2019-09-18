@@ -34,7 +34,7 @@ module GitHubQL
 
       query_string = repos.sort.map { |r| "repo:#{r}" }.join(" ")
       result = client.query(VulnerabilityAlertQuery, variables: { "queryString" => query_string  })
-      result.data.search.edges.each_with_object([]) do |edge, alerts|
+      (result.data&.search&.edges || []).each_with_object([]) do |edge, alerts|
         repo = edge.node
         repo.vulnerability_alerts.nodes.each do |alert|
           next if alert.dismissed_at
