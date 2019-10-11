@@ -78,7 +78,8 @@ end
 STAR_USERNAME_FOR_USER = {
   LUKE => "BOOTHJL",
   MATT => "KOBSMC",
-  ROB => "RIEBAURO"
+  ROB => "RIEBAURO",
+  GARY => "HALLGJ"
 }.freeze
 
 
