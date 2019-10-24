@@ -64,7 +64,12 @@ module Houston
       YESORNO = ["(?<affirmative>yes|ok|sure|yeah|ya)", "(?<negative>no)"].freeze
       ACKNOWLEDGEMENT = ["Alright, thanks.", "OK", "got it", "ok", "ok"].freeze
       DEPLOYABLE_REPOS = %w{
+        cph/members
         cph/ledger
+        cph/unite
+        cph/confb
+        cph/dr
+        cph/mss
       }.freeze
 
 
@@ -212,7 +217,7 @@ module Houston
         # we're just deploying members, unite, and ledger to Staging for now,
         # so we can assume that the strategy is Engineyard
         environment_name = project == "lsb" ? "staging2" : "staging"
-        @environment = Deployers::Engineyard.new(project, environment_name)
+        @environment = Deployers::Heroku.new(project, environment_name)
         check_if_another_pull_request_is_on_staging
       rescue Exception
         report! $!

@@ -32,6 +32,9 @@ gem "redis", "< 4.0"
 # for talking to GitHub
 gem "graphql-client"
 
+# for talking to Heroku
+gem "platform-api"
+
 group :development do
   gem "letter_opener"
   gem "puma"
