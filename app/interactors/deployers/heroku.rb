@@ -43,7 +43,7 @@ module Deployers
         result = heroku_remote.push(
           [ "+#{branch_ref.canonical_name}:refs/heads/master" ],
           progress: ->(txt) { deploy.output_stream << txt },
-          credentials: heroku_credentials
+          credentials: heroku_credentials)
 
         successful = result.empty?
         record_outcome_of! deploy, successful: successful
