@@ -1,4 +1,5 @@
 require "platform-api"
+require "netrc"
 
 module Deployers
   class Heroku
@@ -42,7 +43,7 @@ module Deployers
         result = heroku_remote.push(
           [ "+#{branch_ref.canonical_name}:refs/heads/master" ],
           progress: ->(txt) { deploy.output_stream << txt },
-          credentials: Houston::Adapters::VersionControl::GitAdapter.credentials)
+          credentials: heroku_credentials
 
         successful = result.empty?
         record_outcome_of! deploy, successful: successful
@@ -62,11 +63,17 @@ module Deployers
     end
 
     def heroku_git_url
-      "git@heroku.com:#{app_name}.git"
+      "https://git.heroku.com:#{app_name}.git"
     end
 
     def heroku
       @heroku ||= PlatformAPI.connect_oauth ENV["HOUSTON_PLATFORM_API_OAUTH_TOKEN"]
+    end
+
+    def heroku_credentials
+      netrc = Netrc.read(File.expand_path("~/.netrc"))
+      user, pass = netrc["git.heroku.com"]
+      Rugged::Credentials::UserPassword.new(username: user, password: pass)
     end
 
     def record_outcome_of!(deploy, successful: true)

@@ -661,6 +661,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   minitest-reporters-turn_reporter
+  netrc
   platform-api
   pry
   puma

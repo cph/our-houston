@@ -34,6 +34,7 @@ gem "graphql-client"
 
 # for talking to Heroku
 gem "platform-api"
+gem "netrc"
 
 group :development do
   gem "letter_opener"
