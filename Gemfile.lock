@@ -55,8 +55,8 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-ci.git
-  revision: f370cc5268293c1aefe8cabc05b5b433f626ca03
-  branch: master
+  revision: 9cd1491fb15eb0c8032e037ec696ba83c937b1ce
+  branch: dependabot-compat
   specs:
     houston-ci (0.0.1)
       googlecharts (~> 1.6.12)
