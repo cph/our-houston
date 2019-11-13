@@ -106,7 +106,7 @@ gem "slacks", ">= 0.5.0.pre", github: "houston/slacks", branch: "master"
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
 # gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
-gem "houston-ci", github: "houston/houston-ci", branch: "master"                      # Jenkins
+gem "houston-ci", github: "houston/houston-ci", branch: "dependabot-compat"                      # Jenkins
 gem "houston-commits", github: "houston/houston-commits", branch: "upgrade-octokit"            # GitHub
 gem "houston-exceptions", github: "houston/houston-exceptions", branch: "master"      # Errbit
 gem "houston-feedback", github: "houston/houston-feedback", branch: "master"
