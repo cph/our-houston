@@ -63,7 +63,7 @@ module Deployers
     end
 
     def heroku_git_url
-      "https://git.heroku.com:#{app_name}.git"
+      "https://git.heroku.com/#{app_name}.git"
     end
 
     def heroku
