@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.5
--- Dumped by pg_dump version 10.5
+-- Dumped from database version 10.10
+-- Dumped by pg_dump version 10.10
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,6 +12,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -376,7 +377,6 @@ CREATE TABLE public.checkins (
 --
 
 CREATE SEQUENCE public.checkins_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -877,6 +877,42 @@ CREATE TABLE public.goals_todo_lists (
 
 
 --
+-- Name: houston_presentations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.houston_presentations (
+    id integer NOT NULL,
+    title character varying,
+    description text,
+    date date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    presenter_id integer,
+    tags text[],
+    type character varying NOT NULL
+);
+
+
+--
+-- Name: houston_presentations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.houston_presentations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: houston_presentations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.houston_presentations_id_seq OWNED BY public.houston_presentations.id;
+
+
+--
 -- Name: measurements; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -993,41 +1029,6 @@ CREATE SEQUENCE public.milestones_id_seq
 --
 
 ALTER SEQUENCE public.milestones_id_seq OWNED BY public.milestones.id;
-
-
---
--- Name: nanoconf_presentations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.nanoconf_presentations (
-    id integer NOT NULL,
-    title character varying,
-    description text,
-    date date,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    presenter_id integer,
-    tags text[]
-);
-
-
---
--- Name: nanoconf_presentations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.nanoconf_presentations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: nanoconf_presentations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.nanoconf_presentations_id_seq OWNED BY public.nanoconf_presentations.id;
 
 
 --
@@ -2202,6 +2203,13 @@ ALTER TABLE ONLY public.goals ALTER COLUMN id SET DEFAULT nextval('public.goals_
 
 
 --
+-- Name: houston_presentations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.houston_presentations ALTER COLUMN id SET DEFAULT nextval('public.houston_presentations_id_seq'::regclass);
+
+
+--
 -- Name: measurements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2220,13 +2228,6 @@ ALTER TABLE ONLY public.milestone_versions ALTER COLUMN id SET DEFAULT nextval('
 --
 
 ALTER TABLE ONLY public.milestones ALTER COLUMN id SET DEFAULT nextval('public.milestones_id_seq'::regclass);
-
-
---
--- Name: nanoconf_presentations id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.nanoconf_presentations ALTER COLUMN id SET DEFAULT nextval('public.nanoconf_presentations_id_seq'::regclass);
 
 
 --
@@ -2564,6 +2565,14 @@ ALTER TABLE ONLY public.goals
 
 
 --
+-- Name: houston_presentations houston_presentations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.houston_presentations
+    ADD CONSTRAINT houston_presentations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: measurements measurements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2585,14 +2594,6 @@ ALTER TABLE ONLY public.milestone_versions
 
 ALTER TABLE ONLY public.milestones
     ADD CONSTRAINT milestones_pkey PRIMARY KEY (id);
-
-
---
--- Name: nanoconf_presentations nanoconf_presentations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.nanoconf_presentations
-    ADD CONSTRAINT nanoconf_presentations_pkey PRIMARY KEY (id);
 
 
 --
@@ -4064,6 +4065,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181102202848'),
 ('20190103223906'),
 ('20190428023415'),
-('20190828160831');
+('20190828160831'),
+('20191206200421');
 
 
