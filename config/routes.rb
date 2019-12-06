@@ -48,16 +48,10 @@ Houston::Engine.routes.draw do
 
   # Nanoconfs
 
-  scope "nanoconfs" do
-    get "past", to: "nanoconfs#past", as: :past_nanoconfs
-    get "", to: "nanoconfs#index", as: :nanoconfs
-    get "new", to: "nanoconfs#new", as: :new_nanoconf
-    post "", to: "nanoconfs#create", as: :create_nanoconf
-    get ":id", to: "nanoconfs#show", as: :nanoconf
-    get ":id/edit", to: "nanoconfs#edit", as: :edit_nanoconf
-    patch ":id", to: "nanoconfs#update", as: :update_nanoconf
-    delete ":id", to: "nanoconfs#destroy", as: :destroy_nanoconf
+  resources :nanoconfs do
+    get "past", to: "nanoconfs#past", on: :collection, as: :past_nanoconfs
   end
+
 
 
 

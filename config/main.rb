@@ -50,7 +50,7 @@ Houston.navigation
 
 Houston.navigation
   .add_link(:nanoconfs) { Houston::Engine.routes.url_helpers.nanoconfs_path }
-  .ability { can?(:read, Nanoconf) }
+  .ability { can?(:read, Presentation::Nanoconf) }
 
 Houston.add_project_column :ruby_version do
   name "Ruby"

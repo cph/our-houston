@@ -1,4 +1,4 @@
-<%= form_for @presentation, :html => {class: "container-fluid", id: "edit-nanoconf-form"} do |f| %>
+<%= form_for @presentation, as: :nanoconf, url: @presentation.persisted? ? nanoconf_path(@presentation) : nanoconfs_path, :html => {class: "container-fluid", id: "edit-nanoconf-form"} do |f| %>
 
   <div class="row-fluid">
     <div class="span6 controls">
