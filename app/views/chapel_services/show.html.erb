@@ -1,0 +1,33 @@
+<% content_for :title do %>
+  <h1 class="project-banner">
+    <%= @service.presenter.name %>
+  </h1>
+<% end %>
+
+<div class="nanoconf-info">
+  <div><%= render "back_link" %></div>
+  <span class="date"><i class="fa fa-calendar" aria-hidden="true"></i> <%= @service.date.strftime("%b %d, %Y") %></span>
+  <h2 class="presentation-title">
+    <%= avatar_for(@service.presenter) %>
+    <%= @service.presenter.name %>
+    <% if can? :update, @service %>
+      <small><%= link_to "Edit", edit_chapel_service_path(@service) %></small>
+    <% end %>
+  </h2>
+  <hr>
+
+  <div class="tab-pane markdown-body" id="preview">
+    <% unless @service.description.blank? %>
+      <%= mdown(@service.description) %>
+    <% else %>
+      <span class="light-text">No Description</span>
+    <% end %>
+  </div>
+
+  <div>
+    <% if can? :destroy, @service %>
+      <% # `link_to` doesn't work without jQuery, so we have to use `button_to` instead %>
+      <%= button_to "Delete", chapel_service_path(@service), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>

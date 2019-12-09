@@ -54,6 +54,13 @@ Houston::Engine.routes.draw do
 
 
 
+  # Chapel Services
+
+  resources :chapel_services do
+    get "past", to: "chapel_services#past", on: :collection, as: :past
+  end
+
+
 
    # Conversation Tester
 

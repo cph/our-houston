@@ -1,0 +1,45 @@
+<%= form_for @service, as: :chapel_service, url: @form_path, :html => {class: "container-fluid", id: "edit-nanoconf-form"} do |f| %>
+
+  <div class="row-fluid">
+    <div class="span6 controls">
+      <% if @service.past? %>
+        <h4><%= @service.date.strftime("%B %d, %Y") %></h4>
+      <% else %>
+        <%= select("chapel_service", "date", @dropdown_dates, selected: @service.date.strftime("%B %d, %Y")) %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if can? :manage, Presentation::ChapelService %>
+    <div class="row-fluid">
+      <div class="span6 controls">
+        <%= select("chapel_service", "presenter_id", @chapel_speakers, selected: @service.presenter_id) %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row-fluid">
+    <div class="span6 controls">
+      <%= f.label :hymn, "Hymn" %>
+      <%= f.text_field :hymn %>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6 controls">
+      <%= f.label :liturgy, "Order of Service" %>
+      <%= f.text_field :liturgy %>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6 controls">
+      <%= f.label :readings, "Reading(s) (put multiple on separate lines)" %>
+      <%= f.text_area :joined_readings %>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <%= submit_tag "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
