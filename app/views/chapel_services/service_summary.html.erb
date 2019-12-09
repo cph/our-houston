@@ -1,0 +1,6 @@
+<p>Hi there! There's a chapel service coming up on <%= @service.date.strftime("%B %-d, %Y") %>.</p>
+<p>Here's a summary:</p>
+<div style="whitespace: pre; font-family: monospace; border-left: 6px #ccc solid; padding-left: 2em;">
+  <%= mdown(@service.description) %>
+</div>
+<p>Best,<br/><strong>Houston</strong></p>

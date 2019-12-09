@@ -37,7 +37,10 @@ Houston.register_events {{
   "alerts:none" => desc("EP's Alerts Dashboard is all-clear"),
 
   "nanoconf:create" => params("nanoconf").desc("A nanoconf was created"),
-  "nanoconf:update" => params("nanoconf").desc("A nanoconf was updated")
+  "nanoconf:update" => params("nanoconf").desc("A nanoconf was updated"),
+
+  "chapel_service:create" => params("service").desc("A chapel service was created"),
+  "chapel_service:update" => params("service").desc("A chapel service was updated")
 }}
 
 Houston.navigation
@@ -51,6 +54,11 @@ Houston.navigation
 Houston.navigation
   .add_link(:nanoconfs) { Houston::Engine.routes.url_helpers.nanoconfs_path }
   .ability { can?(:read, Presentation::Nanoconf) }
+
+Houston.navigation
+  .add_link(:chapel_services) { Houston::Engine.routes.url_helpers.chapel_services_path }
+  .ability { can?(:read, Presentation::ChapelService) }
+  .name("Chapel Services")
 
 Houston.add_project_column :ruby_version do
   name "Ruby"
@@ -192,7 +200,8 @@ Houston.config do
                    :alerts,
                    :roadmaps,
                    :pulls,
-                   :nanoconfs
+                   :nanoconfs,
+                   :chapel_services
   project_features :feedback,
                    :ideas,
                    :bugs,

@@ -797,7 +797,6 @@ CREATE TABLE public.github_security_advisories (
 --
 
 CREATE SEQUENCE public.github_security_advisories_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -889,7 +888,8 @@ CREATE TABLE public.houston_presentations (
     updated_at timestamp without time zone NOT NULL,
     presenter_id integer,
     tags text[],
-    type character varying NOT NULL
+    type character varying NOT NULL,
+    metadata jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -4066,6 +4066,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190103223906'),
 ('20190428023415'),
 ('20190828160831'),
-('20191206200421');
+('20191206200421'),
+('20191206212342');
 
 

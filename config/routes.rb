@@ -54,6 +54,14 @@ Houston::Engine.routes.draw do
 
 
 
+  # Chapel Services
+
+  resources :chapel_services do
+    get "past", to: "chapel_services#past", on: :collection, as: :past
+    post "summary", to: "chapel_services#send_summary", on: :member, as: :send_summary
+  end
+
+
 
    # Conversation Tester
 
