@@ -1,0 +1,4 @@
+<h1>Upcoming chapel service on <%= @service.date("%b %-d, %Y") %></h1>
+<div>
+  <%= mdown(@service.description) %>
+</div>

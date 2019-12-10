@@ -121,6 +121,13 @@ def slack_nanoconf_attachment(nanoconf, options={})
     text: nanoconf.description }
 end
 
+def slack_chapel_service_attachment(service)
+  { fallback: service.presenter.name,
+    title: service.presenter.name,
+    title_link: Houston::Engine.routes.url_helpers.chapel_service_url(service),
+    text: service.description }
+end
+
 def slack_link_to_pull_request(pr)
   if pr.is_a?(::Github::PullRequest) # Houston Pull Request
     slack_link_to "##{pr.number} #{pr.title}", pr.url
