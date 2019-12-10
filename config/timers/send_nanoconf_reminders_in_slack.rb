@@ -1,7 +1,7 @@
 Houston.config.every "wednesday at 2:00pm", "announce:upcoming-nanoconf" do
   nanoconf = Presentation::Nanoconf.next_for_this_week
   next unless nanoconf
-  slack_send_message_to "Presentation::Nanoconf this Friday will be", "it",
+  slack_send_message_to "Nanoconf this Friday will be", "it",
     attachments: [slack_nanoconf_attachment(nanoconf)]
 end
 
