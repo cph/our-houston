@@ -22,7 +22,7 @@ module Presentation
     end
 
     def self.next_within_a_week
-      upcoming.where(arel_table[:date].lt(Date.today + 7.days)
+      upcoming.where(arel_table[:date].lt(Date.today + 7.days))
         .order(date: :asc)
         .first
     end
