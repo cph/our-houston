@@ -68,6 +68,7 @@ Houston.config do
 
       # Employees can see the Chapel schedule
       can :read, Presentation::ChapelService
+      can :read, Pianist
 
       # Employees can see Releases to staging
       can :read, Houston::Releases::Release
@@ -125,8 +126,11 @@ Houston.config do
       # Matt can manage Nanoconfs
       can :manage, Presentation::Nanoconf if user.email == MATT
 
-      # If you're a team owner of the Chapel team, you can manage services
-      can :manage, Presentation::ChapelService if user.roles.where(team_id: Team.find_by(name: "Chapel")&.id).with_role("Team Owner").any?
+      # If you're a team owner of the Chapel team, you can manage services and pianists
+      if user.roles.where(team_id: Team.find_by(name: "Chapel")&.id).with_role("Team Owner").any?
+        can :manage, Presentation::ChapelService
+        can :manage, Pianist
+      end
 
     end
   end

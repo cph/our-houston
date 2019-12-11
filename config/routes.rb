@@ -60,6 +60,10 @@ Houston::Engine.routes.draw do
     get "past", to: "chapel_services#past", on: :collection, as: :past
   end
 
+  scope :chapel_services do
+    resources :pianists
+  end
+
 
 
    # Conversation Tester

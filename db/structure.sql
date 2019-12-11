@@ -797,7 +797,6 @@ CREATE TABLE public.github_security_advisories (
 --
 
 CREATE SEQUENCE public.github_security_advisories_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1063,6 +1062,40 @@ CREATE SEQUENCE public.persistent_triggers_id_seq
 --
 
 ALTER SEQUENCE public.persistent_triggers_id_seq OWNED BY public.persistent_triggers.id;
+
+
+--
+-- Name: pianists; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.pianists (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    year integer NOT NULL,
+    month integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pianists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.pianists_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pianists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.pianists_id_seq OWNED BY public.pianists.id;
 
 
 --
@@ -2239,6 +2272,13 @@ ALTER TABLE ONLY public.persistent_triggers ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: pianists id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pianists ALTER COLUMN id SET DEFAULT nextval('public.pianists_id_seq'::regclass);
+
+
+--
 -- Name: project_quotas id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2603,6 +2643,14 @@ ALTER TABLE ONLY public.milestones
 
 ALTER TABLE ONLY public.persistent_triggers
     ADD CONSTRAINT persistent_triggers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pianists pianists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pianists
+    ADD CONSTRAINT pianists_pkey PRIMARY KEY (id);
 
 
 --
@@ -3162,6 +3210,13 @@ CREATE INDEX index_milestones_on_destroyed_at ON public.milestones USING btree (
 --
 
 CREATE INDEX index_milestones_on_project_id ON public.milestones USING btree (project_id);
+
+
+--
+-- Name: index_pianists_on_year_and_month; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_pianists_on_year_and_month ON public.pianists USING btree (year, month);
 
 
 --
@@ -4068,6 +4123,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190428023415'),
 ('20190828160831'),
 ('20191206200421'),
-('20191206212342');
+('20191206212342'),
+('2019121020522335');
 
 
