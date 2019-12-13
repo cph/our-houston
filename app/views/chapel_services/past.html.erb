@@ -1,0 +1,25 @@
+<% content_for :title do %>
+<h1 class="project-banner space-below">
+  Past Chapel Services
+  <%= link_to chapel_services_path, class: "project-banner-btn" do %>
+    <i class="fa fa-book" aria-hidden="true"></i>
+    <span>Upcoming<br />Chapel Services</span>
+  <% end %>
+</h1>
+<% end %>
+
+<div id="presentation-list">
+  <% @services.each do |service| %>
+    <div class="presentation">
+      <h4><%= service.date.strftime("%b %d, %Y") %></h4>
+      <div class="presentation-info">
+        <h3 class="presentation-title">
+          <%= avatar_for(service.presenter) %>
+          <%= link_to chapel_service_path(service) do %>
+            <%= service.presenter.name %>
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -64,7 +64,10 @@ Houston.config do
       end
 
       # Employees can see the Nanoconf schedule
-      can :read, Nanoconf
+      can :read, Presentation::Nanoconf
+
+      # Employees can see the Chapel schedule
+      can :read, Presentation::ChapelService
 
       # Employees can see Releases to staging
       can :read, Houston::Releases::Release
@@ -108,13 +111,22 @@ Houston.config do
       can [:update, :destroy], Houston::Feedback::Conversation, user_id: user.id
 
       # Folks can update their own presentations
-      can [:update, :destroy], Nanoconf, presenter_id: user.id
+      can [:update, :destroy], Presentation::Nanoconf, presenter_id: user.id
+
+      # Users can update their own chapel services
+      can [:update, :destroy], Presentation::ChapelService, presenter_id: user.id
 
       # If you're signed in, you can create a Nanoconfs
-      can :create, Nanoconf
+      can :create, Presentation::Nanoconf
+
+      # If you're on the chapel team, you can create a service
+      can :create, Presentation::ChapelService if user.team_ids.include?(Team.find_by(name: "Chapel")&.id)
 
       # Matt can manage Nanoconfs
-      can :manage, Nanoconf if user.email == MATT
+      can :manage, Presentation::Nanoconf if user.email == MATT
+
+      # If you're a team owner of the Chapel team, you can manage services
+      can :manage, Presentation::ChapelService if user.roles.where(team_id: Team.find_by(name: "Chapel")&.id).with_role("Team Owner").any?
 
     end
   end

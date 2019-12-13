@@ -8,7 +8,7 @@ class NanoconfsController < ApplicationController
   include Houston::Engine.routes.url_helpers
 
   def index
-    authorize! :read, Nanoconf
+    authorize! :read, Presentation::Nanoconf
   end
 
   def show
@@ -18,18 +18,18 @@ class NanoconfsController < ApplicationController
   def new
     new_presentation_date = Date.today
     new_presentation_date = params[:date].to_date if params[:date]
-    @presentation = Nanoconf.new(date: new_presentation_date)
+    @presentation = Presentation::Nanoconf.new(date: new_presentation_date)
     authorize! :create, @presentation
     @dropdown_dates = get_dropdown_dates
   end
 
   def create
-    presentation = Nanoconf.new(presentation_params)
+    presentation = Presentation::Nanoconf.new(presentation_params)
     authorize! :create, presentation
     if presentation.save
       flash[:notice] = "Presentation Created!"
       Houston.observer.fire "nanoconf:create", nanoconf: presentation
-      redirect_to presentation
+      redirect_to nanoconf_path(presentation)
     else
       flash[:error] = "There was an error saving your presentation"
       redirect_to new_nanoconf_path
@@ -49,7 +49,7 @@ class NanoconfsController < ApplicationController
     if presentation.update_attributes(presentation_params)
       flash[:notice] = "Presentation Updated!"
       Houston.observer.fire "nanoconf:update", nanoconf: presentation
-      redirect_to presentation
+      redirect_to nanoconf_path(presentation)
     else
       flash[:error] = "There was a problem"
     end
@@ -65,14 +65,14 @@ class NanoconfsController < ApplicationController
   end
 
   def past
-    @presentations = Nanoconf.preload(:presenter).where("date < ?", Date.today).order(date: :desc)
+    @presentations = Presentation::Nanoconf.preload(:presenter).where("date < ?", Date.today).order(date: :desc)
   end
 
 private
 
   def set_presentation
-    @presentation = Nanoconf.preload(:presenter).find(params[:id])
-    @presentation_list_path = @presentation.past? ?  past_nanoconfs_path : nanoconfs_path
+    @presentation = Presentation::Nanoconf.preload(:presenter).find(params[:id])
+    @presentation_list_path = @presentation.past? ?  past_nanoconfs_nanoconfs_path : nanoconfs_path
   end
 
   def get_dropdown_dates
@@ -97,7 +97,7 @@ private
   end
 
   def set_presentations
-    presentations = Nanoconf.preload(:presenter).where(date: upcoming_fridays)
+    presentations = Presentation::Nanoconf.preload(:presenter).where(date: upcoming_fridays)
     @presentations = upcoming_fridays.each_with_object({}) do |friday, by_date|
       by_date[friday] = presentations.find { |presentation| presentation.date == friday }
     end
