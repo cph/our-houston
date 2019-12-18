@@ -361,7 +361,7 @@ GEM
     escape (0.0.4)
     et-orbi (1.2.1)
       tzinfo
-    excon (0.67.0)
+    excon (0.71.0)
     execjs (2.7.0)
     factory_girl (4.9.0)
       activesupport (>= 3.0.0)
