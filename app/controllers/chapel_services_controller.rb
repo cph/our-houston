@@ -97,7 +97,7 @@ private
   def create_params
     attributes = params.require(:chapel_service).permit(:presenter_id, :date, :hymn, :liturgy, :joined_readings)
     attributes[:readings] = attributes.delete(:joined_readings).split("\n").map(&:strip)
-    attributes[:presenter] = User.find attributes.delete(:presenter_id)
+    attributes[:presenter] = User.find attributes.delete(:presenter_id) if attributes.key?(:presenter_id)
 
     attributes
   end
