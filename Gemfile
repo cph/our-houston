@@ -23,6 +23,10 @@ gem "mechanize"
 # Bundler is a runtime dependency because it used to parse Gemfiles
 gem "bundler"
 
+# This rake dependency is being added for a CVE. This can probably be removed
+# when Rails is updated.
+gem "rake", "~> 12.3.0"
+
 # LDAP for authentication
 gem "devise_ldap_authenticatable", github: "cph/devise_ldap_authenticatable", branch: "master"
 
@@ -83,7 +87,6 @@ gem "sucker_punch", "~> 1.6"
 gem "skylight"
 
 gem "star", github: "cph/star", branch: "master"
-gem "logeater", github: "cph/logeater", branch: "master", require: "logeater/request"
 
 # This gem hasn't been maintained... :`(
 # https://github.com/DimaSamodurov/ruby-ntlm/pull/7
