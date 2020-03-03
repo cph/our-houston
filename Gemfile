@@ -83,7 +83,6 @@ gem "sucker_punch", "~> 1.6"
 gem "skylight"
 
 gem "star", github: "cph/star", branch: "master"
-gem "logeater", github: "cph/logeater", branch: "master", require: "logeater/request"
 
 # This gem hasn't been maintained... :`(
 # https://github.com/DimaSamodurov/ruby-ntlm/pull/7
