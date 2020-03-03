@@ -23,6 +23,10 @@ gem "mechanize"
 # Bundler is a runtime dependency because it used to parse Gemfiles
 gem "bundler"
 
+# This rake dependency is being added for a CVE. This can probably be removed
+# when Rails is updated.
+gem "rake", "~> 12.3.0"
+
 # LDAP for authentication
 gem "devise_ldap_authenticatable", github: "cph/devise_ldap_authenticatable", branch: "master"
 
