@@ -7,10 +7,6 @@ Houston.config do
     measure_star_time!
   end
 
-  every "day at 6:30am", "measure:logs" do
-    measure_log_files!
-  end
-
   every "day at 9:00am", "measure:alerts.open" do
     measure_open_alerts!
     measure_alerts_closed_on_time!(1.day.ago)
@@ -18,44 +14,9 @@ Houston.config do
 end
 
 
-
 # Benchmark.ms { (3..32).each { |i| measure_log_files! Date.today - i } }
 # Benchmark.ms { (0..484).each { |i| measure_open_alerts! 9.hours.after(Date.today - i) } }
 # Benchmark.ms { (0..484).each { |i| measure_alerts_closed_on_time! 9.hours.after(Date.today - i) } }
-
-def measure_log_files!(date=Date.today - 2)
-  Logeater::Request.connection_pool.with_connection do
-    taken_at = Time.zone.local(date.year, date.month, date.day)
-    range = date.beginning_of_day.utc..date.end_of_day.utc
-    requests = Logeater::Request.where(completed_at: range)
-
-    %w{members unite ledger lsb}.each do |project_slug|
-      project = Project.find_by_slug project_slug
-      app_requests = requests.where(app: project_slug)
-
-      # Number of requests that day
-      # Number of requests by HTTP status
-      # Percent of requests that were errors
-      total_requests = 0
-      total_errors = 0
-      app_requests.group(:http_status).pluck(:http_status, "COUNT(*)").each do |status, count|
-        Measurement.take!(name: "daily.requests.#{status}", taken_at: taken_at, subject: project, value: count)
-        total_requests += count
-        total_errors += count if status >= 500
-      end
-      Measurement.take!(name: "daily.requests", taken_at: taken_at, subject: project, value: total_requests)
-
-      if total_requests > 0
-        Measurement.take!(name: "daily.requests.5xx.percent", taken_at: taken_at, subject: project, value:
-          (total_errors.to_f / total_requests.to_f).round(6))
-        Measurement.take!(name: "daily.requests.duration.mean", taken_at: taken_at, subject: project, value:
-          app_requests.average(:duration).round(4))
-        Measurement.take!(name: "daily.requests.duration.percentile.98", taken_at: taken_at, subject: project, value:
-          app_requests.pluck("percentile_cont(0.98) within group (order by duration asc)")[0])
-      end
-    end
-  end
-end
 
 def measure_open_alerts!(taken_at=Time.now)
   Measurement.take!(name: "daily.alerts.open", taken_at: taken_at, value:
