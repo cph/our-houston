@@ -29,7 +29,7 @@ Houston::Alerts.config.sync :open, "zendesk", every: "2m", icon: "fa-life-buoy" 
   # assigned to the EP group. We can't do that directly
   # with the API, so we create a view in Zendesk that
   # performs that filter and use it here.
-  response = MultiJson.load($zendesk.get("views/#{ZENDESK_VIEW}/tickets").body)
+  response = MultiJson.load($zendesk.get("views/#{ZENDESK_VIEW}/tickets.json").body)
   response["tickets"].map { |ticket|
     { key: ticket["url"],
       number: ticket["id"],
