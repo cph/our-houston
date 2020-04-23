@@ -12,6 +12,7 @@ ZENDESK_BRAND_PROJECT_MAP = {
   "lsb2" => "lsb",
   "mysundaysolutions" => "musicmate",
   "oic" => "oic",
+  "portals" => "portals-of-prayer",
   "shepherdsstaff" => "shepherdsstaff",
   "concordiatech" => "ep-misc" }.freeze
 ZENDESK_BRANDS = {}
