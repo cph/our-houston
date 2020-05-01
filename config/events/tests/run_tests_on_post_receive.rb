@@ -10,6 +10,7 @@ Houston.config do
   #      POST /job/houston/buildWithParameters.
   on "hooks:project:post_receive" => "run-tests-on-post-receive" do
     next unless project.has_ci_server?
+    next unless project.ci_server_name == "Jenkins"
     payload = PostReceivePayload.new(params).to_h
     commit = project.find_commit_by_sha(payload.fetch(:sha))
 
