@@ -95,13 +95,18 @@ private
   end
 
   def create_params
+    update_params.tap do |attributes|
+      attributes[:presenter] ||= current_user
+    end
+  end
+
+  def update_params
     attributes = params.require(:chapel_service).permit(:presenter_id, :date, :hymn, :liturgy, :joined_readings)
     attributes[:readings] = attributes.delete(:joined_readings).split("\n").map(&:strip)
     attributes[:presenter] = User.find attributes.delete(:presenter_id) if attributes.key?(:presenter_id)
 
     attributes
   end
-  alias update_params create_params
 
   def find_services
     services = Presentation::ChapelService.preload(:presenter).where(date: upcoming_wednesdays)
