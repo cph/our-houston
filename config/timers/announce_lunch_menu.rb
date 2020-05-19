@@ -1,4 +1,4 @@
-Houston.config.every "weekday at 11:00am", "announce:menu" do
+Houston.config.every "weekday at 9:45am", "announce:menu" do
   menu_items = LunchMenu.for Date.today
   next unless menu_items
 
