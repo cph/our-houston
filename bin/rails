@@ -1,8 +1,21 @@
 #!/usr/bin/env ruby
 
-APP_PATH = File.expand_path("../../config/main",  __FILE__)
+APP_PATH = File.expand_path("../config/main",  __dir__)
 
-ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile", __FILE__)
+ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
 require "bundler/setup" if File.exist?(ENV["BUNDLE_GEMFILE"])
+
+# TOTAL HACK!! Due to a change in the startup process, the working
+# directory is changed before Rack can find config.ru; this means
+# we have to supply the location of this config file _every time_.
+# But of course it's not that easy: we also have to require the files
+# in which the constants live to actually set the location as a default
+# option so that we can actually do it at this point, since there's no
+# other place to interrupt the boot process.
+
+require "rails/command"
+require "rails/commands/server/server_command"
+config_path = File.expand_path("../config.ru", __dir__)
+Rails::Command::ServerCommand.class_options[:config].instance_variable_set(:@default, config_path)
 
 require "rails/commands"
