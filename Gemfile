@@ -9,7 +9,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "houston-core", github: "houston/houston-core", branch: "master"
+gem "houston-core", github: "houston/houston-core", branch: "rails-6"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem "therubyracer", platforms: :ruby
@@ -69,7 +69,11 @@ group :test do
 end
 
 # Tooling
-gem "airbrake", "~> 4.0"
+# NB: Skylight needs to come before airbrake, as they both try to monkey patch
+# net_http to observe performance, but doing it in the wrong order causes an
+# infinite loop
+gem "skylight"
+gem "airbrake"
 
 # Houston is experiencing this problem:
 #   github.com/brandonhilkert/sucker_punch/issues/135
@@ -84,7 +88,6 @@ gem "airbrake", "~> 4.0"
 #   begin; raise "test"; rescue; Airbrake.notify($!); end
 gem "sucker_punch", "~> 1.6"
 
-gem "skylight"
 
 gem "star", github: "cph/star", branch: "master"
 
@@ -106,11 +109,14 @@ gem "houston-conversations", github: "houston/houston-conversations", branch: "m
 # Dependency of `houston-slack`; uncomment to develop on slacks
 gem "slacks", ">= 0.5.0.pre", github: "houston/slacks", branch: "master"
 
+# Temporarily bump vestal_versions to unlock Rails 6
+gem "houston-vestal_versions", github: "houston/vestal_versions", branch: "master"
+
 # Modules
 gem "houston-alerts", github: "houston/houston-alerts", branch: "master"
 # gem "houston-brakeman", github: "houston/houston-brakeman", branch: "master"
-gem "houston-ci", github: "houston/houston-ci", branch: "github-adapter"                      # Jenkins
-gem "houston-commits", github: "houston/houston-commits", branch: "upgrade-octokit"            # GitHub
+gem "houston-ci", github: "houston/houston-ci", branch: "master"                      # Jenkins
+gem "houston-commits", github: "houston/houston-commits", branch: "master"            # GitHub
 gem "houston-exceptions", github: "houston/houston-exceptions", branch: "master"      # Errbit
 gem "houston-feedback", github: "houston/houston-feedback", branch: "master"
 gem "houston-releases", github: "houston/houston-releases", branch: "master"

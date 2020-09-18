@@ -75,11 +75,14 @@ Houston.add_project_column :devise_version do
   html { |project| project.props["keyDependency.devise"] }
 end
 
-Houston.oauth.add_provider :office365 do
-  site "https://login.microsoftonline.com"
-  authorize_path "/common/oauth2/v2.0/authorize"
-  token_path "/common/oauth2/v2.0/token"
-end
+# Client token has expired; removing until we want to actually use
+# this in some way
+# ------------------------
+# Houston.oauth.add_provider :office365 do
+#   site "https://login.microsoftonline.com"
+#   authorize_path "/common/oauth2/v2.0/authorize"
+#   token_path "/common/oauth2/v2.0/token"
+# end
 
 Houston.layout["dashboard"].meta do
   stylesheet_link_tag "roboto", media: "all"

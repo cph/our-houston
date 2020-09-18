@@ -5,10 +5,28 @@ require "support/collecting_sender"
 class ExceptionReportingTest < ActionDispatch::IntegrationTest
   attr_reader :project
 
+  class LoggingFilter
+    def call(notice)
+      notices << notice
+      notice.ignore!
+    end
+
+    def notices
+      @notices ||= []
+    end
+  end
+
   setup do
-    Airbrake.sender = CollectingSender.new
-    Airbrake.configuration.development_environments = []
-    Airbrake.configuration.async = false
+    @logger = LoggingFilter.new
+    Airbrake.add_filter(@logger)
+    Airbrake.notice_notifier.instance_variable_get(:@config).ignore_environments = []
+
+    # Monkey patch to force synchronous
+    notifier = Airbrake.notice_notifier
+    def notifier.notify(*args)
+      notify_sync(*args)
+    end
+
     @project = Project.create(name: "Test", slug: "test")
   end
 
@@ -25,7 +43,7 @@ class ExceptionReportingTest < ActionDispatch::IntegrationTest
         post "/projects/#{project.slug}/hooks/something"
       rescue
       end
-      assert_equal 1, Airbrake.sender.collected.count,
+      assert_equal 1, @logger.notices.count,
         "Expected Houston to have reported this exception to Errbit"
     end
   end
@@ -43,7 +61,7 @@ class ExceptionReportingTest < ActionDispatch::IntegrationTest
         post "/projects/#{project.slug}/hooks/exception_report"
       rescue
       end
-      assert Airbrake.sender.collected.empty?,
+      assert @logger.notices.empty?,
         "Expected Houston not to send an exception report for an error " <<
         "that occurred when receiving an exception report (so as not to " <<
         "lock Houston and Errbit in an infinite loop)."
