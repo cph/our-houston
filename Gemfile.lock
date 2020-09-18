@@ -410,7 +410,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    json (2.1.0)
+    json (2.3.1)
     juniter (0.1.0)
       ox
     jwt (1.5.6)
