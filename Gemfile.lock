@@ -71,7 +71,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-core.git
-  revision: bbe90baa9605f952057306b344f5aa52abd30e8d
+  revision: b44b343b6454f09f61b60a736a1b6fbe89542e5e
   branch: rails-6
   specs:
     houston-core (0.9.2)
