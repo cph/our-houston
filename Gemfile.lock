@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-alerts.git
-  revision: 567316a4d118ed6293811b36596ee9c00c12dadf
+  revision: 991b49ef73ece33e90de0c73a47b35479d03418f
   branch: master
   specs:
     houston-alerts (0.0.1)
@@ -476,7 +476,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    octicons (8.2.0)
+    octicons (11.0.0)
       nokogiri (>= 1.6.3.1)
     octokit (4.18.0)
       faraday (>= 0.9)
