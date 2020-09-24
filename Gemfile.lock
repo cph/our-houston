@@ -51,7 +51,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-commits.git
-  revision: b2c86bb45efdc9544856b3fb4de0e602b5723ebf
+  revision: 10ff6f30782ef26a6708b1b64327f9260d81c24a
   branch: master
   specs:
     houston-commits (0.0.1)
