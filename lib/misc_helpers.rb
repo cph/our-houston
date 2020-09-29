@@ -19,7 +19,7 @@ def sync_open_alerts_to_todoist
     if alert.nil?
       Rails.logger.info "[todoist:sync] An Alert mapped to Item ##{item_id} does not exist"
       todoist_send_command "item_delete", ids: [item_id]
-    elsif alert.destroyed?
+    elsif alert.deleted?
       Rails.logger.info "[todoist:sync] Alert ##{alert.number} mapped to Item ##{item_id} has been destroyed"
       todoist_send_command "item_delete", ids: [item_id]
     elsif alert.suppressed?
@@ -72,7 +72,7 @@ def update_todoist_alert(alert, item_id)
   item = begin
     todoist_send("items/get", item_id: item_id, all_data: false).fetch "item"
   rescue Faraday::ResourceNotFound
-    return if alert.destroyed? # No Todoist Item, no alert, no problem!
+    return if alert.deleted? # No Todoist Item, no alert, no problem!
     alert.update_prop! TODOIST_ITEM_ID, nil
     return create_todoist_alert(alert)
   end
@@ -86,7 +86,7 @@ def update_todoist_alert(alert, item_id)
       due_date_utc: due_date }
   end
 
-  if alert.suppressed? || alert.destroyed?
+  if alert.suppressed? || alert.deleted?
     todoist_send_command "item_delete", ids: [item_id]
   end
 
@@ -104,7 +104,7 @@ rescue
 end
 
 def create_todoist_alert(alert)
-  if alert.suppressed? || alert.destroyed? || alert.closed?
+  if alert.suppressed? || alert.deleted? || alert.closed?
     Rails.logger.info "[create_todoist_alert] Alert ##{alert.number} has already been closed, suppressed, or destroyed"
     return
   end
