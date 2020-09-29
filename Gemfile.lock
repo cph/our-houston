@@ -132,7 +132,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-releases.git
-  revision: 0c115db690f9702a193f94a92d3b5f615bb513c3
+  revision: 87294ff6e21f88c37603a472b5af760708f8dd0d
   branch: master
   specs:
     houston-releases (0.0.1)
