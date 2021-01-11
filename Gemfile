@@ -96,9 +96,6 @@ gem "star", github: "cph/star", branch: "master"
 # This one looks more active: https://github.com/winrb/rubyntlm
 gem "ruby-ntlm", github: "macks/ruby-ntlm"
 
-# For deploying to EngineYard
-gem "engineyard", "~> 3.2.1"
-
 
 # Dependency of `houston-slack`; uncomment to develop on houston-conversations
 gem "houston-conversations", github: "houston/houston-conversations", branch: "master"
