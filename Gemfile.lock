@@ -352,23 +352,8 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    engineyard (3.2.5)
-      addressable (= 2.3.8)
-      engineyard-cloud-client (~> 2.1)
-      engineyard-serverside-adapter (~> 2.2)
-      escape (~> 0.0.4)
-      highline (~> 1.6.1)
-      launchy (~> 2.1)
-      net-ssh (~> 2.7)
-    engineyard-cloud-client (2.1.1)
-      multi_json (~> 1.6)
-      rest-client (~> 1.7)
-    engineyard-serverside-adapter (2.4.0)
-      escape (~> 0.0.4)
-      multi_json (~> 1.6)
     erubi (1.9.0)
     erubis (2.7.0)
-    escape (0.0.4)
     et-orbi (1.2.4)
       tzinfo
     excon (0.71.0)
@@ -403,7 +388,6 @@ GEM
       excon
       moneta
       multi_json (>= 1.9.2)
-    highline (1.6.21)
     htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -465,7 +449,6 @@ GEM
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
     net-ldap (0.16.1)
-    net-ssh (2.9.4)
     netrc (0.11.0)
     nio4r (2.5.4)
     nokogiri (1.10.10)
@@ -553,10 +536,6 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rest-client (1.8.0)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.7)
     rexml (3.2.4)
     rr (1.2.1)
     ruby-progressbar (1.10.0)
@@ -653,7 +632,6 @@ DEPENDENCIES
   bundler
   capybara
   devise_ldap_authenticatable!
-  engineyard (~> 3.2.1)
   factory_girl_rails
   graphql-client
   houston-alerts!

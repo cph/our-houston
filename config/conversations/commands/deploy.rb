@@ -215,7 +215,7 @@ module Houston
 
         # !todo: support other strategies
         # we're just deploying members, unite, and ledger to Staging for now,
-        # so we can assume that the strategy is Engineyard
+        # so we can assume that the strategy is Heroku
         environment_name = project == "lsb" ? "staging2" : "staging"
         @environment = Deployers::Heroku.new(project, environment_name)
         check_if_another_pull_request_is_on_staging
