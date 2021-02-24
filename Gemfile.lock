@@ -198,10 +198,10 @@ GIT
 
 GIT
   remote: https://github.com/houston/slacks.git
-  revision: 1d43065882b8c6c547999d2198c4e573d71dcd78
-  branch: master
+  revision: bf9b9b9192d5b6cabf7f82b97b64937d1c05fe01
+  branch: update-api
   specs:
-    slacks (0.5.0)
+    slacks (0.6.0)
       concurrent-ruby
       faraday
       faraday-raise-errors
@@ -672,7 +672,7 @@ DEPENDENCIES
   shoulda-context
   simplecov-json
   skylight
-  slacks (>= 0.5.0.pre)!
+  slacks!
   spring
   star!
   sucker_punch (~> 1.6)
