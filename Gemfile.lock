@@ -197,18 +197,6 @@ GIT
       twilio-ruby (~> 4.11.1)
 
 GIT
-  remote: https://github.com/houston/slacks.git
-  revision: bf9b9b9192d5b6cabf7f82b97b64937d1c05fe01
-  branch: update-api
-  specs:
-    slacks (0.6.0)
-      concurrent-ruby
-      faraday
-      faraday-raise-errors
-      multi_json
-      websocket-driver
-
-GIT
   remote: https://github.com/houston/vestal_versions.git
   revision: 7b8f93e1d92a692a3b7b010195d29a2488bb60ea
   branch: master
@@ -579,6 +567,12 @@ GEM
     slackdown (0.2.4)
       kramdown (~> 2.3)
       kramdown-parser-gfm (~> 1.0, >= 1.0.1)
+    slacks (0.6.0)
+      concurrent-ruby
+      faraday
+      faraday-raise-errors
+      multi_json
+      websocket-driver
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (4.0.2)
@@ -672,7 +666,7 @@ DEPENDENCIES
   shoulda-context
   simplecov-json
   skylight
-  slacks!
+  slacks
   spring
   star!
   sucker_punch (~> 1.6)

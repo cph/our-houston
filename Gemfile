@@ -104,7 +104,7 @@ gem "houston-conversations", github: "houston/houston-conversations", branch: "m
 # gem "attentive", github: "houston/attentive", branch: "master"
 
 # Dependency of `houston-slack`; uncomment to develop on slacks
-gem "slacks", github: "houston/slacks", branch: "update-api"
+gem "slacks"
 
 # Temporarily bump vestal_versions to unlock Rails 6
 gem "houston-vestal_versions", github: "houston/vestal_versions", branch: "master"
