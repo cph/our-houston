@@ -198,7 +198,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/slacks.git
-  revision: 3e90367fbcb8b4c957cfc66af391279078adcab6
+  revision: 267dcbf391d8d3b202b71142a6e18c3181a78a1e
   branch: retry-finding-missing
   specs:
     slacks (0.6.1)
