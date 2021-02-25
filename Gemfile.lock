@@ -198,8 +198,8 @@ GIT
 
 GIT
   remote: https://github.com/houston/slacks.git
-  revision: c5527d8326848df0c4fbc0251f03c23f15ad54a1
-  branch: retry-finding-missing
+  revision: f9546a50dd1dbe02d68922c624c53c7cd8da4250
+  branch: master
   specs:
     slacks (0.6.1)
       concurrent-ruby
