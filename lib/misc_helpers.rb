@@ -110,7 +110,7 @@ def create_todoist_alert(alert)
   end
 
   connection = Faraday.new(url: "https://todoist.com/API/v7")
-  connection.use Faraday::RaiseErrors
+  connection.response :raise_error
   due_date = alert.deadline.utc.strftime("%Y-%m-%dT%H:%M")
   project_slug = alert.project&.slug || "unknown"
   content = "**#{alert.number}** | **#{project_slug}** | #{alert.summary}"
@@ -172,6 +172,6 @@ end
 
 def todoist_connection
   @connection ||= Faraday.new(url: "https://todoist.com/API/v7").tap do |connection|
-    connection.use Faraday::RaiseErrors
+    connection.response :raise_error
   end
 end

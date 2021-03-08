@@ -14,7 +14,7 @@ Houston::Conversations.config do
 
     begin
       menu_items = LunchMenu.for date
-    rescue Faraday::HTTP::Error
+    rescue Faraday::ClientError, Faraday::ServerError
       e.reply "Uh, oh. Looks like I can't get to the menu right now. :sweat_smile: Maybe you can try: http://cphweb09/mycph/menu.asp"
       next
     end
