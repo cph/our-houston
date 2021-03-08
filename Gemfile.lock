@@ -281,10 +281,6 @@ GEM
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.3.8)
-    airbrake (11.0.0)
-      airbrake-ruby (~> 5.0)
-    airbrake-ruby (5.0.2)
-      rbtree3 (~> 0.5)
     ansi (1.5.0)
     attentive (0.3.9)
       concurrent-ruby
@@ -304,23 +300,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
-    celluloid (0.17.4)
-      celluloid-essentials
-      celluloid-extras
-      celluloid-fsm
-      celluloid-pool
-      celluloid-supervision
-      timers (>= 4.1.1)
-    celluloid-essentials (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-extras (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-fsm (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-pool (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-supervision (0.20.6)
-      timers (>= 4.1.1)
     charlock_holmes (0.7.7)
     coderay (1.1.2)
     coffee-rails (5.0.0)
@@ -529,7 +508,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (12.3.3)
-    rbtree3 (0.6.0)
     record_tag_helper (1.0.1)
       actionview (>= 5)
     redcarpet (3.5.1)
@@ -562,6 +540,16 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
+    sentry-rails (4.2.2)
+      rails (>= 5.0)
+      sentry-ruby-core (~> 4.2.0)
+    sentry-ruby (4.2.2)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      faraday (>= 1.0)
+      sentry-ruby-core (= 4.2.2)
+    sentry-ruby-core (4.2.2)
+      concurrent-ruby
+      faraday
     shoulda-context (1.2.2)
     simplecov (0.9.2)
       docile (~> 1.1.0)
@@ -587,8 +575,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sucker_punch (1.6.0)
-      celluloid (~> 0.17.2)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -596,7 +582,6 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     timecop (0.9.1)
-    timers (4.2.0)
     twilio-ruby (4.11.1)
       builder (>= 2.1.2)
       jwt (~> 1.0)
@@ -632,7 +617,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake
   better_errors
   bundler
   capybara
@@ -668,13 +652,14 @@ DEPENDENCIES
   redis (< 4.0)
   rr
   ruby-ntlm!
+  sentry-rails
+  sentry-ruby
   shoulda-context
   simplecov-json
   skylight
   slacks!
   spring
   star!
-  sucker_punch (~> 1.6)
   therubyracer
   timecop
   viewpoint

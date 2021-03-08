@@ -69,25 +69,11 @@ group :test do
 end
 
 # Tooling
-# NB: Skylight needs to come before airbrake, as they both try to monkey patch
-# net_http to observe performance, but doing it in the wrong order causes an
-# infinite loop
 gem "skylight"
-gem "airbrake"
 
-# Houston is experiencing this problem:
-#   github.com/brandonhilkert/sucker_punch/issues/135
-# which is apparently fixed in version 2.0.
-#
-# However, we have to wait for Rails 5 to upgrade b/c:
-#   github.com/brandonhilkert/sucker_punch/issues/156
-#
-# Test by setting:
-#   config.development_environments = []
-# and then pasting in the terminal:
-#   begin; raise "test"; rescue; Airbrake.notify($!); end
-gem "sucker_punch", "~> 1.6"
-
+# Exception reporting to Sentry
+gem "sentry-ruby"
+gem "sentry-rails"
 
 gem "star", github: "cph/star", branch: "master"
 
