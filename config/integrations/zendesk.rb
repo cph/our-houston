@@ -3,4 +3,4 @@ ZENDESK_TOKEN = (Rails.env.production? ? ENV["HOUSTON_ZENDESK_TOKEN"] : ENV["HOU
 
 $zendesk = Faraday.new(url: "https://#{ZENDESK_HOST}/api/v2")
 $zendesk.basic_auth "houston@cphepdev.com/token", ZENDESK_TOKEN
-$zendesk.use Faraday::RaiseErrors
+$zendesk.response :raise_error
