@@ -16,7 +16,7 @@
         <h3 class="presentation-title">
           <%= avatar_for(service.presenter) %>
           <%= link_to chapel_service_path(service) do %>
-            <%= service.presenter.name %>
+            <%= service.preacher %>
           <% end %>
         </h3>
       </div>
