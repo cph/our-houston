@@ -1,6 +1,6 @@
 <% content_for :title do %>
   <h1 class="project-banner">
-    <%= @service.presenter.name %>
+    <%= @service.preacher %>
   </h1>
 <% end %>
 
@@ -9,7 +9,7 @@
   <span class="date"><i class="fa fa-calendar" aria-hidden="true"></i> <%= @service.date.strftime("%b %d, %Y") %></span>
   <h2 class="presentation-title">
     <%= avatar_for(@service.presenter) %>
-    <%= @service.presenter.name %>
+    <%= @service.preacher %>
     <% if can? :update, @service %>
       <small><%= link_to "Edit", edit_chapel_service_path(@service) %></small>
     <% end %>

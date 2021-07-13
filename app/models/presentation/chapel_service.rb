@@ -3,6 +3,12 @@ module Presentation
 
     before_save :update_description
 
+    def preacher
+      return outside_speaker unless outside_speaker.blank?
+
+      presenter.name
+    end
+
     def hymn
       metadata["hymn"]
     end
@@ -31,6 +37,14 @@ module Presentation
       metadata["liturgy"] = value
     end
 
+    def outside_speaker
+      metadata["outside_speaker"]
+    end
+
+    def outside_speaker=(value)
+      metadata["outside_speaker"] = value
+    end
+
     def send_summary!
       ChapelMailer.summary(self).deliver_later!
       self.summary_sent = true
@@ -53,7 +67,9 @@ module Presentation
 
     def update_description
       self.description = <<~MD
-        **Preacher:** #{presenter.name}
+        **Preacher:** #{preacher}
+
+        **Liturgist:** #{presenter.name}
 
         **Liturgy:** #{liturgy}
 
