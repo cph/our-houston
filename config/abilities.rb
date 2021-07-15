@@ -113,8 +113,8 @@ Houston.config do
       # Folks can update their own presentations
       can [:update, :destroy], Presentation::Nanoconf, presenter_id: user.id
 
-      # Users can update their own chapel services
-      can [:update, :destroy], Presentation::ChapelService, presenter_id: user.id
+      # Users can update their own chapel services or sign up for an empty one
+      can [:update, :destroy], Presentation::ChapelService, presenter_id: [ nil, user.id ]
 
       # If you're signed in, you can create a Nanoconfs
       can :create, Presentation::Nanoconf

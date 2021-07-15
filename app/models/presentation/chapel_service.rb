@@ -6,7 +6,7 @@ module Presentation
     def preacher
       return outside_speaker unless outside_speaker.blank?
 
-      presenter.name
+      presenter&.name || "Sign up to Lead!"
     end
 
     def hymn
@@ -69,7 +69,7 @@ module Presentation
       self.description = <<~MD
         **Preacher:** #{preacher}
 
-        **Liturgist:** #{presenter.name}
+        **Liturgist:** #{presenter&.name || "None"}
 
         **Liturgy:** #{liturgy}
 

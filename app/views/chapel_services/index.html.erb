@@ -20,6 +20,9 @@
               <%= service.preacher %>
             <% end %>
           </h3>
+          <% if service.presenter_id.nil? && can?(:update, service) %>
+            <%= link_to "Lead this service", edit_chapel_service_path(service, claim: 1) %>
+          <% end %>
         </div>
       <% else %>
         <% if can? :create, Presentation::ChapelService %>
