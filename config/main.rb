@@ -7,11 +7,12 @@ require "houston/application"
 LUKE = "luke.booth@cph.org".freeze
 MATT = "matt.kobs@cph.org".freeze
 GARY = "gary.hall@cph.org".freeze
+NICHOLAS = "nicholas.weber@cph.org".freeze
 JEREMY = "jeremy.roegner@cph.org".freeze
 BRAD = "brad.egberts@cph.org".freeze
 KEVIN = "kevin.applegate@cph.org".freeze
 DAVID = "david.bowman@cph.org".freeze
-EP_DEVELOPERS = [LUKE, MATT, GARY].freeze
+EP_DEVELOPERS = [LUKE, MATT, GARY, NICHOLAS].freeze
 EP_EMPLOYEES = EP_DEVELOPERS.freeze
 SS_DEVELOPERS = [KEVIN, DAVID].freeze
 
