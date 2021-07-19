@@ -13,9 +13,11 @@
   <% if can? :manage, Presentation::ChapelService %>
     <div class="row-fluid">
       <div class="span6 controls">
-        <%= select("chapel_service", "presenter_id", @chapel_speakers, selected: @service.presenter_id) %>
+        <%= select("chapel_service", "presenter_id", @chapel_speakers, selected: @service.presenter_id, prompt: "Leader...") %>
       </div>
     </div>
+  <% else %>
+    <%= f.hidden_field :presenter_id %>
   <% end %>
 
   <div class="row-fluid">

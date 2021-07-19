@@ -20,6 +20,7 @@ class ChapelServicesController < ApplicationController
     new_presentation_date = Date.today
     new_presentation_date = params[:date].to_date if params[:date]
     @service = Presentation::ChapelService.new(date: new_presentation_date)
+    @service.presenter = current_user unless can?(:manage, @service)
     authorize! :create, service
     @dropdown_dates = get_dropdown_dates
     @form_path = chapel_services_path
@@ -43,6 +44,7 @@ class ChapelServicesController < ApplicationController
     authorize! :update, service
     @dropdown_dates = get_dropdown_dates
     @form_path = chapel_service_path(service)
+    @service.presenter ||= current_user if params[:claim].to_i == 1
     chapel_speakers
   end
 
@@ -95,15 +97,13 @@ private
   end
 
   def create_params
-    update_params.tap do |attributes|
-      attributes[:presenter] ||= current_user
-    end
+    update_params
   end
 
   def update_params
     attributes = params.require(:chapel_service).permit(:presenter_id, :date, :outside_speaker, :hymn, :liturgy, :joined_readings)
     attributes[:readings] = attributes.delete(:joined_readings).split("\n").map(&:strip)
-    attributes[:presenter] = User.find attributes.delete(:presenter_id) if attributes.key?(:presenter_id)
+    attributes[:presenter] = User.find_by(id: attributes.delete(:presenter_id)) if attributes.key?(:presenter_id)
 
     attributes
   end

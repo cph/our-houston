@@ -11,7 +11,7 @@
     <%= avatar_for(@service.presenter) %>
     <%= @service.preacher %>
     <% if can? :update, @service %>
-      <small><%= link_to "Edit", edit_chapel_service_path(@service) %></small>
+      <small><%= link_to "Edit", edit_chapel_service_path(@service, claim: 1) %></small>
     <% end %>
   </h2>
   <hr>

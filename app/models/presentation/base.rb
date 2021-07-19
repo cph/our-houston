@@ -5,7 +5,7 @@ module Presentation
     scope :any_tags, -> (tags){ where('tags && ARRAY[?]', tags) }
     scope :all_tags, -> (tags){ where('tags @> ARRAY[?]', tags) }
 
-    belongs_to :presenter, class_name: "User"
+    belongs_to :presenter, class_name: "User", optional: true
 
     def self.upcoming
       where(arel_table[:date].gteq(Date.today))
