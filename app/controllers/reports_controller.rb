@@ -21,7 +21,7 @@ class ReportsController < ApplicationController
   end
 
   def star2
-    fail CanCan::AccessDenied unless EP_DEVELOPERS.member?(current_user.email)
+    fail CanCan::AccessDenied unless EP_DEVELOPERS.member?(current_user&.email)
     @title = "Star"
     render layout: "naked"
   end
