@@ -1,7 +1,7 @@
 class LunchMenu
 
   def self.for(date)
-    response = $cphweb09.get "mycph/menu.asp"
+    response = $cphintranet.get "mycph/menu.asp"
 
     date_query = date.strftime("%A, %B %-d, %Y")
     document = Nokogiri::HTML(response.body)
