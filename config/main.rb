@@ -267,6 +267,8 @@ Houston.config do
                  {name: "Bugfix", as: "fix", color: "C64537", aliases: %w{bugfix}} )
   end
 
+  require_relative "conversations/_entities/alert_type"
+
   use :alerts do
     workers { User.with_email_address(EP_DEVELOPERS + SS_DEVELOPERS) }
     set_deadline do |alert|
