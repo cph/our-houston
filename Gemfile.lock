@@ -50,13 +50,13 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-commits.git
-  revision: 433c3185bb1ea6007f031e133bee58a3a0f84433
+  revision: 090335cf03c0bf68892190f972c010a0876a18d3
   branch: master
   specs:
     houston-commits (0.0.1)
       houston-core (>= 0.8.0)
       octokit (>= 4.9.0)
-      rugged (~> 0.26.0)
+      rugged (~> 0.27.0)
 
 GIT
   remote: https://github.com/houston/houston-conversations.git
@@ -525,7 +525,7 @@ GEM
     rubyzip (2.3.0)
     rufus-scheduler (3.4.2)
       et-orbi (~> 1.0)
-    rugged (0.26.7)
+    rugged (0.27.10.1)
     safe_yaml (1.0.4)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
