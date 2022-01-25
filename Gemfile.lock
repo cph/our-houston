@@ -196,8 +196,8 @@ GIT
 
 GIT
   remote: https://github.com/houston/slacks.git
-  revision: 0501ec063c8dc3990136f118c2dc1510bb7eeeb2
-  branch: master
+  revision: 74a4d94b9333a8d08b7ff3c535c64b75e96883eb
+  branch: rtm-connect
   specs:
     slacks (0.6.4)
       concurrent-ruby
