@@ -70,7 +70,7 @@ GIT
 
 GIT
   remote: https://github.com/houston/houston-core.git
-  revision: ec785441c034c4aac67bffb8b4e424e003006ec8
+  revision: 618f67b3a1e7b22d5384e6e03982c1191164f548
   branch: wait-for-scheduler
   specs:
     houston-core (0.9.2)
