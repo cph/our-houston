@@ -1,0 +1,4 @@
+"Date","Speaker","Liturgist"
+<% @services.each do |service| %>
+"<%= service.date.strftime("%b %d, %Y") %>","<%= service.preacher %>","<%= service.presenter&.name %>"
+<% end %>
