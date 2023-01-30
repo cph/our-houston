@@ -11,7 +11,7 @@ Houston::Alerts.config.sync :changes, "err", every: "45s", icon: "fa-bug" do
   app_project_map = Hash[Project
     .unretired
     .with_error_tracker("Errbit")
-    .pluck("(props->>'errbit.appId')::integer", :id)]
+    .pluck(Arel.sql("(props->>'errbit.appId')::integer"), :id)]
   app_ids = app_project_map.keys
 
   Houston::Adapters::ErrorTracker::ErrbitAdapter.changed_problems(app_id: app_ids, since: $errbit_since_changes_since).map do |problem|
