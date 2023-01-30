@@ -9,10 +9,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "houston-core", github: "houston/houston-core", branch: "wait-for-scheduler"
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem "therubyracer", platforms: :ruby
+gem "houston-core", github: "houston/houston-core", branch: "rails-6.1"
 
 # For talking to Office365
 gem "viewpoint"
