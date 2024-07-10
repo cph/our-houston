@@ -11,7 +11,7 @@ Devise.setup do |config|
       "field" => "samaccountname" }
   else
     config.ldap_configuration = {
-      "host" => "172.31.1.253",
+      "host" => "172.31.1.254",
       "port" => 389,
       "base" => "dc=cph, dc=pri",
       "field" => "samaccountname" }
